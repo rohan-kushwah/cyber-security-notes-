@@ -1,0 +1,1 @@
+if mujhe sirf particular file hi upload karne ko mile aur developeer ne ye front hand me hi lavaya ho toh burp me dekhe uploadnkarke restrict file if koi request uske bad show nhi hop ri toh wo front hand validation hai

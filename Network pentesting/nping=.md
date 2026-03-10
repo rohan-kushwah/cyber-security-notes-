@@ -1,0 +1,146 @@
+# nping
+
+Nping is a free and open-source network packet generation tool and ping utility, part of the Nmap suite. It allows users to craft and send customized network packets across multiple protocols such as TCP, UDP, ICMP, and ARP with fine-grained control over packet headers and payloads. Beyond basic pinging for host availability, nping can be used for advanced network testing tasks like network stack stress testing, ARP poisoning, denial-of-service (DoS) attacks, route tracing, and response time measurement. It features an "Echo Mode" which helps analyze how packets change in transit, useful for troubleshooting firewalls, packet corruption, and network path diagnostics. Nping runs on Linux, Windows, BSD, and macOS platforms and is highly flexible for diverse network measurement and security auditing needs.
+
+## Key Features
+
+*   Custom TCP, UDP, ICMP and ARP packet generation.
+*   Support for multiple target hosts and ports.
+*   Echo Mode for packet transit analysis.
+*   Route tracing capabilities.
+*   Ethernet frame generation.
+*   IPv6 support (experimental).
+*   Runs on multiple OSes.
+
+Nping requires appropriate privileges for raw socket operations and should be used responsibly due to its potential to generate high network traffic.
+
+## Usage Examples
+
+In sum, nping extends the traditional ping utility with powerful packet crafting and analysis capabilities designed for network professionals and security experts.
+
+Show help information: This prints detailed help about nping options and usage.
+```bash
+nping --help
+```
+
+Basic ping to a host (using ICMP by default): This sends ICMP echo requests to dns.google and shows response times.
+```bash
+nping dns.google
+```
+
+Send ARP request to a single IP on your local network: This discovers if the host at 192.168.1.234 responds to ARP requests (Layer 2 check).
+```bash
+nping --arp 192.168.1.234
+```
+
+Send only 1 ARP request (instead of continuous): The `-c 1` means count = 1 packet only.
+```bash
+nping --arp 192.168.1.234 -c 1
+```
+
+Send 1 ARP request to each IP in a subnet (192.168.1.0/24): This scans the whole subnet once per IP to find active hosts.
+```bash
+nping --arp 192.168.1.1/24 -c 1
+```
+
+Send 1 ARP request each to a comma-separated list of IP addresses: Requests sent to 192.168.1.1, 192.168.1.31, 192.168.1.234, 192.168.1.200.
+```bash
+nping --arp 192.168.1.1,31,234,200 -c 1
+```
+
+Send TCP packets to port 80 on a host, with TTL set to 2: Useful to check if intermediate routers/firewalls respond to packets with TTL=2.
+```bash
+nping --tcp -p 80 --ttl 2 192.168.1.205
+```
+
+Send TCP SYN packets to test if port 443 is open: Checks if HTTPS port is listening.
+```bash
+nping --tcp -p 443 192.168.1.31
+```
+
+Send TCP packets with RST flag set to port 443 with TTL=2: RST flag attempts to reset TCP connections; TTL=2 limits packet hops.
+```bash
+nping --tcp -p 443 --flags RST --ttl 2 192.168.1.31
+```
+
+Start an Nping echo server with a passphrase 'public': Other nping clients can target this server for echo tests, useful in network troubleshooting.
+```bash
+nping --echo-server "public"
+```
+
+Send ICMP packets of type 'time exceeded': ICMP "time exceeded" type is typically used in traceroute, for diagnostics.
+```bash
+nping --icmp --icmp-type time 192.168.1.27
+```
+
+---
+## nping UDP Mode Examples
+
+Nping can generate UDP packets for network testing, discovery, and advanced diagnostics. Here are practical examples and options to use `nping` with UDP:
+##### UDP Command Syntax Overview
+---
+*   `--udp` – Use UDP protocol mode.
+*   `-p <port>` – Set target port(s). Use single, comma-separated, or ranges.
+*   `-g <port>` – Set source port (may need root).
+*   `--data-string "DATA"` – Custom ASCII packet payload.
+*   `--data-length <len>` – Random data of bytes as payload.
+*   `-c <count>` – Number of packets to send.
+*   `--badsum` – Use invalid UDP checksum.
+
+
+Send a UDP packet to a host (default port 40125): Sends a default UDP probe to 192.168.1.51 on port 40125.
+```bash
+nping --udp 192.168.1.51
+```
+
+Specify the UDP destination port: Targets port 53 (DNS) on the specified host.
+```bash
+nping --udp -p 53 192.168.1.51
+```
+
+Send to multiple ports or a range of ports: Tests several ports in a single scan.
+```bash
+nping --udp -p 53,161,12345 192.168.1.51
+```
+
+```bash
+nping --udp -p 1000-1010 192.168.1.51
+```
+
+Spoof the source port (requires privileges):Sets the UDP source port to 50505 for outgoing packets.
+```bash
+sudo nping --udp -g 50505 -p 53 192.168.1.51
+```
+
+Send a specified number of UDP packets:
+```bash
+nping --udp -p 53 -c 5 192.168.1.234
+```
+Sends 5 UDP packets.
+
+Send UDP packet with ASCII custom data: Sends "HelloUDP" as the payload.
+```bash
+nping --udp -p 1337 --data-string "HelloUDP" 192.168.1.234
+```
+
+Send UDP packet with 100 bytes of random data: Creates a payload of 100 random bytes.
+```bash
+nping --udp -p 53 --data-length 100 192.168.1.234
+```
+
+Send UDP packets with an invalid checksum (test firewall/IDS): Makes the packet non-RFC-compliant for specialized testing.
+```bash
+nping --udp --badsum -p 53 192.168.1.234
+```
+
+Example: Send 2 UDP packets with a custom message to a server on port 1337
+```bash
+nping --udp -p 1337 --data-string "CustomMessage" -c 2 192.168.1.234
+```
+This will send two UDP packets with "CustomMessage" as payload.
+
+---
+For UDP-based device/service testing, combine these options as needed for your scenario. Be sure to run with elevated privileges if packet spoofing or special flags are required
+
+---
+---

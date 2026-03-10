@@ -1,0 +1,133 @@
+# Kali Linux Repository Setup
+---
+Before installing packages or performing upgrades, it's important to update the package list and install basic utilities.
+
+## Update the package index
+---
+```bash
+apt update
+```
+
+## Install transport protocols and editors
+---
+```bash
+apt install apt-transport-https vim curl
+```
+
+add the key
+```bash
+curl -fsSL 'https://archive.kali.org/archive-key.asc' | sudo gpg --dearmor -o /usr/share/keyrings/kali-archive-keyring.gpg
+```
+
+## Configure Kali Repository Mirror
+---
+Kali Linux repositories ensure you're getting the latest updates and tools.
+
+### Official mirror list reference
+---
+Check the available mirrors here:
+```
+https://http.kali.org/README.mirrorlist
+```
+
+## Edit the sources list to add/modify Kali mirrors
+---
+```bash
+vim /etc/apt/sources.list
+```
+
+Example `sources.list` for Kali:
+```
+deb http://http.kali.org/kali kali-rolling main contrib non-free
+```
+
+## Clean and refresh the repository cache
+---
+```bash
+apt-get clean
+rm -rf /var/lib/apt/lists/*
+apt update
+```
+
+## Upgrade installed packages
+---
+```bash
+apt upgrade
+```
+
+## Full System Upgrade
+---
+You can perform advanced system upgrades to bring all packages to their latest versions.
+
+### Perform a full upgrade
+```bash
+apt full-upgrade
+```
+
+### Perform a dist-upgrade (older terminology, still functional)
+```bash
+apt dist-upgrade
+```
+
+### Reboot if required after upgrade
+```bash
+[ -f /var/run/reboot-required ] && reboot
+```
+
+## Screen Utility Setup
+---
+`screen` is a terminal multiplexer useful for managing long-running sessions.
+
+### Install screen
+```bash
+apt install screen
+```
+
+### Check screen help menu
+```bash
+screen --help
+```
+
+### Start a new screen session
+```bash
+screen
+```
+
+## Install Kali Metapackages
+---
+Kali offers different metapackages depending on your needs.
+
+### Install everything (all tools and environments)
+```bash
+apt install kali-linux-everything
+```
+
+### Install the large set of tools
+```bash
+apt install kali-linux-large
+```
+
+### Install GNOME desktop environment
+```bash
+apt install kali-desktop-gnome
+```
+
+### Reboot if required
+```bash
+[ -f /var/run/reboot-required ] && reboot
+```
+
+## Install Kernel Headers
+---
+Kernel headers are necessary for compiling some tools or drivers.
+```bash
+apt install linux-headers-$(uname -r)
+```
+
+### Reboot if required
+```bash
+[ -f /var/run/reboot-required ] && reboot
+```
+
+---
+---

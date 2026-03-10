@@ -1,0 +1,527 @@
+# Penetration Testing Engagement | Armour Infosec
+
+**Form Description:**
+
+The scope and purpose of the Penetration Testing Engagement your organization is about to undertake. The engagement is a thorough assessment aimed at evaluating the security posture of your systems, applications, and networks. By simulating real-world attack scenarios, our goal is to identify potential vulnerabilities and provide actionable recommendations for improving your defenses.
+
+Our approach includes a mix of manual and automated testing techniques to ensure a comprehensive evaluation of your environment. The engagement will cover various aspects of your infrastructure, including network security, application integrity, and the effectiveness of internal controls.
+
+We customize the testing scope to meet your specific objectives, whether you need to comply with regulatory standards, assess new systems before they go live, or ensure that your current defenses can withstand emerging threats. The methodology we use adheres to industry standards and best practices, ensuring that the assessment is thorough and aligned with recognized frameworks.
+
+After completing the engagement, you will receive a detailed report that outlines the findings, the potential risks they pose, and prioritized recommendations for remediation. This report will guide your organization in strengthening its security posture and reducing vulnerabilities.
+
+---
+*\* Indicates required question*
+
+---
+
+### **Section 1**
+
+**1. Company Name \***
+   - **Type:** Short Answer
+   - **Placeholder:** Your answer
+
+**2. First Name \***
+   - **Type:** Short Answer
+   - **Placeholder:** Your answer
+
+**3. Last Name \***
+   - **Type:** Short Answer
+   - **Placeholder:** Your answer
+
+**4. Job Title \***
+   - **Type:** Short Answer
+   - **Placeholder:** Your answer
+
+**5. Business Email \***
+   - **Type:** Short Answer
+   - **Placeholder:** Your answer
+
+**6. Phone Number \***
+   - **Type:** Short Answer
+   - **Placeholder:** Your answer
+
+---
+
+**Navigation:**
+- **[Next]** Button (Proceeds to the next section of the form)
+- **[Clear form]** Link
+
+---
+### **Section 2: Scope of Engagement**
+
+**Section Description:**
+The Scope of Engagement section defines the specific areas that will be covered during the penetration testing engagement. This includes identifying the systems, applications, and networks that are in scope for testing, as well as any that are explicitly out of scope. Clearly outlining the scope ensures that the engagement is focused, effective, and aligned with your organization's security objectives.
+
+---
+
+**1. Description of the Penetration Test Scope (e.g., specific applications, network segments, IP ranges, or systems to be tested) \***
+   - **Type:** Paragraph
+   - **Placeholder:** Your answer
+
+**2. Are there any systems, applications, or IP ranges that are out of scope for this test?**
+   - **Type:** Paragraph
+   - **Placeholder:** Your answer
+
+**3. Application Testing**
+   - **Type:** Checkboxes
+   - **Options:**
+     - [ ] API
+     - [ ] Web
+     - [ ] Web + API
+     - [ ] Web + API + External Network
+     - [ ] Web + External Network
+     - [ ] Web + Mobile
+     - [ ] Web + Mobile + API
+     - [ ] Mobile
+     - [ ] Mobile + API
+     - [ ] OWASP Top 10 for LLMs
+
+**4. Network Testing**
+   - **Type:** Checkboxes
+   - **Options:**
+     - [ ] External Network
+     - [ ] Internal Network
+     - [ ] Internal + External Network
+     - [ ] Internal Network + PCI Segmentation
+     - [ ] Network + PCI Segmentation
+     - [ ] Wireless Network
+
+**5. Cloud Services**
+   - **Type:** Checkboxes
+   - **Options:**
+     - [ ] AWS
+     - [ ] Azure
+     - [ ] GCP
+     - [ ] Cloud Config
+
+**6. Device and IoT Testing**
+   - **Type:** Checkboxes
+   - **Options:**
+     - [ ] Desktop
+     - [ ] IoT
+
+**7. Social Engineering and Physical Security**
+   - **Type:** Checkboxes
+   - **Options:**
+     - [ ] Phishing
+     - [ ] Physical
+
+**8. Advanced Testing Techniques**
+   - **Type:** Checkboxes
+   - **Options:**
+     - [ ] Red Team
+     - [ ] Prompt Injection
+     - [ ] Threat Modeling
+     - [ ] Security Hardening
+
+**9. Other (please specify)**
+   - **Type:** Short Answer
+   - **Placeholder:** Your answer
+
+---
+
+**Navigation:**
+- **[Back]** Button
+- **[Next]** Button
+- **[Clear form]** Link
+
+---
+### **Section 3: Technology Stack**
+
+**Section Description:**
+The **Technology Stack** section gathers information about the underlying technologies, systems, and platforms that will be involved in the penetration testing engagement. This helps to tailor the testing approach to the specific configurations and components in use within your environment. Understanding the technology stack ensures that the testing is relevant and effective.
+
+---
+
+**1. Operating Systems**
+   - **Type:** Checkboxes
+   - **Options:**
+     - [ ] Linux
+     - [ ] Windows
+     - [ ] macOS
+     - [ ] Other: `_________________`
+
+**2. Applications**
+   - **Type:** Short Answer
+   - **Placeholder:** Your answer
+
+**3. Frameworks and Languages**
+   - **Type:** Short Answer
+   - **Placeholder:** Your answer
+
+**4. Frontend Technologies**
+   - **Type:** Checkboxes
+   - **Options:**
+     - [ ] HTML/CSS
+     - [ ] JavaScript
+     - [ ] Angular
+     - [ ] React
+     - [ ] Vue.js
+     - [ ] Other: `_________________`
+
+**5. Backend Technologies**
+   - **Type:** Checkboxes
+   - **Options:**
+     - [ ] .NET
+     - [ ] Java/Spring
+     - [ ] PHP/Laravel
+     - [ ] Ruby on Rails
+     - [ ] Node.js
+     - [ ] Python/Django
+     - [ ] Other: `_________________`
+
+**6. DBMS (Database Management Systems)**
+   - **Type:** Checkboxes
+   - **Options:**
+     - [ ] Microsoft SQL Server
+     - [ ] Oracle
+     - [ ] MongoDB
+     - [ ] PostgreSQL
+     - [ ] MariaDB
+     - [ ] MySQL
+     - [ ] SQLite
+     - [ ] Redis
+     - [ ] Other: `_________________`
+
+**7. Infrastructure**
+   - **Type:** Checkboxes
+   - **Options:**
+     - [ ] Cloud Services (e.g., AWS, Azure)
+     - [ ] Virtualization (e.g., VMware, Hyper-V)
+     - [ ] Containerization (e.g., Docker, Kubernetes)
+     - [ ] Other: `_________________`
+
+---
+
+**Navigation:**
+- **[Back]** Button
+- **[Next]** Button
+- **[Clear form]** Link
+
+----
+### **Section 4: Testing Objectives**
+
+**Section Description:**
+The **Testing Objectives** section identifies the primary goals and outcomes your organization aims to achieve through the penetration testing engagement. Clearly defining these objectives helps align the testing process with your organization's security priorities, ensuring that the assessment provides the most value.
+
+---
+
+**1. Primary Objectives of This Penetration Test (check all that apply): \***
+   - **Type:** Checkboxes
+   - **Options:**
+     - [ ] Identify vulnerabilities in the network/application
+     - [ ] Assess the security posture of new systems/applications
+     - [ ] Meet regulatory or compliance requirements
+     - [ ] Test incident response procedures
+     - [ ] Evaluate the effectiveness of security controls
+     - [ ] Other: `_________________`
+
+**2. Additional Objectives or Specific Concerns (Please provide any additional objectives or specific areas of concern for this test)**
+   - **Type:** Paragraph
+   - **Placeholder:** Your answer
+
+---
+
+**Navigation:**
+- **[Back]** Button
+- **[Next]** Button
+- **[Clear form]** Link
+
+----
+### **Section 5: Target Environment**
+
+**Section Description:**
+The **Target Environment** section provides information about the environment that will be assessed during the penetration test. This includes details on the type of environment and any rate-limiting controls that might affect the testing process. Accurate information about the target environment helps ensure that the penetration test is conducted effectively and with minimal disruption.
+
+---
+
+**1. What type of environment is being targeted? (check all that apply) \***
+   - **Type:** Checkboxes
+   - **Options:**
+     - [ ] Production
+     - [ ] Staging
+     - [ ] Development (Dev)
+     - [ ] Other: `_________________`
+
+**2. Are any rate-limiting controls present that could impact the performance or effectiveness of the assessment? (e.g., WAF, IP-based restrictions)**
+   - **Type:** Paragraph
+   - **Placeholder:** Your answer
+
+---
+
+**Navigation:**
+- **[Back]** Button
+- **[Next]** Button
+- **[Clear form]** Link
+
+---
+### **Section 6: Methodology**
+
+**Section Description:**
+The **Methodology** section outlines the approach and techniques that will be used during the penetration testing engagement. This section helps define how the test will be conducted, including the types of testing methods and standards that will guide the assessment. Understanding the methodology ensures that the testing is comprehensive and aligns with industry best practices.
+
+---
+
+**1. Penetration Testing Methodology \***
+   - **Type:** Checkboxes
+   - **Options:**
+     - [ ] **Black Box Testing:** Testing with no prior knowledge of the internal workings of the target system.
+     - [ ] **White Box Testing:** Testing with full access to the target system's internal workings, including source code, network configurations, etc.
+     - [ ] **Gray Box Testing:** Testing with partial knowledge of the internal workings, typically including access to system documentation, architecture diagrams, or limited access credentials.
+
+**2. Techniques Employed \***
+   - **Type:** Checkboxes
+   - **Options:**
+     - [ ] **Manual Testing:** Thorough testing performed by skilled professionals to identify vulnerabilities that automated tools might miss.
+     - [ ] **Automated Testing:** Utilization of automated tools to scan for known vulnerabilities and common misconfigurations.
+     - [ ] **Vulnerability Scanning:** Scanning the system to identify known vulnerabilities using specialized tools.
+
+**3. Adherence to Standards and Frameworks (check all that apply) \***
+   - **Type:** Checkboxes
+   - **Options:**
+     - [ ] **OWASP:** Open Web Application Security Project
+     - [ ] **PTES:** Penetration Testing Execution Standard
+     - [ ] **NIST:** National Institute of Standards and Technology Guidelines
+     - [ ] **MITRE ATT&CK:** A knowledge base for tactics and techniques used in cyber attacks
+     - [ ] **PCI-DSS:** Payment Card Industry Data Security Standard
+     - [ ] Other: `_________________`
+
+---
+
+**Navigation:**
+- **[Back]** Button
+- **[Next]** Button
+- **[Clear form]** Link
+---
+### **Section 7: Credentials and Test Data**
+
+**Section Description:**
+The **Credentials and Test Data** section collects information related to the credentials and test data needed for the penetration testing engagement. Providing this information ensures that testers have the necessary access to effectively evaluate the target environment and perform comprehensive testing. It also addresses the handling of sensitive data within the environment.
+
+---
+
+**1. Credentials Required for Testing (Please provide details of any credentials needed for accessing systems, applications, or databases. This includes any user accounts, passwords, or API keys.)**
+   - **Type:** Paragraph
+   - **Placeholder:** Your answer
+
+**2. Does the target environment process or store any personally identifiable information (PII), protected health information (PHI), or card-holder data (CHD)?**
+   - **Type:** Multiple Choice
+   - **Options:**
+     - ○ Yes
+     - ○ No
+
+**3. If applicable, can you provide credits or test credit cards for pentesters to use when reviewing payment flows?**
+   - **Type:** Multiple Choice
+   - **Options:**
+     - ○ Yes
+     - ○ Not applicable
+
+**4. Special Instructions for Handling Data**
+   - **Type:** Paragraph
+   - **Placeholder:** Your answer
+
+**5. Access Details**
+   - **Type:** Paragraph
+   - **Placeholder:** Your answer
+
+**6. Access Permissions:**
+   - **Type:** Checkboxes
+   - **Options:**
+     - [ ] Admin/root access
+     - [ ] User-level access
+     - [ ] Other: `_________________`
+
+**7. Additional Information on Credit Card Details (if applicable)**
+   - **Type:** Paragraph
+   - **Placeholder:** Your answer
+
+---
+
+**Navigation:**
+- **[Back]** Button
+- **[Next]** Button
+- **[Clear form]** Link
+---
+### **Section 8: Timeline and Scheduling**
+
+**Section Description:**
+The **Timeline and Scheduling** section collects information regarding the timing and duration of the penetration testing engagement. Providing this information helps in planning the test effectively, ensuring that it fits within your organization's schedule and any specific time windows or constraints.
+
+---
+
+**1. Preferred Start Date for the Penetration Test \***
+   - **Type:** Date
+   - **Format:** dd/mm/yyyy
+
+**2. Preferred End Date for the Penetration Test \***
+   - **Type:** Date
+   - **Format:** dd/mm/yyyy
+
+**3. Are there any specific time windows for testing (e.g., after business hours)?**
+   - **Type:** Checkboxes
+   - **Options:**
+     - [ ] Yes
+     - [ ] No
+
+**4. Any Time Constraints or Considerations (Please provide any additional details about time constraints or scheduling considerations that may affect the testing.)**
+   - **Type:** Paragraph
+   - **Placeholder:** Your answer
+
+---
+
+**Navigation:**
+- **[Back]** Button
+- **[Next]** Button
+- **[Clear form]** Link
+---
+### **Section 9: Communication and Reporting**
+
+**Section Description:**
+The **Communication and Reporting** section gathers information on how communication will be managed during the penetration testing engagement and the preferred format for reporting the results. This ensures that stakeholders are kept informed and receive the findings in a manner that suits their needs.
+
+---
+
+**1. Preferred Communication Channels During Testing (Please select the preferred method(s) for communication during the engagement.) \***
+   - **Type:** Checkboxes
+   - **Options:**
+     - [ ] Email
+     - [ ] Slack/Teams
+     - [ ] Phone
+     - [ ] Other: `_________________`
+
+**2. Frequency of Progress Updates (Please select how often you would like to receive updates on the progress of the testing.) \***
+   - **Type:** Multiple Choice
+   - **Options:**
+     - ○ Daily
+     - ○ Weekly
+     - ○ Only in case of critical findings
+     - ○ At the conclusion of testing
+
+**3. Final Report Delivery Preference (Please select your preferred format for receiving the final report.) \***
+   - **Type:** Checkboxes
+   - **Options:**
+     - [ ] PDF
+     - [ ] Encrypted Email
+     - [ ] Hard Copy
+     - [ ] Other: `_________________`
+
+**4. Additional Reporting Requirements (Please specify any additional reporting requirements or preferences, such as executive summaries, detailed findings, or remediation recommendations.)**
+   - **Type:** Paragraph
+   - **Placeholder:** Your answer
+
+---
+
+**Navigation:**
+- **[Back]** Button
+- **[Next]** Button
+- **[Clear form]** Link
+---
+### **Section 10: Risk and Impact Considerations**
+
+**Section Description:**
+The **Risk and Impact Considerations** section addresses potential risks and impacts associated with the penetration testing engagement. This includes identifying any known issues that could affect the test and defining preferred methods for handling disruptions, ensuring that the testing process is conducted with minimal risk to your systems and operations.
+
+---
+
+**1. Known Risks or Potential Impacts (Are there any known risks or potential impacts that could affect the penetration testing, such as legacy systems, critical services, or other sensitive components?)**
+   - **Type:** Paragraph
+   - **Placeholder:** Your answer
+
+**2. Preferred Method for Handling Potential Disruptions (In the event of a disruption or significant finding during the test, what is your preferred method for handling it?)**
+   - **Type:** Checkboxes
+   - **Options:**
+     - [ ] Immediate notification
+     - [ ] Test termination upon detection of disruption
+     - [ ] Other: `_________________`
+
+**3. Additional Risk Management Considerations (Please provide any additional information or instructions related to risk management during the penetration test.)**
+   - **Type:** Paragraph
+   - **Placeholder:** Your answer
+
+---
+
+**Navigation:**
+- **[Back]** Button
+- **[Next]** Button
+- **[Clear form]** Link
+---
+### **Section 11: Legal and Compliance**
+
+**Section Description:**
+The **Legal and Compliance** section collects information related to legal, regulatory, and compliance requirements that need to be considered during the penetration testing engagement. This ensures that the testing is conducted in accordance with relevant laws and regulations, and that any additional legal agreements or documentation are addressed.
+
+---
+
+**1. Legal, Regulatory, or Compliance Requirements (Please specify any legal, regulatory, or compliance requirements that need to be adhered to during the penetration testing engagement, such as GDPR, HIPAA, or PCI-DSS.)**
+   - **Type:** Checkboxes
+   - **Options:**
+     - [ ] Yes
+     - [ ] No
+
+**2. Additional Legal Agreements or Documents Required (Are there any additional legal agreements or documents required before the penetration test can proceed?)**
+   - **Type:** Multiple Choice
+   - **Options:**
+     - ○ Yes
+     - ○ No
+
+**3. Specific Compliance Considerations (Please provide any specific compliance considerations or restrictions that should be taken into account during the test.)**
+   - **Type:** Paragraph
+   - **Placeholder:** Your answer
+
+---
+
+**Navigation:**
+- **[Back]** Button
+- **[Next]** Button
+- **[Clear form]** Link
+
+---
+### **Section 12: Post-Engagement Support**
+
+**Section Description:**
+The **Post-Engagement Support** section gathers information on the support and consultation needed after the penetration testing engagement. This ensures that any findings and recommendations are thoroughly addressed and that additional assistance is available if required.
+
+---
+
+**1. Post-Engagement Support or Consultation Required (Will you require support or consultation after the penetration test to address the findings and recommendations?)**
+   - **Type:** Multiple Choice
+   - **Options:**
+     - ○ Yes
+     - ○ No
+
+**2. Type of Post-Engagement Support Needed (If you require support, please specify the type of assistance you need, such as remediation guidance, follow-up testing, or additional consultation.)**
+   - **Type:** Multiple Choice
+   - **Options:**
+     - ○ Remediation Guidance
+     - ○ Follow-Up Testing
+     - ○ Additional Consultation
+     - ○ Other: `_________________`
+
+**3. Preferred Method for Post-Engagement Communication (How would you prefer to communicate for post-engagement support?)**
+   - **Type:** Multiple Choice
+   - **Options:**
+     - ○ Email
+     - ○ Phone
+     - ○ Slack/Teams
+     - ○ Other: `_________________`
+
+**4. Would You Like to Schedule a Debrief Session?: (Would you like to schedule a debrief session to review the findings and discuss the next steps?)**
+   - **Type:** Multiple Choice
+   - **Options:**
+     - ○ Yes
+     - ○ No
+
+**5. Preferred Timing for Debrief Session (If you selected 'Yes' for a debrief session, please provide your preferred timing.)**
+   - **Type:** Date
+   - **Format:** dd/mm/yyyy
+
+---
+
+**Navigation:**
+- **[Back]** Button
+- **[Submit]** Button
+- **[Clear form]** Link
+
+---
+---
