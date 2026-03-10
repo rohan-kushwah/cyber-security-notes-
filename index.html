@@ -6,7 +6,7 @@
 <title>Cyber Security Notes — Rohan Kushwah</title>
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-  :root { --bg:#080c10;--surface:#0d1117;--border:#1e2d3d;--accent:#00d9ff;--accent2:#ff3e6c;--accent3:#39ff14;--text:#c9d1d9;--dim:#586069;--glow:0 0 20px rgba(0,217,255,0.3); }
+  :root{--bg:#080c10;--surface:#0d1117;--border:#1e2d3d;--accent:#00d9ff;--accent2:#ff3e6c;--accent3:#39ff14;--text:#c9d1d9;--dim:#586069}
   *{margin:0;padding:0;box-sizing:border-box}
   body{background:var(--bg);font-family:'Rajdhani',sans-serif;color:var(--text);min-height:100vh;overflow-x:hidden}
   body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,217,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,217,255,0.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
@@ -29,7 +29,7 @@
   .section-title{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--accent2);letter-spacing:4px;text-transform:uppercase;margin-bottom:24px;display:flex;align-items:center;gap:12px}
   .section-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)}
   .folders-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:60px}
-  .folder-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:20px;text-decoration:none;color:var(--text);display:block;position:relative;overflow:hidden;transition:all 0.25s ease;cursor:pointer;opacity:0;animation:fadeUp 0.5s ease forwards}
+  .folder-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:20px;text-decoration:none;color:var(--text);display:block;position:relative;overflow:hidden;transition:all 0.25s ease;opacity:0;animation:fadeUp 0.5s ease forwards}
   .folder-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--accent);transform:scaleY(0);transition:transform 0.25s ease;transform-origin:bottom}
   .folder-card:hover{border-color:var(--accent);background:rgba(0,217,255,0.04);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.4)}
   .folder-card:hover::before{transform:scaleY(1)}
@@ -46,8 +46,8 @@
   footer span{color:var(--accent2)}
   .cursor{display:inline-block;width:2px;height:1em;background:var(--accent);animation:blink 1s step-end infinite;vertical-align:text-bottom;margin-left:2px}
   @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-  .folder-card:nth-child(1){animation-delay:.05s}.folder-card:nth-child(2){animation-delay:.1s}.folder-card:nth-child(3){animation-delay:.15s}.folder-card:nth-child(4){animation-delay:.2s}.folder-card:nth-child(5){animation-delay:.25s}.folder-card:nth-child(6){animation-delay:.3s}.folder-card:nth-child(7){animation-delay:.35s}.folder-card:nth-child(8){animation-delay:.4s}.folder-card:nth-child(9){animation-delay:.45s}.folder-card:nth-child(10){animation-delay:.5s}.folder-card:nth-child(11){animation-delay:.55s}.folder-card:nth-child(12){animation-delay:.6s}.folder-card:nth-child(13){animation-delay:.65s}.folder-card:nth-child(14){animation-delay:.7s}.folder-card:nth-child(15){animation-delay:.75s}.folder-card:nth-child(16){animation-delay:.8s}.folder-card:nth-child(17){animation-delay:.85s}.folder-card:nth-child(18){animation-delay:.9s}.folder-card:nth-child(19){animation-delay:.95s}.folder-card:nth-child(20){animation-delay:1s}.folder-card:nth-child(21){animation-delay:1.05s}.folder-card:nth-child(22){animation-delay:1.1s}.folder-card:nth-child(23){animation-delay:1.15s}.folder-card:nth-child(24){animation-delay:1.2s}.folder-card:nth-child(25){animation-delay:1.25s}.folder-card:nth-child(26){animation-delay:1.3s}.folder-card:nth-child(27){animation-delay:1.35s}.folder-card:nth-child(28){animation-delay:1.4s}.folder-card:nth-child(29){animation-delay:1.45s}.folder-card:nth-child(30){animation-delay:1.5s}
   @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+  .folder-card:nth-child(1){animation-delay:.05s}.folder-card:nth-child(2){animation-delay:.1s}.folder-card:nth-child(3){animation-delay:.15s}.folder-card:nth-child(4){animation-delay:.2s}.folder-card:nth-child(5){animation-delay:.25s}.folder-card:nth-child(6){animation-delay:.3s}.folder-card:nth-child(7){animation-delay:.35s}.folder-card:nth-child(8){animation-delay:.4s}.folder-card:nth-child(9){animation-delay:.45s}.folder-card:nth-child(10){animation-delay:.5s}.folder-card:nth-child(11){animation-delay:.55s}.folder-card:nth-child(12){animation-delay:.6s}.folder-card:nth-child(13){animation-delay:.65s}.folder-card:nth-child(14){animation-delay:.7s}.folder-card:nth-child(15){animation-delay:.75s}.folder-card:nth-child(16){animation-delay:.8s}.folder-card:nth-child(17){animation-delay:.85s}.folder-card:nth-child(18){animation-delay:.9s}.folder-card:nth-child(19){animation-delay:.95s}.folder-card:nth-child(20){animation-delay:1s}.folder-card:nth-child(21){animation-delay:1.05s}.folder-card:nth-child(22){animation-delay:1.1s}.folder-card:nth-child(23){animation-delay:1.15s}.folder-card:nth-child(24){animation-delay:1.2s}.folder-card:nth-child(25){animation-delay:1.25s}.folder-card:nth-child(26){animation-delay:1.3s}.folder-card:nth-child(27){animation-delay:1.35s}.folder-card:nth-child(28){animation-delay:1.4s}.folder-card:nth-child(29){animation-delay:1.45s}.folder-card:nth-child(30){animation-delay:1.5s}.folder-card:nth-child(31){animation-delay:1.55s}.folder-card:nth-child(32){animation-delay:1.6s}.folder-card:nth-child(33){animation-delay:1.65s}
 </style>
 </head>
 <body>
@@ -59,46 +59,50 @@
     <p class="subtitle">by <span>Rohan Kushwah</span> · public knowledge base <span class="cursor"></span></p>
     <div class="divider"></div>
     <div class="stats">
-      <div class="stat"><span class="stat-num">30+</span><span class="stat-label">Topics</span></div>
-      <div class="stat"><span class="stat-num">100+</span><span class="stat-label">Notes</span></div>
+      <div class="stat"><span class="stat-num">33+</span><span class="stat-label">Topics</span></div>
+      <div class="stat"><span class="stat-num">397+</span><span class="stat-label">Notes</span></div>
       <div class="stat"><span class="stat-num">∞</span><span class="stat-label">Learning</span></div>
     </div>
   </header>
+
   <div class="section-title">// directory listing</div>
   <div class="folders-grid">
     <a class="folder-card" href="XSS scripting/index.html"><span class="folder-icon">⚡</span><div class="folder-name">XSS Scripting</div><div class="folder-meta">11 notes</div><span class="folder-tag tag-red">INJECTION</span></a>
-    <a class="folder-card" href="web application field guide/index.html"><span class="folder-icon">🕷️</span><div class="folder-name">Web App Field Guide</div><div class="folder-meta">1 note · pentest checklist</div><span class="folder-tag tag-blue">PENTEST</span></a>
-    <div class="folder-card"><span class="folder-icon">💉</span><div class="folder-name">SQL Injection</div><div class="folder-meta">Coming soon</div><span class="folder-tag tag-red">INJECTION</span></div>
-    <div class="folder-card"><span class="folder-icon">🔍</span><div class="folder-name">Recon</div><div class="folder-meta">Coming soon</div><span class="folder-tag tag-green">OSINT</span></div>
-    <div class="folder-card"><span class="folder-icon">🌐</span><div class="folder-name">Network Pentesting</div><div class="folder-meta">Coming soon</div><span class="folder-tag tag-blue">NETWORK</span></div>
-    <div class="folder-card"><span class="folder-icon">🐧</span><div class="folder-name">Linux Main</div><div class="folder-meta">Coming soon</div><span class="folder-tag tag-green">LINUX</span></div>
-    <div class="folder-card"><span class="folder-icon">🖥️</span><div class="folder-name">Linux Server</div><div class="folder-meta">Coming soon</div><span class="folder-tag tag-green">LINUX</span></div>
-    <div class="folder-card"><span class="folder-icon">🔥</span><div class="folder-name">Linux Firewall</div><div class="folder-meta">Coming soon</div><span class="folder-tag tag-green">LINUX</span></div>
-    <div class="folder-card"><span class="folder-icon">📦</span><div class="folder-name">Package Management</div><div class="folder-meta">Coming soon</div><span class="folder-tag tag-green">LINUX</span></div>
-    <div class="folder-card"><span class="folder-icon">🖱️</span><div class="folder-name">Management Commands</div><div class="folder-meta">Coming soon</div><span class="folder-tag tag-green">LINUX</span></div>
-    <div class="folder-card"><span class="folder-icon">🌍</span><div class="folder-name">DNS</div><div class="folder-meta">Coming soon</div><span class="folder-tag tag-blue">NETWORK</span></div>
-    <div class="folder-card"><span class="folder-icon">📡</span><div class="folder-name">DHCP</div><div class="folder-meta">Coming soon</div><span class="folder-tag tag-blue">NETWORK</span></div>
-    <div class="folder-card"><span class="folder-icon">🗺️</span><div class="folder-name">Nmap</div><div class="folder-meta">Coming soon</div><span class="folder-tag tag-blue">RECON</span></div>
-    <div class="folder-card"><span class="folder-icon">🎯</span><div class="folder-name">Ethical Hacking</div><div class="folder-meta">Coming soon</div><span class="folder-tag tag-orange">HACKING</span></div>
-    <div class="folder-card"><span class="folder-icon">🔓</span><div class="folder-name">LFI &amp; RFI</div><div class="folder-meta">Coming soon</div><span class="folder-tag tag-red">INJECTION</span></div>
-    <div class="folder-card"><span class="folder-icon">💻</span><div class="folder-name">OS Command Injection</div><div class="folder-meta">Coming soon</div><span class="folder-tag tag-red">INJECTION</span></div>
-    <div class="folder-card"><span class="folder-icon">🌐</span><div class="folder-name">HTML Injection</div><div class="folder-meta">Coming soon</div><span class="folder-tag tag-red">INJECTION</span></div>
-    <div class="folder-card"><span class="folder-icon">🔑</span><div class="folder-name">Code Injection</div><div class="folder-meta">Coming soon</div><span class="folder-tag tag-red">INJECTION</span></div>
-    <div class="folder-card"><span class="folder-icon">📤</span><div class="folder-name">File Upload Vulnerability</div><div class="folder-meta">Coming soon</div><span class="folder-tag tag-red">UPLOAD</span></div>
-    <div class="folder-card"><span class="folder-icon">🔐</span><div class="folder-name">Rate Limit</div><div class="folder-meta">Coming soon</div><span class="folder-tag tag-orange">DEFENSE</span></div>
-    <div class="folder-card"><span class="folder-icon">🗄️</span><div class="folder-name">MySQL</div><div class="folder-meta">Coming soon</div><span class="folder-tag tag-blue">DATABASE</span></div>
-    <div class="folder-card"><span class="folder-icon">🌐</span><div class="folder-name">Web</div><div class="folder-meta">Coming soon</div><span class="folder-tag tag-blue">WEB</span></div>
-    <div class="folder-card"><span class="folder-icon">🎓</span><div class="folder-name">Certification Knowledge</div><div class="folder-meta">Coming soon</div><span class="folder-tag tag-purple">CERT</span></div>
-    <div class="folder-card"><span class="folder-icon">🛡️</span><div class="folder-name">IIS</div><div class="folder-meta">Coming soon</div><span class="folder-tag tag-orange">SERVER</span></div>
-    <div class="folder-card"><span class="folder-icon">🔀</span><div class="folder-name">Unvalidated Redirection</div><div class="folder-meta">Coming soon</div><span class="folder-tag tag-red">INJECTION</span></div>
-    <div class="folder-card"><span class="folder-icon">🐘</span><div class="folder-name">PHP</div><div class="folder-meta">Coming soon</div><span class="folder-tag tag-purple">CODE</span></div>
-    <div class="folder-card"><span class="folder-icon">🆓</span><div class="folder-name">Free BSD</div><div class="folder-meta">Coming soon</div><span class="folder-tag tag-green">OS</span></div>
-    <div class="folder-card"><span class="folder-icon">🐉</span><div class="folder-name">Kali Configuration</div><div class="folder-meta">Coming soon</div><span class="folder-tag tag-green">KALI</span></div>
-    <div class="folder-card"><span class="folder-icon">🌀</span><div class="folder-name">WordPress</div><div class="folder-meta">Coming soon</div><span class="folder-tag tag-blue">CMS</span></div>
-    <div class="folder-card"><span class="folder-icon">🖼️</span><div class="folder-name">Images</div><div class="folder-meta">Coming soon</div><span class="folder-tag tag-orange">MEDIA</span></div>
-    <div class="folder-card"><span class="folder-icon">🖊️</span><div class="folder-name">Adds</div><div class="folder-meta">Coming soon</div><span class="folder-tag tag-blue">MISC</span></div>
+    <a class="folder-card" href="web application field guide/index.html"><span class="folder-icon">🕷️</span><div class="folder-name">Web App Field Guide</div><div class="folder-meta">1 note</div><span class="folder-tag tag-blue">PENTEST</span></a>
+    <a class="folder-card" href="SQL injection/index.html"><span class="folder-icon">💉</span><div class="folder-name">SQL Injection</div><div class="folder-meta">24 notes</div><span class="folder-tag tag-red">INJECTION</span></a>
+    <a class="folder-card" href="Reccon/index.html"><span class="folder-icon">🔍</span><div class="folder-name">Recon</div><div class="folder-meta">36 notes</div><span class="folder-tag tag-green">OSINT</span></a>
+    <a class="folder-card" href="Network pentesting/index.html"><span class="folder-icon">🌐</span><div class="folder-name">Network Pentesting</div><div class="folder-meta">9 notes</div><span class="folder-tag tag-blue">NETWORK</span></a>
+    <a class="folder-card" href="LINUX MAIN/index.html"><span class="folder-icon">🐧</span><div class="folder-name">Linux Main</div><div class="folder-meta">59 notes</div><span class="folder-tag tag-green">LINUX</span></a>
+    <a class="folder-card" href="LINUX SERVER/index.html"><span class="folder-icon">🖥️</span><div class="folder-name">Linux Server</div><div class="folder-meta">36 notes</div><span class="folder-tag tag-green">LINUX</span></a>
+    <a class="folder-card" href="LINUX FIREWALL/index.html"><span class="folder-icon">🔥</span><div class="folder-name">Linux Firewall</div><div class="folder-meta">10 notes</div><span class="folder-tag tag-green">LINUX</span></a>
+    <a class="folder-card" href="PACKAGE MANAGEMENT/index.html"><span class="folder-icon">📦</span><div class="folder-name">Package Management</div><div class="folder-meta">10 notes</div><span class="folder-tag tag-green">LINUX</span></a>
+    <a class="folder-card" href="MANAGEMENT COMMANDS/index.html"><span class="folder-icon">⚙️</span><div class="folder-name">Management Commands</div><div class="folder-meta">6 notes</div><span class="folder-tag tag-green">LINUX</span></a>
+    <a class="folder-card" href="DNS/index.html"><span class="folder-icon">🌍</span><div class="folder-name">DNS</div><div class="folder-meta">8 notes</div><span class="folder-tag tag-blue">NETWORK</span></a>
+    <a class="folder-card" href="DHCP/index.html"><span class="folder-icon">📡</span><div class="folder-name">DHCP</div><div class="folder-meta">6 notes</div><span class="folder-tag tag-blue">NETWORK</span></a>
+    <a class="folder-card" href="nmap/index.html"><span class="folder-icon">🗺️</span><div class="folder-name">Nmap</div><div class="folder-meta">12 notes</div><span class="folder-tag tag-blue">RECON</span></a>
+    <a class="folder-card" href="ETHICAL HACKING/index.html"><span class="folder-icon">🎯</span><div class="folder-name">Ethical Hacking</div><div class="folder-meta">19 notes</div><span class="folder-tag tag-orange">HACKING</span></a>
+    <a class="folder-card" href="LFI %26 RFI/index.html"><span class="folder-icon">🔓</span><div class="folder-name">LFI &amp; RFI</div><div class="folder-meta">12 notes</div><span class="folder-tag tag-red">INJECTION</span></a>
+    <a class="folder-card" href="OS command injection%3D/index.html"><span class="folder-icon">💻</span><div class="folder-name">OS Command Injection</div><div class="folder-meta">3 notes</div><span class="folder-tag tag-red">INJECTION</span></a>
+    <a class="folder-card" href="HTML injection/index.html"><span class="folder-icon">🌐</span><div class="folder-name">HTML Injection</div><div class="folder-meta">6 notes</div><span class="folder-tag tag-red">INJECTION</span></a>
+    <a class="folder-card" href="CODE INJECTION/index.html"><span class="folder-icon">🔑</span><div class="folder-name">Code Injection</div><div class="folder-meta">4 notes</div><span class="folder-tag tag-red">INJECTION</span></a>
+    <a class="folder-card" href="file upload vulneriblity/index.html"><span class="folder-icon">📤</span><div class="folder-name">File Upload Vulnerability</div><div class="folder-meta">2 notes</div><span class="folder-tag tag-red">UPLOAD</span></a>
+    <a class="folder-card" href="RATE LIMIT/index.html"><span class="folder-icon">🔐</span><div class="folder-name">Rate Limit</div><div class="folder-meta">1 note</div><span class="folder-tag tag-orange">DEFENSE</span></a>
+    <a class="folder-card" href="MY SQL/index.html"><span class="folder-icon">🗄️</span><div class="folder-name">MySQL</div><div class="folder-meta">7 notes</div><span class="folder-tag tag-blue">DATABASE</span></a>
+    <a class="folder-card" href="WEB/index.html"><span class="folder-icon">🌍</span><div class="folder-name">Web</div><div class="folder-meta">26 notes</div><span class="folder-tag tag-blue">WEB</span></a>
+    <a class="folder-card" href="IMP CERTIFICATION KNOWLEDGE/index.html"><span class="folder-icon">🏆</span><div class="folder-name">Certification Knowledge</div><div class="folder-meta">1 note</div><span class="folder-tag tag-purple">CERT</span></a>
+    <a class="folder-card" href="IIS/index.html"><span class="folder-icon">🛡️</span><div class="folder-name">IIS</div><div class="folder-meta">14 notes</div><span class="folder-tag tag-orange">SERVER</span></a>
+    <a class="folder-card" href="unvalidated redirection/index.html"><span class="folder-icon">🔀</span><div class="folder-name">Unvalidated Redirection</div><div class="folder-meta">2 notes</div><span class="folder-tag tag-red">INJECTION</span></a>
+    <a class="folder-card" href="PHP/index.html"><span class="folder-icon">🐘</span><div class="folder-name">PHP</div><div class="folder-meta">12 notes</div><span class="folder-tag tag-purple">CODE</span></a>
+    <a class="folder-card" href="free bsd and apt offline configuration/index.html"><span class="folder-icon">🔧</span><div class="folder-name">Free BSD &amp; APT Offline</div><div class="folder-meta">3 notes</div><span class="folder-tag tag-green">OS</span></a>
+    <a class="folder-card" href="kali configuration/index.html"><span class="folder-icon">🐉</span><div class="folder-name">Kali Configuration</div><div class="folder-meta">15 notes</div><span class="folder-tag tag-green">KALI</span></a>
+    <a class="folder-card" href="WORDPRESS/index.html"><span class="folder-icon">🌀</span><div class="folder-name">WordPress</div><div class="folder-meta">8 notes</div><span class="folder-tag tag-blue">CMS</span></a>
+    <a class="folder-card" href="ADDS/index.html"><span class="folder-icon">🏢</span><div class="folder-name">ADDS</div><div class="folder-meta">20 notes</div><span class="folder-tag tag-blue">WINDOWS</span></a>
+    <a class="folder-card" href="BASIC/index.html"><span class="folder-icon">📖</span><div class="folder-name">Basic</div><div class="folder-meta">9 notes</div><span class="folder-tag tag-orange">BASICS</span></a>
+    <a class="folder-card" href="BASIC ABOUT COMPUTER/index.html"><span class="folder-icon">💻</span><div class="folder-name">Basic About Computer</div><div class="folder-meta">3 notes</div><span class="folder-tag tag-orange">BASICS</span></a>
+    <a class="folder-card" href="OTHER LINUX/index.html"><span class="folder-icon">🐉</span><div class="folder-name">Other Linux</div><div class="folder-meta">2 notes</div><span class="folder-tag tag-green">LINUX</span></a>
   </div>
-  <footer><p>© 2026 <span>Rohan Kushwah</span> · Cyber Security Notes Repository · rohan-kushwah.github.io</p></footer>
+
+  <footer><p>© 2026 <span>Rohan Kushwah</span> · Cyber Security Notes · rohan-kushwah.github.io</p></footer>
 </div>
 </body>
 </html>
