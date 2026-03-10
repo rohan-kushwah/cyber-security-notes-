@@ -1,1 +1,205 @@
-<h1>free bsd and apt offline configuration</h1><a href='../'>Back</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>free bsd and apt offline configuration — Cyber Security Notes</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0f0a;--bg2:#0d150d;--bg3:#111a11;--bg4:#0f180f;
+  --green:#00ff41;--green2:#00cc33;--green3:#009922;--green4:#003311;
+  --cyan:#00e5ff;--red:#ff3355;--yellow:#ffd700;--orange:#ff8c00;
+  --text:#b8f0b8;--text2:#7aaa7a;--text3:#3a6a3a;
+  --border:rgba(0,255,65,.12);--border2:rgba(0,255,65,.3);--border3:rgba(0,255,65,.6);
+  --glow:rgba(0,255,65,.12);
+}
+body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospace;min-height:100vh;overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.06) 3px,rgba(0,0,0,.06) 4px);pointer-events:none;z-index:9999}
+
+/* TOP BAR */
+.topbar{background:var(--bg2);border-bottom:1px solid var(--border2);padding:10px 28px;display:flex;align-items:center;gap:16px}
+.back-btn{background:none;border:1px solid var(--border2);color:var(--green2);font-family:'JetBrains Mono',monospace;font-size:.7rem;padding:5px 14px;cursor:pointer;letter-spacing:2px;text-decoration:none;transition:all .15s}
+.back-btn:hover{background:var(--glow);border-color:var(--green);color:var(--green)}
+.breadcrumb{font-size:.7rem;color:var(--text3)}
+.breadcrumb span{color:var(--green)}
+
+/* HEADER */
+.page-header{padding:36px 28px 24px;border-bottom:1px solid var(--border);background:var(--bg2);position:relative;overflow:hidden}
+.page-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 0% 50%,rgba(0,255,65,.06),transparent);pointer-events:none}
+.folder-icon{font-size:2.8rem;margin-bottom:12px;display:block}
+.folder-title{font-family:'Orbitron',monospace;font-size:clamp(1.4rem,4vw,2.2rem);font-weight:900;color:var(--green);text-shadow:0 0 20px rgba(0,255,65,.4);letter-spacing:4px;margin-bottom:6px}
+.folder-meta{font-size:.7rem;color:var(--text3);letter-spacing:2px}
+.folder-meta span{color:var(--green2)}
+.search-row{margin-top:18px;display:flex;align-items:center;gap:10px;background:var(--bg3);border:1px solid var(--border2);padding:9px 16px;max-width:460px}
+.search-row::before{content:'⌕';color:var(--green);font-size:1.1rem}
+.s-input{background:none;border:none;outline:none;color:var(--green);font-family:'JetBrains Mono',monospace;font-size:.82rem;width:100%;caret-color:var(--green)}
+.s-input::placeholder{color:var(--text3)}
+
+/* LAYOUT */
+.layout{display:grid;grid-template-columns:270px 1fr;min-height:calc(100vh - 200px)}
+@media(max-width:768px){.layout{grid-template-columns:1fr;grid-template-rows:auto 1fr}}
+
+/* SIDEBAR */
+.sidebar{border-right:1px solid var(--border);background:var(--bg2);overflow-y:auto;max-height:calc(100vh - 160px);position:sticky;top:0}
+.sidebar::-webkit-scrollbar{width:3px}.sidebar::-webkit-scrollbar-thumb{background:var(--green3)}
+.sidebar-head{padding:10px 16px;font-size:.6rem;color:var(--text3);letter-spacing:3px;background:var(--bg4);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.note-count-badge{background:var(--green4);color:var(--green2);padding:2px 8px;font-size:.6rem;border:1px solid var(--border2)}
+.file-item{padding:10px 14px;cursor:pointer;border-bottom:1px solid rgba(0,255,65,.04);display:flex;align-items:flex-start;gap:8px;transition:all .15s;color:var(--text3)}
+.file-item:hover{background:rgba(0,255,65,.06);color:var(--green)}
+.file-item.active{background:var(--glow);color:var(--green);border-left:2px solid var(--green)}
+.file-item-icon{color:var(--green3);font-size:.65rem;margin-top:3px;flex-shrink:0}
+.file-item-name{font-size:.74rem;line-height:1.4;text-transform:capitalize}
+
+/* VIEWER */
+.viewer{display:flex;flex-direction:column;min-width:0}
+.viewer-bar{background:var(--bg4);border-bottom:1px solid var(--border);padding:9px 22px;font-size:.68rem;color:var(--text3);display:flex;align-items:center;gap:8px;flex-shrink:0}
+.viewer-bar-dots span{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:5px}
+.dot-r{background:#ff5f56}.dot-y{background:#ffbd2e}.dot-g{background:#27c93f;box-shadow:0 0 6px #27c93f}
+.viewer-path{color:var(--text2);margin-left:4px}
+.viewer-content{padding:32px 40px;line-height:1.9;font-size:.84rem;overflow-y:auto;flex:1}
+@media(max-width:768px){.viewer-content{padding:20px 18px}}
+
+/* PLACEHOLDER */
+.placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:360px;gap:14px;color:var(--text3)}
+.ph-ascii{font-size:.58rem;line-height:1.3;color:var(--green3);opacity:.35;text-align:center}
+
+/* MARKDOWN */
+.viewer-content h1{font-family:'Orbitron',monospace;font-size:1.15rem;color:var(--green);text-shadow:0 0 12px rgba(0,255,65,.3);margin:26px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--border);letter-spacing:3px}
+.viewer-content h2{font-family:'Orbitron',monospace;font-size:.9rem;color:var(--cyan);margin:20px 0 10px;letter-spacing:2px}
+.viewer-content h3{font-size:.84rem;color:var(--yellow);margin:16px 0 8px}
+.viewer-content h4{font-size:.82rem;color:var(--orange);margin:12px 0 6px}
+.viewer-content p{margin-bottom:10px}
+.viewer-content code{background:rgba(0,255,65,.08);color:var(--green);padding:2px 8px;border:1px solid var(--border);font-size:.78rem}
+.viewer-content pre{background:#000;border:1px solid var(--border);border-left:3px solid var(--green);padding:14px 18px;margin:12px 0;overflow-x:auto}
+.viewer-content pre code{background:none;border:none;padding:0;color:var(--green);font-size:.78rem;display:block}
+.viewer-content ul,.viewer-content ol{padding-left:20px;margin-bottom:10px}
+.viewer-content li{margin-bottom:4px}
+.viewer-content li::marker{color:var(--green)}
+.viewer-content strong{color:var(--cyan)}
+.viewer-content em{color:var(--yellow);font-style:normal}
+.viewer-content blockquote{border-left:3px solid var(--yellow);padding:8px 16px;margin:12px 0;color:var(--yellow);background:rgba(255,215,0,.04)}
+.viewer-content hr{border:none;border-top:1px solid var(--border);margin:18px 0}
+.viewer-content table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.78rem}
+.viewer-content th{background:var(--green4);color:var(--green);padding:7px 12px;border:1px solid var(--border);text-align:left;letter-spacing:1px}
+.viewer-content td{padding:7px 12px;border:1px solid var(--border)}
+.viewer-content tr:nth-child(even) td{background:rgba(0,255,65,.02)}
+.viewer-content a{color:var(--cyan);text-decoration:none;border-bottom:1px dashed var(--cyan)}
+.viewer-content a:hover{color:#fff}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:14px 28px;display:flex;justify-content:space-between;font-size:.62rem;color:var(--text3)}
+footer span{color:var(--green)}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="back-btn" href="../index.html">← BACK</a>
+  <div class="breadcrumb">~/vault/<span>free bsd and apt offline configuration</span>/</div>
+</div>
+
+<div class="page-header">
+  <span class="folder-icon">🔧</span>
+  <div class="folder-title">free bsd and apt offline configuration</div>
+  <div class="folder-meta"><span>3</span> NOTES &nbsp;·&nbsp; CYBER SECURITY VAULT</div>
+  <div class="search-row">
+    <input class="s-input" id="searchInput" placeholder="search in free bsd and apt offline configuration..." oninput="filterFiles()">
+  </div>
+</div>
+
+<div class="layout">
+  <div class="sidebar">
+    <div class="sidebar-head">
+      FILES <span class="note-count-badge" id="visibleCount">3</span>
+    </div>
+    <div id="fileList"><div class="file-item" id="fi-0" data-name="apt offline" onclick="openNote(0)"><span class="file-item-icon">▸</span><span class="file-item-name">APT OFFLINE</span></div><div class="file-item" id="fi-1" data-name="freebsd installation and configuration" onclick="openNote(1)"><span class="file-item-icon">▸</span><span class="file-item-name">FreeBSD Installation and Configuration</span></div><div class="file-item" id="fi-2" data-name="how to check password of connected wifi" onclick="openNote(2)"><span class="file-item-icon">▸</span><span class="file-item-name">HOW TO CHECK PASSWORD OF CONNECTED WIFI</span></div></div>
+  </div>
+  <div class="viewer">
+    <div class="viewer-bar">
+      <div class="viewer-bar-dots">
+        <span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span>
+      </div>
+      <span class="viewer-path" id="viewerPath">select a file to read</span>
+    </div>
+    <div class="viewer-content" id="viewerContent">
+      <div class="placeholder">
+        <pre class="ph-ascii"> ██████╗██╗   ██╗██████╗ ███████╗██████╗ 
+██╔════╝╚██╗ ██╔╝██╔══██╗██╔════╝██╔══██╗
+██║      ╚████╔╝ ██████╔╝█████╗  ██████╔╝
+██║       ╚██╔╝  ██╔══██╗██╔══╝  ██╔══██╗
+╚██████╗   ██║   ██████╔╝███████╗██║  ██║
+ ╚═════╝   ╚═╝   ╚═════╝ ╚══════╝╚═╝  ╚═╝</pre>
+        <div>← SELECT A NOTE FROM THE LIST</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div>~/vault/<span>free bsd and apt offline configuration</span>/ &nbsp;·&nbsp; <span>3 NOTES</span></div>
+  <div><span>●</span> OFFLINE READY</div>
+</footer>
+
+<script>
+const NOTES = [{"name": "APT OFFLINE", "content": "# Debian Package Management Notes\n\n## Updating and Upgrading Packages\n\n### 1. **Update Package Lists**\n\nThe following command refreshes the package list from repositories:\n\nbash\n\nCopyEdit\n\n`apt update`\n\n- This command fetches the latest package lists from the repositories defined in `/etc/apt/sources.list`.\n- It does **not** upgrade any installed packages, just updates the list of available versions.\n\n### 2. **Upgrade Installed Packages**\n\nTo upgrade installed packages to their latest versions:\n\nbash\n\nCopyEdit\n\n`apt upgrade`\n\n- This command downloads and installs updates for currently installed packages **without** removing existing ones.\n\n---\n\n## Managing Repositories\n\n### 3. **Check the List of Repositories**\n\nTo view the currently configured package sources:\n\nbash\n\nCopyEdit\n\n`cat /etc/apt/sources.list`\n\n- Displays the list of repositories from which packages and updates are retrieved.\n\n### 4. **Editing Repository List**\n\nTo modify repository sources:\n\nbash\n\nCopyEdit\n\n`vim /etc/apt/sources.list`\n\n- Opens the file in the `vim` text editor for manual modification.\n- You can add or remove repository URLs as needed.\n\n### 5. **Example Repository List (Debian Bookworm)**\n\nEnsure your `/etc/apt/sources.list` includes the following lines for stable Debian Bookworm updates:\n\ncpp\n\nCopyEdit\n\n`deb http://deb.debian.org/debian bookworm main contrib non-free non-free-firmware deb-src http://deb.debian.org/debian bookworm main contrib non-free non-free-firmware  deb http://deb.debian.org/debian bookworm-updates main contrib non-free non-free-firmware deb-src http://deb.debian.org/debian bookworm-updates main contrib non-free non-free-firmware  deb http://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware deb-src http://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware`\n\n- `deb` → Binary package repositories\n- `deb-src` → Source package repositories\n- `bookworm` → The Debian release version\n- `main contrib non-free non-free-firmware` → Sections for free and non-free packages\n\nAfter modifying the repository list, update the package index:\n\nbash\n\nCopyEdit\n\n`apt update`\n\n---\n\n## Creating a Local Mirror of Debian Repositories\n\n### 6. **Install `apt-mirror`**\n\nThe `apt-mirror` tool allows you to create a local repository mirror:\n\nbash\n\nCopyEdit\n\n`apt install apt-mirror`\n\n- This installs the tool required for mirroring Debian repositories.\n\n### 7. **Check and Configure Repository Mirror**\n\nbash\n\nCopyEdit\n\n`vim /etc/apt/mirror.list`\n\n- Opens the configuration file where you can define repositories to mirror.\n\n### 8. **Start Mirroring Process**\n\nbash\n\nCopyEdit\n\n`apt-mirror`\n\n- Downloads and creates a local copy of the repository as specified in `mirror.list`.\n\n---\n\n## Offline Package Management\n\n### 9. **Install `apt-offline`**\n\nFor updating packages on systems without internet access:\n\nbash\n\nCopyEdit\n\n`apt install apt-offline`\n\n- This installs the tool used for offline package management.\n\n### 10. **Generate Update Signature File**\n\nbash\n\nCopyEdit\n\n`apt-offline set --update --upgrade offline.sig`\n\n- Creates a signature file (`offline.sig`) that lists the required updates.\n- This file can be transferred to a system with internet access.\n\n### 11. **Download Required Packages on an Internet-Connected System**\n\nbash\n\nCopyEdit\n\n`apt-offline get --bundle updates.zip offline.sig`\n\n- Downloads the necessary updates and saves them in `updates.zip`.\n- This file can then be moved to the offline machine.\n\n### 12. **Install Updates on the Offline System**\n\nbash\n\nCopyEdit\n\n`apt-offline install updates.zip`\n\n- Installs the downloaded updates on the offline system.\n\n---\n\n### Summary\n\n|Command|Description|\n|---|---|\n|`apt update`|Refreshes package lists from repositories|\n|`apt upgrade`|Installs updates for existing packages|\n|`cat /etc/apt/sources.list`|Displays the list of configured repositories|\n|`vim /etc/apt/sources.list`|Edits the repository list|\n|`apt install apt-mirror`|Installs the `apt-mirror` tool for repository mirroring|\n|`vim /etc/apt/mirror.list`|Opens the mirror configuration file|\n|`apt-mirror`|Creates a local repository mirror|\n|`apt install apt-offline`|Installs `apt-offline` for offline package management|\n|`apt-offline set --update --upgrade offline.sig`|Generates an update signature file for offline updates|\n|`apt-offline get --bundle updates.zip offline.sig`|Downloads necessary updates on an internet-connected system|\n|`apt-offline install updates.zip`|Installs updates on the offline system|\n\n# second way -\n# Managing APT Repositories in Debian\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/APT-Repositories.md#managing-apt-repositories-in-debian)\n\nThis guide explains how to configure and manage APT repositories on Debian-based systems. It covers the syntax of repository entries, editing the sources.list file, handling GPG keys, and setting up an offline repository using a Debian ISO.\n\n---\n\n## Syntax of an APT Repository Entry\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/APT-Repositories.md#syntax-of-an-apt-repository-entry)\n\nGeneral format:\n\n```\ndeb  [URL]  [distribution]  [components]\n```\n\n- deb → Binary package repository (used for installing software)\n- deb-src → Source package repository (used for downloading source code)\n- [URL] → Server hosting the packages (e.g., [http://deb.debian.org/debian/](http://deb.debian.org/debian/))\n- [distribution] → Debian release name (e.g., bookworm for Debian 12)\n- [components] → Software categories like main, contrib, non-free, etc.\n\n---\n\n## Managing APT Repositories Online (/etc/apt/sources.list)\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/APT-Repositories.md#managing-apt-repositories-online-etcaptsourceslist)\n\nThe /etc/apt/sources.list file contains a list of software repositories from which APT fetches packages. You can edit this file to add or modify repositories.\n\n### Useful Sources List Generators\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/APT-Repositories.md#useful-sources-list-generators)\n\n- SimplyLinux Debian Generator: [https://repogen.simplylinux.ch/](https://repogen.simplylinux.ch/)\n- Debian Sources Generator (GitHub): [https://debgen.github.io/](https://debgen.github.io/) or [https://debgen.xyz/](https://debgen.xyz/)\n- Debian Wiki on Sources List: [https://wiki.debian.org/SourcesList](https://wiki.debian.org/SourcesList)\n\n### Editing the sources.list File\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/APT-Repositories.md#editing-the-sourceslist-file)\n\nTo edit the sources file:\n\n```\nvim /etc/apt/sources.list\n```\n\nExample (Default Debian 12 Bookworm):\n\n```\ndeb http://deb.debian.org/debian bookworm main contrib non-free non-free-firmware\ndeb http://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware\ndeb http://deb.debian.org/debian bookworm-updates main contrib non-free non-free-firmware\n```\n\n### Fixing Issues with sources.list\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/APT-Repositories.md#fixing-issues-with-sourceslist)\n\n1. Verify the correct Debian version in /etc/os-release:\n    \n    ```\n    cat /etc/os-release\n    ```\n    \n2. Replace bookworm with your version (e.g., bullseye, buster) in sources.list if needed.\n\n### GPG Signature Errors\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/APT-Repositories.md#gpg-signature-errors)\n\nIf GPG signature errors appear, add the missing keys:\n\n```\napt-key adv --keyserver keyserver.ubuntu.com --recv-keys KEY_ID\n```\n\n---\n\n## Setting Up an Offline Repository in APT\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/APT-Repositories.md#setting-up-an-offline-repository-in-apt)\n\n### Download a Debian 12 DVD ISO\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/APT-Repositories.md#download-a-debian-12-dvd-iso)\n\n(Refer to Debian 12 official site or mirrors)\n\n### A. Using Debian DVD/ISO as a Repository\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/APT-Repositories.md#a-using-debian-dvdiso-as-a-repository)\n\n#### Step 1: Mount the ISO and Copy Files\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/APT-Repositories.md#step-1-mount-the-iso-and-copy-files)\n\n```\nmount -o loop /path/to/debian.iso /mnt\n```\n\n```\nmkdir /ubuntudvd\n```\n\n```\ncp -r /mnt/* /ubuntudvd\n```\n\n```\numount /mnt\n```\n\n- Mounts the ISO to /mnt.\n- Copies all files from the ISO into /ubuntudvd.\n- Unmounts the ISO after copying.\n\n#### Step 2: Add the Local Repository to APT\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/APT-Repositories.md#step-2-add-the-local-repository-to-apt)\n\n```\nvim /etc/apt/sources.list\n```\n\nInside sources.list, comment other entries and add:\n\n```\ndeb [trusted=yes] file:/ubuntudvd bookworm main contrib non-free-firmware\n```\n\n- deb [trusted=yes] marks the repo as trusted (no signature checks).\n- file:/ubuntudvd points to the local repo directory.\n- bookworm main contrib non-free-firmware specifies package categories.\n\n#### Step 3: Update APT Cache\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/APT-Repositories.md#step-3-update-apt-cache)\n\n```\napt update\n```\n\nRefreshes the package list from the offline repository.\n\n#### Step 4: Install Packages from Offline Repo\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/APT-Repositories.md#step-4-install-packages-from-offline-repo)\n\n```\napt install vim\n```\n\nInstalls vim from the local repository.\n\n#### Step 5: Verify APT is Using the Local Repository\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/APT-Repositories.md#step-5-verify-apt-is-using-the-local-repository)\n\n```\napt-cache policy vim\n```\n\nDisplays the priority and source of the package. If file:/ubuntudvd appears, the offline repo is working.\n\nYour Debian offline repository is now fully set up!"}, {"name": "FreeBSD Installation and Configuration", "content": "\n## 1. Download the FreeBSD ISO\n- Visit the official FreeBSD download page:  \n  [FreeBSD Download](https://www.freebsd.org/where.html)\n\n## 2. Create a New Virtual Machine in VirtualBox\n\n### 2.1. Set Up the VM\n- Open **VirtualBox** and create a new virtual machine.\n- Set the **operating system type** to **BSD** and version to **FreeBSD (64-bit)**.\n- Allocate **2GB of RAM** and **20GB of storage** for the virtual machine.\n- Attach the **FreeBSD ISO** as the **bootable disk**.\n\n## 3. Boot the FreeBSD Installer\n\n### 3.1. Boot Options\n- Start the VM and select **Boot Multiuser** to begin the FreeBSD installation.\n\n## 4. Install FreeBSD\n\n### 4.1. Keymap Selection\n- Continue with the **default keymap** (usually `US`).\n\n### 4.2. Set Hostname\n- Enter the **hostname** for your system (e.g., `freebsd.local`).\n\n### 4.3. Distribution System Selection\n- Choose the **default distribution system** to install the basic FreeBSD system.\n\n### 4.4. Partitioning\n- Choose **UFS** as the filesystem type for the partitioning.\n  \n#### Partitioning Steps:\n1. Select **Use the entire disk** to use the whole virtual disk for FreeBSD.\n2. Choose the **GPT (GUID Partition Table)** scheme for partitioning.\n3. After setting up, confirm the partitioning and **commit** the changes.\n\n### 4.5. Set Root Password\n- When prompted, enter a **root password** for the system.\n\n### 4.6. Network Configuration\n- Choose the **default network adapter** for your VM.\n- Set **DHCP** to automatically acquire an IP address.\n\n### 4.7. Timezone and Locale Setup\n- Select your **region**.\n- Choose the **timezone**.\n- Set the **keyboard layout** (default `US`).\n\n### 4.8. Create User Account\n- Create an **additional user account** and set a password for it.\n\n### 4.9. Reboot the System\n- After the installation is complete, **reboot** the system.\n\n## 5. Post-Installation Configuration\n\n### 5.1. SSH Configuration (If Needed)\n- If you're facing SSH issues, you may need to modify the following configuration files:\n  - `/etc/rc.conf`\n  - `/etc/pam.d/sshd`\n  - `/etc/ssh/sshd_config`\n\n#### Using `ee` or `vim` editor:\nTo edit files, use the following commands:\n\n`bash\nee /etc/rc.conf\n\n\n### 5.2. Configure DNS\n\n- To configure DNS, open the **`/etc/resolv.conf`** file and add the nameservers.\n\n#### Edit DNS with `ee` editor:\n\nbash\n\nCopy\n\n`ee /etc/resolv.conf`\n\n- Add the **nameserver** line:\n\ntext\n\nCopy\n\n`nameserver <DNS_IP>`\n\n### 5.3. Restart the System\n\n- After making changes, **restart** the system to apply the new settings:\n\nbash\n\nCopy\n\n`shutdown -r now`\n\n## 6. Additional Configuration (SSH and Network)\n\n### 6.1. Verify SSH Service\n\n- To ensure SSH is properly set up, start the SSH service manually if needed:\n\nbash\n\nCopy\n\n`service sshd start`\n\n### 6.2. Check Network Connectivity\n\n- Test network connectivity to ensure your system is connected to the network and can access the internet.\n\nbash\n\nCopy\n\n`ping google.com`\n\nIf the system can ping external servers, the network is working correctly.\n\n---\n\n### Troubleshooting Tips\n\n- If SSH is not working:\n    \n    - Make sure the SSH daemon is running: `service sshd start`\n    - Check if the firewall is blocking SSH: `pfctl -sr` (for packet filter configurations).\n    - Verify `/etc/rc.conf`, `/etc/pam.d/sshd`, and `/etc/ssh/sshd_config` are correctly configured.\n- If DNS is not resolving:\n    \n    - Double-check the `/etc/resolv.conf` file and ensure correct nameserver entries are added.\n    - Ensure your network connection is active."}, {"name": "HOW TO CHECK PASSWORD OF CONNECTED WIFI", "content": "\nPS C:\\Users\\AAyush> netsh wlan show profile name= \"OnePlus Nord CE 2\" key=clear\n\nProfile OnePlus Nord CE 2 on interface Wi-Fi:\n=======================================================================\n\nApplied: All User Profile\n\nProfile information\n-------------------\n    Version                : 1\n    Type                   : Wireless LAN\n    Name                   : OnePlus Nord CE 2\n    Control options        :\n        Connection mode    : Connect manually\n        Network broadcast  : Connect only if this network is broadcasting\n        AutoSwitch         : Do not switch to other networks\n        MAC Randomization  : Disabled\n\nConnectivity settings\n---------------------\n    Number of SSIDs        : 1\n    SSID name              : \"OnePlus Nord CE 2\"\n    Network type           : Infrastructure\n    Radio type             : [ Any Radio Type ]\n    Vendor extension          : Not present\n\nSecurity settings\n-----------------\n    Authentication         : WPA3-Personal\n    Cipher                 : CCMP\n    Authentication         : WPA2-Personal\n    Cipher                 : CCMP\n    Authentication         : WPA3-Personal\n    Cipher                 : GCMP\n    Authentication         : WPA2-Personal\n    Cipher                 : GCMP\n    Security key           : Present\n    Key Content            : 9009625428\n\nCost settings\n-------------\n    Cost                   : Unrestricted\n    Congested              : No\n    Approaching Data Limit : No\n    Over Data Limit        : No\n    Roaming                : No\n    Cost Source            : Default\n\nPS C:\\Users\\AAyush>"}];
+
+function openNote(idx){
+  document.querySelectorAll('.file-item').forEach(e=>e.classList.remove('active'));
+  const el=document.getElementById('fi-'+idx);
+  if(el){el.classList.add('active');el.scrollIntoView({block:'nearest'})}
+  document.getElementById('viewerPath').textContent='free bsd and apt offline configuration/'+NOTES[idx].name;
+  document.getElementById('viewerContent').innerHTML=renderMd(NOTES[idx].content);
+  document.getElementById('viewerContent').scrollTop=0;
+}
+
+function filterFiles(){
+  const q=document.getElementById('searchInput').value.toLowerCase();
+  let v=0;
+  document.querySelectorAll('.file-item').forEach(el=>{
+    const show=!q||el.dataset.name.includes(q);
+    el.style.display=show?'':'none';
+    if(show)v++;
+  });
+  document.getElementById('visibleCount').textContent=v;
+}
+
+function renderMd(md){
+  let h=md.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  h=h.replace(/```[\w]*\n?([\s\S]*?)```/g,(_,c)=>`<pre><code>${c.trim()}</code></pre>`);
+  h=h.replace(/`([^`\n]+)`/g,'<code>$1</code>');
+  h=h.replace(/^#### (.+)$/gm,'<h4>$1</h4>');
+  h=h.replace(/^### (.+)$/gm,'<h3>$1</h3>');
+  h=h.replace(/^## (.+)$/gm,'<h2>$1</h2>');
+  h=h.replace(/^# (.+)$/gm,'<h1>$1</h1>');
+  h=h.replace(/\*\*\*(.+?)\*\*\*/g,'<strong><em>$1</em></strong>');
+  h=h.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+  h=h.replace(/\*(.+?)\*/g,'<em>$1</em>');
+  h=h.replace(/^---+$/gm,'<hr>');
+  h=h.replace(/^&gt; (.+)$/gm,'<blockquote>$1</blockquote>');
+  h=h.replace(/\|(.+)\|\n\|[-| :]+\|\n((?:\|.+\|\n?)+)/g,(m,header,rows)=>{
+    const ths=header.split('|').filter(s=>s.trim()).map(s=>`<th>${s.trim()}</th>`).join('');
+    const trs=rows.trim().split('\n').map(row=>{
+      const tds=row.split('|').filter(s=>s.trim()).map(s=>`<td>${s.trim()}</td>`).join('');
+      return`<tr>${tds}</tr>`;
+    }).join('');
+    return`<table><thead><tr>${ths}</tr></thead><tbody>${trs}</tbody></table>`;
+  });
+  h=h.replace(/^[\*\-] (.+)$/gm,'<li>$1</li>');
+  h=h.replace(/^\d+\. (.+)$/gm,'<li>$1</li>');
+  h=h.replace(/(<li>[\s\S]+?<\/li>)/g,m=>`<ul>${m}</ul>`);
+  h=h.replace(/<\/ul>\s*<ul>/g,'');
+  h=h.replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2" target="_blank">$1</a>');
+  h=h.replace(/\[\[([^\]]+)\]\]/g,'<span style="color:var(--yellow);border-bottom:1px dashed">⟦$1⟧</span>');
+  h=h.replace(/(^|\s)#([a-zA-Z0-9_-]+)/g,'$1<span style="color:var(--green3);font-size:.75em">#$2</span>');
+  h=h.replace(/\n\n+/g,'</p><p>');
+  h=h.replace(/\n/g,'<br>');
+  return '<p>'+h+'</p>';
+}
+
+// Auto open first
+if(NOTES.length>0) openNote(0);
+</script>
+</body>
+</html>

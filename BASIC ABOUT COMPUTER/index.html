@@ -1,1 +1,205 @@
-<h1>BASIC ABOUT COMPUTER</h1><a href='../'>Back</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BASIC ABOUT COMPUTER — Cyber Security Notes</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0f0a;--bg2:#0d150d;--bg3:#111a11;--bg4:#0f180f;
+  --green:#00ff41;--green2:#00cc33;--green3:#009922;--green4:#003311;
+  --cyan:#00e5ff;--red:#ff3355;--yellow:#ffd700;--orange:#ff8c00;
+  --text:#b8f0b8;--text2:#7aaa7a;--text3:#3a6a3a;
+  --border:rgba(0,255,65,.12);--border2:rgba(0,255,65,.3);--border3:rgba(0,255,65,.6);
+  --glow:rgba(0,255,65,.12);
+}
+body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospace;min-height:100vh;overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.06) 3px,rgba(0,0,0,.06) 4px);pointer-events:none;z-index:9999}
+
+/* TOP BAR */
+.topbar{background:var(--bg2);border-bottom:1px solid var(--border2);padding:10px 28px;display:flex;align-items:center;gap:16px}
+.back-btn{background:none;border:1px solid var(--border2);color:var(--green2);font-family:'JetBrains Mono',monospace;font-size:.7rem;padding:5px 14px;cursor:pointer;letter-spacing:2px;text-decoration:none;transition:all .15s}
+.back-btn:hover{background:var(--glow);border-color:var(--green);color:var(--green)}
+.breadcrumb{font-size:.7rem;color:var(--text3)}
+.breadcrumb span{color:var(--green)}
+
+/* HEADER */
+.page-header{padding:36px 28px 24px;border-bottom:1px solid var(--border);background:var(--bg2);position:relative;overflow:hidden}
+.page-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 0% 50%,rgba(0,255,65,.06),transparent);pointer-events:none}
+.folder-icon{font-size:2.8rem;margin-bottom:12px;display:block}
+.folder-title{font-family:'Orbitron',monospace;font-size:clamp(1.4rem,4vw,2.2rem);font-weight:900;color:var(--green);text-shadow:0 0 20px rgba(0,255,65,.4);letter-spacing:4px;margin-bottom:6px}
+.folder-meta{font-size:.7rem;color:var(--text3);letter-spacing:2px}
+.folder-meta span{color:var(--green2)}
+.search-row{margin-top:18px;display:flex;align-items:center;gap:10px;background:var(--bg3);border:1px solid var(--border2);padding:9px 16px;max-width:460px}
+.search-row::before{content:'⌕';color:var(--green);font-size:1.1rem}
+.s-input{background:none;border:none;outline:none;color:var(--green);font-family:'JetBrains Mono',monospace;font-size:.82rem;width:100%;caret-color:var(--green)}
+.s-input::placeholder{color:var(--text3)}
+
+/* LAYOUT */
+.layout{display:grid;grid-template-columns:270px 1fr;min-height:calc(100vh - 200px)}
+@media(max-width:768px){.layout{grid-template-columns:1fr;grid-template-rows:auto 1fr}}
+
+/* SIDEBAR */
+.sidebar{border-right:1px solid var(--border);background:var(--bg2);overflow-y:auto;max-height:calc(100vh - 160px);position:sticky;top:0}
+.sidebar::-webkit-scrollbar{width:3px}.sidebar::-webkit-scrollbar-thumb{background:var(--green3)}
+.sidebar-head{padding:10px 16px;font-size:.6rem;color:var(--text3);letter-spacing:3px;background:var(--bg4);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.note-count-badge{background:var(--green4);color:var(--green2);padding:2px 8px;font-size:.6rem;border:1px solid var(--border2)}
+.file-item{padding:10px 14px;cursor:pointer;border-bottom:1px solid rgba(0,255,65,.04);display:flex;align-items:flex-start;gap:8px;transition:all .15s;color:var(--text3)}
+.file-item:hover{background:rgba(0,255,65,.06);color:var(--green)}
+.file-item.active{background:var(--glow);color:var(--green);border-left:2px solid var(--green)}
+.file-item-icon{color:var(--green3);font-size:.65rem;margin-top:3px;flex-shrink:0}
+.file-item-name{font-size:.74rem;line-height:1.4;text-transform:capitalize}
+
+/* VIEWER */
+.viewer{display:flex;flex-direction:column;min-width:0}
+.viewer-bar{background:var(--bg4);border-bottom:1px solid var(--border);padding:9px 22px;font-size:.68rem;color:var(--text3);display:flex;align-items:center;gap:8px;flex-shrink:0}
+.viewer-bar-dots span{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:5px}
+.dot-r{background:#ff5f56}.dot-y{background:#ffbd2e}.dot-g{background:#27c93f;box-shadow:0 0 6px #27c93f}
+.viewer-path{color:var(--text2);margin-left:4px}
+.viewer-content{padding:32px 40px;line-height:1.9;font-size:.84rem;overflow-y:auto;flex:1}
+@media(max-width:768px){.viewer-content{padding:20px 18px}}
+
+/* PLACEHOLDER */
+.placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:360px;gap:14px;color:var(--text3)}
+.ph-ascii{font-size:.58rem;line-height:1.3;color:var(--green3);opacity:.35;text-align:center}
+
+/* MARKDOWN */
+.viewer-content h1{font-family:'Orbitron',monospace;font-size:1.15rem;color:var(--green);text-shadow:0 0 12px rgba(0,255,65,.3);margin:26px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--border);letter-spacing:3px}
+.viewer-content h2{font-family:'Orbitron',monospace;font-size:.9rem;color:var(--cyan);margin:20px 0 10px;letter-spacing:2px}
+.viewer-content h3{font-size:.84rem;color:var(--yellow);margin:16px 0 8px}
+.viewer-content h4{font-size:.82rem;color:var(--orange);margin:12px 0 6px}
+.viewer-content p{margin-bottom:10px}
+.viewer-content code{background:rgba(0,255,65,.08);color:var(--green);padding:2px 8px;border:1px solid var(--border);font-size:.78rem}
+.viewer-content pre{background:#000;border:1px solid var(--border);border-left:3px solid var(--green);padding:14px 18px;margin:12px 0;overflow-x:auto}
+.viewer-content pre code{background:none;border:none;padding:0;color:var(--green);font-size:.78rem;display:block}
+.viewer-content ul,.viewer-content ol{padding-left:20px;margin-bottom:10px}
+.viewer-content li{margin-bottom:4px}
+.viewer-content li::marker{color:var(--green)}
+.viewer-content strong{color:var(--cyan)}
+.viewer-content em{color:var(--yellow);font-style:normal}
+.viewer-content blockquote{border-left:3px solid var(--yellow);padding:8px 16px;margin:12px 0;color:var(--yellow);background:rgba(255,215,0,.04)}
+.viewer-content hr{border:none;border-top:1px solid var(--border);margin:18px 0}
+.viewer-content table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.78rem}
+.viewer-content th{background:var(--green4);color:var(--green);padding:7px 12px;border:1px solid var(--border);text-align:left;letter-spacing:1px}
+.viewer-content td{padding:7px 12px;border:1px solid var(--border)}
+.viewer-content tr:nth-child(even) td{background:rgba(0,255,65,.02)}
+.viewer-content a{color:var(--cyan);text-decoration:none;border-bottom:1px dashed var(--cyan)}
+.viewer-content a:hover{color:#fff}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:14px 28px;display:flex;justify-content:space-between;font-size:.62rem;color:var(--text3)}
+footer span{color:var(--green)}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="back-btn" href="../index.html">← BACK</a>
+  <div class="breadcrumb">~/vault/<span>BASIC ABOUT COMPUTER</span>/</div>
+</div>
+
+<div class="page-header">
+  <span class="folder-icon">💻</span>
+  <div class="folder-title">BASIC ABOUT COMPUTER</div>
+  <div class="folder-meta"><span>3</span> NOTES &nbsp;·&nbsp; CYBER SECURITY VAULT</div>
+  <div class="search-row">
+    <input class="s-input" id="searchInput" placeholder="search in BASIC ABOUT COMPUTER..." oninput="filterFiles()">
+  </div>
+</div>
+
+<div class="layout">
+  <div class="sidebar">
+    <div class="sidebar-head">
+      FILES <span class="note-count-badge" id="visibleCount">3</span>
+    </div>
+    <div id="fileList"><div class="file-item" id="fi-0" data-name="all  basic info" onclick="openNote(0)"><span class="file-item-icon">▸</span><span class="file-item-name">ALL  BASIC INFO</span></div><div class="file-item" id="fi-1" data-name="osi model" onclick="openNote(1)"><span class="file-item-icon">▸</span><span class="file-item-name">OSI MODEL</span></div><div class="file-item" id="fi-2" data-name="three way handsake" onclick="openNote(2)"><span class="file-item-icon">▸</span><span class="file-item-name">THREE WAY HANDSAKE</span></div></div>
+  </div>
+  <div class="viewer">
+    <div class="viewer-bar">
+      <div class="viewer-bar-dots">
+        <span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span>
+      </div>
+      <span class="viewer-path" id="viewerPath">select a file to read</span>
+    </div>
+    <div class="viewer-content" id="viewerContent">
+      <div class="placeholder">
+        <pre class="ph-ascii"> ██████╗██╗   ██╗██████╗ ███████╗██████╗ 
+██╔════╝╚██╗ ██╔╝██╔══██╗██╔════╝██╔══██╗
+██║      ╚████╔╝ ██████╔╝█████╗  ██████╔╝
+██║       ╚██╔╝  ██╔══██╗██╔══╝  ██╔══██╗
+╚██████╗   ██║   ██████╔╝███████╗██║  ██║
+ ╚═════╝   ╚═╝   ╚═════╝ ╚══════╝╚═╝  ╚═╝</pre>
+        <div>← SELECT A NOTE FROM THE LIST</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div>~/vault/<span>BASIC ABOUT COMPUTER</span>/ &nbsp;·&nbsp; <span>3 NOTES</span></div>
+  <div><span>●</span> OFFLINE READY</div>
+</footer>
+
+<script>
+const NOTES = [{"name": "ALL  BASIC INFO", "content": "The booting process is ==the process of starting a computer, which involves loading the operating system and preparing the computer for use==. \n\nHow it works \n\n1. The user presses the power button.\n2. The bootloader in the cache memory is powered on.\n3. The bootloader performs a Power On Self Test (POST).\n\n- The BIOS (Basic Input Output System) is activated.\n\n- The BIOS finds and loads the operating system.\n\n- The operating system loads into the computer's memory.\n\n- The system configures devices and initializes other basic software.\n\n- The user authenticates and is presented with a login screen or desktop environment.\n\nTypes of booting\n\nThere are two types of booting: \n\n- **Cold booting**: Starting the computer after a full power off\n\n- **Warm booting**: Restarting the operating system after a system crash or freeze"}, {"name": "OSI MODEL", "content": "The **OSI (Open Systems Interconnection) model** is a conceptual framework used to understand and standardize network communications. It consists of **seven layers**, each with a specific function in the communication process.\n\n### **OSI Model Layers & Their Working**\n\n---\n\n### **1. Physical Layer (Layer 1)**\n\n- **Function:** Deals with raw data transmission over a physical medium (wires, fiber optics, radio waves).\n    \n- **Example:** Ethernet cables, fiber optics, radio frequencies, network interface cards (NICs).\n    \n- **Key Devices:** Hubs, repeaters, network cables.\n    \n\n---\n\n### **2. Data Link Layer (Layer 2)**\n\n- **Function:** Handles error detection and correction, and defines how data packets are placed on the physical medium.\n    \n- **Example:** MAC (Media Access Control) addresses, Ethernet, Wi-Fi (802.11).\n    \n- **Key Devices:** Switches, bridges.\n    \n\n---\n\n### **3. Network Layer (Layer 3)**\n\n- **Function:** Routes data between different networks and assigns logical addresses (IP addresses).\n    \n- **Example:** IP (Internet Protocol), routers, ICMP (ping).\n    \n- **Key Devices:** Routers, Layer 3 switches.\n    \n\n---\n\n### **4. Transport Layer (Layer 4)**\n\n- **Function:** Ensures reliable or fast data delivery using protocols such as TCP (reliable) and UDP (fast, no error checking).\n    \n- **Example:** TCP (Transmission Control Protocol), UDP (User Datagram Protocol).\n    \n- **Key Devices:** Firewalls (operate at Layer 4 and above).\n    \n\n---\n\n### **5. Session Layer (Layer 5)**\n\n- **Function:** Manages and controls communication sessions between applications.\n    \n- **Example:** Remote procedure calls (RPC), NetBIOS, session management in web applications.\n    \n\n---\n\n### **6. Presentation Layer (Layer 6)**\n\n- **Function:** Converts data into a format the application can understand, including encryption, compression, and encoding.\n    \n- **Example:** SSL/TLS (encryption), JPEG, MPEG, ASCII, Unicode.\n    \n\n---\n\n### **7. Application Layer (Layer 7)**\n\n- **Function:** Provides end-user services such as web browsing, email, and file transfer.\n    \n- **Example:** HTTP, FTP, SMTP (email), DNS.\n    \n- **Key Devices:** Proxy servers, application gateways.\n    \n\n---\n\n### **How OSI Model Works in Communication**\n\n1. **Sender Side:** Data is generated at the **Application Layer** → Encapsulated as it passes through the layers (e.g., added headers).\n    \n2. **Transmission:** The **Physical Layer** transmits bits over the medium.\n    \n3. **Receiver Side:** Data moves up from the **Physical Layer** to the **Application Layer**, where it is presented to the user.\n    \n\n---\n\n### **OSI vs. TCP/IP Model**\n\n|OSI Model|TCP/IP Model|\n|---|---|\n|7 Layers|4 Layers|\n|Conceptual model|Practical model used on the internet|\n|Includes Presentation & Session layers|These functions are part of Application Layer|\n\n---\n\n### **Conclusion**\n\n\n\n\n# ABOUT TCP AND UDP--\n### **TCP (Transmission Control Protocol) vs. UDP (User Datagram Protocol)**\n\nBoth **TCP** and **UDP** are **Transport Layer protocols** in the OSI model, but they function differently.\n\n|Feature|**TCP (Transmission Control Protocol)**|**UDP (User Datagram Protocol)**|\n|---|---|---|\n|**Connection**|Connection-oriented (requires a handshake)|Connectionless (no handshake)|\n|**Reliability**|Reliable (ensures data is received in order, retransmits lost packets)|Unreliable (no retransmission, packets may be lost)|\n|**Speed**|Slower due to error-checking and acknowledgments|Faster due to minimal overhead|\n|**Usage**|Used for applications requiring reliability (e.g., web browsing, email, file transfer)|Used for time-sensitive applications (e.g., VoIP, online gaming, video streaming)|\n|**Header Size**|Larger (more overhead due to error control)|Smaller (less overhead)|\n\n**In short:**\n\n- **TCP** is reliable but slower.\n    \n- **UDP** is faster but less reliable. 🚀\n    \n\n4o"}, {"name": "THREE WAY HANDSAKE", "content": "### What is the Three-Way Handshake?\n\nThe **three-way handshake** is the procedure used by the TCP protocol to establish a reliable connection between a client and a server. It ensures that both devices are ready for communication and that the data can be sent without errors.\n\n### Steps in the Three-Way Handshake\n\n1. **SYN (Synchronize)**\n    - The client sends a **SYN** message (a request to start the connection) to the server. This message indicates the client's initial sequence number.\n2. **SYN-ACK (Synchronize-Acknowledgment)**\n    - The server responds with a **SYN-ACK** message, which both acknowledges the client's request (via the ACK part) and also sends its own sequence number.\n3. **ACK (Acknowledgment)**\n    - The client responds with an **ACK** message to acknowledge the server's SYN-ACK message. This completes the handshake.\n\nOnce these three steps are completed, the connection is established, and data transfer can begin.\n\n---\n\n### Example: A Simple Three-Way Handshake\n\n#### Scenario: A client (A) wants to establish a connection with a server (B).\n\n1. **Step 1: Client (A) sends SYN to Server (B)**\n    \n    - A sends a message:  \n        **SYN: Seq = 1000**  \n        This means A wants to start the communication and indicates its initial sequence number is 1000.\n2. **Step 2: Server (B) responds with SYN-ACK**\n    \n    - B receives the SYN from A, and responds with:  \n        **SYN-ACK: Seq = 2000, Ack = 1001**  \n        B's sequence number is 2000, and it acknowledges the client's sequence number by sending `Ack = 1001` (the next expected number from A).\n3. **Step 3: Client (A) sends ACK to Server (B)**\n    \n    - A receives the SYN-ACK from B and responds with:  \n        **ACK: Seq = 1001, Ack = 2001**  \n        This message acknowledges the server's sequence number and confirms the connection.\n\n---\n\n### After the Three-Way Handshake\n\nAt this point, the connection is established, and both sides can start transmitting data.\n\n#### Summary:\n\n- **Client sends SYN** → **Server responds with SYN-ACK** → **Client acknowledges with ACK**.\n- This ensures both the client and server are synchronized and ready for communication."}];
+
+function openNote(idx){
+  document.querySelectorAll('.file-item').forEach(e=>e.classList.remove('active'));
+  const el=document.getElementById('fi-'+idx);
+  if(el){el.classList.add('active');el.scrollIntoView({block:'nearest'})}
+  document.getElementById('viewerPath').textContent='BASIC ABOUT COMPUTER/'+NOTES[idx].name;
+  document.getElementById('viewerContent').innerHTML=renderMd(NOTES[idx].content);
+  document.getElementById('viewerContent').scrollTop=0;
+}
+
+function filterFiles(){
+  const q=document.getElementById('searchInput').value.toLowerCase();
+  let v=0;
+  document.querySelectorAll('.file-item').forEach(el=>{
+    const show=!q||el.dataset.name.includes(q);
+    el.style.display=show?'':'none';
+    if(show)v++;
+  });
+  document.getElementById('visibleCount').textContent=v;
+}
+
+function renderMd(md){
+  let h=md.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  h=h.replace(/```[\w]*\n?([\s\S]*?)```/g,(_,c)=>`<pre><code>${c.trim()}</code></pre>`);
+  h=h.replace(/`([^`\n]+)`/g,'<code>$1</code>');
+  h=h.replace(/^#### (.+)$/gm,'<h4>$1</h4>');
+  h=h.replace(/^### (.+)$/gm,'<h3>$1</h3>');
+  h=h.replace(/^## (.+)$/gm,'<h2>$1</h2>');
+  h=h.replace(/^# (.+)$/gm,'<h1>$1</h1>');
+  h=h.replace(/\*\*\*(.+?)\*\*\*/g,'<strong><em>$1</em></strong>');
+  h=h.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+  h=h.replace(/\*(.+?)\*/g,'<em>$1</em>');
+  h=h.replace(/^---+$/gm,'<hr>');
+  h=h.replace(/^&gt; (.+)$/gm,'<blockquote>$1</blockquote>');
+  h=h.replace(/\|(.+)\|\n\|[-| :]+\|\n((?:\|.+\|\n?)+)/g,(m,header,rows)=>{
+    const ths=header.split('|').filter(s=>s.trim()).map(s=>`<th>${s.trim()}</th>`).join('');
+    const trs=rows.trim().split('\n').map(row=>{
+      const tds=row.split('|').filter(s=>s.trim()).map(s=>`<td>${s.trim()}</td>`).join('');
+      return`<tr>${tds}</tr>`;
+    }).join('');
+    return`<table><thead><tr>${ths}</tr></thead><tbody>${trs}</tbody></table>`;
+  });
+  h=h.replace(/^[\*\-] (.+)$/gm,'<li>$1</li>');
+  h=h.replace(/^\d+\. (.+)$/gm,'<li>$1</li>');
+  h=h.replace(/(<li>[\s\S]+?<\/li>)/g,m=>`<ul>${m}</ul>`);
+  h=h.replace(/<\/ul>\s*<ul>/g,'');
+  h=h.replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2" target="_blank">$1</a>');
+  h=h.replace(/\[\[([^\]]+)\]\]/g,'<span style="color:var(--yellow);border-bottom:1px dashed">⟦$1⟧</span>');
+  h=h.replace(/(^|\s)#([a-zA-Z0-9_-]+)/g,'$1<span style="color:var(--green3);font-size:.75em">#$2</span>');
+  h=h.replace(/\n\n+/g,'</p><p>');
+  h=h.replace(/\n/g,'<br>');
+  return '<p>'+h+'</p>';
+}
+
+// Auto open first
+if(NOTES.length>0) openNote(0);
+</script>
+</body>
+</html>
