@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # SQL Injection
 
 Notes about SQL Injection attacks, exploitation techniques, and defenses.
@@ -11,3 +12,10 @@ Notes about SQL Injection attacks, exploitation techniques, and defenses.
 ---
 
 🔙 [Back to Home](../)
+=======
+# SQL injection
+
+Notes for SQL injection
+
+🔙 [Back](../)
+>>>>>>> 17af5c5 (added index.md to all folders)

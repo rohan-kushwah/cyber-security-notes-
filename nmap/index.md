@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Nmap Notes
 
 This section contains my notes related to **Nmap scanning and enumeration**.
@@ -11,3 +12,10 @@ This section contains my notes related to **Nmap scanning and enumeration**.
 ---
 
 🔙 [Back to Home](../)
+=======
+# nmap
+
+Notes for nmap
+
+🔙 [Back](../)
+>>>>>>> 17af5c5 (added index.md to all folders)
