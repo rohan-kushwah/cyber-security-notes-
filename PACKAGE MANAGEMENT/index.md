@@ -1,5 +1,0 @@
-# PACKAGE MANAGEMENT
-
-Notes for PACKAGE MANAGEMENT
-
-🔙 [Back](../)

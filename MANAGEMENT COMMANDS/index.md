@@ -1,5 +1,0 @@
-# MANAGEMENT COMMANDS
-
-Notes for MANAGEMENT COMMANDS
-
-🔙 [Back](../)
