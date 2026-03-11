@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline' https://fonts.googleapis.com; style-src 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; font-src https://fonts.gstatic.com; img-src 'self' data:;">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RATE LIMIT — Cyber Security Notes</title>
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
@@ -16,31 +17,23 @@ body{background:var(--bg);font-family:'Rajdhani',sans-serif;color:var(--text);mi
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,217,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,217,255,0.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
 .scanline{position:fixed;top:-100%;left:0;width:100%;height:2px;background:linear-gradient(transparent,rgba(0,217,255,0.1),transparent);animation:scan 6s linear infinite;pointer-events:none;z-index:1}
 @keyframes scan{to{top:110%}}
-
-/* TOPBAR */
 .topbar{position:relative;z-index:2;background:#0a0e15;border-bottom:1px solid var(--border);padding:10px 24px;display:flex;align-items:center;gap:14px}
 .back-btn{color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:12px;text-decoration:none;border:1px solid rgba(0,217,255,0.3);padding:4px 14px;letter-spacing:1px;transition:all .2s}
 .back-btn:hover{background:rgba(0,217,255,0.08);border-color:var(--accent)}
 .breadcrumb{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim)}
 .breadcrumb em{color:var(--accent);font-style:normal}
-
-/* HEADER */
-.page-header{position:relative;z-index:2;padding:30px 24px 20px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,#0a0e15,#0d1117)}
-.folder-icon{font-size:2.4rem;display:block;margin-bottom:10px}
-.folder-title{font-family:'Share Tech Mono',monospace;font-size:clamp(1.2rem,3vw,1.8rem);color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:6px}
+.page-header{position:relative;z-index:2;padding:28px 24px 18px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,#0a0e15,#0d1117)}
+.folder-icon{font-size:2.2rem;display:block;margin-bottom:8px}
+.folder-title{font-family:'Share Tech Mono',monospace;font-size:clamp(1.2rem,3vw,1.8rem);color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:4px}
 .folder-meta{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim);letter-spacing:2px}
 .folder-meta em{color:var(--accent3);font-style:normal}
-.search-row{margin-top:14px;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);padding:8px 14px;max-width:400px}
+.search-row{margin-top:12px;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);padding:8px 14px;max-width:380px}
 .search-row::before{content:'⌕';color:var(--accent);font-size:1rem}
-.s-input{background:none;border:none;outline:none;color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:13px;width:100%;caret-color:var(--accent)}
+.s-input{background:none;border:none;outline:none;color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:12px;width:100%;caret-color:var(--accent)}
 .s-input::placeholder{color:var(--dim)}
-
-/* LAYOUT */
-.layout{position:relative;z-index:2;display:grid;grid-template-columns:260px 1fr;min-height:calc(100vh - 180px)}
-@media(max-width:700px){.layout{grid-template-columns:1fr;grid-template-rows:220px 1fr}}
-
-/* SIDEBAR */
-.sidebar{border-right:1px solid var(--border);background:#0a0e15;overflow-y:auto;position:sticky;top:0;max-height:calc(100vh - 130px)}
+.layout{position:relative;z-index:2;display:grid;grid-template-columns:250px 1fr;min-height:calc(100vh - 170px)}
+@media(max-width:700px){.layout{grid-template-columns:1fr;grid-template-rows:200px 1fr}}
+.sidebar{border-right:1px solid var(--border);background:#0a0e15;overflow-y:auto;position:sticky;top:0;max-height:calc(100vh - 120px)}
 .sidebar::-webkit-scrollbar{width:3px}.sidebar::-webkit-scrollbar-thumb{background:#1e2d3d}
 .sidebar-head{padding:8px 14px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:3px;background:#080c10;border-bottom:1px solid var(--border);display:flex;justify-content:space-between}
 .sidebar-head span{color:var(--accent3)}
@@ -49,8 +42,6 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .file-item.active{background:rgba(0,217,255,0.08);color:var(--accent);border-left:2px solid var(--accent)}
 .fi-icon{font-size:10px;margin-top:3px;flex-shrink:0;color:var(--accent2)}
 .fi-name{font-family:'Share Tech Mono',monospace;font-size:11px;line-height:1.5;text-transform:capitalize}
-
-/* VIEWER */
 .viewer{display:flex;flex-direction:column}
 .viewer-bar{background:#080c10;border-bottom:1px solid var(--border);padding:8px 20px;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim);display:flex;align-items:center;gap:8px}
 .v-dot{width:9px;height:9px;border-radius:50%;display:inline-block}
@@ -58,11 +49,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .v-path{color:var(--text);margin-left:6px}
 .viewer-content{padding:28px 36px;line-height:1.85;font-size:15px;overflow-y:auto;flex:1}
 @media(max-width:700px){.viewer-content{padding:16px}}
-
-/* PLACEHOLDER */
 .placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px;gap:12px;color:var(--dim);font-family:'Share Tech Mono',monospace;font-size:12px;letter-spacing:2px}
-
-/* MARKDOWN STYLES */
 .viewer-content h1{font-family:'Share Tech Mono',monospace;font-size:1.3rem;color:var(--accent);border-bottom:1px solid var(--border);padding-bottom:8px;margin:24px 0 12px;letter-spacing:2px}
 .viewer-content h2{font-family:'Share Tech Mono',monospace;font-size:1rem;color:var(--accent3);margin:20px 0 10px;letter-spacing:1px}
 .viewer-content h3{font-size:.95rem;color:var(--yellow);margin:16px 0 8px;font-weight:700}
@@ -70,7 +57,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .viewer-content p{margin-bottom:10px;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:15px}
 .viewer-content code{background:rgba(0,217,255,0.07);color:var(--accent3);padding:2px 7px;border:1px solid rgba(0,217,255,0.15);font-family:'Share Tech Mono',monospace;font-size:12px;border-radius:2px}
 .viewer-content pre{background:#020509;border:1px solid var(--border);border-left:3px solid var(--accent);padding:14px 18px;margin:12px 0;overflow-x:auto;border-radius:2px}
-.viewer-content pre code{background:none;border:none;padding:0;color:var(--accent3);font-size:12px;display:block}
+.viewer-content pre code{background:none;border:none;padding:0;color:var(--accent3);font-size:12px;display:block;white-space:pre}
 .viewer-content ul,.viewer-content ol{padding-left:20px;margin-bottom:10px}
 .viewer-content li{margin-bottom:4px;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:15px}
 .viewer-content li::marker{color:var(--accent)}
@@ -83,20 +70,16 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .viewer-content td{padding:7px 12px;border:1px solid var(--border);color:var(--text)}
 .viewer-content tr:nth-child(even) td{background:rgba(255,255,255,0.02)}
 .viewer-content a{color:var(--accent);text-decoration:none;border-bottom:1px dashed rgba(0,217,255,0.4)}
-.viewer-content a:hover{color:#fff}
-
-footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:16px 24px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim)}
+footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:14px 24px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim)}
 footer span{color:var(--accent2)}
 </style>
 </head>
 <body>
 <div class="scanline"></div>
-
 <div class="topbar">
   <a class="back-btn" href="../index.html">← BACK</a>
   <div class="breadcrumb">~/vault/<em>RATE LIMIT</em>/</div>
 </div>
-
 <div class="page-header">
   <span class="folder-icon">⏱️</span>
   <div class="folder-title">RATE LIMIT</div>
@@ -105,7 +88,6 @@ footer span{color:var(--accent2)}
     <input class="s-input" id="searchInput" placeholder="search notes..." oninput="filterFiles()">
   </div>
 </div>
-
 <div class="layout">
   <div class="sidebar">
     <div class="sidebar-head">FILES <span id="visCount">1</span></div>
@@ -117,35 +99,33 @@ footer span{color:var(--accent2)}
       <span class="v-path" id="vPath">select a note</span>
     </div>
     <div class="viewer-content" id="viewerContent">
-      <div class="placeholder">
-        <div>← SELECT A NOTE FROM THE LIST</div>
-      </div>
+      <div class="placeholder">← SELECT A NOTE FROM THE LIST</div>
     </div>
   </div>
 </div>
-
 <footer><p>© 2026 <span>Rohan Kushwah</span> · RATE LIMIT · 1 notes</p></footer>
 
 <script>
-// ALL NOTES DATA
 const NOTES = [{"name": "basic of rate limit", "content": "# 🚦 Rate Limiting – Web Application Security Guide  \n  \n---  \n  \n## 📖 What is Rate Limiting?  \n  \n**Rate Limiting** controls how many requests a client can make to a web application or API within a specific time window.  \n  \nExample:  \n\n100 requests per minute per IP\n\n  \nIt helps protect systems from:  \n  \n- 🔑 Brute-force attacks  \n- 🤖 Bots and scraping  \n- 💥 Denial-of-Service (DoS)  \n- ⚡ Resource exhaustion  \n  \n---  \n  \n## 🌍 Why Rate Limiting Matters (2025+)  \n  \nModern applications expose:  \n  \n- Public APIs  \n- Microservices  \n- High-traffic endpoints  \n  \nWithout rate limiting, a small number of abusive clients can degrade service for everyone.  \n  \nCommon platforms implementing rate limiting:  \n  \n- Cloudflare  \n- AWS API Gateway  \n- Azure Front Door  \n- Akamai  \n- Vercel Edge  \n- NGINX / Envoy  \n  \n---  \n  \n# 🔑 Typical Keys Used for Rate Limiting  \n  \nRate limiting works by identifying **who is sending requests**.  \n  \nCommon identifiers:  \n  \n### 🌐 IP Address  \nUsed for general abuse prevention.  \n\nExample:  \n10 requests / second per IP\n\n  \nOften implemented at:  \n  \n- CDN  \n- WAF  \n- Reverse Proxy  \n  \n---  \n  \n### 🔑 API Key / Client ID  \nUsed for public APIs.  \n  \nExample:  \n\n1000 requests/day per API key\n\n  \n---  \n  \n### 👤 Authenticated User ID  \n  \nUsed when users are logged in.  \n  \nExample:  \n\n5 password attempts per user per 5 minutes\n\n  \n---  \n  \n### 🧬 Combined Fingerprints  \n  \nAdvanced systems combine:  \n\nIP + User-Agent + TLS fingerprint (JA3/JA4)\n\n  \nThis prevents bypass using VPNs or botnets.  \n  \n---  \n  \n# ⚙️ Core Rate Limiting Algorithms  \n  \n## 1️⃣ Fixed Window Counter  \n  \nCounts requests within a fixed time interval.  \n  \nExample:  \n\nLimit: 100 requests per minute\n\n00:00 - 00:59 → 100 requests allowed  \n01:00 → counter resets\n\n  \n### ✔ Advantages  \n- Simple  \n- Fast  \n- Easy to implement  \n  \n### ❌ Problem  \nBurst attacks near window boundaries.  \n  \nExample:  \n\n100 requests at 00:59  \n100 requests at 01:00  \n= 200 requests in 2 seconds\n\n  \n---  \n  \n## 2️⃣ Sliding Window  \n  \nUses rolling timestamps.  \n  \nExample:  \n\nLast 60 seconds window\n\n  \n### ✔ Advantages  \n- More accurate  \n- Prevents burst abuse  \n  \n---  \n  \n## 3️⃣ Token Bucket  \n  \nRequests consume tokens from a bucket.  \n  \nExample:  \n\nBucket size: 20  \nRefill rate: 5 tokens/sec\n\n  \nAllows **short bursts but enforces long-term limits**.  \n  \n---  \n  \n## 4️⃣ Leaky Bucket  \n  \nWorks like a queue.  \n  \nRequests are processed at a **constant rate**.  \n  \nIf queue is full:  \n\nRequests are dropped or delayed\n\n  \nGood for protecting backend systems.  \n  \n---  \n  \n# 📍 Where Rate Limiting is Implemented  \n  \nRate limiting can be applied at multiple layers.  \n  \n---  \n  \n## 🌐 Edge / WAF / CDN  \n  \nExamples:  \n  \n- Cloudflare  \n- Akamai  \n- AWS WAF  \n  \nPurpose:  \n\nBlock bots before reaching backend\n\n  \nExample rule:  \n\n> 50 requests / minute → block IP\n\n  \n---  \n  \n## 🚪 API Gateway / Service Mesh  \n  \nExamples:  \n  \n- Kong  \n- Envoy  \n- AWS API Gateway  \n- Apigee  \n  \nUsed for:  \n  \n- Per API key limits  \n- Per service limits  \n- Plan-based limits  \n  \nExample:  \n\nFree plan → 1000 requests/day  \nPremium → 10000 requests/day\n\n  \n---  \n  \n## 🧠 Application Layer (Middleware)  \n  \nFramework examples:  \n  \n### Node.js  \n\nexpress-rate-limit\n\n  \n### Django  \n\ndjango-ratelimit\n\n  \n### ASP.NET  \n\nAddRateLimiter()\n\n  \n### Spring Boot  \n\nBucket4j\n\n  \nExample rule:  \n\n/login → 5 requests per minute\n\n  \n---  \n  \n# 🔐 Rate Limiting for Brute Force Protection  \n  \nRate limiting is **critical for login security**.  \n  \nAttack example:  \n\nattacker tries 10,000 passwords\n\n  \nWithout rate limit:  \n\nAttack finishes in seconds\n\n  \nWith rate limit:  \n\n5 attempts per minute\n\n  \nAttack becomes impractical.  \n  \n---  \n  \n## 🔑 Endpoints That MUST Have Rate Limits  \n  \n| Endpoint | Reason |  \n|--------|--------|  \n| `/login` | Password brute force |  \n| `/register` | Bot account creation |  \n| `/forgot-password` | Email bombing |  \n| `/otp-verify` | OTP brute force |  \n| `/api/auth` | Credential stuffing |  \n  \n---  \n  \n## Example Secure Login Policy  \n\n5 login attempts per minute per IP  \n5 attempts per user account  \nlock account for 15 minutes\n\n  \n---  \n  \n# 🧪 How to Check if Rate Limiting Exists (Pentesting)  \n  \nDuring **web application testing**, you should verify if rate limiting exists.  \n  \n---  \n  \n## Method 1: Burp Suite Intruder  \n  \nSend multiple login requests.  \n  \nExample:  \n\nPOST /login  \nusername=admin  \npassword=123\n\n  \nSend **100+ requests quickly**.  \n  \n### Expected secure behavior  \n  \nServer returns:  \n\n429 Too Many Requests\n\n  \nor  \n\nAccount temporarily locked\n\n  \n---  \n  \n## Method 2: Using curl Loop  \n  \n```bash  \nfor i in {1..50}  \ndo  \ncurl -X POST https://target.com/login \\  \n-d \"username=admin&password=test\"  \ndone\n\nIf responses are always **200 OK**, rate limit may be missing.\n\n---\n\n## Method 3: Using ffuf\n\nffuf -u https://target.com/login \\  \n-X POST \\  \n-d \"username=admin&password=FUZZ\" \\  \n-w passwords.txt\n\nWatch for:\n\n429 Too Many Requests\n\n---\n\n## Method 4: Python Script\n\nimport requests  \n  \nurl = \"https://target.com/login\"  \n  \nfor i in range(100):  \n    r = requests.post(url,data={\"username\":\"admin\",\"password\":\"test\"})  \n    print(i,r.status_code)\n\n---\n\n# 🚨 Signs Rate Limiting Exists\n\nLook for headers like:\n\nX-RateLimit-Limit  \nX-RateLimit-Remaining  \nX-RateLimit-Reset  \nRetry-After\n\nExample response:\n\nHTTP/1.1 429 Too Many Requests  \n  \nRetry-After: 60\n\n---\n\n# 🚨 Signs Rate Limiting is Missing\n\nIndicators:\n\n- Unlimited login attempts\n    \n- No CAPTCHA\n    \n- No 429 responses\n    \n- No delay between requests\n    \n- No account lockout\n    \n\nThis leads to:\n\nBrute Force Vulnerability\n\n---\n\n# 🛠 Common Rate Limit Bypass Techniques (For Security Testing)\n\nAttackers may try:\n\n### 1️⃣ IP Rotation\n\nUsing proxies:\n\nTOR  \nVPN  \nProxy lists\n\n---\n\n### 2️⃣ Header Spoofing\n\nSome apps trust headers like:\n\nX-Forwarded-For  \nX-Real-IP\n\nExample:\n\nX-Forwarded-For: 1.1.1.1\n\n---\n\n### 3️⃣ Account Rotation\n\nAttackers try:\n\nusername1  \nusername2  \nusername3\n\nInstead of targeting one account.\n\n---\n\n# 🧠 Best Practices for Secure Rate Limiting\n\n✔ Use **multiple identifiers**\n\nIP + User ID + Device fingerprint\n\n✔ Apply limits to **sensitive endpoints**\n\n✔ Return proper response codes\n\n429 Too Many Requests\n\n✔ Add **exponential backoff**\n\n✔ Implement **temporary account lockouts**\n\n---\n\n# 📚 Summary\n\n|Feature|Purpose|\n|---|---|\n|Rate limiting|Prevent abuse|\n|Login limits|Stop brute force|\n|API limits|Protect infrastructure|\n|Sliding window|Accurate limiting|\n|Token bucket|Burst-friendly control|\n\n---\n\n# 🔚 Conclusion\n\nRate limiting is one of the **most important defenses in modern web applications**.\n\nWithout it, attackers can perform:\n\n- Brute force attacks\n    \n- Credential stuffing\n    \n- API abuse\n    \n- Denial of service\n    \n\nImplementing **multi-layer rate limiting** ensures both **security and performance**."}];
 
-// Build sidebar
 function buildSidebar(filter) {
   const list = document.getElementById('fileList');
   list.innerHTML = '';
   let count = 0;
-  NOTES.forEach((note, i) => {
-    if (filter && !note.name.toLowerCase().includes(filter.toLowerCase())) return;
-    const div = document.createElement('div');
+  NOTES.forEach(function(note, i) {
+    if (filter && note.name.toLowerCase().indexOf(filter.toLowerCase()) === -1) return;
+    var div = document.createElement('div');
     div.className = 'file-item';
     div.id = 'fi-' + i;
-    div.innerHTML = '<span class="fi-icon">▸</span>';
-    const span = document.createElement('span');
-    span.className = 'fi-name';
-    span.textContent = note.name; // textContent = safe, no XSS
-    div.appendChild(span);
-    div.onclick = () => openNote(i);
+    var icon = document.createElement('span');
+    icon.className = 'fi-icon';
+    icon.textContent = '▸';
+    var name = document.createElement('span');
+    name.className = 'fi-name';
+    name.textContent = note.name;
+    div.appendChild(icon);
+    div.appendChild(name);
+    div.addEventListener('click', (function(idx){ return function(){ openNote(idx); }; })(i));
     list.appendChild(div);
     count++;
   });
@@ -156,88 +136,71 @@ function filterFiles() {
   buildSidebar(document.getElementById('searchInput').value);
 }
 
-// SAFE note renderer - uses DOM API, never raw innerHTML for user content
-function openNote(idx) {
-  document.querySelectorAll('.file-item').forEach(e => e.classList.remove('active'));
-  const el = document.getElementById('fi-' + idx);
-  if (el) { el.classList.add('active'); el.scrollIntoView({block:'nearest'}); }
-  document.getElementById('vPath').textContent = 'RATE LIMIT/' + NOTES[idx].name;
-  
-  // SAFE render: parse markdown to safe HTML
-  const html = renderMd(NOTES[idx].content);
-  
-  // Use DOMParser to safely parse - strips all scripts
-  const parser = new DOMParser();
-  const doc = parser.parseFromString('<div>' + html + '</div>', 'text/html');
-  
-  // Remove ALL script, iframe, object, embed tags for safety
-  ['script','iframe','object','embed','form'].forEach(tag => {
-    doc.querySelectorAll(tag).forEach(el => el.remove());
-  });
-  
-  // Remove on* event attributes
-  doc.querySelectorAll('*').forEach(el => {
-    [...el.attributes].forEach(attr => {
-      if (attr.name.startsWith('on')) el.removeAttribute(attr.name);
-    });
-  });
-  
-  const viewer = document.getElementById('viewerContent');
-  viewer.innerHTML = '';
-  viewer.appendChild(doc.body.firstChild);
-  viewer.scrollTop = 0;
-}
-
-function renderMd(md) {
-  // Escape HTML entities FIRST - this is the key security step
-  let h = md
+function esc(str) {
+  return str
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
-
-  // Code blocks (must be before inline code)
-  h = h.replace(/```[\w]*\n?([\s\S]*?)```/g, (_, c) => `<pre><code>${c.trim()}</code></pre>`);
-  // Inline code
-  h = h.replace(/`([^`\n]+)`/g, '<code>$1</code>');
-  // Headers
-  h = h.replace(/^#### (.+)$/gm, '<h4>$1</h4>');
-  h = h.replace(/^### (.+)$/gm, '<h3>$1</h3>');
-  h = h.replace(/^## (.+)$/gm, '<h2>$1</h2>');
-  h = h.replace(/^# (.+)$/gm, '<h1>$1</h1>');
-  // Bold + Italic
-  h = h.replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>');
-  h = h.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-  h = h.replace(/\*(.+?)\*/g, '<em>$1</em>');
-  // HR
-  h = h.replace(/^---+$/gm, '<hr>');
-  // Blockquote
-  h = h.replace(/^&gt; (.+)$/gm, '<blockquote>$1</blockquote>');
-  // Table
-  h = h.replace(/\|(.+)\|\n\|[-| :]+\|\n((?:\|.+\|\n?)+)/g, (m, header, rows) => {
-    const ths = header.split('|').filter(s => s.trim()).map(s => `<th>${s.trim()}</th>`).join('');
-    const trs = rows.trim().split('\n').map(row => {
-      const tds = row.split('|').filter(s => s.trim()).map(s => `<td>${s.trim()}</td>`).join('');
-      return `<tr>${tds}</tr>`;
-    }).join('');
-    return `<table><thead><tr>${ths}</tr></thead><tbody>${trs}</tbody></table>`;
-  });
-  // Lists
-  h = h.replace(/^[\*\-] (.+)$/gm, '<li>$1</li>');
-  h = h.replace(/^\d+\. (.+)$/gm, '<li>$1</li>');
-  h = h.replace(/(<li>[\s\S]+?<\/li>)/g, m => `<ul>${m}</ul>`);
-  h = h.replace(/<\/ul>\s*<ul>/g, '');
-  // Links
-  h = h.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
-  // Obsidian links
-  h = h.replace(/\[\[([^\]]+)\]\]/g, '<span style="color:var(--yellow)">⟦$1⟧</span>');
-  // Paragraphs
-  h = h.replace(/\n\n+/g, '</p><p>');
-  h = h.replace(/\n/g, '<br>');
-  return '<p>' + h + '</p>';
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
 
-// Init
+function renderMd(raw) {
+  // Step 1: Split into code blocks and text blocks
+  // Code blocks are rendered as-is (escaped), text blocks get markdown treatment
+  var parts = raw.split(/(```[\s\S]*?```|`[^`
+]+`)/g);
+  var result = '';
+  
+  for (var i = 0; i < parts.length; i++) {
+    var part = parts[i];
+    if (part.startsWith('```')) {
+      // Fenced code block - just escape, no markdown
+      var code = part.replace(/^```\w*
+?/, '').replace(/```$/, '').trim();
+      result += '<pre><code>' + esc(code) + '</code></pre>';
+    } else if (part.startsWith('`') && part.endsWith('`')) {
+      // Inline code
+      result += '<code>' + esc(part.slice(1, -1)) + '</code>';
+    } else {
+      // Regular text - escape first, then apply markdown
+      var t = esc(part);
+      t = t.replace(/^#### (.+)$/gm, '<h4>$1</h4>');
+      t = t.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+      t = t.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+      t = t.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+      t = t.replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>');
+      t = t.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+      t = t.replace(/\*(.+?)\*/g, '<em>$1</em>');
+      t = t.replace(/^---+$/gm, '<hr>');
+      t = t.replace(/^&gt; (.+)$/gm, '<blockquote>$1</blockquote>');
+      t = t.replace(/^[\*\-] (.+)$/gm, '<li>$1</li>');
+      t = t.replace(/^\d+\. (.+)$/gm, '<li>$1</li>');
+      t = t.replace(/(<li>[\s\S]+?<\/li>)/g, function(m){ return '<ul>' + m + '</ul>'; });
+      t = t.replace(/<\/ul>\s*<ul>/g, '');
+      t = t.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+      t = t.replace(/
+
++/g, '</p><p>');
+      t = t.replace(/
+/g, '<br>');
+      result += '<p>' + t + '</p>';
+    }
+  }
+  return result;
+}
+
+function openNote(idx) {
+  document.querySelectorAll('.file-item').forEach(function(e){ e.classList.remove('active'); });
+  var el = document.getElementById('fi-' + idx);
+  if (el) { el.classList.add('active'); el.scrollIntoView({block: 'nearest'}); }
+  document.getElementById('vPath').textContent = 'RATE LIMIT/' + NOTES[idx].name;
+  var viewer = document.getElementById('viewerContent');
+  viewer.innerHTML = renderMd(NOTES[idx].content);
+  viewer.scrollTop = 0;
+}
+
+// Init on load
 buildSidebar();
 if (NOTES.length > 0) openNote(0);
 </script>

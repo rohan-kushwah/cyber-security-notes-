@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline' https://fonts.googleapis.com; style-src 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; font-src https://fonts.gstatic.com; img-src 'self' data:;">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MANAGEMENT COMMANDS — Cyber Security Notes</title>
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
@@ -16,31 +17,23 @@ body{background:var(--bg);font-family:'Rajdhani',sans-serif;color:var(--text);mi
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,217,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,217,255,0.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
 .scanline{position:fixed;top:-100%;left:0;width:100%;height:2px;background:linear-gradient(transparent,rgba(0,217,255,0.1),transparent);animation:scan 6s linear infinite;pointer-events:none;z-index:1}
 @keyframes scan{to{top:110%}}
-
-/* TOPBAR */
 .topbar{position:relative;z-index:2;background:#0a0e15;border-bottom:1px solid var(--border);padding:10px 24px;display:flex;align-items:center;gap:14px}
 .back-btn{color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:12px;text-decoration:none;border:1px solid rgba(0,217,255,0.3);padding:4px 14px;letter-spacing:1px;transition:all .2s}
 .back-btn:hover{background:rgba(0,217,255,0.08);border-color:var(--accent)}
 .breadcrumb{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim)}
 .breadcrumb em{color:var(--accent);font-style:normal}
-
-/* HEADER */
-.page-header{position:relative;z-index:2;padding:30px 24px 20px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,#0a0e15,#0d1117)}
-.folder-icon{font-size:2.4rem;display:block;margin-bottom:10px}
-.folder-title{font-family:'Share Tech Mono',monospace;font-size:clamp(1.2rem,3vw,1.8rem);color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:6px}
+.page-header{position:relative;z-index:2;padding:28px 24px 18px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,#0a0e15,#0d1117)}
+.folder-icon{font-size:2.2rem;display:block;margin-bottom:8px}
+.folder-title{font-family:'Share Tech Mono',monospace;font-size:clamp(1.2rem,3vw,1.8rem);color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:4px}
 .folder-meta{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim);letter-spacing:2px}
 .folder-meta em{color:var(--accent3);font-style:normal}
-.search-row{margin-top:14px;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);padding:8px 14px;max-width:400px}
+.search-row{margin-top:12px;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);padding:8px 14px;max-width:380px}
 .search-row::before{content:'⌕';color:var(--accent);font-size:1rem}
-.s-input{background:none;border:none;outline:none;color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:13px;width:100%;caret-color:var(--accent)}
+.s-input{background:none;border:none;outline:none;color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:12px;width:100%;caret-color:var(--accent)}
 .s-input::placeholder{color:var(--dim)}
-
-/* LAYOUT */
-.layout{position:relative;z-index:2;display:grid;grid-template-columns:260px 1fr;min-height:calc(100vh - 180px)}
-@media(max-width:700px){.layout{grid-template-columns:1fr;grid-template-rows:220px 1fr}}
-
-/* SIDEBAR */
-.sidebar{border-right:1px solid var(--border);background:#0a0e15;overflow-y:auto;position:sticky;top:0;max-height:calc(100vh - 130px)}
+.layout{position:relative;z-index:2;display:grid;grid-template-columns:250px 1fr;min-height:calc(100vh - 170px)}
+@media(max-width:700px){.layout{grid-template-columns:1fr;grid-template-rows:200px 1fr}}
+.sidebar{border-right:1px solid var(--border);background:#0a0e15;overflow-y:auto;position:sticky;top:0;max-height:calc(100vh - 120px)}
 .sidebar::-webkit-scrollbar{width:3px}.sidebar::-webkit-scrollbar-thumb{background:#1e2d3d}
 .sidebar-head{padding:8px 14px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:3px;background:#080c10;border-bottom:1px solid var(--border);display:flex;justify-content:space-between}
 .sidebar-head span{color:var(--accent3)}
@@ -49,8 +42,6 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .file-item.active{background:rgba(0,217,255,0.08);color:var(--accent);border-left:2px solid var(--accent)}
 .fi-icon{font-size:10px;margin-top:3px;flex-shrink:0;color:var(--accent2)}
 .fi-name{font-family:'Share Tech Mono',monospace;font-size:11px;line-height:1.5;text-transform:capitalize}
-
-/* VIEWER */
 .viewer{display:flex;flex-direction:column}
 .viewer-bar{background:#080c10;border-bottom:1px solid var(--border);padding:8px 20px;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim);display:flex;align-items:center;gap:8px}
 .v-dot{width:9px;height:9px;border-radius:50%;display:inline-block}
@@ -58,11 +49,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .v-path{color:var(--text);margin-left:6px}
 .viewer-content{padding:28px 36px;line-height:1.85;font-size:15px;overflow-y:auto;flex:1}
 @media(max-width:700px){.viewer-content{padding:16px}}
-
-/* PLACEHOLDER */
 .placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px;gap:12px;color:var(--dim);font-family:'Share Tech Mono',monospace;font-size:12px;letter-spacing:2px}
-
-/* MARKDOWN STYLES */
 .viewer-content h1{font-family:'Share Tech Mono',monospace;font-size:1.3rem;color:var(--accent);border-bottom:1px solid var(--border);padding-bottom:8px;margin:24px 0 12px;letter-spacing:2px}
 .viewer-content h2{font-family:'Share Tech Mono',monospace;font-size:1rem;color:var(--accent3);margin:20px 0 10px;letter-spacing:1px}
 .viewer-content h3{font-size:.95rem;color:var(--yellow);margin:16px 0 8px;font-weight:700}
@@ -70,7 +57,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .viewer-content p{margin-bottom:10px;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:15px}
 .viewer-content code{background:rgba(0,217,255,0.07);color:var(--accent3);padding:2px 7px;border:1px solid rgba(0,217,255,0.15);font-family:'Share Tech Mono',monospace;font-size:12px;border-radius:2px}
 .viewer-content pre{background:#020509;border:1px solid var(--border);border-left:3px solid var(--accent);padding:14px 18px;margin:12px 0;overflow-x:auto;border-radius:2px}
-.viewer-content pre code{background:none;border:none;padding:0;color:var(--accent3);font-size:12px;display:block}
+.viewer-content pre code{background:none;border:none;padding:0;color:var(--accent3);font-size:12px;display:block;white-space:pre}
 .viewer-content ul,.viewer-content ol{padding-left:20px;margin-bottom:10px}
 .viewer-content li{margin-bottom:4px;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:15px}
 .viewer-content li::marker{color:var(--accent)}
@@ -83,20 +70,16 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .viewer-content td{padding:7px 12px;border:1px solid var(--border);color:var(--text)}
 .viewer-content tr:nth-child(even) td{background:rgba(255,255,255,0.02)}
 .viewer-content a{color:var(--accent);text-decoration:none;border-bottom:1px dashed rgba(0,217,255,0.4)}
-.viewer-content a:hover{color:#fff}
-
-footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:16px 24px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim)}
+footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:14px 24px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim)}
 footer span{color:var(--accent2)}
 </style>
 </head>
 <body>
 <div class="scanline"></div>
-
 <div class="topbar">
   <a class="back-btn" href="../index.html">← BACK</a>
   <div class="breadcrumb">~/vault/<em>MANAGEMENT COMMANDS</em>/</div>
 </div>
-
 <div class="page-header">
   <span class="folder-icon">⚙️</span>
   <div class="folder-title">MANAGEMENT COMMANDS</div>
@@ -105,7 +88,6 @@ footer span{color:var(--accent2)}
     <input class="s-input" id="searchInput" placeholder="search notes..." oninput="filterFiles()">
   </div>
 </div>
-
 <div class="layout">
   <div class="sidebar">
     <div class="sidebar-head">FILES <span id="visCount">6</span></div>
@@ -117,35 +99,33 @@ footer span{color:var(--accent2)}
       <span class="v-path" id="vPath">select a note</span>
     </div>
     <div class="viewer-content" id="viewerContent">
-      <div class="placeholder">
-        <div>← SELECT A NOTE FROM THE LIST</div>
-      </div>
+      <div class="placeholder">← SELECT A NOTE FROM THE LIST</div>
     </div>
   </div>
 </div>
-
 <footer><p>© 2026 <span>Rohan Kushwah</span> · MANAGEMENT COMMANDS · 6 notes</p></footer>
 
 <script>
-// ALL NOTES DATA
 const NOTES = [{"name": "BASIC NETWORK CONFIGURATION COMMANDS", "content": "IFCONFIG/IP  \n\nThe ifconfig(interface configuration command is used to configure network interfaces. It is now deprecated in most Linux\ndistributions in favor of the ip command, but it is still available for legacy systems.\n\n\tDisplay Network Interfaces\n\t\t\n\t\t# ifconfig\n\n\t\tThis command lists all active network interfaces, showing details such as IP addresses, MAC addresses, and network\n\t\tstatus.\n\t\n\tDisplays all interfaces, including those that are inactive.\n\n\t\t# ifconfig -a\n\n\tView a Specific Interface, Displays details for the enp0s\n\t\t\n\t\t# ifconfig enp0s3\n\n\tAssign an IP Address, Assigns the IP address 192.168.1.40 to enp0s3.\n\n\t\t# ifconfig enp0s3 192.168.1.40\n\n\tAssigns the IP address 192.168.1.35 with a /24 subnet mask.\n\n\t\t# ifconfig enpOs3 192.168.1.35 netmask 255.255.255.0\n\n\tTo restart the network \ndoubt --\n\n\t\t# systemctl restart network-online.target\n\n\tAssigns the IP address 192.168.1.42 with a /20 subnet mask.\n\t\t\n\t\t# ifconfig enp0s3 192.168.1.42/20\n\n\n\tEnable or Disable an Interface,Disables\n\n\t\t# ifconfig enp0s3 down\n\n\tEnables (brings up) the enp0s3 interface.\n\t\t\n\t\t# ifconfig enpOs3 up\n\n\tAssign Multiple IP Addresses to One Interface\n\t\t\n\t\tCreates a virtual interface enpOs3:1 192.168.1.42\n\t\t\n\t\t\t# ifconfig enpOs3:1 192.168.1.42\n\t\t\n\t\tCreates another virtuat interface enp0s3:2 with 192. \n\t\t\t\n\t\t\t# ifconfig enpOs3:2 192.168.1.43\n\t\t\n\t\tDisable and Enable network interfaces, Disables the enp6s3 interface.\n\t\t\t\n\t\t\t# ifdown enp0s3\n\t\t\n\t\tEnables the enpOs3 interface.\n\n\t\t\t# ifup enp0s3\n\n\nSince ifconfig is deprecated in modern Linux distributions,it is recommended to use the ip command instead:\n\t\n\tDisplay Network Interfaces\n\t\t\n\t\t# ip addr show\n\t\n\tAssign an IP Address, Assigns the IP address 192.168.1.40 to enp0s3.\n\t\t\n\t\t# ip addr add 192.168.1.40/24 dev enpOs3\n\n\tDisables the enpØs3 interface.\n\t\n\t\t# ip link set enp0s3 down\n\t\n\tEnables the enpOs3 interface.\n\n\t\t# ip link set enp0s3 up\n\t\n\n\tDisplay the Routing table  \n\t\n\t\nIn the \"nmtui\" command on Linux, \"route\" refers to ==a network path or configuration setting that specifies how data should be directed to a specific destination network==, essentially defining which gateway to use to reach a particular network address; when using nmtui, you can access and modify these routes to manage your network connectivity within the graphical text\n\t\t\n\t\t# ip route\n\n\tAdd a New Route. To manually add a route to a specific network:\n\t\t\n\t\t# ip route add 192.168.29.42 via 192.168.29.1 dev enp0s3\n\n\tDelete a Route\n\t\t\n\t\t# ip route del 192.168.29.42/24\n\n\tSet a Default Gateway\n\t\t\n\t\t# ip route add default via 192.168.29.1 dev enp0s3\n\n\tShow Routes for a Specific Interface\n\t\t\n\t\t# ip route show dev enp0s3\n\n\tFlush All Routes\t\n\t\t\n\t\t# ip route flush table main\n\n\n\nNetwork Diagnostics: Ping, traceroute, and tracepath Commands\n\t\n\tNetwork diagnostic tools like Ping, traceroute, and tracepath help test connectivity and analyze network paths.\n\t\t\n\t\tping Command - The ping command sends ICMP Echo Request packets to a host to check connectivity.\n\t\t\t\n\t\t\tSends continuous pings to Google's public DNS server\n\n\t\t\t\t# ping 8.8.8.8\n\n\t\t\tSends only two packet\n\t\t\t\n\t\t\t\t# ping 8.8.8.8 -c 2 \n\n\t\t\tSending Large Packet Size - • sends a 65,504 yte packet to 192.168.1.1. The default packet size is 56 bytes.\n\t\t\t\t\n\t\t\t\t# ping 192.168.1.1 -s 65500\n\n\t\t\tDefine a particular interface\n\n\t\t\t\t# ping -I enpOs3 192.168.1.1 -s 65500 -c 4 \n\n\t\t\tSends 2 packets from enp0s3 with 65,500-byte size, using a custom payload (42 in hexadecimal) .\n\t\t\t\t\n\t\t\t\t# ping 192.168.1.1 -c 2 -s 65500 -I enpOs3 -p 42\n\n\t\t\tInterval and Payload - Sends 2 packets at 10-second intervals.\n\t\t\t\t\n\t\t\t\t# ping 192.168.1.1 -i 10 -c 2\n\n\t\t\tAdds a hexadecimal payload (42) .\n\t\t\t\t\n\t\t\t\t# ping 192.168.1.1 -i 10 -c 2 -p 42\n\t\t\t\n\t\t\tResolves and pings armourinfosec com.\n\t\t\t\t\n\t\t\t\t# ping armourinfosec.com\n\n\t\t\tSends packets as fast as possible.\n\t\t\t\t\n\t\t\t\t# ping 192.168.1.1 -f -s 65500\n\n\n\nTraceroute maps the path packets take to reach a destination./\n\n\nThe traceroute command in Linux is ==a command-line tool that shows the path of network packets from the source to a destination==. It's a common tool for diagnosing network issues.\n\n\n\tInstallation:\n\t\t\n\t\t# yum install traceroute               # RHEL/CentOS\n\t\t\n\t\t#apt install traceroute               Debian/Ubuntu\n\n\t\n\tShows the route packets take to reach Google's DNS.\n\t\n\t\t# traceroute 8.8.8.8\n\n\tTraces the route to armourinfosec.io.\n\t\t\n\t\t# traceroute armourinfosec.io\n\n\tTCP Traceroute, Uses TCP instead of ICMP for tracing (useful when ICMP is blocked) .\n\t\t\n\t\t# tcptraceroute 8.8.4.4\n\n\nTracepath Command\n\nThe tracepath command in Linux is ==used to identify network issues like packet loss, high latency, or MTU issues==. It uses the Path MTU Discovery (PMTUD) mechanism to determine the maximum transmission unit (MTU) along a path\n\n\nInstallation\n\t\n\t# yum install iputils iputils-tracepath \t\t# RHEL/CentOS\n\t\n\t# apt install iputils-tracepath\t\t\t\t\t# Debian/Ubuntu\n\n\n\tTraces the path to 8.8.8.8\n\t\t\n\t\t# tracepath 8.8.8.8\n\n\n\n\n-i = interval \n-c = packet count \n-p = payload\n-s = packet size\n-I = Interface\n\n\n\n\n\n\n# cd /etc/sysconfig/network-script\n# vim /etc/sysconfig/network-scripts/ifcfg-enp0s3"}, {"name": "MEMORY MANAGEMENT COMMANDS", "content": "memory management commands are indispensable for:\n\n- **Optimizing system performance** by balancing memory use.\n- **Troubleshooting memory-related issues** like memory leaks or high memory usage.\n- **Allocating and controlling memory resources** effectively to prevent crashes and overloads.\n- **Ensuring system stability**, especially under high load or multi-user environments.\n\n# Memory Management and System Performance Commands\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/Memory-management-commands.md#memory-management-and-system-performance-commands)\n\n## 1. Memory Management Commands\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/Memory-management-commands.md#1-memory-management-commands)\n\n1. **Free Command:**\n    - `free -h`: Display memory usage in human-readable format (KB, MB, GB).\n        \n        ```shell\n        free -h\n        ```\n        \n    - `free -g`: Display memory usage in gigabytes.\n        \n        ```shell\n        free -g\n        ```\n        \n    - `free -m`: Display memory usage in megabytes.\n        \n        ```shell\n        free -m\n        ```\n        \n    - `free -k`: Display memory usage in kilobytes.\n        \n        ```shell\n        free -k\n        ```\n        \n\n---\n\n## 2. System Performance Commands\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/Memory-management-commands.md#2-system-performance-commands)\n\n1. **Vmstat Command:** virtual  machine status =\n    \n    - `vmstat`: Display basic system performance stats (memory, CPU, processes, etc.).\n        \n        ```shell\n        vmstat\n        ```\n        \n    - `vmstat -a`: Show active memory and swap usage.\n        \n        ```shell\n        vmstat -a\n        ```\n        \n    - `vmstat -d`: Display disk statistics.\n        \n        ```shell\n        vmstat -d\n        ```\n        \n    - `vmstat -s`: Display summary of memory, swap, and disk statistics.\n        \n        ```shell\n        vmstat -s\n        ```\n        \n    - `vmstat 4 5`: Display performance stats every 4 seconds for 5 iterations.\n          har char second pe ek bar aise 5 bar dikhana hai\n        ```shell\n        vmstat 4 5\n        ```\n        \n    - `vmstat -s m 4 5`: Display memory statistics every 4 seconds for 5 iterations.\n        \n        ```shell\n        vmstat -s m 4 5\n        ```\n        \n2. **Iostat Command:**\n    \n    - `iostat`: Display input/output statistics for devices and partitions.\n        \n        ```shell\n        iostat\n        ```\n        \n    - Install `iostat` if not installed:\n        \n        ```shell\n        yum install sysstat\n        ```\n        \n    - `iostat 4 5`: Display I/O statistics every 4 seconds for 5 iterations.\n        \n        ```shell\n        iostat 4 5\n        ```\n        \n\n---\n\n1. **Listing Open Files with `lsof`**\n    \n    - Install `lsof` Command (if not installed):\n        \n        ```shell\n        yum install lsof\n        ```\n        \n    - To list open files by the user `root`:\n        \n        ```shell\n        lsof -u root\n        ```\n        \n    - To list network files (all types of network connections):\n        \n        ```shell\n        lsof -N -i\n        ```\n        \n    - To list open UDP network connections:\n        \n        ```shell\n        lsof -n -i UDP\n        ```\n        \n    - To list open TCP network connections:\n        \n        ```shell\n        lsof -n -i TCP\n        ```\n        \n    - To list open TCP port 22 (usually SSH):\n        \n        ```shell\n        lsof -n -i TCP:22\n        ```\n        \n    - To list open UDP ports 22, 443, and 90:\n        \n        ```shell\n        lsof -n -i UDP:22,443,90\n        ```\n        \n    - To list open UDP ports in the range 80-220:\n        \n        ```shell\n        lsof -n -i UDP:80-220\n        ```\n        \n    - To list open files for process ID 6029:\n        \n        ```shell\n        lsof -n -p 6029\n        ```\n        \n    - To list open IPv4 network connections:\n        \n        ```shell\n        lsof -n -i 4\n        ```\n        \n    - To list open IPv6 network connections:\n        \n        ```shell\n        lsof -n -i 6\n        ```\n        \n    - To get process IDs (PIDs) of files opened by the user `Armour`:\n        \n        ```shell\n        lsof -t -u Armour\n        ```\n        \n\n---\n\n## 3. Killing Processes Using `kill`\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/Memory-management-commands.md#3-killing-processes-using-kill)\n\n- To kill processes opened by the user `Armour` using the process IDs (PIDs) retrieved from `lsof`:\n    \n    ```shell\n    kill -9 $(lsof -t -u Armour)\n    ```"}, {"name": "NETSTAT VS SS COMMANDS", "content": "# **Network Monitoring with `netstat` and `ss`**\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/a7dc5f43d9f129b038d6ecfe9be724d0206e369f/Network_Monitoring_with_netstat_and_ss.md#network-monitoring-with-netstat-and-ss)\n\n## Installation\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/a7dc5f43d9f129b038d6ecfe9be724d0206e369f/Network_Monitoring_with_netstat_and_ss.md#installation)\n\nTo install the required tools, use:\n\n```shell\nyum install net-tools -y\n\n```\n\n## **Using `netstat`**\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/a7dc5f43d9f129b038d6ecfe9be724d0206e369f/Network_Monitoring_with_netstat_and_ss.md#using-netstat)\n\nThe netstat command is used to ==display network status, troubleshoot, and monitor network connections==. It can also be used to configure networks. \n\nWhat it displays \n\n- Active TCP connections\n- Ports that the computer is listening on\n- Ethernet statistics\n- IP routing table\n\n- IPv4 and IPv6 statistics\n\n- Routing table information\n\n- Interface information\n\n- Status of TCP and UDP endpoints\n\n### **Basic Usage**\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/a7dc5f43d9f129b038d6ecfe9be724d0206e369f/Network_Monitoring_with_netstat_and_ss.md#basic-usage)\n\n- Display active connections:\n    \n    ```shell\n    netstat\n    \n    ```\n    \n- Show all listening and non-listening (active) connections:\n    \n    ```shell\n    netstat -a\n    \n    ```\n    \n- Display numeric addresses instead of resolving hostnames:\n    \n    ```shell\n    netstat -na\n    \n    ```\n    \n- Filter by protocol:\n    \n    - Show only TCP connections:\n        \n        ```shell\n        netstat -t\n        \n        ```\n        \n    - Show only UDP connections:\n        \n        ```shell\n        netstat -u\n        \n        ```\n        \n    - Show both TCP and UDP connections:\n        \n        ```shell\n        netstat -tu\n        \n        ```\n        \n- Display TCP and UDP connections in numeric format:\n    \n    ```shell\n    netstat -tun\n    \n    ```\n    \n- Show listening TCP and UDP ports:\n    \n    ```shell\n    netstat -ltun\n    \n    ```\n    \n- Display all listening services, numeric IPs, and process details (more accurate):\n    \n    ```shell\n    netstat -nltup\n    netstat -natup\n    \n    ```\n    \n\n## **Using `ss`**\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/a7dc5f43d9f129b038d6ecfe9be724d0206e369f/Network_Monitoring_with_netstat_and_ss.md#using-ss)\n\nThe `ss` command is a faster alternative to `netstat` for displaying socket statistics.\n\n### **Basic Usage**\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/a7dc5f43d9f129b038d6ecfe9be724d0206e369f/Network_Monitoring_with_netstat_and_ss.md#basic-usage-1)\n\n- Display active connections:\n    \n    ```shell\n    ss\n    \n    ```\n    \n- Show all listening sockets:\n    \n    ```shell\n    ss -l\n    \n    ```\n    \n- Display TCP connections:\n    \n    ```shell\n    ss -t\n    \n    ```\n    \n- Display UDP connections:\n    \n    ```shell\n    ss -u\n    \n    ```\n    \n- Display listening TCP and UDP ports:\n    \n    ```shell\n    ss -ltun\n    \n    ```\n    \n- Display detailed process information for each socket:\n    \n    ```shell\n    ss -tp\n    \n    ```\n    \n\n## **Comparison: `netstat` vs. `ss`**\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/a7dc5f43d9f129b038d6ecfe9be724d0206e369f/Network_Monitoring_with_netstat_and_ss.md#comparison-netstat-vs-ss)\n\n|Feature|`netstat`|`ss`|\n|---|---|---|\n|Speed|Slower|Faster|\n|Availability|Requires `net-tools` package|Pre-installed in modern Linux|\n|Features|Comprehensive but outdated|More detailed and efficient|\n|Performance|Higher resource usage|Lower resource usage|\n|Filtering|Basic filtering|Advanced filtering|\n|IPv6 Support|Limited support|Full support|\n\n## **Conclusion**\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/a7dc5f43d9f129b038d6ecfe9be724d0206e369f/Network_Monitoring_with_netstat_and_ss.md#conclusion)\n\n`netstat` and `ss` are essential tools for monitoring and troubleshooting network connections in CentOS. While `netstat` is widely used, `ss` is a faster and more efficient alternative for analyzing socket connections. Both tools provide detailed insights into active connections, routing, and protocol-specific statistics, making them valuable for network administrators and system engineers.\n\n\n\n\n\n\nnetstat - Network Monitoring: netstat and ss Commands\nInstallation (if not available)\n# yum install net-tools         # RHEL/CentOS\n# apt install net-tools         # Debian/Ubuntu"}, {"name": "PERMANENT IP", "content": "# Network 🌐 Configuration\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/Network-Configuration-Basic.md#network--configuration)\n\n## Network Configuration Basics\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/Network-Configuration-Basic.md#network-configuration-basics)\n\nThe following commands help manage and verify network settings:\n\n### Viewing Network Information\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/Network-Configuration-Basic.md#viewing-network-information)\n\n- `nmtui` - Opens a text-based user interface for configuring network connections.\n- `hostname` - Displays or sets the system's hostname.\n- `hostname -i` - Shows the system's IP address associated with the hostname.\n- `hostname -I` - Lists all assigned IP addresses.\n- `ip addr show` - Displays details of all network interfaces.\n- `ifconfig` - Displays network interface configurations.\n- `ip ad` - Similar to `ip addr show`, lists network interfaces and IPs.\n\n### Checking Public IP Address\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/Network-Configuration-Basic.md#checking-public-ip-address)\n\n- `curl -4 ifconfig.me` - Retrieves the system's external IPv4 address.\n- `curl -4 icanhazip.com` - Alternative way to check public IP.\n- `cat /etc/resolv.conf` - Shows DNS resolver settings.\n- `route -n` - Displays the kernel routing table.\n- `ip route` - Displays and manipulates the system's routing table (part of the `iproute2` package).\n\n## Configuring Static IP Address\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/Network-Configuration-Basic.md#configuring-static-ip-address)\n\nTo configure a static IP address using NetworkManager:\n\n1. Navigate to the NetworkManager system connections directory:\n    \n    ```shell\n    cd /etc/NetworkManager/system-connections/\n    ```\n    \n2. Open the connection file with Vim:\n    \n    ```shell\n    vim enp0s3.nmconnection\n    ```\n    \n3. Modify the configuration file with a static IP:\n    \n    ```ini\n    [connection]\n    id=enp0s3\n    uuid=668303d1-c039-30c9-82bf-0f3527891838\n    type=ethernet\n    autoconnect-priority=-999\n    interface-name=enp0s3\n    timestamp=1726179824\n    \n    [ethernet]\n    \n    [ipv4]\n    address1=192.168.1.31/24,192.168.1.1\n    dns=8.8.8.8;\n    method=manual\n    \n    [ipv6]\n    addr-gen-mode=eui64\n    method=manual\n    \n    [proxy]\n    ```\n    \n    - `address1=192.168.1.34/24` - Assigns `192.168.1.34` as the static IP with a subnet mask of `255.255.255.0` (`/24`) and sets the gateway to `192.168.1.1`.\n    - `dns=8.8.8.8;8.8.4.4;` - Uses Google's public DNS.\n    - `method=manual` - Configures IPv4 manually.\n\n## Configuring Dynamic IP (DHCP)\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/Network-Configuration-Basic.md#configuring-dynamic-ip-dhcp)\n\n4. Navigate to the NetworkManager system connections directory:\n    \n    ```shell\n    cd /etc/NetworkManager/system-connections/\n    ```\n    \n5. Open the connection file with Vim:\n    \n    ```shell\n    vim enp0s3.nmconnection\n    ```\n    \n6. Modify the configuration file:\n    \n    ```ini\n    [connection]\n    id=enp0s3\n    uuid=a32babco-fbae-3689-b858-40d62bd6d445\n    type=ethernet\n    autoconnect-priority=-999\n    interface-name=enp0s3\n    timestamp=1739793171\n    \n    [ethernet]\n    \n    [ipv4]\n    method=auto\n    \n    [ipv6]\n    addr-gen-mode=eui64\n    method=disabled\n    \n    [proxy]\n    ```\n    \n    - `method=auto` enables DHCP, allowing the system to obtain an IP address automatically.\n\n## Assigning Multiple IPs to a Single Network Interface\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/Network-Configuration-Basic.md#assigning-multiple-ips-to-a-single-network-interface)\n\nTo assign multiple IP addresses to a single interface (`enp0s3`):\n\n7. Navigate to the system connections directory:\n    \n    ```shell\n    cd /etc/NetworkManager/system-connections/\n    ```\n    \n8. Edit the connection file:\n    \n    ```shell\n    vim enp0s3.nmconnection\n    ```\n    \n9. Modify the configuration file:\n    \n    ```ini\n    [connection]\n    id=enp0s3\n    uuid=a32babco-fbae-3689-b858-40d62bd6d445\n    type=ethernet\n    autoconnect-priority=-999\n    interface-name=enp0s3\n    timestamp=1739793171\n    \n    [ethernet]\n    \n    [ipv4]\n    address1=192.168.1.34/24\n    address2=192.168.1.35/24\n    address3=192.168.1.36/24\n    address4=192.168.1.37/24\n    dns=8.8.8.8,8.8.4.4;\n    gateway=192.168.1.1\n    method=manual\n    \n    [ipv6]\n    addr-gen-mode=eui64\n    method=disabled\n    \n    [proxy]\n    ```\n    \n    - Each additional IP (`.32, .33, .34`) is assigned to the same interface.\n\n\n\n\nf2 ya f3 se dusre cmd pe aa jao\n# nmtui-\n`nmtui` stands for **Network Manager Text User Interface**. It's a command-line tool used for managing network connections on Linux systems. It provides a simple text-based interface for configuring network settings like Wi-Fi, Ethernet, VPNs, and more, without needing to manually edit configuration files or use more complex commands.\n\nWhen you run `nmtui` in the terminal, it opens an interactive menu where you can:\n\n10. **Edit connections** – Add, modify, or delete network connections.\n11. **Activate a connection** – Enable or disable network interfaces.\n12. **Set system hostname** – Change the system’s hostname.\n\nIt’s especially useful on servers or systems without a graphical interface, providing a user-friendly way to manage network settings. To start it, just type `nmtui'\n# steps to change ip by nmtui-\nTo change your IP address using the `nmtui` (NetworkManager Text User Interface) command, follow these steps:\n\n13. **Open a terminal** and type the following command to launch `nmtui`:\n    \n    bash\n    \n    Copy\n    \n    `sudo nmtui`\n    \n14. **Select \"Edit a connection\"**: In the menu that appears, use the arrow keys to highlight and select **Edit a connection**. Then press **Enter**.\n    \n15. **Choose the network interface**: You will see a list of available network connections. Use the arrow keys to select the network interface for which you want to change the IP (e.g., `Wired connection 1`, `Wi-Fi`, etc.). Then press **Enter**.\n    \n16. **Edit the IP settings**:\n    \n    - For a **static IP** (manual IP), use the arrow keys to navigate to **IPv4 Settings** (or IPv6 Settings if you’re configuring IPv6). Press **Enter**.\n    - Set the **Method** to **Manual**.\n    - Enter the **IP address**, **netmask** (e.g., `255.255.255.0`), and **gateway** information in the appropriate fields.\n    - You can also set DNS servers if necessary.\n17. **Save your changes**:\n    \n    - After entering your desired settings, use the **Tab** key to move to **OK** and press **Enter** to save the changes.\n18. **Activate the connection**:\n    \n    - You can now go back to the main menu by selecting **Back** and pressing **Enter**.\n    - In the main menu, select **Activate a connection**.\n    - Choose the connection you just modified, and press **Enter** to activate it.\n19. **Exit `nmtui`**:\n    \n    - Once you have activated the connection, select **Quit** in the main menu to exit `nmtui`.\n\nYour new IP address settings should now be applied. You can verify them by using the `ip a` or `ifconfig` command in the terminal.\nmultiple ip de ke bhi unnse ssh bana sakte hai\n\n\n#hostname - server name\n#hostname -i = for ip\n#hostname -I =for all active and deactive ip\n/etc/hostname me jake server name set kar sakte hai\nfor gateway check -\ncat /etc/resolv.conf\nroute -n\n\n#ifconfig -a = for hidden interface\n\nhttps://icanhazip.com/ for private ip of a system \n \n by command \n curl  -4 https://icanhazip.com/ retrives the system  external ip v4 \n ip route - konsa ip kis gateway or network ko route kar rha hai\n# configure the static ip=\ncd /etc/networkmanager/system-connections/\nthen interface milega ab usse vim karke edit kar lo\n# by dynamic ip=\ncd /etc/networkmanager/system-connections/\nthen interface milega ab usse vim karke edit kar lo\nmanual ko automatic kar lo \ntoh dhcp se ip lega\n# in debian by file=\nvim /etc/network/interface\n\n\n\n\n\\"}, {"name": "PROCESS MANAGEMENT COMMANDS", "content": "PROCESS MANAGEMENT IN LINUX (20-02-25)\n\nProcess management is essential for monitoring and control 1 inq system performance in Linux \n\nOn Linux computers there are special commands to control the programs that are running. These commands are called process management commands. With the help of process management commands you can look at the list of the programs that are currently running on your computer. You can also start new programs and run them and stop programs that are already running and make some programs more important than others.\n\nProcess management commands help you understand and manage the different programs running on your Linux computer. They allow you to see what's happening and control the programs as needed.   \n\tBelow are commands for managing processes\n\n\t\tRunning Commands in the Background & Foreground\n\t\t\t\n\t\t\tRuns ping in the foreground.\n\t\t\t\n\t\t\t\t# ping 8.8.8.8\n\n\n\t\t\t\n\n\n\t\tRuns ping in the background (background process) .\n\t\t\t\n\t\t\t# Ping 8.8.8.8 &\n\n\t\t\t# to kill use (fg = foreground)\n\n\t\t\t# jobs to see background job\n\n\t\tSends a large sequhnce to /dev/null in the background.\n\t\t\t\n\t\t\t# ping 8.8.8.8 >/dev/null &\n\t\t\t\n\t\t\t# seq 100000000000000000000000 > /dev/nutl & \n\n\t\tViewing Background Jobs, Lists all background jobs.\n\t\t\t\n\t\t\t# jobs\n\n\t\tBrings the last background job to the foreground, Brings job number 2 to the foreground.\n\n\t\t\t# fg 2\n\n\t\tViewing Processes with ps Command\n\t\t\t\n\t\t\tShows processes running in the current shell session.\n\t\t\t\t\n\t\t\t\t# ps\n\t\t\n\t\tDisplays more details about running processes.\n\n\t\t\t\t# ps -l\n\n\t\tLists all processes with CPU and memory usage (BSD-style) .\n\t\t\t\t\n\t\t\t\t# ps -aux\n\n\t\tLists all processes using standard syntax.\n\t\t\t\t\n\t\t\t\t# ps -e\n\n\t\tDisplays processes in a hierarchical tree format.\n\t\t\t\n\t\t\t# ps -axjf\n\n\t\tShows processes owned by root.\n\t\t\t\n\t\t\t# ps -U root -u root u\n\t\t\n\t\tShows processes owned by tanishq.\n\t\t\t\n\t\t\t# ps -U tanishq -u tanishq u\n\n\n\tMonitoring Processes in Real-Time\n\t\t\n\t\tDisplays real-time system processes.\n\t\t\t\n\t\t\t# top\n\n\n\tUsing htop (Better Alternative to top)\n\t\t\n\t\t# apt install htop \t\t\t\t# Debian/Ubuntu\n\t\t\n\t\t# yum install htop \t\t\t\t# RHEL/Cent*\n\n\n\t\tBetter version of top \n\n\t\t\t# htop\n\n\t\ttree struucture \n\n\t\t\t# htop -t\n\n\t\tspecific user \n\n\t\t\t# htop -t -u user-name\n\n\n\t\tDisplays details of a specific process by PID.\n\t\t\t\n\t\t\t# htop -t -p 2780\n\n\n\tKILLING PROCESSES \n\n\t\tkill a particular process \n\n\t\t\t# kill PID\n\n\t\tkill forcefully \n\n\t\t\t# kill -9 PID \n\n\n\t\tKills all instances of seq.\n\t\t\t\n\t\t\t# yum install psmisc\n\t\t\t\n\t\t\t# killall seq\n\n\t\tKills all processes with names matching firefox (regex) .\n\t\t\t\n\t\t\t# killall -r firefox\n\n\t\tKills all processes owned by user.\n\t\t\t\n\t\t\t# killall -u username\n\n\t\tkill all process of ping using pkill\n\n\t\t\t# pkill ping\n\n\t\tKills exact match for ping process owned by user.\n\t\t\t\n\t\t\t# pkill -u username -x ping\n\n\n-------------------------------------------------------------------\n\n\n\n-------------------------------------------------------------------\n\n"}, {"name": "SERVICE MANAGMENT IN LINUX", "content": "Service Management in linux   \n #key Points of a Linux Service:  - **Background Process**: Runs in the background without user intervention, unlike typical applications.\n  - **System Management**: Manages essential functions like networking, storage, logging, etc.\n  - **Controlled by Init Systems**: Managed by an init system like systemd, upstart, or SysVinit, which controls the starting, stopping, and restarting of services. \n  - **Configuration and Logs**: Usually have configuration files in `/etc` and log files in `/var/log`.\n  -  ## Managing Services with SysVinit  SysVinit is an older service management system used in Debian-based and some older Linux distributions. Here are the commands for managing services using `/etc/init.d/`: \n  - ### Checking Available Init Scripts  \n  - ```bash # cd /etc/init.d/ \n  - ### ls -lh /etc/init.d/``\n\n### To View an Init Script\n\nbash\n\nCopy\n\n`# cat /etc/init.d/service-name # e.g. # cat /etc/init.d/apache2`\n\n### Check the Status of a Service\n\nbash\n\nCopy\n\n`# /etc/init.d/apache2 status`\n\n### Start or Stop a Service\n\nbash\n\nCopy\n\n`# /etc/init.d/apache2 start   # To start # /etc/init.d/apache2 stop    # To stop`\n\n### Restart or Stop a Service\n\nbash\n\nCopy\n\n`# /etc/init.d/apache2 restart  # To restart`\n\n### Reload a Service\n\nbash\n\nCopy\n\n`# /etc/init.d/apache2 force-reload`\n\n---\n\n## Managing Services in Latest Linux Systems\n\nManaging services in Linux is essential for system administration. Below are key commands to start, stop, restart, enable, disable, and monitor services using `systemctl` and `service`.\n\n---\nnetstat -nltup network services dekhne ke lie\n### Managing Services with `service` Command (Legacy Systems)\n\nFor older Linux distributions that use init.d or SysVinit instead of systemd:\n\n#### Check the Status of a Service\n\nbash\n\nCopy\n\n`# service <service_name> status # e.g. # service apache2 status`\n\n#### Start a Service\n\nbash\n\nCopy\n\n`# service <service_name> start # e.g. # service apache2 start`\n\n#### Stop a Service\n\nbash\n\nCopy\n\n`# service <service_name> stop # e.g. # service apache2 stop`\n\n#### Restart a Service\n\nbash\n\nCopy\n\n`# service <service_name> restart # e.g. # service apache2 restart`\n\n#### Reload a Service (Without Restart)\n\nbash\n\nCopy\n\n`# service <service_name> reload # e.g. # service apache2 reload`\n\n---\n\n### Managing Services with `systemctl`\n\nFor modern Linux systems that use `systemd`:\n\n#### Install a Package (e.g., Apache)\n\nbash\n\nCopy\n\n`# yum install httpd*`\n\n#### Checking Service Status\n\nbash\n\nCopy\n\n`# systemctl status <service_name>`\n\n#### Start and Stop Services\n\nbash\n\nCopy\n\n`# systemctl start <service_name> # systemctl stop <service_name>`\n\n#### Restart a Service\n\nbash\n\nCopy\n\n`# systemctl restart <service_name>`\n\n#### Reload a Service\n\nbash\n\nCopy\n\n`# systemctl reload <service_name>`\n\n#### Enable a Service to Start at Boot\n\nbash\n\nCopy\n\n`# systemctl enable <service_name>`\n\n#### Disable a Service from Starting at Boot\n\nbash\n\nCopy\n\n`# systemctl disable <service_name>`\n\n#### Check if a Service is Enabled or Disabled at Startup\n\nbash\n\nCopy\n\n`# systemctl is-enabled <service_name>`\n\n#### List All Active Services\n\nbash\n\nCopy\n\n`# systemctl list-units --type=service --state=running`\n\n#### List Failed Services\n\nbash\n\nCopy\n\n`# systemctl list-units --type=service --state=failed`\n\n#### Mask a Service (Prevent It from Running)\n\nbash\n\nCopy\n\n`# systemctl mask <service_name>`\n\n#### Unmask a Service (Allow It to Run Again)\n\nbash\n\nCopy\n\n`# systemctl unmask <service_name>`\n\n#### Show Logs for a Specific Service\n\nbash\n\nCopy\n\n`# journalctl -u <service_name> # e.g. # journalctl -u httpd.service`\n\n#### Display Logs for a Service from the Last Hour\n\nbash\n\nCopy\n\n`# journalctl -u httpd.service --since \"1 hour ago\"`\n\n#### View Live Logs (Useful for Debugging)\n\nbash\n\nCopy\n\n`# journalctl -u httpd.service -f`\n\n---\n\n## System Management Commands\n\n- **Reboot the System**\n\nbash\n\nCopy\n\n`# systemctl reboot`\n\n- **Shut Down the System**\n\nbash\n\nCopy\n\n`# systemctl poweroff`\n\n- **Suspend the System**\n\nbash\n\nCopy\n\n`# systemctl suspend`\n\n- **Hibernate the System**\n- The command `systemctl hibernate` is used in Linux-based operating systems to put the system into hibernation mode. In hibernation, the system saves the contents of the RAM to a swap space (or swap file) on the disk, then powers off the compute\n\nbash\n\nCopy\n\n`# systemctl hibernate`\n\n---\n\n## SysVinit vs Systemd (`systemctl`)\n\nModern Linux distributions (Debian 8+, Ubuntu 15.04+, CentOS 7+, RHEL 7+) use `systemd`. Instead of `/etc/init.d/`, you should use the following commands:\n\n- **Start a Service**\n\nbash\n\nCopy\n\n`# systemctl start apache2`\n\n- **Stop a Service**\n\nbash\n\nCopy\n\n`# systemctl stop apache2`\n\n- **Restart a Service**\n\nbash\n\nCopy\n\n`# systemctl restart apache2`\n\n- **Check the Status of a Service**\n\nbash\n\nCopy\n\n`# systemctl status apache2`\n\n- **Enable a Service to Start at Boot**\n\nbash\n\nCopy\n\n`# systemctl enable apache2`\n\n- **Disable a Service from Starting at Boot**\n\nbash\n\nCopy\n\n`# systemctl disable apache2`\n\n\nSummary of Service Management Commands\n\n|Command|Purpose|\n|---|---|\n|`systemctl status <service>`|Check service status|\n|`systemctl start <service>`|Start a service|\n|`systemctl stop <service>`|Stop a service|\n|`systemctl restart <service>`|Restart a service|\n|`systemctl reload <service>`|Reload configuration without restart|\n|`systemctl enable <service>`|Enable service at boot|\n|`systemctl disable <service>`|Disable service at boot|\n|`systemctl list-units --type=service`|List active services|\n|`systemctl list-units --state=failed`|List failed services|\n|`systemctl mask <service>`|Completely disable a service|\n|`systemctl unmask <service>`|Re-enable a masked service|\n|`journalctl -u <service>`|View service logs|\n|`systemctl --failed`|List all failed services|\nCreating custom services in Linux typically involves creating a service that will be managed by a service manager like `systemd`, which is the most common init system in modern Linux distributions. Here's a step-by-step guide on how to create a custom service using `systemd`:\n\n### 1. **Create a Script for the Service**\n\nFirst, you need a script or program that your service will run. This can be any executable, shell script, or command.\n\nFor example, let’s create a simple bash script `/usr/local/bin/my_custom_service.sh`:\n\nbash\n\nCopy\n\n`#!/bin/bash echo \"My custom service is running!\" > /tmp/custom_service.log`\n\nMake sure it’s executable:\n\nbash\n\nCopy\n\n`sudo chmod +x /usr/local/bin/my_custom_service.sh`\n\n### 2. **Create a Systemd Service Unit File**\n\nSystemd uses service unit files to define how services should be managed. These files are usually located in `/etc/systemd/system/`.\n\nCreate a new service file for your custom service:\n\nbash\n\nCopy\n\n`sudo nano /etc/systemd/system/my_custom_service.service`\n\nAdd the following content to the service file:\n\nini\n\nCopy\n\n`[Unit] Description=My Custom Service After=network.target  [Service] ExecStart=/usr/local/bin/my_custom_service.sh Restart=always User=nobody  [Install] WantedBy=multi-user.target`\n\n### Breakdown of the Service File:\n\n- **[Unit]**\n    \n    - `Description`: A short description of your service.\n    - `After`: Specifies the order in which your service should start. In this case, it's after the network service is up.\n- **[Service]**\n    \n    - `ExecStart`: The command or script to run when the service starts.\n    - `Restart`: Defines the service’s restart behavior (e.g., `always` means it restarts if it crashes).\n    - `User`: The user under which the service will run. You can change `nobody` to another user if needed.\n- **[Install]**\n    \n    - `WantedBy`: Specifies when the service should be started (in this case, it is part of the `multi-user` target, meaning it will start after the system reaches the multi-user state).\n\n### 3. **Reload Systemd and Enable the Service**\n\nAfter creating your service file, you need to reload the systemd manager to recognize the new service and then enable and start it.\n\nbash\n\nCopy\n\n`# Reload systemd to recognize the new service sudo systemctl daemon-reload  # Enable the service to start on boot sudo systemctl enable my_custom_service.service  # Start the service sudo systemctl start my_custom_service.service`\n\n### 4. **Check the Status of the Service**\n\nTo verify that the service is running correctly, use:\n\nbash\n\nCopy\n\n`sudo systemctl status my_custom_service.service`\n\nThis will show the status, logs, and any potential issues with your service.\n\n### 5. **Stop and Disable the Service (If Needed)**\n\nIf you need to stop the service or disable it from starting at boot, use these commands:\n\nbash\n\nCopy\n\n`# Stop the service sudo systemctl stop my_custom_service.service  # Disable the service from starting on boot sudo systemctl disable my_custom_service.service`\n\n### 6. **View Logs**\n\nTo check the output or logs generated by the service, you can use `journalctl`:\n\nbash\n\nCopy\n\n`sudo journalctl -u my_custom_service.service`\n\nThis will show the logs specific to your custom service."}];
 
-// Build sidebar
 function buildSidebar(filter) {
   const list = document.getElementById('fileList');
   list.innerHTML = '';
   let count = 0;
-  NOTES.forEach((note, i) => {
-    if (filter && !note.name.toLowerCase().includes(filter.toLowerCase())) return;
-    const div = document.createElement('div');
+  NOTES.forEach(function(note, i) {
+    if (filter && note.name.toLowerCase().indexOf(filter.toLowerCase()) === -1) return;
+    var div = document.createElement('div');
     div.className = 'file-item';
     div.id = 'fi-' + i;
-    div.innerHTML = '<span class="fi-icon">▸</span>';
-    const span = document.createElement('span');
-    span.className = 'fi-name';
-    span.textContent = note.name; // textContent = safe, no XSS
-    div.appendChild(span);
-    div.onclick = () => openNote(i);
+    var icon = document.createElement('span');
+    icon.className = 'fi-icon';
+    icon.textContent = '▸';
+    var name = document.createElement('span');
+    name.className = 'fi-name';
+    name.textContent = note.name;
+    div.appendChild(icon);
+    div.appendChild(name);
+    div.addEventListener('click', (function(idx){ return function(){ openNote(idx); }; })(i));
     list.appendChild(div);
     count++;
   });
@@ -156,88 +136,71 @@ function filterFiles() {
   buildSidebar(document.getElementById('searchInput').value);
 }
 
-// SAFE note renderer - uses DOM API, never raw innerHTML for user content
-function openNote(idx) {
-  document.querySelectorAll('.file-item').forEach(e => e.classList.remove('active'));
-  const el = document.getElementById('fi-' + idx);
-  if (el) { el.classList.add('active'); el.scrollIntoView({block:'nearest'}); }
-  document.getElementById('vPath').textContent = 'MANAGEMENT COMMANDS/' + NOTES[idx].name;
-  
-  // SAFE render: parse markdown to safe HTML
-  const html = renderMd(NOTES[idx].content);
-  
-  // Use DOMParser to safely parse - strips all scripts
-  const parser = new DOMParser();
-  const doc = parser.parseFromString('<div>' + html + '</div>', 'text/html');
-  
-  // Remove ALL script, iframe, object, embed tags for safety
-  ['script','iframe','object','embed','form'].forEach(tag => {
-    doc.querySelectorAll(tag).forEach(el => el.remove());
-  });
-  
-  // Remove on* event attributes
-  doc.querySelectorAll('*').forEach(el => {
-    [...el.attributes].forEach(attr => {
-      if (attr.name.startsWith('on')) el.removeAttribute(attr.name);
-    });
-  });
-  
-  const viewer = document.getElementById('viewerContent');
-  viewer.innerHTML = '';
-  viewer.appendChild(doc.body.firstChild);
-  viewer.scrollTop = 0;
-}
-
-function renderMd(md) {
-  // Escape HTML entities FIRST - this is the key security step
-  let h = md
+function esc(str) {
+  return str
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
-
-  // Code blocks (must be before inline code)
-  h = h.replace(/```[\w]*\n?([\s\S]*?)```/g, (_, c) => `<pre><code>${c.trim()}</code></pre>`);
-  // Inline code
-  h = h.replace(/`([^`\n]+)`/g, '<code>$1</code>');
-  // Headers
-  h = h.replace(/^#### (.+)$/gm, '<h4>$1</h4>');
-  h = h.replace(/^### (.+)$/gm, '<h3>$1</h3>');
-  h = h.replace(/^## (.+)$/gm, '<h2>$1</h2>');
-  h = h.replace(/^# (.+)$/gm, '<h1>$1</h1>');
-  // Bold + Italic
-  h = h.replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>');
-  h = h.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-  h = h.replace(/\*(.+?)\*/g, '<em>$1</em>');
-  // HR
-  h = h.replace(/^---+$/gm, '<hr>');
-  // Blockquote
-  h = h.replace(/^&gt; (.+)$/gm, '<blockquote>$1</blockquote>');
-  // Table
-  h = h.replace(/\|(.+)\|\n\|[-| :]+\|\n((?:\|.+\|\n?)+)/g, (m, header, rows) => {
-    const ths = header.split('|').filter(s => s.trim()).map(s => `<th>${s.trim()}</th>`).join('');
-    const trs = rows.trim().split('\n').map(row => {
-      const tds = row.split('|').filter(s => s.trim()).map(s => `<td>${s.trim()}</td>`).join('');
-      return `<tr>${tds}</tr>`;
-    }).join('');
-    return `<table><thead><tr>${ths}</tr></thead><tbody>${trs}</tbody></table>`;
-  });
-  // Lists
-  h = h.replace(/^[\*\-] (.+)$/gm, '<li>$1</li>');
-  h = h.replace(/^\d+\. (.+)$/gm, '<li>$1</li>');
-  h = h.replace(/(<li>[\s\S]+?<\/li>)/g, m => `<ul>${m}</ul>`);
-  h = h.replace(/<\/ul>\s*<ul>/g, '');
-  // Links
-  h = h.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
-  // Obsidian links
-  h = h.replace(/\[\[([^\]]+)\]\]/g, '<span style="color:var(--yellow)">⟦$1⟧</span>');
-  // Paragraphs
-  h = h.replace(/\n\n+/g, '</p><p>');
-  h = h.replace(/\n/g, '<br>');
-  return '<p>' + h + '</p>';
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
 
-// Init
+function renderMd(raw) {
+  // Step 1: Split into code blocks and text blocks
+  // Code blocks are rendered as-is (escaped), text blocks get markdown treatment
+  var parts = raw.split(/(```[\s\S]*?```|`[^`
+]+`)/g);
+  var result = '';
+  
+  for (var i = 0; i < parts.length; i++) {
+    var part = parts[i];
+    if (part.startsWith('```')) {
+      // Fenced code block - just escape, no markdown
+      var code = part.replace(/^```\w*
+?/, '').replace(/```$/, '').trim();
+      result += '<pre><code>' + esc(code) + '</code></pre>';
+    } else if (part.startsWith('`') && part.endsWith('`')) {
+      // Inline code
+      result += '<code>' + esc(part.slice(1, -1)) + '</code>';
+    } else {
+      // Regular text - escape first, then apply markdown
+      var t = esc(part);
+      t = t.replace(/^#### (.+)$/gm, '<h4>$1</h4>');
+      t = t.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+      t = t.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+      t = t.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+      t = t.replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>');
+      t = t.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+      t = t.replace(/\*(.+?)\*/g, '<em>$1</em>');
+      t = t.replace(/^---+$/gm, '<hr>');
+      t = t.replace(/^&gt; (.+)$/gm, '<blockquote>$1</blockquote>');
+      t = t.replace(/^[\*\-] (.+)$/gm, '<li>$1</li>');
+      t = t.replace(/^\d+\. (.+)$/gm, '<li>$1</li>');
+      t = t.replace(/(<li>[\s\S]+?<\/li>)/g, function(m){ return '<ul>' + m + '</ul>'; });
+      t = t.replace(/<\/ul>\s*<ul>/g, '');
+      t = t.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+      t = t.replace(/
+
++/g, '</p><p>');
+      t = t.replace(/
+/g, '<br>');
+      result += '<p>' + t + '</p>';
+    }
+  }
+  return result;
+}
+
+function openNote(idx) {
+  document.querySelectorAll('.file-item').forEach(function(e){ e.classList.remove('active'); });
+  var el = document.getElementById('fi-' + idx);
+  if (el) { el.classList.add('active'); el.scrollIntoView({block: 'nearest'}); }
+  document.getElementById('vPath').textContent = 'MANAGEMENT COMMANDS/' + NOTES[idx].name;
+  var viewer = document.getElementById('viewerContent');
+  viewer.innerHTML = renderMd(NOTES[idx].content);
+  viewer.scrollTop = 0;
+}
+
+// Init on load
 buildSidebar();
 if (NOTES.length > 0) openNote(0);
 </script>

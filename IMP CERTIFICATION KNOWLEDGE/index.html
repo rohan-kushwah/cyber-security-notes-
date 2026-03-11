@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline' https://fonts.googleapis.com; style-src 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; font-src https://fonts.gstatic.com; img-src 'self' data:;">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IMP CERTIFICATION KNOWLEDGE — Cyber Security Notes</title>
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
@@ -16,31 +17,23 @@ body{background:var(--bg);font-family:'Rajdhani',sans-serif;color:var(--text);mi
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,217,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,217,255,0.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
 .scanline{position:fixed;top:-100%;left:0;width:100%;height:2px;background:linear-gradient(transparent,rgba(0,217,255,0.1),transparent);animation:scan 6s linear infinite;pointer-events:none;z-index:1}
 @keyframes scan{to{top:110%}}
-
-/* TOPBAR */
 .topbar{position:relative;z-index:2;background:#0a0e15;border-bottom:1px solid var(--border);padding:10px 24px;display:flex;align-items:center;gap:14px}
 .back-btn{color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:12px;text-decoration:none;border:1px solid rgba(0,217,255,0.3);padding:4px 14px;letter-spacing:1px;transition:all .2s}
 .back-btn:hover{background:rgba(0,217,255,0.08);border-color:var(--accent)}
 .breadcrumb{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim)}
 .breadcrumb em{color:var(--accent);font-style:normal}
-
-/* HEADER */
-.page-header{position:relative;z-index:2;padding:30px 24px 20px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,#0a0e15,#0d1117)}
-.folder-icon{font-size:2.4rem;display:block;margin-bottom:10px}
-.folder-title{font-family:'Share Tech Mono',monospace;font-size:clamp(1.2rem,3vw,1.8rem);color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:6px}
+.page-header{position:relative;z-index:2;padding:28px 24px 18px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,#0a0e15,#0d1117)}
+.folder-icon{font-size:2.2rem;display:block;margin-bottom:8px}
+.folder-title{font-family:'Share Tech Mono',monospace;font-size:clamp(1.2rem,3vw,1.8rem);color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:4px}
 .folder-meta{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim);letter-spacing:2px}
 .folder-meta em{color:var(--accent3);font-style:normal}
-.search-row{margin-top:14px;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);padding:8px 14px;max-width:400px}
+.search-row{margin-top:12px;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);padding:8px 14px;max-width:380px}
 .search-row::before{content:'⌕';color:var(--accent);font-size:1rem}
-.s-input{background:none;border:none;outline:none;color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:13px;width:100%;caret-color:var(--accent)}
+.s-input{background:none;border:none;outline:none;color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:12px;width:100%;caret-color:var(--accent)}
 .s-input::placeholder{color:var(--dim)}
-
-/* LAYOUT */
-.layout{position:relative;z-index:2;display:grid;grid-template-columns:260px 1fr;min-height:calc(100vh - 180px)}
-@media(max-width:700px){.layout{grid-template-columns:1fr;grid-template-rows:220px 1fr}}
-
-/* SIDEBAR */
-.sidebar{border-right:1px solid var(--border);background:#0a0e15;overflow-y:auto;position:sticky;top:0;max-height:calc(100vh - 130px)}
+.layout{position:relative;z-index:2;display:grid;grid-template-columns:250px 1fr;min-height:calc(100vh - 170px)}
+@media(max-width:700px){.layout{grid-template-columns:1fr;grid-template-rows:200px 1fr}}
+.sidebar{border-right:1px solid var(--border);background:#0a0e15;overflow-y:auto;position:sticky;top:0;max-height:calc(100vh - 120px)}
 .sidebar::-webkit-scrollbar{width:3px}.sidebar::-webkit-scrollbar-thumb{background:#1e2d3d}
 .sidebar-head{padding:8px 14px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:3px;background:#080c10;border-bottom:1px solid var(--border);display:flex;justify-content:space-between}
 .sidebar-head span{color:var(--accent3)}
@@ -49,8 +42,6 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .file-item.active{background:rgba(0,217,255,0.08);color:var(--accent);border-left:2px solid var(--accent)}
 .fi-icon{font-size:10px;margin-top:3px;flex-shrink:0;color:var(--accent2)}
 .fi-name{font-family:'Share Tech Mono',monospace;font-size:11px;line-height:1.5;text-transform:capitalize}
-
-/* VIEWER */
 .viewer{display:flex;flex-direction:column}
 .viewer-bar{background:#080c10;border-bottom:1px solid var(--border);padding:8px 20px;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim);display:flex;align-items:center;gap:8px}
 .v-dot{width:9px;height:9px;border-radius:50%;display:inline-block}
@@ -58,11 +49,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .v-path{color:var(--text);margin-left:6px}
 .viewer-content{padding:28px 36px;line-height:1.85;font-size:15px;overflow-y:auto;flex:1}
 @media(max-width:700px){.viewer-content{padding:16px}}
-
-/* PLACEHOLDER */
 .placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px;gap:12px;color:var(--dim);font-family:'Share Tech Mono',monospace;font-size:12px;letter-spacing:2px}
-
-/* MARKDOWN STYLES */
 .viewer-content h1{font-family:'Share Tech Mono',monospace;font-size:1.3rem;color:var(--accent);border-bottom:1px solid var(--border);padding-bottom:8px;margin:24px 0 12px;letter-spacing:2px}
 .viewer-content h2{font-family:'Share Tech Mono',monospace;font-size:1rem;color:var(--accent3);margin:20px 0 10px;letter-spacing:1px}
 .viewer-content h3{font-size:.95rem;color:var(--yellow);margin:16px 0 8px;font-weight:700}
@@ -70,7 +57,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .viewer-content p{margin-bottom:10px;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:15px}
 .viewer-content code{background:rgba(0,217,255,0.07);color:var(--accent3);padding:2px 7px;border:1px solid rgba(0,217,255,0.15);font-family:'Share Tech Mono',monospace;font-size:12px;border-radius:2px}
 .viewer-content pre{background:#020509;border:1px solid var(--border);border-left:3px solid var(--accent);padding:14px 18px;margin:12px 0;overflow-x:auto;border-radius:2px}
-.viewer-content pre code{background:none;border:none;padding:0;color:var(--accent3);font-size:12px;display:block}
+.viewer-content pre code{background:none;border:none;padding:0;color:var(--accent3);font-size:12px;display:block;white-space:pre}
 .viewer-content ul,.viewer-content ol{padding-left:20px;margin-bottom:10px}
 .viewer-content li{margin-bottom:4px;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:15px}
 .viewer-content li::marker{color:var(--accent)}
@@ -83,20 +70,16 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .viewer-content td{padding:7px 12px;border:1px solid var(--border);color:var(--text)}
 .viewer-content tr:nth-child(even) td{background:rgba(255,255,255,0.02)}
 .viewer-content a{color:var(--accent);text-decoration:none;border-bottom:1px dashed rgba(0,217,255,0.4)}
-.viewer-content a:hover{color:#fff}
-
-footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:16px 24px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim)}
+footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:14px 24px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim)}
 footer span{color:var(--accent2)}
 </style>
 </head>
 <body>
 <div class="scanline"></div>
-
 <div class="topbar">
   <a class="back-btn" href="../index.html">← BACK</a>
   <div class="breadcrumb">~/vault/<em>IMP CERTIFICATION KNOWLEDGE</em>/</div>
 </div>
-
 <div class="page-header">
   <span class="folder-icon">🏆</span>
   <div class="folder-title">IMP CERTIFICATION KNOWLEDGE</div>
@@ -105,7 +88,6 @@ footer span{color:var(--accent2)}
     <input class="s-input" id="searchInput" placeholder="search notes..." oninput="filterFiles()">
   </div>
 </div>
-
 <div class="layout">
   <div class="sidebar">
     <div class="sidebar-head">FILES <span id="visCount">1</span></div>
@@ -117,35 +99,33 @@ footer span{color:var(--accent2)}
       <span class="v-path" id="vPath">select a note</span>
     </div>
     <div class="viewer-content" id="viewerContent">
-      <div class="placeholder">
-        <div>← SELECT A NOTE FROM THE LIST</div>
-      </div>
+      <div class="placeholder">← SELECT A NOTE FROM THE LIST</div>
     </div>
   </div>
 </div>
-
 <footer><p>© 2026 <span>Rohan Kushwah</span> · IMP CERTIFICATION KNOWLEDGE · 1 notes</p></footer>
 
 <script>
-// ALL NOTES DATA
 const NOTES = [{"name": "oswe", "content": "## OSWE Certification and Career Planning\n\n  \n\n#### **1. OSWE (Offensive Security Web Expert) Certification Details**\n\n  \n\n*   **Official Name:** OSWE is also listed as **WEB-300** on the Offensive Security website.\n\n*   **Core Skill:** A strong understanding of **Object-Oriented Programming (OOP)** is essential, as it's a fundamental concept in all the required languages.\n\n*   **Technical Requirements:** To pass the exam, proficiency is required in the following areas:\n\n    *   **Programming Languages:**\n\n        *   Java\n\n        *   PHP\n\n        *   .NET\n\n        *   Python\n\n    *   **Databases:**\n\n        *   MySQL / MariaDB\n\n        *   Oracle\n\n        *   MSSQL\n\n        *   PostgreSQL\n\n*   **Exam Focus:**\n\n    *   The curriculum covers advanced web attack vectors.\n\n    *   A key requirement is the ability to perform **manual exploit development from scratch**. Relying on tools like ChatGPT for exploit generation is not a viable strategy for the exam.\n\n  \n\n#### **2. Pricing and Purchasing Strategy**\n\n  \n\n*   **Official Price:** The standard cost for both OSCP and OSWE is **$1749 USD**.\n\n*   **Full Cost (India):** The price for OSCP is approximately **₹1.5 Lakh**, plus an additional **₹5,000 - ₹6,000** in hidden transaction fees.\n\n*   **Cost-Saving Opportunity:**\n\n    *   It's possible to purchase the certification for less through local, Delhi or Pune-based vendors who are OffSec partners.\n\n    *   \"Sachin sir\" has a reference/connection with these vendors.\n\n    *   Using these vendors can result in a saving of **₹25,000 - ₹30,000 INR**.\n\n  \n\n#### **3. Career and Certification Strategy**\n\n  \n\n*   **Initial Investment (OSCP):**\n\n    *   It is recommended to pay for the **OSCP with your own money**.\n\n    *   OSCP is highly valuable for securing a good entry-level job.\n\n*   **Advanced Certifications (OSWE, etc.):**\n\n    *   It is **not recommended** to pay for other advanced OffSec certifications with your own money.\n\n    *   You should pursue these certifications only if a **company is willing to sponsor** the cost.\n\n*   **Career Growth:**\n\n    *   After approximately 2 years in a job, an expected salary is around 8 LPA.\n\n    *   To achieve a significant salary jump to **~18 LPA**, the OSCP alone is not sufficient.\n\n    *   Advancement requires a combination of **advanced certifications (like OSWE), strong communication skills, and deep technical knowledge.**\n\n  \n\n#### **4. Expected Salary Progression Benchmark**\n\n  \n\nThis is a target career trajectory to aim for, where not meeting this pace is considered a \"loss.\"\n\n  \n\n*   **1st Job:** ~5 LPA\n\n*   **2nd Job:** ~10 LPA\n\n*   **3rd Job:** ~15 LPA\n\n*   **4th Job:** ~20 LPA\n\n*   **5th Job:** ~25 LPA\n\n*   *Goal after 3 years should be a salary greater than 18 LPA.*\n\n  \n\n---\n\n---"}];
 
-// Build sidebar
 function buildSidebar(filter) {
   const list = document.getElementById('fileList');
   list.innerHTML = '';
   let count = 0;
-  NOTES.forEach((note, i) => {
-    if (filter && !note.name.toLowerCase().includes(filter.toLowerCase())) return;
-    const div = document.createElement('div');
+  NOTES.forEach(function(note, i) {
+    if (filter && note.name.toLowerCase().indexOf(filter.toLowerCase()) === -1) return;
+    var div = document.createElement('div');
     div.className = 'file-item';
     div.id = 'fi-' + i;
-    div.innerHTML = '<span class="fi-icon">▸</span>';
-    const span = document.createElement('span');
-    span.className = 'fi-name';
-    span.textContent = note.name; // textContent = safe, no XSS
-    div.appendChild(span);
-    div.onclick = () => openNote(i);
+    var icon = document.createElement('span');
+    icon.className = 'fi-icon';
+    icon.textContent = '▸';
+    var name = document.createElement('span');
+    name.className = 'fi-name';
+    name.textContent = note.name;
+    div.appendChild(icon);
+    div.appendChild(name);
+    div.addEventListener('click', (function(idx){ return function(){ openNote(idx); }; })(i));
     list.appendChild(div);
     count++;
   });
@@ -156,88 +136,71 @@ function filterFiles() {
   buildSidebar(document.getElementById('searchInput').value);
 }
 
-// SAFE note renderer - uses DOM API, never raw innerHTML for user content
-function openNote(idx) {
-  document.querySelectorAll('.file-item').forEach(e => e.classList.remove('active'));
-  const el = document.getElementById('fi-' + idx);
-  if (el) { el.classList.add('active'); el.scrollIntoView({block:'nearest'}); }
-  document.getElementById('vPath').textContent = 'IMP CERTIFICATION KNOWLEDGE/' + NOTES[idx].name;
-  
-  // SAFE render: parse markdown to safe HTML
-  const html = renderMd(NOTES[idx].content);
-  
-  // Use DOMParser to safely parse - strips all scripts
-  const parser = new DOMParser();
-  const doc = parser.parseFromString('<div>' + html + '</div>', 'text/html');
-  
-  // Remove ALL script, iframe, object, embed tags for safety
-  ['script','iframe','object','embed','form'].forEach(tag => {
-    doc.querySelectorAll(tag).forEach(el => el.remove());
-  });
-  
-  // Remove on* event attributes
-  doc.querySelectorAll('*').forEach(el => {
-    [...el.attributes].forEach(attr => {
-      if (attr.name.startsWith('on')) el.removeAttribute(attr.name);
-    });
-  });
-  
-  const viewer = document.getElementById('viewerContent');
-  viewer.innerHTML = '';
-  viewer.appendChild(doc.body.firstChild);
-  viewer.scrollTop = 0;
-}
-
-function renderMd(md) {
-  // Escape HTML entities FIRST - this is the key security step
-  let h = md
+function esc(str) {
+  return str
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
-
-  // Code blocks (must be before inline code)
-  h = h.replace(/```[\w]*\n?([\s\S]*?)```/g, (_, c) => `<pre><code>${c.trim()}</code></pre>`);
-  // Inline code
-  h = h.replace(/`([^`\n]+)`/g, '<code>$1</code>');
-  // Headers
-  h = h.replace(/^#### (.+)$/gm, '<h4>$1</h4>');
-  h = h.replace(/^### (.+)$/gm, '<h3>$1</h3>');
-  h = h.replace(/^## (.+)$/gm, '<h2>$1</h2>');
-  h = h.replace(/^# (.+)$/gm, '<h1>$1</h1>');
-  // Bold + Italic
-  h = h.replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>');
-  h = h.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-  h = h.replace(/\*(.+?)\*/g, '<em>$1</em>');
-  // HR
-  h = h.replace(/^---+$/gm, '<hr>');
-  // Blockquote
-  h = h.replace(/^&gt; (.+)$/gm, '<blockquote>$1</blockquote>');
-  // Table
-  h = h.replace(/\|(.+)\|\n\|[-| :]+\|\n((?:\|.+\|\n?)+)/g, (m, header, rows) => {
-    const ths = header.split('|').filter(s => s.trim()).map(s => `<th>${s.trim()}</th>`).join('');
-    const trs = rows.trim().split('\n').map(row => {
-      const tds = row.split('|').filter(s => s.trim()).map(s => `<td>${s.trim()}</td>`).join('');
-      return `<tr>${tds}</tr>`;
-    }).join('');
-    return `<table><thead><tr>${ths}</tr></thead><tbody>${trs}</tbody></table>`;
-  });
-  // Lists
-  h = h.replace(/^[\*\-] (.+)$/gm, '<li>$1</li>');
-  h = h.replace(/^\d+\. (.+)$/gm, '<li>$1</li>');
-  h = h.replace(/(<li>[\s\S]+?<\/li>)/g, m => `<ul>${m}</ul>`);
-  h = h.replace(/<\/ul>\s*<ul>/g, '');
-  // Links
-  h = h.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
-  // Obsidian links
-  h = h.replace(/\[\[([^\]]+)\]\]/g, '<span style="color:var(--yellow)">⟦$1⟧</span>');
-  // Paragraphs
-  h = h.replace(/\n\n+/g, '</p><p>');
-  h = h.replace(/\n/g, '<br>');
-  return '<p>' + h + '</p>';
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
 
-// Init
+function renderMd(raw) {
+  // Step 1: Split into code blocks and text blocks
+  // Code blocks are rendered as-is (escaped), text blocks get markdown treatment
+  var parts = raw.split(/(```[\s\S]*?```|`[^`
+]+`)/g);
+  var result = '';
+  
+  for (var i = 0; i < parts.length; i++) {
+    var part = parts[i];
+    if (part.startsWith('```')) {
+      // Fenced code block - just escape, no markdown
+      var code = part.replace(/^```\w*
+?/, '').replace(/```$/, '').trim();
+      result += '<pre><code>' + esc(code) + '</code></pre>';
+    } else if (part.startsWith('`') && part.endsWith('`')) {
+      // Inline code
+      result += '<code>' + esc(part.slice(1, -1)) + '</code>';
+    } else {
+      // Regular text - escape first, then apply markdown
+      var t = esc(part);
+      t = t.replace(/^#### (.+)$/gm, '<h4>$1</h4>');
+      t = t.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+      t = t.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+      t = t.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+      t = t.replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>');
+      t = t.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+      t = t.replace(/\*(.+?)\*/g, '<em>$1</em>');
+      t = t.replace(/^---+$/gm, '<hr>');
+      t = t.replace(/^&gt; (.+)$/gm, '<blockquote>$1</blockquote>');
+      t = t.replace(/^[\*\-] (.+)$/gm, '<li>$1</li>');
+      t = t.replace(/^\d+\. (.+)$/gm, '<li>$1</li>');
+      t = t.replace(/(<li>[\s\S]+?<\/li>)/g, function(m){ return '<ul>' + m + '</ul>'; });
+      t = t.replace(/<\/ul>\s*<ul>/g, '');
+      t = t.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+      t = t.replace(/
+
++/g, '</p><p>');
+      t = t.replace(/
+/g, '<br>');
+      result += '<p>' + t + '</p>';
+    }
+  }
+  return result;
+}
+
+function openNote(idx) {
+  document.querySelectorAll('.file-item').forEach(function(e){ e.classList.remove('active'); });
+  var el = document.getElementById('fi-' + idx);
+  if (el) { el.classList.add('active'); el.scrollIntoView({block: 'nearest'}); }
+  document.getElementById('vPath').textContent = 'IMP CERTIFICATION KNOWLEDGE/' + NOTES[idx].name;
+  var viewer = document.getElementById('viewerContent');
+  viewer.innerHTML = renderMd(NOTES[idx].content);
+  viewer.scrollTop = 0;
+}
+
+// Init on load
 buildSidebar();
 if (NOTES.length > 0) openNote(0);
 </script>

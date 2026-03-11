@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline' https://fonts.googleapis.com; style-src 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; font-src https://fonts.gstatic.com; img-src 'self' data:;">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BASIC ABOUT COMPUTER — Cyber Security Notes</title>
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
@@ -16,31 +17,23 @@ body{background:var(--bg);font-family:'Rajdhani',sans-serif;color:var(--text);mi
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,217,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,217,255,0.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
 .scanline{position:fixed;top:-100%;left:0;width:100%;height:2px;background:linear-gradient(transparent,rgba(0,217,255,0.1),transparent);animation:scan 6s linear infinite;pointer-events:none;z-index:1}
 @keyframes scan{to{top:110%}}
-
-/* TOPBAR */
 .topbar{position:relative;z-index:2;background:#0a0e15;border-bottom:1px solid var(--border);padding:10px 24px;display:flex;align-items:center;gap:14px}
 .back-btn{color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:12px;text-decoration:none;border:1px solid rgba(0,217,255,0.3);padding:4px 14px;letter-spacing:1px;transition:all .2s}
 .back-btn:hover{background:rgba(0,217,255,0.08);border-color:var(--accent)}
 .breadcrumb{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim)}
 .breadcrumb em{color:var(--accent);font-style:normal}
-
-/* HEADER */
-.page-header{position:relative;z-index:2;padding:30px 24px 20px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,#0a0e15,#0d1117)}
-.folder-icon{font-size:2.4rem;display:block;margin-bottom:10px}
-.folder-title{font-family:'Share Tech Mono',monospace;font-size:clamp(1.2rem,3vw,1.8rem);color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:6px}
+.page-header{position:relative;z-index:2;padding:28px 24px 18px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,#0a0e15,#0d1117)}
+.folder-icon{font-size:2.2rem;display:block;margin-bottom:8px}
+.folder-title{font-family:'Share Tech Mono',monospace;font-size:clamp(1.2rem,3vw,1.8rem);color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:4px}
 .folder-meta{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim);letter-spacing:2px}
 .folder-meta em{color:var(--accent3);font-style:normal}
-.search-row{margin-top:14px;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);padding:8px 14px;max-width:400px}
+.search-row{margin-top:12px;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);padding:8px 14px;max-width:380px}
 .search-row::before{content:'⌕';color:var(--accent);font-size:1rem}
-.s-input{background:none;border:none;outline:none;color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:13px;width:100%;caret-color:var(--accent)}
+.s-input{background:none;border:none;outline:none;color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:12px;width:100%;caret-color:var(--accent)}
 .s-input::placeholder{color:var(--dim)}
-
-/* LAYOUT */
-.layout{position:relative;z-index:2;display:grid;grid-template-columns:260px 1fr;min-height:calc(100vh - 180px)}
-@media(max-width:700px){.layout{grid-template-columns:1fr;grid-template-rows:220px 1fr}}
-
-/* SIDEBAR */
-.sidebar{border-right:1px solid var(--border);background:#0a0e15;overflow-y:auto;position:sticky;top:0;max-height:calc(100vh - 130px)}
+.layout{position:relative;z-index:2;display:grid;grid-template-columns:250px 1fr;min-height:calc(100vh - 170px)}
+@media(max-width:700px){.layout{grid-template-columns:1fr;grid-template-rows:200px 1fr}}
+.sidebar{border-right:1px solid var(--border);background:#0a0e15;overflow-y:auto;position:sticky;top:0;max-height:calc(100vh - 120px)}
 .sidebar::-webkit-scrollbar{width:3px}.sidebar::-webkit-scrollbar-thumb{background:#1e2d3d}
 .sidebar-head{padding:8px 14px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:3px;background:#080c10;border-bottom:1px solid var(--border);display:flex;justify-content:space-between}
 .sidebar-head span{color:var(--accent3)}
@@ -49,8 +42,6 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .file-item.active{background:rgba(0,217,255,0.08);color:var(--accent);border-left:2px solid var(--accent)}
 .fi-icon{font-size:10px;margin-top:3px;flex-shrink:0;color:var(--accent2)}
 .fi-name{font-family:'Share Tech Mono',monospace;font-size:11px;line-height:1.5;text-transform:capitalize}
-
-/* VIEWER */
 .viewer{display:flex;flex-direction:column}
 .viewer-bar{background:#080c10;border-bottom:1px solid var(--border);padding:8px 20px;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim);display:flex;align-items:center;gap:8px}
 .v-dot{width:9px;height:9px;border-radius:50%;display:inline-block}
@@ -58,11 +49,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .v-path{color:var(--text);margin-left:6px}
 .viewer-content{padding:28px 36px;line-height:1.85;font-size:15px;overflow-y:auto;flex:1}
 @media(max-width:700px){.viewer-content{padding:16px}}
-
-/* PLACEHOLDER */
 .placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px;gap:12px;color:var(--dim);font-family:'Share Tech Mono',monospace;font-size:12px;letter-spacing:2px}
-
-/* MARKDOWN STYLES */
 .viewer-content h1{font-family:'Share Tech Mono',monospace;font-size:1.3rem;color:var(--accent);border-bottom:1px solid var(--border);padding-bottom:8px;margin:24px 0 12px;letter-spacing:2px}
 .viewer-content h2{font-family:'Share Tech Mono',monospace;font-size:1rem;color:var(--accent3);margin:20px 0 10px;letter-spacing:1px}
 .viewer-content h3{font-size:.95rem;color:var(--yellow);margin:16px 0 8px;font-weight:700}
@@ -70,7 +57,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .viewer-content p{margin-bottom:10px;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:15px}
 .viewer-content code{background:rgba(0,217,255,0.07);color:var(--accent3);padding:2px 7px;border:1px solid rgba(0,217,255,0.15);font-family:'Share Tech Mono',monospace;font-size:12px;border-radius:2px}
 .viewer-content pre{background:#020509;border:1px solid var(--border);border-left:3px solid var(--accent);padding:14px 18px;margin:12px 0;overflow-x:auto;border-radius:2px}
-.viewer-content pre code{background:none;border:none;padding:0;color:var(--accent3);font-size:12px;display:block}
+.viewer-content pre code{background:none;border:none;padding:0;color:var(--accent3);font-size:12px;display:block;white-space:pre}
 .viewer-content ul,.viewer-content ol{padding-left:20px;margin-bottom:10px}
 .viewer-content li{margin-bottom:4px;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:15px}
 .viewer-content li::marker{color:var(--accent)}
@@ -83,20 +70,16 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .viewer-content td{padding:7px 12px;border:1px solid var(--border);color:var(--text)}
 .viewer-content tr:nth-child(even) td{background:rgba(255,255,255,0.02)}
 .viewer-content a{color:var(--accent);text-decoration:none;border-bottom:1px dashed rgba(0,217,255,0.4)}
-.viewer-content a:hover{color:#fff}
-
-footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:16px 24px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim)}
+footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:14px 24px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim)}
 footer span{color:var(--accent2)}
 </style>
 </head>
 <body>
 <div class="scanline"></div>
-
 <div class="topbar">
   <a class="back-btn" href="../index.html">← BACK</a>
   <div class="breadcrumb">~/vault/<em>BASIC ABOUT COMPUTER</em>/</div>
 </div>
-
 <div class="page-header">
   <span class="folder-icon">💻</span>
   <div class="folder-title">BASIC ABOUT COMPUTER</div>
@@ -105,7 +88,6 @@ footer span{color:var(--accent2)}
     <input class="s-input" id="searchInput" placeholder="search notes..." oninput="filterFiles()">
   </div>
 </div>
-
 <div class="layout">
   <div class="sidebar">
     <div class="sidebar-head">FILES <span id="visCount">3</span></div>
@@ -117,35 +99,33 @@ footer span{color:var(--accent2)}
       <span class="v-path" id="vPath">select a note</span>
     </div>
     <div class="viewer-content" id="viewerContent">
-      <div class="placeholder">
-        <div>← SELECT A NOTE FROM THE LIST</div>
-      </div>
+      <div class="placeholder">← SELECT A NOTE FROM THE LIST</div>
     </div>
   </div>
 </div>
-
 <footer><p>© 2026 <span>Rohan Kushwah</span> · BASIC ABOUT COMPUTER · 3 notes</p></footer>
 
 <script>
-// ALL NOTES DATA
 const NOTES = [{"name": "ALL  BASIC INFO", "content": "The booting process is ==the process of starting a computer, which involves loading the operating system and preparing the computer for use==. \n\nHow it works \n\n1. The user presses the power button.\n2. The bootloader in the cache memory is powered on.\n3. The bootloader performs a Power On Self Test (POST).\n\n- The BIOS (Basic Input Output System) is activated.\n\n- The BIOS finds and loads the operating system.\n\n- The operating system loads into the computer's memory.\n\n- The system configures devices and initializes other basic software.\n\n- The user authenticates and is presented with a login screen or desktop environment.\n\nTypes of booting\n\nThere are two types of booting: \n\n- **Cold booting**: Starting the computer after a full power off\n\n- **Warm booting**: Restarting the operating system after a system crash or freeze"}, {"name": "OSI MODEL", "content": "The **OSI (Open Systems Interconnection) model** is a conceptual framework used to understand and standardize network communications. It consists of **seven layers**, each with a specific function in the communication process.\n\n### **OSI Model Layers & Their Working**\n\n---\n\n### **1. Physical Layer (Layer 1)**\n\n- **Function:** Deals with raw data transmission over a physical medium (wires, fiber optics, radio waves).\n    \n- **Example:** Ethernet cables, fiber optics, radio frequencies, network interface cards (NICs).\n    \n- **Key Devices:** Hubs, repeaters, network cables.\n    \n\n---\n\n### **2. Data Link Layer (Layer 2)**\n\n- **Function:** Handles error detection and correction, and defines how data packets are placed on the physical medium.\n    \n- **Example:** MAC (Media Access Control) addresses, Ethernet, Wi-Fi (802.11).\n    \n- **Key Devices:** Switches, bridges.\n    \n\n---\n\n### **3. Network Layer (Layer 3)**\n\n- **Function:** Routes data between different networks and assigns logical addresses (IP addresses).\n    \n- **Example:** IP (Internet Protocol), routers, ICMP (ping).\n    \n- **Key Devices:** Routers, Layer 3 switches.\n    \n\n---\n\n### **4. Transport Layer (Layer 4)**\n\n- **Function:** Ensures reliable or fast data delivery using protocols such as TCP (reliable) and UDP (fast, no error checking).\n    \n- **Example:** TCP (Transmission Control Protocol), UDP (User Datagram Protocol).\n    \n- **Key Devices:** Firewalls (operate at Layer 4 and above).\n    \n\n---\n\n### **5. Session Layer (Layer 5)**\n\n- **Function:** Manages and controls communication sessions between applications.\n    \n- **Example:** Remote procedure calls (RPC), NetBIOS, session management in web applications.\n    \n\n---\n\n### **6. Presentation Layer (Layer 6)**\n\n- **Function:** Converts data into a format the application can understand, including encryption, compression, and encoding.\n    \n- **Example:** SSL/TLS (encryption), JPEG, MPEG, ASCII, Unicode.\n    \n\n---\n\n### **7. Application Layer (Layer 7)**\n\n- **Function:** Provides end-user services such as web browsing, email, and file transfer.\n    \n- **Example:** HTTP, FTP, SMTP (email), DNS.\n    \n- **Key Devices:** Proxy servers, application gateways.\n    \n\n---\n\n### **How OSI Model Works in Communication**\n\n1. **Sender Side:** Data is generated at the **Application Layer** → Encapsulated as it passes through the layers (e.g., added headers).\n    \n2. **Transmission:** The **Physical Layer** transmits bits over the medium.\n    \n3. **Receiver Side:** Data moves up from the **Physical Layer** to the **Application Layer**, where it is presented to the user.\n    \n\n---\n\n### **OSI vs. TCP/IP Model**\n\n|OSI Model|TCP/IP Model|\n|---|---|\n|7 Layers|4 Layers|\n|Conceptual model|Practical model used on the internet|\n|Includes Presentation & Session layers|These functions are part of Application Layer|\n\n---\n\n### **Conclusion**\n\n\n\n\n# ABOUT TCP AND UDP--\n### **TCP (Transmission Control Protocol) vs. UDP (User Datagram Protocol)**\n\nBoth **TCP** and **UDP** are **Transport Layer protocols** in the OSI model, but they function differently.\n\n|Feature|**TCP (Transmission Control Protocol)**|**UDP (User Datagram Protocol)**|\n|---|---|---|\n|**Connection**|Connection-oriented (requires a handshake)|Connectionless (no handshake)|\n|**Reliability**|Reliable (ensures data is received in order, retransmits lost packets)|Unreliable (no retransmission, packets may be lost)|\n|**Speed**|Slower due to error-checking and acknowledgments|Faster due to minimal overhead|\n|**Usage**|Used for applications requiring reliability (e.g., web browsing, email, file transfer)|Used for time-sensitive applications (e.g., VoIP, online gaming, video streaming)|\n|**Header Size**|Larger (more overhead due to error control)|Smaller (less overhead)|\n\n**In short:**\n\n- **TCP** is reliable but slower.\n    \n- **UDP** is faster but less reliable. 🚀\n    \n\n4o"}, {"name": "THREE WAY HANDSAKE", "content": "### What is the Three-Way Handshake?\n\nThe **three-way handshake** is the procedure used by the TCP protocol to establish a reliable connection between a client and a server. It ensures that both devices are ready for communication and that the data can be sent without errors.\n\n### Steps in the Three-Way Handshake\n\n1. **SYN (Synchronize)**\n    - The client sends a **SYN** message (a request to start the connection) to the server. This message indicates the client's initial sequence number.\n2. **SYN-ACK (Synchronize-Acknowledgment)**\n    - The server responds with a **SYN-ACK** message, which both acknowledges the client's request (via the ACK part) and also sends its own sequence number.\n3. **ACK (Acknowledgment)**\n    - The client responds with an **ACK** message to acknowledge the server's SYN-ACK message. This completes the handshake.\n\nOnce these three steps are completed, the connection is established, and data transfer can begin.\n\n---\n\n### Example: A Simple Three-Way Handshake\n\n#### Scenario: A client (A) wants to establish a connection with a server (B).\n\n1. **Step 1: Client (A) sends SYN to Server (B)**\n    \n    - A sends a message:  \n        **SYN: Seq = 1000**  \n        This means A wants to start the communication and indicates its initial sequence number is 1000.\n2. **Step 2: Server (B) responds with SYN-ACK**\n    \n    - B receives the SYN from A, and responds with:  \n        **SYN-ACK: Seq = 2000, Ack = 1001**  \n        B's sequence number is 2000, and it acknowledges the client's sequence number by sending `Ack = 1001` (the next expected number from A).\n3. **Step 3: Client (A) sends ACK to Server (B)**\n    \n    - A receives the SYN-ACK from B and responds with:  \n        **ACK: Seq = 1001, Ack = 2001**  \n        This message acknowledges the server's sequence number and confirms the connection.\n\n---\n\n### After the Three-Way Handshake\n\nAt this point, the connection is established, and both sides can start transmitting data.\n\n#### Summary:\n\n- **Client sends SYN** → **Server responds with SYN-ACK** → **Client acknowledges with ACK**.\n- This ensures both the client and server are synchronized and ready for communication."}];
 
-// Build sidebar
 function buildSidebar(filter) {
   const list = document.getElementById('fileList');
   list.innerHTML = '';
   let count = 0;
-  NOTES.forEach((note, i) => {
-    if (filter && !note.name.toLowerCase().includes(filter.toLowerCase())) return;
-    const div = document.createElement('div');
+  NOTES.forEach(function(note, i) {
+    if (filter && note.name.toLowerCase().indexOf(filter.toLowerCase()) === -1) return;
+    var div = document.createElement('div');
     div.className = 'file-item';
     div.id = 'fi-' + i;
-    div.innerHTML = '<span class="fi-icon">▸</span>';
-    const span = document.createElement('span');
-    span.className = 'fi-name';
-    span.textContent = note.name; // textContent = safe, no XSS
-    div.appendChild(span);
-    div.onclick = () => openNote(i);
+    var icon = document.createElement('span');
+    icon.className = 'fi-icon';
+    icon.textContent = '▸';
+    var name = document.createElement('span');
+    name.className = 'fi-name';
+    name.textContent = note.name;
+    div.appendChild(icon);
+    div.appendChild(name);
+    div.addEventListener('click', (function(idx){ return function(){ openNote(idx); }; })(i));
     list.appendChild(div);
     count++;
   });
@@ -156,88 +136,71 @@ function filterFiles() {
   buildSidebar(document.getElementById('searchInput').value);
 }
 
-// SAFE note renderer - uses DOM API, never raw innerHTML for user content
-function openNote(idx) {
-  document.querySelectorAll('.file-item').forEach(e => e.classList.remove('active'));
-  const el = document.getElementById('fi-' + idx);
-  if (el) { el.classList.add('active'); el.scrollIntoView({block:'nearest'}); }
-  document.getElementById('vPath').textContent = 'BASIC ABOUT COMPUTER/' + NOTES[idx].name;
-  
-  // SAFE render: parse markdown to safe HTML
-  const html = renderMd(NOTES[idx].content);
-  
-  // Use DOMParser to safely parse - strips all scripts
-  const parser = new DOMParser();
-  const doc = parser.parseFromString('<div>' + html + '</div>', 'text/html');
-  
-  // Remove ALL script, iframe, object, embed tags for safety
-  ['script','iframe','object','embed','form'].forEach(tag => {
-    doc.querySelectorAll(tag).forEach(el => el.remove());
-  });
-  
-  // Remove on* event attributes
-  doc.querySelectorAll('*').forEach(el => {
-    [...el.attributes].forEach(attr => {
-      if (attr.name.startsWith('on')) el.removeAttribute(attr.name);
-    });
-  });
-  
-  const viewer = document.getElementById('viewerContent');
-  viewer.innerHTML = '';
-  viewer.appendChild(doc.body.firstChild);
-  viewer.scrollTop = 0;
-}
-
-function renderMd(md) {
-  // Escape HTML entities FIRST - this is the key security step
-  let h = md
+function esc(str) {
+  return str
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
-
-  // Code blocks (must be before inline code)
-  h = h.replace(/```[\w]*\n?([\s\S]*?)```/g, (_, c) => `<pre><code>${c.trim()}</code></pre>`);
-  // Inline code
-  h = h.replace(/`([^`\n]+)`/g, '<code>$1</code>');
-  // Headers
-  h = h.replace(/^#### (.+)$/gm, '<h4>$1</h4>');
-  h = h.replace(/^### (.+)$/gm, '<h3>$1</h3>');
-  h = h.replace(/^## (.+)$/gm, '<h2>$1</h2>');
-  h = h.replace(/^# (.+)$/gm, '<h1>$1</h1>');
-  // Bold + Italic
-  h = h.replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>');
-  h = h.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-  h = h.replace(/\*(.+?)\*/g, '<em>$1</em>');
-  // HR
-  h = h.replace(/^---+$/gm, '<hr>');
-  // Blockquote
-  h = h.replace(/^&gt; (.+)$/gm, '<blockquote>$1</blockquote>');
-  // Table
-  h = h.replace(/\|(.+)\|\n\|[-| :]+\|\n((?:\|.+\|\n?)+)/g, (m, header, rows) => {
-    const ths = header.split('|').filter(s => s.trim()).map(s => `<th>${s.trim()}</th>`).join('');
-    const trs = rows.trim().split('\n').map(row => {
-      const tds = row.split('|').filter(s => s.trim()).map(s => `<td>${s.trim()}</td>`).join('');
-      return `<tr>${tds}</tr>`;
-    }).join('');
-    return `<table><thead><tr>${ths}</tr></thead><tbody>${trs}</tbody></table>`;
-  });
-  // Lists
-  h = h.replace(/^[\*\-] (.+)$/gm, '<li>$1</li>');
-  h = h.replace(/^\d+\. (.+)$/gm, '<li>$1</li>');
-  h = h.replace(/(<li>[\s\S]+?<\/li>)/g, m => `<ul>${m}</ul>`);
-  h = h.replace(/<\/ul>\s*<ul>/g, '');
-  // Links
-  h = h.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
-  // Obsidian links
-  h = h.replace(/\[\[([^\]]+)\]\]/g, '<span style="color:var(--yellow)">⟦$1⟧</span>');
-  // Paragraphs
-  h = h.replace(/\n\n+/g, '</p><p>');
-  h = h.replace(/\n/g, '<br>');
-  return '<p>' + h + '</p>';
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
 
-// Init
+function renderMd(raw) {
+  // Step 1: Split into code blocks and text blocks
+  // Code blocks are rendered as-is (escaped), text blocks get markdown treatment
+  var parts = raw.split(/(```[\s\S]*?```|`[^`
+]+`)/g);
+  var result = '';
+  
+  for (var i = 0; i < parts.length; i++) {
+    var part = parts[i];
+    if (part.startsWith('```')) {
+      // Fenced code block - just escape, no markdown
+      var code = part.replace(/^```\w*
+?/, '').replace(/```$/, '').trim();
+      result += '<pre><code>' + esc(code) + '</code></pre>';
+    } else if (part.startsWith('`') && part.endsWith('`')) {
+      // Inline code
+      result += '<code>' + esc(part.slice(1, -1)) + '</code>';
+    } else {
+      // Regular text - escape first, then apply markdown
+      var t = esc(part);
+      t = t.replace(/^#### (.+)$/gm, '<h4>$1</h4>');
+      t = t.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+      t = t.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+      t = t.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+      t = t.replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>');
+      t = t.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+      t = t.replace(/\*(.+?)\*/g, '<em>$1</em>');
+      t = t.replace(/^---+$/gm, '<hr>');
+      t = t.replace(/^&gt; (.+)$/gm, '<blockquote>$1</blockquote>');
+      t = t.replace(/^[\*\-] (.+)$/gm, '<li>$1</li>');
+      t = t.replace(/^\d+\. (.+)$/gm, '<li>$1</li>');
+      t = t.replace(/(<li>[\s\S]+?<\/li>)/g, function(m){ return '<ul>' + m + '</ul>'; });
+      t = t.replace(/<\/ul>\s*<ul>/g, '');
+      t = t.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+      t = t.replace(/
+
++/g, '</p><p>');
+      t = t.replace(/
+/g, '<br>');
+      result += '<p>' + t + '</p>';
+    }
+  }
+  return result;
+}
+
+function openNote(idx) {
+  document.querySelectorAll('.file-item').forEach(function(e){ e.classList.remove('active'); });
+  var el = document.getElementById('fi-' + idx);
+  if (el) { el.classList.add('active'); el.scrollIntoView({block: 'nearest'}); }
+  document.getElementById('vPath').textContent = 'BASIC ABOUT COMPUTER/' + NOTES[idx].name;
+  var viewer = document.getElementById('viewerContent');
+  viewer.innerHTML = renderMd(NOTES[idx].content);
+  viewer.scrollTop = 0;
+}
+
+// Init on load
 buildSidebar();
 if (NOTES.length > 0) openNote(0);
 </script>

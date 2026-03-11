@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline' https://fonts.googleapis.com; style-src 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; font-src https://fonts.gstatic.com; img-src 'self' data:;">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DNS — Cyber Security Notes</title>
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
@@ -16,31 +17,23 @@ body{background:var(--bg);font-family:'Rajdhani',sans-serif;color:var(--text);mi
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,217,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,217,255,0.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
 .scanline{position:fixed;top:-100%;left:0;width:100%;height:2px;background:linear-gradient(transparent,rgba(0,217,255,0.1),transparent);animation:scan 6s linear infinite;pointer-events:none;z-index:1}
 @keyframes scan{to{top:110%}}
-
-/* TOPBAR */
 .topbar{position:relative;z-index:2;background:#0a0e15;border-bottom:1px solid var(--border);padding:10px 24px;display:flex;align-items:center;gap:14px}
 .back-btn{color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:12px;text-decoration:none;border:1px solid rgba(0,217,255,0.3);padding:4px 14px;letter-spacing:1px;transition:all .2s}
 .back-btn:hover{background:rgba(0,217,255,0.08);border-color:var(--accent)}
 .breadcrumb{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim)}
 .breadcrumb em{color:var(--accent);font-style:normal}
-
-/* HEADER */
-.page-header{position:relative;z-index:2;padding:30px 24px 20px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,#0a0e15,#0d1117)}
-.folder-icon{font-size:2.4rem;display:block;margin-bottom:10px}
-.folder-title{font-family:'Share Tech Mono',monospace;font-size:clamp(1.2rem,3vw,1.8rem);color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:6px}
+.page-header{position:relative;z-index:2;padding:28px 24px 18px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,#0a0e15,#0d1117)}
+.folder-icon{font-size:2.2rem;display:block;margin-bottom:8px}
+.folder-title{font-family:'Share Tech Mono',monospace;font-size:clamp(1.2rem,3vw,1.8rem);color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:4px}
 .folder-meta{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim);letter-spacing:2px}
 .folder-meta em{color:var(--accent3);font-style:normal}
-.search-row{margin-top:14px;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);padding:8px 14px;max-width:400px}
+.search-row{margin-top:12px;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);padding:8px 14px;max-width:380px}
 .search-row::before{content:'⌕';color:var(--accent);font-size:1rem}
-.s-input{background:none;border:none;outline:none;color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:13px;width:100%;caret-color:var(--accent)}
+.s-input{background:none;border:none;outline:none;color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:12px;width:100%;caret-color:var(--accent)}
 .s-input::placeholder{color:var(--dim)}
-
-/* LAYOUT */
-.layout{position:relative;z-index:2;display:grid;grid-template-columns:260px 1fr;min-height:calc(100vh - 180px)}
-@media(max-width:700px){.layout{grid-template-columns:1fr;grid-template-rows:220px 1fr}}
-
-/* SIDEBAR */
-.sidebar{border-right:1px solid var(--border);background:#0a0e15;overflow-y:auto;position:sticky;top:0;max-height:calc(100vh - 130px)}
+.layout{position:relative;z-index:2;display:grid;grid-template-columns:250px 1fr;min-height:calc(100vh - 170px)}
+@media(max-width:700px){.layout{grid-template-columns:1fr;grid-template-rows:200px 1fr}}
+.sidebar{border-right:1px solid var(--border);background:#0a0e15;overflow-y:auto;position:sticky;top:0;max-height:calc(100vh - 120px)}
 .sidebar::-webkit-scrollbar{width:3px}.sidebar::-webkit-scrollbar-thumb{background:#1e2d3d}
 .sidebar-head{padding:8px 14px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:3px;background:#080c10;border-bottom:1px solid var(--border);display:flex;justify-content:space-between}
 .sidebar-head span{color:var(--accent3)}
@@ -49,8 +42,6 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .file-item.active{background:rgba(0,217,255,0.08);color:var(--accent);border-left:2px solid var(--accent)}
 .fi-icon{font-size:10px;margin-top:3px;flex-shrink:0;color:var(--accent2)}
 .fi-name{font-family:'Share Tech Mono',monospace;font-size:11px;line-height:1.5;text-transform:capitalize}
-
-/* VIEWER */
 .viewer{display:flex;flex-direction:column}
 .viewer-bar{background:#080c10;border-bottom:1px solid var(--border);padding:8px 20px;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim);display:flex;align-items:center;gap:8px}
 .v-dot{width:9px;height:9px;border-radius:50%;display:inline-block}
@@ -58,11 +49,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .v-path{color:var(--text);margin-left:6px}
 .viewer-content{padding:28px 36px;line-height:1.85;font-size:15px;overflow-y:auto;flex:1}
 @media(max-width:700px){.viewer-content{padding:16px}}
-
-/* PLACEHOLDER */
 .placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px;gap:12px;color:var(--dim);font-family:'Share Tech Mono',monospace;font-size:12px;letter-spacing:2px}
-
-/* MARKDOWN STYLES */
 .viewer-content h1{font-family:'Share Tech Mono',monospace;font-size:1.3rem;color:var(--accent);border-bottom:1px solid var(--border);padding-bottom:8px;margin:24px 0 12px;letter-spacing:2px}
 .viewer-content h2{font-family:'Share Tech Mono',monospace;font-size:1rem;color:var(--accent3);margin:20px 0 10px;letter-spacing:1px}
 .viewer-content h3{font-size:.95rem;color:var(--yellow);margin:16px 0 8px;font-weight:700}
@@ -70,7 +57,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .viewer-content p{margin-bottom:10px;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:15px}
 .viewer-content code{background:rgba(0,217,255,0.07);color:var(--accent3);padding:2px 7px;border:1px solid rgba(0,217,255,0.15);font-family:'Share Tech Mono',monospace;font-size:12px;border-radius:2px}
 .viewer-content pre{background:#020509;border:1px solid var(--border);border-left:3px solid var(--accent);padding:14px 18px;margin:12px 0;overflow-x:auto;border-radius:2px}
-.viewer-content pre code{background:none;border:none;padding:0;color:var(--accent3);font-size:12px;display:block}
+.viewer-content pre code{background:none;border:none;padding:0;color:var(--accent3);font-size:12px;display:block;white-space:pre}
 .viewer-content ul,.viewer-content ol{padding-left:20px;margin-bottom:10px}
 .viewer-content li{margin-bottom:4px;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:15px}
 .viewer-content li::marker{color:var(--accent)}
@@ -83,20 +70,16 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .viewer-content td{padding:7px 12px;border:1px solid var(--border);color:var(--text)}
 .viewer-content tr:nth-child(even) td{background:rgba(255,255,255,0.02)}
 .viewer-content a{color:var(--accent);text-decoration:none;border-bottom:1px dashed rgba(0,217,255,0.4)}
-.viewer-content a:hover{color:#fff}
-
-footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:16px 24px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim)}
+footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:14px 24px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim)}
 footer span{color:var(--accent2)}
 </style>
 </head>
 <body>
 <div class="scanline"></div>
-
 <div class="topbar">
   <a class="back-btn" href="../index.html">← BACK</a>
   <div class="breadcrumb">~/vault/<em>DNS</em>/</div>
 </div>
-
 <div class="page-header">
   <span class="folder-icon">🔍</span>
   <div class="folder-title">DNS</div>
@@ -105,7 +88,6 @@ footer span{color:var(--accent2)}
     <input class="s-input" id="searchInput" placeholder="search notes..." oninput="filterFiles()">
   </div>
 </div>
-
 <div class="layout">
   <div class="sidebar">
     <div class="sidebar-head">FILES <span id="visCount">8</span></div>
@@ -117,35 +99,33 @@ footer span{color:var(--accent2)}
       <span class="v-path" id="vPath">select a note</span>
     </div>
     <div class="viewer-content" id="viewerContent">
-      <div class="placeholder">
-        <div>← SELECT A NOTE FROM THE LIST</div>
-      </div>
+      <div class="placeholder">← SELECT A NOTE FROM THE LIST</div>
     </div>
   </div>
 </div>
-
 <footer><p>© 2026 <span>Rohan Kushwah</span> · DNS · 8 notes</p></footer>
 
 <script>
-// ALL NOTES DATA
 const NOTES = [{"name": "AUTHORATIVE NAME SERVER AND RECORDS MAKING", "content": "#change server name and in more give zone name like=hardia.local local is used for we  work in the lan\n#new zone make from right click forward \nzone name jo server ko diya hai whi \ndo not dynamic update\nright click make aa record\njitne bhi device hai network me unki entry karni hai\nhum phir un device ko by name communicate kar payenge\nparent domain banige no domain only ip\n#dono ip 4 and 6 ek domain ko de sakte hai\n#alias or cname record jaise ki server se humari websites chal ri toh hum uska aliass banainge \n#mail exhange kisi server pe mail service ke liye \n#branches banana hai toh records ke andar record \n# then start host pc \n1. host name and aqudian set \n1.1 file right click pc ki properties\n1.2 name and acudian set\n1.3 ip dekhenge host ka aur uska server pe record baninge\n1.4 ping in server by acudian\n1.5 remote deskstop denge host ka server ko search me mstsc\n1.6 file sharing // acudian in server\n    1.6.1 yadi file sharing chalu nhi hai toh new folder banao properties me jake chalu kar do\n    "}, {"name": "DNS BASIC INFO", "content": "A \"work of DNS\" refers to the primary function of the Domain Name System (DNS), which is ==to translate human-readable domain names (like \"google.com\") into numerical IP addresses that computers can use to access websites on the internet==, essentially acting as the \"phonebook\" of the internet by mapping names to addresses.\n\n1. first google make 13 root name server who holds the distribution of top level domains\n2. ex-.com holds bu versign the have all the information of the server or company jisko root server ne domain diya \n3. then tld name server bechta hai wo tld ko kisi authoritive name server ko tld name server hold karta hai all the informatiom of authoritive name  or domain nameserver of that particular domain\n4. domain name server hold jaha se wo domain ka particular server operate ho ra jaisse name server \n5. name server are of many type \n5.1 primary \n5.2 secondry \n1. name server have dns records they give particular ip to those domain to 13 rootname server then you goes to those website of particular domain\n2. client query bhejta hai through isp to public dns dns has particular domain they give to 13 root name server root name server who  holds the parrticular info about the tld wo use tld ki info deta hai tld domain name server ki domain name server us server tak phuhata hai jha se wo particular domain operate hori uske primary aurr secondry server response karte hai us domain ka particular ip  to public dns dns give ip to user and lasst they go to particular website \n#end "}, {"name": "DNS RECORDS", "content": "#new delegation =links one dns to another\nex=  there is a dns in bhopal we want to link it \n#txt records =used to verify your domain \nex -key n  value ka pair     \n#hinfo host ki info cpu kon sa  hai type konsa hai\n#reverse local me hum ip denge wo name dega\nip ke andar netwok ka part dena hai\nreverse me ek hi network ho to ek hi record banega\n"}, {"name": "DNS SERVER FULL INFO", "content": "#### Recursive DNS resolver\n\nThe recursive resolver is the computer that responds to a recursive request from a client and takes the time to track down the [DNS record](https://www.cloudflare.com/learning/dns/dns-records/). It does this by making a series of requests until it reaches the authoritative DNS nameserver for the requested record (or times out or returns an error if no record is found). Luckily, recursive DNS resolvers do not always need to make multiple requests in order to track down the records needed to respond to a client; [caching](https://www.cloudflare.com/learning/cdn/what-is-caching/) is a data persistence process that helps short-circuit the necessary requests by serving the requested resource record earlier in the DNS lookup.\n\n![DNS Record Request Sequence - DNS Recursive Resolver gets request from client](https://cf-assets.www.cloudflare.com/slt3lc6tev37/3NOmAzkfPG8FTA8zLc7Li8/8efda230b212c0de2d3bbcb408507b1e/dns_record_request_sequence_recursive_resolver.png \"DNS Record Request Sequence - Recursive Resolver\")\n\n#### Authoritative DNS server\n\nPut simply, an authoritative DNS server is a server that actually holds, and is responsible for, DNS resource records. This is the server at the bottom of the DNS lookup chain that will respond with the queried resource record, ultimately allowing the web browser making the request to reach the IP address needed to access a website or other web resources. An authoritative nameserver can satisfy queries from its own data without needing to query another source, as it is the final source of truth for certain DNS records.\n\n![DNS Record Request Sequence - DNS query reaches authoritative nameserver for cloudflare.com](https://cf-assets.www.cloudflare.com/slt3lc6tev37/6Cxvsc4NOvmU4pPkKbkDmP/a7588a4c8a3c187e9175a40fa1b3d548/dns_record_request_sequence_authoritative_nameserver.png \"DNS Record Request Sequence - Authoritative Nameserver\")\n\nIt’s worth mentioning that in instances where the query is for a subdomain such as foo.example.com or [blog.cloudflare.com](https://blog.cloudflare.com/), an additional nameserver will be added to the sequence after the authoritative nameserver, which is responsible for storing the subdomain’s [CNAME record](https://www.cloudflare.com/learning/dns/dns-records/dns-cname-record/).\n\n![DNS Record Request Sequence - DNS query to CNAME record for subdomain blog.cloudflare.com](https://cf-assets.www.cloudflare.com/slt3lc6tev37/1O1o3jhs0ztWsD00k8RLIJ/f33c1793a7e21cb92678c1f35ef1b245/dns_record_request_sequence_cname_subdomain.png \"DNS Record Request Sequence - CNAME record for subdomain\")\n\nThere is a key difference between many DNS services and the one that Cloudflare provides. Different DNS recursive resolvers such as [Google DNS](https://www.cloudflare.com/cloudflare-vs-google-dns/), OpenDNS, and providers like Comcast all maintain data center installations of DNS recursive resolvers. These resolvers allow for quick and easy queries through optimized clusters of DNS-optimized computer systems, but they are fundamentally different than the nameservers hosted by Cloudflare.\n\nCloudflare maintains infrastructure-level nameservers that are integral to the functioning of the Internet. One key example is the [f-root server network](https://blog.cloudflare.com/f-root/) which Cloudflare is partially responsible for hosting. The F-root is one of the root level DNS nameserver infrastructure components responsible for the billions of Internet requests per day. Our [Anycast network](https://www.cloudflare.com/learning/cdn/glossary/anycast-network/) puts us in a unique position to handle large volumes of DNS traffic without service interruption.\n\n## What are the steps in a DNS lookup?\n\nFor most situations, DNS is concerned with a domain name being translated into the appropriate IP address. To learn how this process works, it helps to follow the path of a DNS lookup as it travels from a web browser, through the DNS lookup process, and back again. Let's take a look at the steps.\n\nNote: Often DNS lookup information will be cached either locally inside the querying computer or remotely in the DNS infrastructure. There are typically 8 steps in a DNS lookup. When DNS information is cached, steps are skipped from the DNS lookup process which makes it quicker. The example below outlines all 8 steps when nothing is cached.\n\n#### The 8 steps in a DNS lookup:\n\n1. A user types ‘example.com’ into a web browser and the query travels into the Internet and is received by a DNS recursive resolver.\n2. The resolver then queries a DNS root nameserver (.).\n3. The root server then responds to the resolver with the address of a Top Level Domain (TLD) DNS server (such as .com or .net), which stores the information for its domains. When searching for example.com, our request is pointed toward the .com TLD.\n4. The resolver then makes a request to the .com TLD.\n5. The TLD server then responds with the IP address of the domain’s nameserver, example.com.\n6. Lastly, the recursive resolver sends a query to the domain’s nameserver.\n7. The IP address for example.com is then returned to the resolver from the nameserver.\n8. The DNS resolver then responds to the web browser with the IP address of the domain requested initially.\n\nOnce the 8 steps of the DNS lookup have returned the IP address for example.com, the browser is able to make the request for the web page:\n\n10. The browser makes a [HTTP](https://www.cloudflare.com/learning/ddos/glossary/hypertext-transfer-protocol-http/) request to the IP address.\n11. The server at that IP returns the webpage to be rendered in the browser (step 10).\n\n![Complete DNS Lookup and Webpage Query - 10 steps](https://cf-assets.www.cloudflare.com/slt3lc6tev37/1NzaAqpEFGjqTZPAS02oNv/bf7b3f305d9c35bde5c5b93a519ba6d5/what_is_a_dns_server_dns_lookup.png \"Complete DNS Lookup and Webpage Query\")\n\n## What is a DNS resolver?\n\nThe DNS resolver is the first stop in the DNS lookup, and it is responsible for dealing with the client that made the initial request. The resolver starts the sequence of queries that ultimately leads to a URL being translated into the necessary IP address.\n\nNote: A typical uncached DNS lookup will involve both recursive and iterative queries.\n\nIt's important to differentiate between a [recursive DNS](https://www.cloudflare.com/learning/dns/what-is-recursive-dns/) query and a recursive DNS resolver. The query refers to the request made to a DNS resolver requiring the resolution of the query. A DNS recursive resolver is the computer that accepts a recursive query and processes the response by making the necessary requests.\n\n![DNS recursive query goes from DNS client to DNS recursive resolver](https://cf-assets.www.cloudflare.com/slt3lc6tev37/rOXBgctX2gaXNDqP5ktek/7086a97e00525159c6bd9318819c2287/dns_recursive_query.png \"DNS Recursive Query\")\n\n## What are the types of DNS queries?\n\nIn a typical DNS lookup three types of queries occur. By using a combination of these queries, an optimized process for DNS resolution can result in a reduction of distance traveled. In an ideal situation cached record data will be available, allowing a DNS name server to return a non-recursive query.\n\n#### 3 types of DNS queries:\n\n1. **Recursive query** - In a recursive query, a DNS client requires that a DNS server (typically a DNS recursive resolver) will respond to the client with either the requested resource record or an error message if the resolver can't find the record.\n2. **Iterative query** - in this situation the DNS client will allow a DNS server to return the best answer it can. If the queried DNS server does not have a match for the query name, it will return a referral to a DNS server authoritative for a lower level of the domain namespace. The DNS client will then make a query to the referral address. This process continues with additional DNS servers down the query chain until either an error or timeout occurs.\n3. **Non-recursive query** - typically this will occur when a DNS resolver client queries a DNS server for a record that it has access to either because it's authoritative for the record or the record exists inside of its cache. Typically, a DNS server will cache DNS records to prevent additional bandwidth consumption and load on upstream servers.\n\n## What is DNS caching? Where does DNS caching occur?\n\nThe purpose of caching is to temporarily stored data in a location that results in improvements in performance and reliability for data requests. DNS caching involves storing data closer to the requesting client so that the DNS query can be resolved earlier and additional queries further down the DNS lookup chain can be avoided, thereby improving load times and reducing bandwidth/CPU consumption. DNS data can be cached in a variety of locations, each of which will store DNS records for a set amount of time determined by a [time-to-live (TTL)](https://www.cloudflare.com/learning/cdn/glossary/time-to-live-ttl/).\n\n#### Browser DNS caching\n\nModern web browsers are designed by default to cache DNS records for a set amount of time. The purpose here is obvious; the closer the DNS caching occurs to the web browser, the fewer processing steps must be taken in order to check the cache and make the correct requests to an IP address. When a request is made for a DNS record, the browser cache is the first location checked for the requested record.\n\nIn Chrome, you can see the status of your DNS cache by going to chrome://net-internals/#dns.\n\n#### Operating system (OS) level DNS caching\n\nThe operating system level DNS resolver is the second and last local stop before a DNS query leaves your machine. The process inside your operating system that is designed to handle this query is commonly called a “stub resolver” or DNS client. When a stub resolver gets a request from an application, it first checks its own cache to see if it has the record. If it does not, it then sends a DNS query (with a recursive flag set), outside the local network to a DNS recursive resolver inside the Internet service provider (ISP).\n\nWhen the recursive resolver inside the ISP receives a DNS query, like all previous steps, it will also check to see if the requested host-to-IP-address translation is already stored inside its local persistence layer.\n\nThe recursive resolver also has additional functionality depending on the types of records it has in its cache:\n\n1. If the resolver does not have the [A records](https://www.cloudflare.com/learning/dns/dns-records/dns-a-record/), but does have the [NS records](https://www.cloudflare.com/learning/dns/dns-records/dns-ns-record/) for the authoritative nameservers, it will query those name servers directly, bypassing several steps in the DNS query. This shortcut prevents lookups from the root and .com nameservers (in our search for example.com) and helps the resolution of the DNS query occur more quickly.\n2. If the resolver does not have the NS records, it will send a query to the TLD servers (.com in our case), skipping the root server.\n3. In the unlikely event that the resolver does not have records pointing to the TLD servers, it will then query the root servers. This event typically occurs after a DNS cache has been purged.\n\nLearn about what differentiates [Cloudflare DNS](https://www.cloudflare.com/dns/) from other DNS providers.\n\nGetting Started\n\n- [Free plans](https://www.cloudflare.com/plans/free/)\n- [For enterprises](https://www.cloudflare.com/enterprise/)\n- [Compare plans](https://www.cloudflare.com/plans/)\n- [Domain name search](https://domains.cloudflare.com/)\n- [Get a recommendation](https://www.cloudflare.com/about-your-website/)\n- [Request a demo](https://www.cloudflare.com/plans/enterprise/demo/)\n- [Contact sales](https://www.cloudflare.com/plans/enterprise/contact/)\n\nAbout DNS\n\n- [What is DNS?](https://www.cloudflare.com/learning/dns/what-is-dns/)\n- [DNS security](https://www.cloudflare.com/learning/dns/dns-security/)\n- [DNS over TLS](https://www.cloudflare.com/learning/dns/dns-over-tls/)\n- [How to buy a domain name](https://www.cloudflare.com/learning/dns/how-to-buy-a-domain-name/)\n- [How to transfer a domain name](https://www.cloudflare.com/learning/dns/how-to-transfer-a-domain-name/)\n\nDNS Servers\n\n- [What's a DNS Server?](https://www.cloudflare.com/learning/dns/what-is-a-dns-server/)\n- [DNS Root Server](https://www.cloudflare.com/learning/dns/glossary/dns-root-server/)\n\nDNS Records\n\n- [Overview](https://www.cloudflare.com/learning/dns/dns-records/)\n- [DNS A Record](https://www.cloudflare.com/learning/dns/dns-records/dns-a-record/)\n- [DNS AAAA Record](https://www.cloudflare.com/learning/dns/dns-records/dns-aaaa-record/)\n- [DNS CNAME Record](https://www.cloudflare.com/learning/dns/dns-records/dns-cname-record/)\n- [DNS MX Record](https://www.cloudflare.com/learning/dns/dns-records/dns-mx-record/)\n- [DNS TXT Record](https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/)\n- [DNS NS Record](https://www.cloudflare.com/learning/dns/dns-records/dns-ns-record/)\n- [DNS SOA Record](https://www.cloudflare.com/learning/dns/dns-records/dns-soa-record/)\n- [DNS SRV Record](https://www.cloudflare.com/learning/dns/dns-records/dns-srv-record/)\n- [DNS PTR Record](https://www.cloudflare.com/learning/dns/dns-records/dns-ptr-record/)\n- [DNSKEY and DS Records](https://www.cloudflare.com/learning/dns/dns-records/dnskey-ds-records/)\n- [DNS SPF Record](https://www.cloudflare.com/learning/dns/dns-records/dns-spf-record/)\n- [DNS DKIM Record](https://www.cloudflare.com/learning/dns/dns-records/dns-dkim-record/)\n- [DNS DMARC Record](https://www.cloudflare.com/learning/dns/dns-records/dns-dmarc-record/)\n\nDNS Glossary"}, {"name": "DNS SERVER MAKING AND ITS PRESENTATION IN WIRESHARK", "content": "#cache only name server  making\n1.making of dns server in server \n2.giving local host in dns of server\n3.giving server ip in dns to all the devices in network\n4.now all the devices in netwok all queries of network devices goes to local dns\n# dns server making along with the wireshark\n#dns server run in port 53 in wireshark udp\n#ip to location and root servers in iana for ip seen\nseen all the activity from server hand cmd\nor client browsing\n"}, {"name": "DYNAMIC DNS", "content": "#first dhcp reconfigure with dns\n1.1give both dns\n1.2 give ips to client by dhcp \n1.3 make records of ips in server\nproblem har bar ip change hoga toh dns reach nhi kar payega isliye hum dynamicd dns denge\nip changes due  to dynamic and reecords doesnot chnage\n1.4 then a rcord delete'\n1.5.zone pe right click properties dynic dns non secure secure or making dns when\n1.6 or goes to dhcp scope ki properties in dns \n1.6.1 always dynamic uodate\n1.6.2 dynamically update dns records\n1.7 then client pc set full accudian\n1.8 then properties ip v4 advanced used dns surfix last option\nthen dynamic dns on and make automatically records\n#2  forwarder \n2.1when attacker  attack toh hum secondry server bahar rakhenge ki uspe aatack ho toh koi dikkat nhi secondry server querys ko primary pe forward karega\n2.2 if you want to forward give ip in forwarder of secondry server\n#3 condition forwarder jo condition or domain name ho use particular dns pe bhejega\n# authoritive me \nslave aur master\n# non authoritive me\n recursive and dynamic dns\n "}, {"name": "MAKING OF SECONDRY SERVER", "content": "#firstly make another server\n\n1.there are multiple secondry server \n2.work in the absence of primaary server \n3.secondry server used for load blancing\n4.secondry server have copy of zone data from primary server\n5.there is no chnages of data in secondry server\n# after install server \n1. ip configure\n2. then configure name\n3. then give to all hosts\n4. zone name same\n5. the install dns\n6. check nslookup query\n7. then go primary\n8. make aa record of secondry server\n9. then ping\n10. then name resolve\n11. then add name serve zone pe right click properties add ns\n12. then give accudian\n13. then allow for zone transfer\n14. only name server on tab\n15. go secondry make zone \n16 start of authority record \n1.serial no always increase when there is chnages in primary server\nserial no use by secondry server to check new zone transfer\n17.then go to client give secondry dns'\n18.then both server wireshark\n19.primary ka network disaable karoge jab hi wo secondry me requests bataiga\n20.then zone query from client\n21.axfr full zone transfer ixfr incremental zone transsfer uses tcp port\n22.then wireshark me dono port or me \n23.secondry restart check in master\n24.axfr kar ra ya ixfr\n25.then reverse same method\n"}, {"name": "NET BIOS NAME", "content": "in the lan by name communication ke kam aata hai\nused in windows network and work with the concept of wordcast\nname denge toh network ke har device ko puchega\n do client lenge gono me obtain ip and dns both\n host name different and not set accudian\n commands aur dono me cmd run as admin\n command1. nbtstat names\n command2.n net bios name\n then both client pe wirehark \n run on udp.port==137\nthen nbtstat and nbtstat  -n\n command nbtsat -c cache clear  wapas nbstat-n\n command nbtstat  -Rperged kiya data ko\n command nbtstat -a ip host ka\n ping file sharing pc ka nam se\n ip mila kaise use wordcast se mila\n check queris in wireshark\n work in in the lan\n cache ko hataya then ping kiya by name\n system ka kaise pc on hai jab tak rehta hai\n \n \n"}];
 
-// Build sidebar
 function buildSidebar(filter) {
   const list = document.getElementById('fileList');
   list.innerHTML = '';
   let count = 0;
-  NOTES.forEach((note, i) => {
-    if (filter && !note.name.toLowerCase().includes(filter.toLowerCase())) return;
-    const div = document.createElement('div');
+  NOTES.forEach(function(note, i) {
+    if (filter && note.name.toLowerCase().indexOf(filter.toLowerCase()) === -1) return;
+    var div = document.createElement('div');
     div.className = 'file-item';
     div.id = 'fi-' + i;
-    div.innerHTML = '<span class="fi-icon">▸</span>';
-    const span = document.createElement('span');
-    span.className = 'fi-name';
-    span.textContent = note.name; // textContent = safe, no XSS
-    div.appendChild(span);
-    div.onclick = () => openNote(i);
+    var icon = document.createElement('span');
+    icon.className = 'fi-icon';
+    icon.textContent = '▸';
+    var name = document.createElement('span');
+    name.className = 'fi-name';
+    name.textContent = note.name;
+    div.appendChild(icon);
+    div.appendChild(name);
+    div.addEventListener('click', (function(idx){ return function(){ openNote(idx); }; })(i));
     list.appendChild(div);
     count++;
   });
@@ -156,88 +136,71 @@ function filterFiles() {
   buildSidebar(document.getElementById('searchInput').value);
 }
 
-// SAFE note renderer - uses DOM API, never raw innerHTML for user content
-function openNote(idx) {
-  document.querySelectorAll('.file-item').forEach(e => e.classList.remove('active'));
-  const el = document.getElementById('fi-' + idx);
-  if (el) { el.classList.add('active'); el.scrollIntoView({block:'nearest'}); }
-  document.getElementById('vPath').textContent = 'DNS/' + NOTES[idx].name;
-  
-  // SAFE render: parse markdown to safe HTML
-  const html = renderMd(NOTES[idx].content);
-  
-  // Use DOMParser to safely parse - strips all scripts
-  const parser = new DOMParser();
-  const doc = parser.parseFromString('<div>' + html + '</div>', 'text/html');
-  
-  // Remove ALL script, iframe, object, embed tags for safety
-  ['script','iframe','object','embed','form'].forEach(tag => {
-    doc.querySelectorAll(tag).forEach(el => el.remove());
-  });
-  
-  // Remove on* event attributes
-  doc.querySelectorAll('*').forEach(el => {
-    [...el.attributes].forEach(attr => {
-      if (attr.name.startsWith('on')) el.removeAttribute(attr.name);
-    });
-  });
-  
-  const viewer = document.getElementById('viewerContent');
-  viewer.innerHTML = '';
-  viewer.appendChild(doc.body.firstChild);
-  viewer.scrollTop = 0;
-}
-
-function renderMd(md) {
-  // Escape HTML entities FIRST - this is the key security step
-  let h = md
+function esc(str) {
+  return str
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
-
-  // Code blocks (must be before inline code)
-  h = h.replace(/```[\w]*\n?([\s\S]*?)```/g, (_, c) => `<pre><code>${c.trim()}</code></pre>`);
-  // Inline code
-  h = h.replace(/`([^`\n]+)`/g, '<code>$1</code>');
-  // Headers
-  h = h.replace(/^#### (.+)$/gm, '<h4>$1</h4>');
-  h = h.replace(/^### (.+)$/gm, '<h3>$1</h3>');
-  h = h.replace(/^## (.+)$/gm, '<h2>$1</h2>');
-  h = h.replace(/^# (.+)$/gm, '<h1>$1</h1>');
-  // Bold + Italic
-  h = h.replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>');
-  h = h.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-  h = h.replace(/\*(.+?)\*/g, '<em>$1</em>');
-  // HR
-  h = h.replace(/^---+$/gm, '<hr>');
-  // Blockquote
-  h = h.replace(/^&gt; (.+)$/gm, '<blockquote>$1</blockquote>');
-  // Table
-  h = h.replace(/\|(.+)\|\n\|[-| :]+\|\n((?:\|.+\|\n?)+)/g, (m, header, rows) => {
-    const ths = header.split('|').filter(s => s.trim()).map(s => `<th>${s.trim()}</th>`).join('');
-    const trs = rows.trim().split('\n').map(row => {
-      const tds = row.split('|').filter(s => s.trim()).map(s => `<td>${s.trim()}</td>`).join('');
-      return `<tr>${tds}</tr>`;
-    }).join('');
-    return `<table><thead><tr>${ths}</tr></thead><tbody>${trs}</tbody></table>`;
-  });
-  // Lists
-  h = h.replace(/^[\*\-] (.+)$/gm, '<li>$1</li>');
-  h = h.replace(/^\d+\. (.+)$/gm, '<li>$1</li>');
-  h = h.replace(/(<li>[\s\S]+?<\/li>)/g, m => `<ul>${m}</ul>`);
-  h = h.replace(/<\/ul>\s*<ul>/g, '');
-  // Links
-  h = h.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
-  // Obsidian links
-  h = h.replace(/\[\[([^\]]+)\]\]/g, '<span style="color:var(--yellow)">⟦$1⟧</span>');
-  // Paragraphs
-  h = h.replace(/\n\n+/g, '</p><p>');
-  h = h.replace(/\n/g, '<br>');
-  return '<p>' + h + '</p>';
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
 
-// Init
+function renderMd(raw) {
+  // Step 1: Split into code blocks and text blocks
+  // Code blocks are rendered as-is (escaped), text blocks get markdown treatment
+  var parts = raw.split(/(```[\s\S]*?```|`[^`
+]+`)/g);
+  var result = '';
+  
+  for (var i = 0; i < parts.length; i++) {
+    var part = parts[i];
+    if (part.startsWith('```')) {
+      // Fenced code block - just escape, no markdown
+      var code = part.replace(/^```\w*
+?/, '').replace(/```$/, '').trim();
+      result += '<pre><code>' + esc(code) + '</code></pre>';
+    } else if (part.startsWith('`') && part.endsWith('`')) {
+      // Inline code
+      result += '<code>' + esc(part.slice(1, -1)) + '</code>';
+    } else {
+      // Regular text - escape first, then apply markdown
+      var t = esc(part);
+      t = t.replace(/^#### (.+)$/gm, '<h4>$1</h4>');
+      t = t.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+      t = t.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+      t = t.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+      t = t.replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>');
+      t = t.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+      t = t.replace(/\*(.+?)\*/g, '<em>$1</em>');
+      t = t.replace(/^---+$/gm, '<hr>');
+      t = t.replace(/^&gt; (.+)$/gm, '<blockquote>$1</blockquote>');
+      t = t.replace(/^[\*\-] (.+)$/gm, '<li>$1</li>');
+      t = t.replace(/^\d+\. (.+)$/gm, '<li>$1</li>');
+      t = t.replace(/(<li>[\s\S]+?<\/li>)/g, function(m){ return '<ul>' + m + '</ul>'; });
+      t = t.replace(/<\/ul>\s*<ul>/g, '');
+      t = t.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+      t = t.replace(/
+
++/g, '</p><p>');
+      t = t.replace(/
+/g, '<br>');
+      result += '<p>' + t + '</p>';
+    }
+  }
+  return result;
+}
+
+function openNote(idx) {
+  document.querySelectorAll('.file-item').forEach(function(e){ e.classList.remove('active'); });
+  var el = document.getElementById('fi-' + idx);
+  if (el) { el.classList.add('active'); el.scrollIntoView({block: 'nearest'}); }
+  document.getElementById('vPath').textContent = 'DNS/' + NOTES[idx].name;
+  var viewer = document.getElementById('viewerContent');
+  viewer.innerHTML = renderMd(NOTES[idx].content);
+  viewer.scrollTop = 0;
+}
+
+// Init on load
 buildSidebar();
 if (NOTES.length > 0) openNote(0);
 </script>
