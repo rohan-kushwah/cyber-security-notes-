@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RATE LIMIT — Cyber Security Notes</title>
+<title>RATE LIMIT — Cyber Notes</title>
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -12,60 +12,93 @@ body{background:var(--bg);font-family:'Rajdhani',sans-serif;color:var(--text);mi
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,217,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,217,255,0.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
 .scanline{position:fixed;top:-100%;left:0;width:100%;height:2px;background:linear-gradient(transparent,rgba(0,217,255,0.1),transparent);animation:scan 6s linear infinite;pointer-events:none;z-index:1}
 @keyframes scan{to{top:110%}}
-.topbar{position:relative;z-index:2;background:#0a0e15;border-bottom:1px solid var(--border);padding:10px 24px;display:flex;align-items:center;gap:14px}
-.back-btn{color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:12px;text-decoration:none;border:1px solid rgba(0,217,255,0.3);padding:4px 14px;letter-spacing:1px;transition:all .2s}
-.back-btn:hover{background:rgba(0,217,255,0.08)}
-.breadcrumb{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim)}
+
+/* TOPBAR */
+.topbar{position:relative;z-index:2;background:#0a0e15;border-bottom:1px solid var(--border);padding:10px 16px;display:flex;align-items:center;gap:12px}
+.back-btn{color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:11px;text-decoration:none;border:1px solid rgba(0,217,255,0.3);padding:5px 12px;letter-spacing:1px;white-space:nowrap}
+.breadcrumb{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .breadcrumb em{color:var(--accent);font-style:normal}
-.page-header{position:relative;z-index:2;padding:28px 24px 18px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,#0a0e15,#0d1117)}
-.folder-icon{font-size:2.2rem;display:block;margin-bottom:8px}
-.folder-title{font-family:'Share Tech Mono',monospace;font-size:clamp(1.2rem,3vw,1.8rem);color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:4px}
-.folder-meta{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim);letter-spacing:2px}
+
+/* HEADER */
+.page-header{position:relative;z-index:2;padding:20px 16px 14px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,#0a0e15,#0d1117)}
+.folder-icon{font-size:2rem;display:block;margin-bottom:6px}
+.folder-title{font-family:'Share Tech Mono',monospace;font-size:clamp(1.1rem,5vw,1.8rem);color:var(--accent);letter-spacing:2px;text-transform:uppercase;margin-bottom:3px}
+.folder-meta{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:2px}
 .folder-meta em{color:var(--accent3);font-style:normal}
-.search-row{margin-top:12px;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);padding:8px 14px;max-width:380px}
+.search-row{margin-top:10px;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);padding:8px 12px}
 .search-row::before{content:'⌕';color:var(--accent);font-size:1rem}
 .s-input{background:none;border:none;outline:none;color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:12px;width:100%;caret-color:var(--accent)}
 .s-input::placeholder{color:var(--dim)}
-.layout{position:relative;z-index:2;display:grid;grid-template-columns:250px 1fr;min-height:calc(100vh - 170px)}
-@media(max-width:700px){.layout{grid-template-columns:1fr;grid-template-rows:auto 1fr}}
-.sidebar{border-right:1px solid var(--border);background:#0a0e15;overflow-y:auto;max-height:calc(100vh - 120px);position:sticky;top:0}
+
+/* DESKTOP: side by side */
+.layout{position:relative;z-index:2;display:grid;grid-template-columns:250px 1fr;min-height:calc(100vh - 160px)}
+
+/* MOBILE: stack vertically */
+@media(max-width:768px){
+  .layout{display:flex;flex-direction:column}
+  .sidebar{
+    max-height:none !important;
+    height:auto;
+    position:relative !important;
+    border-right:none;
+    border-bottom:1px solid var(--border);
+  }
+  .sidebar.hidden{display:none}
+  .viewer{display:flex;flex-direction:column}
+  .viewer.hidden{display:none}
+  .mobile-back-btn{display:flex}
+  .viewer-content{padding:16px;word-wrap:break-word;overflow-wrap:break-word}
+  pre{overflow-x:auto;max-width:100%}
+  table{display:block;overflow-x:auto;max-width:100%}
+}
+
+/* SIDEBAR */
+.sidebar{border-right:1px solid var(--border);background:#0a0e15;overflow-y:auto;position:sticky;top:0;max-height:calc(100vh - 110px)}
 .sidebar::-webkit-scrollbar{width:3px}.sidebar::-webkit-scrollbar-thumb{background:#1e2d3d}
-.sidebar-head{padding:8px 14px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:3px;background:#080c10;border-bottom:1px solid var(--border);display:flex;justify-content:space-between}
+.sidebar-head{padding:8px 14px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:3px;background:#080c10;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
 .sidebar-head span{color:var(--accent3)}
-.file-item{padding:9px 14px;cursor:pointer;border-bottom:1px solid rgba(255,255,255,0.03);display:flex;align-items:flex-start;gap:8px;transition:all .15s;color:var(--dim)}
+.file-item{padding:11px 14px;cursor:pointer;border-bottom:1px solid rgba(255,255,255,0.03);display:flex;align-items:flex-start;gap:8px;transition:all .15s;color:var(--dim)}
 .file-item:hover{background:rgba(0,217,255,0.05);color:var(--text)}
 .file-item.active{background:rgba(0,217,255,0.08);color:var(--accent);border-left:2px solid var(--accent)}
 .fi-icon{font-size:10px;margin-top:3px;flex-shrink:0;color:var(--accent2)}
-.fi-name{font-family:'Share Tech Mono',monospace;font-size:11px;line-height:1.5;text-transform:capitalize}
-.viewer{display:flex;flex-direction:column}
-.viewer-bar{background:#080c10;border-bottom:1px solid var(--border);padding:8px 20px;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim);display:flex;align-items:center;gap:6px}
-.v-dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+.fi-name{font-family:'Share Tech Mono',monospace;font-size:11px;line-height:1.5;text-transform:capitalize;word-break:break-word}
+
+/* MOBILE BACK BUTTON (inside viewer) */
+.mobile-back-btn{display:none;align-items:center;gap:8px;padding:10px 14px;background:#080c10;border-bottom:1px solid var(--border);cursor:pointer;color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:1px}
+.mobile-back-btn:hover{background:rgba(0,217,255,0.05)}
+
+/* VIEWER */
+.viewer{display:flex;flex-direction:column;min-height:300px}
+.viewer-bar{background:#080c10;border-bottom:1px solid var(--border);padding:8px 16px;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim);display:flex;align-items:center;gap:6px}
+.v-dot{width:8px;height:8px;border-radius:50%;display:inline-block}
 .vd-r{background:#ff5f56}.vd-y{background:#ffbd2e}.vd-g{background:#27c93f}
-.v-path{color:var(--text);margin-left:4px}
-.viewer-content{padding:28px 36px;line-height:1.85;font-size:15px;overflow-y:auto;flex:1}
-@media(max-width:700px){.viewer-content{padding:16px}}
-.placeholder{display:flex;align-items:center;justify-content:center;min-height:300px;color:var(--dim);font-family:'Share Tech Mono',monospace;font-size:12px;letter-spacing:2px}
-.viewer-content h1{font-family:'Share Tech Mono',monospace;font-size:1.3rem;color:var(--accent);border-bottom:1px solid var(--border);padding-bottom:8px;margin:24px 0 12px;letter-spacing:2px}
-.viewer-content h2{font-family:'Share Tech Mono',monospace;font-size:1rem;color:var(--accent3);margin:20px 0 10px;letter-spacing:1px}
-.viewer-content h3{font-size:.95rem;color:var(--yellow);margin:16px 0 8px;font-weight:700}
+.v-path{color:var(--text);margin-left:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:calc(100% - 60px)}
+.viewer-content{padding:24px 28px;line-height:1.85;font-size:15px;overflow-y:auto;flex:1;overflow-x:hidden;word-wrap:break-word}
+@media(max-width:768px){.viewer-content{padding:14px 16px}}
+.placeholder{display:flex;align-items:center;justify-content:center;min-height:200px;color:var(--dim);font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:2px;text-align:center;padding:20px}
+
+/* MARKDOWN STYLES */
+.viewer-content h1{font-family:'Share Tech Mono',monospace;font-size:clamp(1rem,4vw,1.3rem);color:var(--accent);border-bottom:1px solid var(--border);padding-bottom:8px;margin:24px 0 12px;letter-spacing:2px;word-break:break-word}
+.viewer-content h2{font-family:'Share Tech Mono',monospace;font-size:clamp(.9rem,3.5vw,1rem);color:var(--accent3);margin:20px 0 10px;letter-spacing:1px}
+.viewer-content h3{font-size:clamp(.85rem,3vw,.95rem);color:var(--yellow);margin:16px 0 8px;font-weight:700}
 .viewer-content h4{font-size:.9rem;color:var(--orange);margin:12px 0 6px}
-.viewer-content p{margin-bottom:10px;color:var(--text);font-size:15px}
-.viewer-content code{background:rgba(0,217,255,0.07);color:var(--accent3);padding:2px 7px;border:1px solid rgba(0,217,255,0.15);font-family:'Share Tech Mono',monospace;font-size:12px;border-radius:2px}
-.viewer-content pre{background:#020509;border:1px solid var(--border);border-left:3px solid var(--accent);padding:14px 18px;margin:12px 0;overflow-x:auto;border-radius:2px}
-.viewer-content pre code{background:none;border:none;padding:0;color:var(--accent3);font-size:12px;display:block;white-space:pre}
-.viewer-content ul,.viewer-content ol{padding-left:20px;margin-bottom:10px}
-.viewer-content li{margin-bottom:4px;color:var(--text)}
+.viewer-content p{margin-bottom:10px;color:var(--text);font-size:clamp(13px,3.5vw,15px);word-wrap:break-word}
+.viewer-content code{background:rgba(0,217,255,0.07);color:var(--accent3);padding:2px 6px;border:1px solid rgba(0,217,255,0.15);font-family:'Share Tech Mono',monospace;font-size:11px;border-radius:2px;word-break:break-all}
+.viewer-content pre{background:#020509;border:1px solid var(--border);border-left:3px solid var(--accent);padding:12px 14px;margin:12px 0;overflow-x:auto;border-radius:2px;max-width:100%}
+.viewer-content pre code{background:none;border:none;padding:0;color:var(--accent3);font-size:11px;display:block;white-space:pre;word-break:normal}
+.viewer-content ul,.viewer-content ol{padding-left:18px;margin-bottom:10px}
+.viewer-content li{margin-bottom:4px;color:var(--text);font-size:clamp(13px,3.5vw,15px)}
 .viewer-content li::marker{color:var(--accent)}
 .viewer-content strong{color:var(--accent);font-weight:700}
 .viewer-content em{color:var(--yellow);font-style:normal}
-.viewer-content blockquote{border-left:3px solid var(--accent2);padding:8px 16px;margin:12px 0;color:#aaa;background:rgba(255,62,108,0.04)}
+.viewer-content blockquote{border-left:3px solid var(--accent2);padding:8px 14px;margin:12px 0;color:#aaa;background:rgba(255,62,108,0.04)}
 .viewer-content hr{border:none;border-top:1px solid var(--border);margin:18px 0}
-.viewer-content table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px}
-.viewer-content th{background:rgba(0,217,255,0.08);color:var(--accent);padding:7px 12px;border:1px solid var(--border);text-align:left;font-family:'Share Tech Mono',monospace;font-size:11px}
-.viewer-content td{padding:7px 12px;border:1px solid var(--border);color:var(--text)}
+.viewer-content table{width:100%;border-collapse:collapse;margin:12px 0;font-size:12px;display:block;overflow-x:auto}
+.viewer-content th{background:rgba(0,217,255,0.08);color:var(--accent);padding:6px 10px;border:1px solid var(--border);text-align:left;font-family:'Share Tech Mono',monospace;font-size:10px;white-space:nowrap}
+.viewer-content td{padding:6px 10px;border:1px solid var(--border);color:var(--text);font-size:12px}
 .viewer-content tr:nth-child(even) td{background:rgba(255,255,255,0.02)}
-.viewer-content a{color:var(--accent);text-decoration:none;border-bottom:1px dashed rgba(0,217,255,0.4)}
-footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:14px 24px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim)}
+.viewer-content a{color:var(--accent);text-decoration:none;border-bottom:1px dashed rgba(0,217,255,0.4);word-break:break-all}
+footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:12px 16px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim)}
 footer span{color:var(--accent2)}
 </style>
 </head>
@@ -78,17 +111,18 @@ footer span{color:var(--accent2)}
 <div class="page-header">
   <span class="folder-icon">⏱️</span>
   <div class="folder-title">RATE LIMIT</div>
-  <div class="folder-meta"><em>1</em> NOTES &nbsp;·&nbsp; CYBER SECURITY VAULT</div>
+  <div class="folder-meta"><em>1</em> NOTES · CYBER SECURITY VAULT</div>
   <div class="search-row">
     <input class="s-input" id="searchInput" placeholder="search notes..." oninput="filterFiles()">
   </div>
 </div>
 <div class="layout">
-  <div class="sidebar">
+  <div class="sidebar" id="sidebar">
     <div class="sidebar-head">FILES <span id="visCount">1</span></div>
     <div id="fileList"></div>
   </div>
-  <div class="viewer">
+  <div class="viewer" id="viewer">
+    <div class="mobile-back-btn" id="mobileBackBtn" onclick="showSidebar()">← ALL NOTES</div>
     <div class="viewer-bar">
       <span class="v-dot vd-r"></span><span class="v-dot vd-y"></span><span class="v-dot vd-g"></span>
       <span class="v-path" id="vPath">select a note</span>
@@ -102,6 +136,21 @@ footer span{color:var(--accent2)}
 
 <script>
 var NOTES = [{"name": "basic of rate limit", "content": "# 🚦 Rate Limiting – Web Application Security Guide  \n  \n---  \n  \n## 📖 What is Rate Limiting?  \n  \n**Rate Limiting** controls how many requests a client can make to a web application or API within a specific time window.  \n  \nExample:  \n\n100 requests per minute per IP\n\n  \nIt helps protect systems from:  \n  \n- 🔑 Brute-force attacks  \n- 🤖 Bots and scraping  \n- 💥 Denial-of-Service (DoS)  \n- ⚡ Resource exhaustion  \n  \n---  \n  \n## 🌍 Why Rate Limiting Matters (2025+)  \n  \nModern applications expose:  \n  \n- Public APIs  \n- Microservices  \n- High-traffic endpoints  \n  \nWithout rate limiting, a small number of abusive clients can degrade service for everyone.  \n  \nCommon platforms implementing rate limiting:  \n  \n- Cloudflare  \n- AWS API Gateway  \n- Azure Front Door  \n- Akamai  \n- Vercel Edge  \n- NGINX / Envoy  \n  \n---  \n  \n# 🔑 Typical Keys Used for Rate Limiting  \n  \nRate limiting works by identifying **who is sending requests**.  \n  \nCommon identifiers:  \n  \n### 🌐 IP Address  \nUsed for general abuse prevention.  \n\nExample:  \n10 requests / second per IP\n\n  \nOften implemented at:  \n  \n- CDN  \n- WAF  \n- Reverse Proxy  \n  \n---  \n  \n### 🔑 API Key / Client ID  \nUsed for public APIs.  \n  \nExample:  \n\n1000 requests/day per API key\n\n  \n---  \n  \n### 👤 Authenticated User ID  \n  \nUsed when users are logged in.  \n  \nExample:  \n\n5 password attempts per user per 5 minutes\n\n  \n---  \n  \n### 🧬 Combined Fingerprints  \n  \nAdvanced systems combine:  \n\nIP + User-Agent + TLS fingerprint (JA3/JA4)\n\n  \nThis prevents bypass using VPNs or botnets.  \n  \n---  \n  \n# ⚙️ Core Rate Limiting Algorithms  \n  \n## 1️⃣ Fixed Window Counter  \n  \nCounts requests within a fixed time interval.  \n  \nExample:  \n\nLimit: 100 requests per minute\n\n00:00 - 00:59 → 100 requests allowed  \n01:00 → counter resets\n\n  \n### ✔ Advantages  \n- Simple  \n- Fast  \n- Easy to implement  \n  \n### ❌ Problem  \nBurst attacks near window boundaries.  \n  \nExample:  \n\n100 requests at 00:59  \n100 requests at 01:00  \n= 200 requests in 2 seconds\n\n  \n---  \n  \n## 2️⃣ Sliding Window  \n  \nUses rolling timestamps.  \n  \nExample:  \n\nLast 60 seconds window\n\n  \n### ✔ Advantages  \n- More accurate  \n- Prevents burst abuse  \n  \n---  \n  \n## 3️⃣ Token Bucket  \n  \nRequests consume tokens from a bucket.  \n  \nExample:  \n\nBucket size: 20  \nRefill rate: 5 tokens/sec\n\n  \nAllows **short bursts but enforces long-term limits**.  \n  \n---  \n  \n## 4️⃣ Leaky Bucket  \n  \nWorks like a queue.  \n  \nRequests are processed at a **constant rate**.  \n  \nIf queue is full:  \n\nRequests are dropped or delayed\n\n  \nGood for protecting backend systems.  \n  \n---  \n  \n# 📍 Where Rate Limiting is Implemented  \n  \nRate limiting can be applied at multiple layers.  \n  \n---  \n  \n## 🌐 Edge / WAF / CDN  \n  \nExamples:  \n  \n- Cloudflare  \n- Akamai  \n- AWS WAF  \n  \nPurpose:  \n\nBlock bots before reaching backend\n\n  \nExample rule:  \n\n> 50 requests / minute → block IP\n\n  \n---  \n  \n## 🚪 API Gateway / Service Mesh  \n  \nExamples:  \n  \n- Kong  \n- Envoy  \n- AWS API Gateway  \n- Apigee  \n  \nUsed for:  \n  \n- Per API key limits  \n- Per service limits  \n- Plan-based limits  \n  \nExample:  \n\nFree plan → 1000 requests/day  \nPremium → 10000 requests/day\n\n  \n---  \n  \n## 🧠 Application Layer (Middleware)  \n  \nFramework examples:  \n  \n### Node.js  \n\nexpress-rate-limit\n\n  \n### Django  \n\ndjango-ratelimit\n\n  \n### ASP.NET  \n\nAddRateLimiter()\n\n  \n### Spring Boot  \n\nBucket4j\n\n  \nExample rule:  \n\n/login → 5 requests per minute\n\n  \n---  \n  \n# 🔐 Rate Limiting for Brute Force Protection  \n  \nRate limiting is **critical for login security**.  \n  \nAttack example:  \n\nattacker tries 10,000 passwords\n\n  \nWithout rate limit:  \n\nAttack finishes in seconds\n\n  \nWith rate limit:  \n\n5 attempts per minute\n\n  \nAttack becomes impractical.  \n  \n---  \n  \n## 🔑 Endpoints That MUST Have Rate Limits  \n  \n| Endpoint | Reason |  \n|--------|--------|  \n| `/login` | Password brute force |  \n| `/register` | Bot account creation |  \n| `/forgot-password` | Email bombing |  \n| `/otp-verify` | OTP brute force |  \n| `/api/auth` | Credential stuffing |  \n  \n---  \n  \n## Example Secure Login Policy  \n\n5 login attempts per minute per IP  \n5 attempts per user account  \nlock account for 15 minutes\n\n  \n---  \n  \n# 🧪 How to Check if Rate Limiting Exists (Pentesting)  \n  \nDuring **web application testing**, you should verify if rate limiting exists.  \n  \n---  \n  \n## Method 1: Burp Suite Intruder  \n  \nSend multiple login requests.  \n  \nExample:  \n\nPOST /login  \nusername=admin  \npassword=123\n\n  \nSend **100+ requests quickly**.  \n  \n### Expected secure behavior  \n  \nServer returns:  \n\n429 Too Many Requests\n\n  \nor  \n\nAccount temporarily locked\n\n  \n---  \n  \n## Method 2: Using curl Loop  \n  \n```bash  \nfor i in {1..50}  \ndo  \ncurl -X POST https://target.com/login \\  \n-d \"username=admin&password=test\"  \ndone\n\nIf responses are always **200 OK**, rate limit may be missing.\n\n---\n\n## Method 3: Using ffuf\n\nffuf -u https://target.com/login \\  \n-X POST \\  \n-d \"username=admin&password=FUZZ\" \\  \n-w passwords.txt\n\nWatch for:\n\n429 Too Many Requests\n\n---\n\n## Method 4: Python Script\n\nimport requests  \n  \nurl = \"https://target.com/login\"  \n  \nfor i in range(100):  \n    r = requests.post(url,data={\"username\":\"admin\",\"password\":\"test\"})  \n    print(i,r.status_code)\n\n---\n\n# 🚨 Signs Rate Limiting Exists\n\nLook for headers like:\n\nX-RateLimit-Limit  \nX-RateLimit-Remaining  \nX-RateLimit-Reset  \nRetry-After\n\nExample response:\n\nHTTP/1.1 429 Too Many Requests  \n  \nRetry-After: 60\n\n---\n\n# 🚨 Signs Rate Limiting is Missing\n\nIndicators:\n\n- Unlimited login attempts\n    \n- No CAPTCHA\n    \n- No 429 responses\n    \n- No delay between requests\n    \n- No account lockout\n    \n\nThis leads to:\n\nBrute Force Vulnerability\n\n---\n\n# 🛠 Common Rate Limit Bypass Techniques (For Security Testing)\n\nAttackers may try:\n\n### 1️⃣ IP Rotation\n\nUsing proxies:\n\nTOR  \nVPN  \nProxy lists\n\n---\n\n### 2️⃣ Header Spoofing\n\nSome apps trust headers like:\n\nX-Forwarded-For  \nX-Real-IP\n\nExample:\n\nX-Forwarded-For: 1.1.1.1\n\n---\n\n### 3️⃣ Account Rotation\n\nAttackers try:\n\nusername1  \nusername2  \nusername3\n\nInstead of targeting one account.\n\n---\n\n# 🧠 Best Practices for Secure Rate Limiting\n\n✔ Use **multiple identifiers**\n\nIP + User ID + Device fingerprint\n\n✔ Apply limits to **sensitive endpoints**\n\n✔ Return proper response codes\n\n429 Too Many Requests\n\n✔ Add **exponential backoff**\n\n✔ Implement **temporary account lockouts**\n\n---\n\n# 📚 Summary\n\n|Feature|Purpose|\n|---|---|\n|Rate limiting|Prevent abuse|\n|Login limits|Stop brute force|\n|API limits|Protect infrastructure|\n|Sliding window|Accurate limiting|\n|Token bucket|Burst-friendly control|\n\n---\n\n# 🔚 Conclusion\n\nRate limiting is one of the **most important defenses in modern web applications**.\n\nWithout it, attackers can perform:\n\n- Brute force attacks\n    \n- Credential stuffing\n    \n- API abuse\n    \n- Denial of service\n    \n\nImplementing **multi-layer rate limiting** ensures both **security and performance**."}];
+var isMobile = window.innerWidth <= 768;
+
+window.addEventListener('resize', function() { isMobile = window.innerWidth <= 768; });
+
+function showSidebar() {
+  document.getElementById('sidebar').classList.remove('hidden');
+  document.getElementById('viewer').classList.add('hidden');
+}
+
+function showViewer() {
+  if (isMobile) {
+    document.getElementById('sidebar').classList.add('hidden');
+    document.getElementById('viewer').classList.remove('hidden');
+  }
+}
 
 function buildSidebar(filter) {
   var list = document.getElementById('fileList');
@@ -147,13 +196,10 @@ function renderMd(raw) {
 
   for (var i = 0; i < lines.length; i++) {
     var line = lines[i];
-
-    // Fenced code block toggle
     if (line.match(/^```/)) {
       if (!inCode) {
         if (inList) { out += '</ul>'; inList = false; }
-        inCode = true;
-        codeBuffer = '';
+        inCode = true; codeBuffer = '';
       } else {
         inCode = false;
         out += '<pre><code>' + escHtml(codeBuffer) + '</code></pre>';
@@ -161,59 +207,38 @@ function renderMd(raw) {
       }
       continue;
     }
-
-    if (inCode) {
-      codeBuffer += (codeBuffer ? '\n' : '') + line;
-      continue;
-    }
-
+    if (inCode) { codeBuffer += (codeBuffer ? '\n' : '') + line; continue; }
     var e = escHtml(line);
-
-    // Headings
     if (e.match(/^#### /)) { if(inList){out+='</ul>';inList=false;} out += '<h4>' + e.slice(5) + '</h4>'; continue; }
     if (e.match(/^### /))  { if(inList){out+='</ul>';inList=false;} out += '<h3>' + e.slice(4) + '</h3>'; continue; }
     if (e.match(/^## /))   { if(inList){out+='</ul>';inList=false;} out += '<h2>' + e.slice(3) + '</h2>'; continue; }
     if (e.match(/^# /))    { if(inList){out+='</ul>';inList=false;} out += '<h1>' + e.slice(2) + '</h1>'; continue; }
-
-    // HR
     if (e.match(/^---+$/)) { if(inList){out+='</ul>';inList=false;} out += '<hr>'; continue; }
-
-    // Blockquote
-    if (e.match(/^&gt; /)) { if(inList){out+='</ul>';inList=false;} out += '<blockquote>' + inlineFormat(e.slice(5)) + '</blockquote>'; continue; }
-
-    // List item
+    if (e.match(/^&gt; /)) { if(inList){out+='</ul>';inList=false;} out += '<blockquote>' + inlineFmt(e.slice(5)) + '</blockquote>'; continue; }
     if (e.match(/^[\*\-] /) || e.match(/^\d+\. /)) {
       if (!inList) { out += '<ul>'; inList = true; }
-      var itemText = e.match(/^[\*\-] /) ? e.slice(2) : e.replace(/^\d+\. /,'');
-      out += '<li>' + inlineFormat(itemText) + '</li>';
+      var txt = e.match(/^[\*\-] /) ? e.slice(2) : e.replace(/^\d+\.\s/,'');
+      out += '<li>' + inlineFmt(txt) + '</li>';
       continue;
     }
-
-    // Empty line
     if (e.trim() === '') {
       if (inList) { out += '</ul>'; inList = false; }
       out += '<br>';
       continue;
     }
-
-    // Normal paragraph line
     if (inList) { out += '</ul>'; inList = false; }
-    out += '<p>' + inlineFormat(e) + '</p>';
+    out += '<p>' + inlineFmt(e) + '</p>';
   }
-
   if (inList) out += '</ul>';
   if (inCode) out += '<pre><code>' + escHtml(codeBuffer) + '</code></pre>';
   return out;
 }
 
-function inlineFormat(t) {
-  // Inline code
+function inlineFmt(t) {
   t = t.replace(/`([^`]+)`/g, function(m,c){ return '<code>' + c + '</code>'; });
-  // Bold+italic
   t = t.replace(/\*\*\*([^*]+)\*\*\*/g, '<strong><em>$1</em></strong>');
   t = t.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
   t = t.replace(/\*([^*]+)\*/g, '<em>$1</em>');
-  // Links
   t = t.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
   return t;
 }
@@ -227,12 +252,12 @@ function openNote(idx) {
   var viewer = document.getElementById('viewerContent');
   viewer.innerHTML = renderMd(NOTES[idx].content);
   viewer.scrollTop = 0;
+  showViewer();
 }
 
-// RUN ON PAGE LOAD
 window.onload = function() {
   buildSidebar();
-  if (NOTES.length > 0) openNote(0);
+  if (!isMobile && NOTES.length > 0) openNote(0);
 };
 </script>
 </body>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>web application field guide — Cyber Security Notes</title>
+<title>web application field guide — Cyber Notes</title>
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -12,60 +12,93 @@ body{background:var(--bg);font-family:'Rajdhani',sans-serif;color:var(--text);mi
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,217,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,217,255,0.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
 .scanline{position:fixed;top:-100%;left:0;width:100%;height:2px;background:linear-gradient(transparent,rgba(0,217,255,0.1),transparent);animation:scan 6s linear infinite;pointer-events:none;z-index:1}
 @keyframes scan{to{top:110%}}
-.topbar{position:relative;z-index:2;background:#0a0e15;border-bottom:1px solid var(--border);padding:10px 24px;display:flex;align-items:center;gap:14px}
-.back-btn{color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:12px;text-decoration:none;border:1px solid rgba(0,217,255,0.3);padding:4px 14px;letter-spacing:1px;transition:all .2s}
-.back-btn:hover{background:rgba(0,217,255,0.08)}
-.breadcrumb{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim)}
+
+/* TOPBAR */
+.topbar{position:relative;z-index:2;background:#0a0e15;border-bottom:1px solid var(--border);padding:10px 16px;display:flex;align-items:center;gap:12px}
+.back-btn{color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:11px;text-decoration:none;border:1px solid rgba(0,217,255,0.3);padding:5px 12px;letter-spacing:1px;white-space:nowrap}
+.breadcrumb{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .breadcrumb em{color:var(--accent);font-style:normal}
-.page-header{position:relative;z-index:2;padding:28px 24px 18px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,#0a0e15,#0d1117)}
-.folder-icon{font-size:2.2rem;display:block;margin-bottom:8px}
-.folder-title{font-family:'Share Tech Mono',monospace;font-size:clamp(1.2rem,3vw,1.8rem);color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:4px}
-.folder-meta{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim);letter-spacing:2px}
+
+/* HEADER */
+.page-header{position:relative;z-index:2;padding:20px 16px 14px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,#0a0e15,#0d1117)}
+.folder-icon{font-size:2rem;display:block;margin-bottom:6px}
+.folder-title{font-family:'Share Tech Mono',monospace;font-size:clamp(1.1rem,5vw,1.8rem);color:var(--accent);letter-spacing:2px;text-transform:uppercase;margin-bottom:3px}
+.folder-meta{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:2px}
 .folder-meta em{color:var(--accent3);font-style:normal}
-.search-row{margin-top:12px;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);padding:8px 14px;max-width:380px}
+.search-row{margin-top:10px;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);padding:8px 12px}
 .search-row::before{content:'⌕';color:var(--accent);font-size:1rem}
 .s-input{background:none;border:none;outline:none;color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:12px;width:100%;caret-color:var(--accent)}
 .s-input::placeholder{color:var(--dim)}
-.layout{position:relative;z-index:2;display:grid;grid-template-columns:250px 1fr;min-height:calc(100vh - 170px)}
-@media(max-width:700px){.layout{grid-template-columns:1fr;grid-template-rows:auto 1fr}}
-.sidebar{border-right:1px solid var(--border);background:#0a0e15;overflow-y:auto;max-height:calc(100vh - 120px);position:sticky;top:0}
+
+/* DESKTOP: side by side */
+.layout{position:relative;z-index:2;display:grid;grid-template-columns:250px 1fr;min-height:calc(100vh - 160px)}
+
+/* MOBILE: stack vertically */
+@media(max-width:768px){
+  .layout{display:flex;flex-direction:column}
+  .sidebar{
+    max-height:none !important;
+    height:auto;
+    position:relative !important;
+    border-right:none;
+    border-bottom:1px solid var(--border);
+  }
+  .sidebar.hidden{display:none}
+  .viewer{display:flex;flex-direction:column}
+  .viewer.hidden{display:none}
+  .mobile-back-btn{display:flex}
+  .viewer-content{padding:16px;word-wrap:break-word;overflow-wrap:break-word}
+  pre{overflow-x:auto;max-width:100%}
+  table{display:block;overflow-x:auto;max-width:100%}
+}
+
+/* SIDEBAR */
+.sidebar{border-right:1px solid var(--border);background:#0a0e15;overflow-y:auto;position:sticky;top:0;max-height:calc(100vh - 110px)}
 .sidebar::-webkit-scrollbar{width:3px}.sidebar::-webkit-scrollbar-thumb{background:#1e2d3d}
-.sidebar-head{padding:8px 14px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:3px;background:#080c10;border-bottom:1px solid var(--border);display:flex;justify-content:space-between}
+.sidebar-head{padding:8px 14px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:3px;background:#080c10;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
 .sidebar-head span{color:var(--accent3)}
-.file-item{padding:9px 14px;cursor:pointer;border-bottom:1px solid rgba(255,255,255,0.03);display:flex;align-items:flex-start;gap:8px;transition:all .15s;color:var(--dim)}
+.file-item{padding:11px 14px;cursor:pointer;border-bottom:1px solid rgba(255,255,255,0.03);display:flex;align-items:flex-start;gap:8px;transition:all .15s;color:var(--dim)}
 .file-item:hover{background:rgba(0,217,255,0.05);color:var(--text)}
 .file-item.active{background:rgba(0,217,255,0.08);color:var(--accent);border-left:2px solid var(--accent)}
 .fi-icon{font-size:10px;margin-top:3px;flex-shrink:0;color:var(--accent2)}
-.fi-name{font-family:'Share Tech Mono',monospace;font-size:11px;line-height:1.5;text-transform:capitalize}
-.viewer{display:flex;flex-direction:column}
-.viewer-bar{background:#080c10;border-bottom:1px solid var(--border);padding:8px 20px;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim);display:flex;align-items:center;gap:6px}
-.v-dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+.fi-name{font-family:'Share Tech Mono',monospace;font-size:11px;line-height:1.5;text-transform:capitalize;word-break:break-word}
+
+/* MOBILE BACK BUTTON (inside viewer) */
+.mobile-back-btn{display:none;align-items:center;gap:8px;padding:10px 14px;background:#080c10;border-bottom:1px solid var(--border);cursor:pointer;color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:1px}
+.mobile-back-btn:hover{background:rgba(0,217,255,0.05)}
+
+/* VIEWER */
+.viewer{display:flex;flex-direction:column;min-height:300px}
+.viewer-bar{background:#080c10;border-bottom:1px solid var(--border);padding:8px 16px;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim);display:flex;align-items:center;gap:6px}
+.v-dot{width:8px;height:8px;border-radius:50%;display:inline-block}
 .vd-r{background:#ff5f56}.vd-y{background:#ffbd2e}.vd-g{background:#27c93f}
-.v-path{color:var(--text);margin-left:4px}
-.viewer-content{padding:28px 36px;line-height:1.85;font-size:15px;overflow-y:auto;flex:1}
-@media(max-width:700px){.viewer-content{padding:16px}}
-.placeholder{display:flex;align-items:center;justify-content:center;min-height:300px;color:var(--dim);font-family:'Share Tech Mono',monospace;font-size:12px;letter-spacing:2px}
-.viewer-content h1{font-family:'Share Tech Mono',monospace;font-size:1.3rem;color:var(--accent);border-bottom:1px solid var(--border);padding-bottom:8px;margin:24px 0 12px;letter-spacing:2px}
-.viewer-content h2{font-family:'Share Tech Mono',monospace;font-size:1rem;color:var(--accent3);margin:20px 0 10px;letter-spacing:1px}
-.viewer-content h3{font-size:.95rem;color:var(--yellow);margin:16px 0 8px;font-weight:700}
+.v-path{color:var(--text);margin-left:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:calc(100% - 60px)}
+.viewer-content{padding:24px 28px;line-height:1.85;font-size:15px;overflow-y:auto;flex:1;overflow-x:hidden;word-wrap:break-word}
+@media(max-width:768px){.viewer-content{padding:14px 16px}}
+.placeholder{display:flex;align-items:center;justify-content:center;min-height:200px;color:var(--dim);font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:2px;text-align:center;padding:20px}
+
+/* MARKDOWN STYLES */
+.viewer-content h1{font-family:'Share Tech Mono',monospace;font-size:clamp(1rem,4vw,1.3rem);color:var(--accent);border-bottom:1px solid var(--border);padding-bottom:8px;margin:24px 0 12px;letter-spacing:2px;word-break:break-word}
+.viewer-content h2{font-family:'Share Tech Mono',monospace;font-size:clamp(.9rem,3.5vw,1rem);color:var(--accent3);margin:20px 0 10px;letter-spacing:1px}
+.viewer-content h3{font-size:clamp(.85rem,3vw,.95rem);color:var(--yellow);margin:16px 0 8px;font-weight:700}
 .viewer-content h4{font-size:.9rem;color:var(--orange);margin:12px 0 6px}
-.viewer-content p{margin-bottom:10px;color:var(--text);font-size:15px}
-.viewer-content code{background:rgba(0,217,255,0.07);color:var(--accent3);padding:2px 7px;border:1px solid rgba(0,217,255,0.15);font-family:'Share Tech Mono',monospace;font-size:12px;border-radius:2px}
-.viewer-content pre{background:#020509;border:1px solid var(--border);border-left:3px solid var(--accent);padding:14px 18px;margin:12px 0;overflow-x:auto;border-radius:2px}
-.viewer-content pre code{background:none;border:none;padding:0;color:var(--accent3);font-size:12px;display:block;white-space:pre}
-.viewer-content ul,.viewer-content ol{padding-left:20px;margin-bottom:10px}
-.viewer-content li{margin-bottom:4px;color:var(--text)}
+.viewer-content p{margin-bottom:10px;color:var(--text);font-size:clamp(13px,3.5vw,15px);word-wrap:break-word}
+.viewer-content code{background:rgba(0,217,255,0.07);color:var(--accent3);padding:2px 6px;border:1px solid rgba(0,217,255,0.15);font-family:'Share Tech Mono',monospace;font-size:11px;border-radius:2px;word-break:break-all}
+.viewer-content pre{background:#020509;border:1px solid var(--border);border-left:3px solid var(--accent);padding:12px 14px;margin:12px 0;overflow-x:auto;border-radius:2px;max-width:100%}
+.viewer-content pre code{background:none;border:none;padding:0;color:var(--accent3);font-size:11px;display:block;white-space:pre;word-break:normal}
+.viewer-content ul,.viewer-content ol{padding-left:18px;margin-bottom:10px}
+.viewer-content li{margin-bottom:4px;color:var(--text);font-size:clamp(13px,3.5vw,15px)}
 .viewer-content li::marker{color:var(--accent)}
 .viewer-content strong{color:var(--accent);font-weight:700}
 .viewer-content em{color:var(--yellow);font-style:normal}
-.viewer-content blockquote{border-left:3px solid var(--accent2);padding:8px 16px;margin:12px 0;color:#aaa;background:rgba(255,62,108,0.04)}
+.viewer-content blockquote{border-left:3px solid var(--accent2);padding:8px 14px;margin:12px 0;color:#aaa;background:rgba(255,62,108,0.04)}
 .viewer-content hr{border:none;border-top:1px solid var(--border);margin:18px 0}
-.viewer-content table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px}
-.viewer-content th{background:rgba(0,217,255,0.08);color:var(--accent);padding:7px 12px;border:1px solid var(--border);text-align:left;font-family:'Share Tech Mono',monospace;font-size:11px}
-.viewer-content td{padding:7px 12px;border:1px solid var(--border);color:var(--text)}
+.viewer-content table{width:100%;border-collapse:collapse;margin:12px 0;font-size:12px;display:block;overflow-x:auto}
+.viewer-content th{background:rgba(0,217,255,0.08);color:var(--accent);padding:6px 10px;border:1px solid var(--border);text-align:left;font-family:'Share Tech Mono',monospace;font-size:10px;white-space:nowrap}
+.viewer-content td{padding:6px 10px;border:1px solid var(--border);color:var(--text);font-size:12px}
 .viewer-content tr:nth-child(even) td{background:rgba(255,255,255,0.02)}
-.viewer-content a{color:var(--accent);text-decoration:none;border-bottom:1px dashed rgba(0,217,255,0.4)}
-footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:14px 24px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim)}
+.viewer-content a{color:var(--accent);text-decoration:none;border-bottom:1px dashed rgba(0,217,255,0.4);word-break:break-all}
+footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:12px 16px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim)}
 footer span{color:var(--accent2)}
 </style>
 </head>
@@ -78,17 +111,18 @@ footer span{color:var(--accent2)}
 <div class="page-header">
   <span class="folder-icon">📚</span>
   <div class="folder-title">web application field guide</div>
-  <div class="folder-meta"><em>1</em> NOTES &nbsp;·&nbsp; CYBER SECURITY VAULT</div>
+  <div class="folder-meta"><em>1</em> NOTES · CYBER SECURITY VAULT</div>
   <div class="search-row">
     <input class="s-input" id="searchInput" placeholder="search notes..." oninput="filterFiles()">
   </div>
 </div>
 <div class="layout">
-  <div class="sidebar">
+  <div class="sidebar" id="sidebar">
     <div class="sidebar-head">FILES <span id="visCount">1</span></div>
     <div id="fileList"></div>
   </div>
-  <div class="viewer">
+  <div class="viewer" id="viewer">
+    <div class="mobile-back-btn" id="mobileBackBtn" onclick="showSidebar()">← ALL NOTES</div>
     <div class="viewer-bar">
       <span class="v-dot vd-r"></span><span class="v-dot vd-y"></span><span class="v-dot vd-g"></span>
       <span class="v-path" id="vPath">select a note</span>
@@ -102,6 +136,21 @@ footer span{color:var(--accent2)}
 
 <script>
 var NOTES = [{"name": "basic", "content": "# 🕷️ Web Application Penetration Testing — Complete Field Guide\n\n> _Methodology · Checklist · Attack Surface Coverage_\n\n---\n\n## 📚 Books for Web Application Penetration Testing\n\n> _Here are some of the best and most recommended books for Web Application Penetration Testing in 2025:_\n\n|#|Book|Key Focus|\n|---|---|---|\n|1|📖 **The Web Application Hacker's Handbook** — _Dafydd Stuttard & Marcus Pinto_|Classic comprehensive guide: info gathering → attacking web app vulnerabilities. **Must-have for pentest professionals.**|\n|2|📖 **Penetration Testing: Execution and Analysis** — _Rafay Baloch_|Step-by-step walkthrough: preparation, info gathering, exploitation, and reporting.|\n|3|📖 **The Penetration Tester's Guide to Web App Security** — _Ryan Burnham_|Core web app attacks: SQL injection, cross-site scripting, and CSRF.|\n|4|📖 **Hacking: The Art of Exploitation** — _Jon Erickson_|Fundamentals of exploitation: buffer overflows and shellcode.|\n|5|📖 **Penetration Testing with Python: A Practical Guide** — _Dinesh S. Shenai_|Python-driven practical pentest techniques applicable to web apps.|\n|6|📖 **The Hacker Playbook 3**|Lab-based, real-world attack campaigns and methodologies for web app pentesters.|\n\n> 💡 For hands-on learning, **PortSwigger Web Security Academy** is highly recommended as a free and up-to-date resource with practical exercises.\n\n---\n\n## ✅ Web Application Pentest Checklist\n\n> _A structured security testing checklist covering all major attack surfaces._\n\n---\n\n### 🔐 Authentication\n\n- Test for weak/default credentials\n- Brute-force protection & account lockout\n- Multi-factor authentication bypass\n- Password reset flow vulnerabilities\n- OAuth / SSO misconfigurations\n\n---\n\n### 🍪 Session Management\n\n- Session token entropy and predictability\n- Session fixation attacks\n- Cookie attributes (`HttpOnly`, `Secure`, `SameSite`)\n- Session timeout and invalidation on logout\n- Concurrent session handling\n\n---\n\n### 🚪 Access Control & Authorization\n\n- Horizontal & vertical privilege escalation\n- Forced browsing / parameter tampering\n- Role-based access control (RBAC) testing\n- JWT authorization bypass\n\n---\n\n### 🤖 Anti-Automation & Attack Prevention\n\n- CAPTCHA effectiveness\n- Rate limiting on sensitive endpoints\n- Bot detection bypass techniques\n- Account enumeration via timing attacks\n\n---\n\n### 🔒 Cryptography & Secure Data Storage\n\n- Weak cipher suites / deprecated TLS versions\n- Hardcoded secrets or API keys in source\n- Sensitive data in browser storage / logs\n- Insecure cryptographic implementations\n\n---\n\n### 🛡️ Security Headers & HTTP Configurations\n\n- `Content-Security-Policy` (CSP)\n- `X-Frame-Options` / Clickjacking\n- `Strict-Transport-Security` (HSTS)\n- `X-Content-Type-Options`\n- CORS misconfigurations\n\n---\n\n### 💉 Injection Prevention\n\n|Vulnerability|Description|\n|---|---|\n|🟥 **HTML Injection**|Injecting HTML markup via user-controlled input|\n|🟥 **XSS** (Cross-Site Scripting)|Reflected, Stored, DOM-based|\n|🟥 **Code Injection**|Executing arbitrary code server-side|\n|🟥 **OS Command Injection**|Running OS commands via app input|\n|🟥 **File Inclusion**|LFI / RFI vulnerabilities|\n|🟥 **SQL Injection**|Classic, Blind, Time-based, Out-of-band|\n|🟥 **XXE Injection**|XML External Entity attacks|\n|🟥 **Unvalidated Redirects & Forwards**|Open redirect abuse|\n|🟥 **CSRF**|Cross-Site Request Forgery|\n|🟥 **SSRF**|Server-Side Request Forgery|\n|🟥 **HTTP Host Header Attacks**|Host header manipulation|\n|🟥 **CRLF Injection**|Carriage Return Line Feed injection|\n\n---\n\n### 📝 Input Validation & Data Integrity\n\n- Client-side vs server-side validation bypass\n- Mass assignment / parameter pollution\n- File upload validation (type, size, content)\n- Serialization input tampering\n\n---\n\n### 🧠 Business Logic Security\n\n- Multi-step process manipulation\n- Price / quantity tampering\n- Workflow bypass (skipping steps)\n- Race conditions / TOCTOU issues\n\n---\n\n### 🖥️ Client-Side Security\n\n- **Same Origin Policy (SOP)** enforcement\n- **CORS (Cross-Origin Resource Sharing)** misconfigurations\n- DOM-based vulnerabilities\n- Sensitive data exposure in JavaScript source\n- Clickjacking protections\n\n---\n\n### ☁️ Cloud & Infrastructure Security\n\n- S3 bucket / blob storage exposure\n- Metadata endpoint abuse (SSRF → cloud metadata)\n- IAM misconfigurations\n- Container / Kubernetes security\n\n---\n\n### 🪵 Error Handling & Logging\n\n- Verbose error messages leaking stack traces\n- Logging of sensitive user data\n- Log injection attacks\n- Missing security event logging\n\n---\n\n### ☠️ Malicious Code & Supply Chain Security\n\n- Third-party library vulnerabilities\n- Subresource integrity (SRI) checks\n- Dependency confusion attacks\n- CDN / script injection risks\n\n---\n\n### 🔍 Other Security Checks\n\n- **Insecure Deserialization** — Object injection via serialized data\n- **JSON Web Tokens (JWTs)** — `alg:none`, weak secret, kid injection\n- **Insecure Direct Object References (IDOR)** — Accessing other users' resources\n- **Session Management edge cases**\n- **Logger++ Filter** testing for log manipulation\n\n---\n\n### 🌐 External Testing\n\n- Subdomain enumeration & takeover\n- DNS zone transfer\n- Public-facing API endpoint discovery\n- Certificate transparency log review\n- Google dorking & OSINT\n\n---\n\n## 🗺️ Attack Surface Map\n\n```\nWeb App\n├── Authentication Layer\n│   ├── Login / Logout\n│   ├── Password Reset\n│   └── OAuth / SSO\n├── Session & State\n│   ├── Cookies\n│   └── Token Management\n├── Input Vectors\n│   ├── Forms / Parameters\n│   ├── Headers / Cookies\n│   ├── File Uploads\n│   └── API Endpoints\n├── Server-Side Logic\n│   ├── Database Queries (SQLi)\n│   ├── OS Commands (CMDi)\n│   ├── File System (LFI/RFI)\n│   └── External Requests (SSRF/XXE)\n├── Client-Side\n│   ├── DOM Manipulation (XSS)\n│   ├── CORS / SOP\n│   └── CSP / Headers\n└── Infrastructure\n    ├── Cloud Storage\n    ├── Subdomains\n    └── Third-party Dependencies\n```\n\n---\n\n> 🎯 _These checks cover both foundational theory and practical exploitation techniques necessary for effective web application penetration testing._\n\n---\n\n_Reference: Web Application Penetration Testing — Methodology & Checklist_"}];
+var isMobile = window.innerWidth <= 768;
+
+window.addEventListener('resize', function() { isMobile = window.innerWidth <= 768; });
+
+function showSidebar() {
+  document.getElementById('sidebar').classList.remove('hidden');
+  document.getElementById('viewer').classList.add('hidden');
+}
+
+function showViewer() {
+  if (isMobile) {
+    document.getElementById('sidebar').classList.add('hidden');
+    document.getElementById('viewer').classList.remove('hidden');
+  }
+}
 
 function buildSidebar(filter) {
   var list = document.getElementById('fileList');
@@ -147,13 +196,10 @@ function renderMd(raw) {
 
   for (var i = 0; i < lines.length; i++) {
     var line = lines[i];
-
-    // Fenced code block toggle
     if (line.match(/^```/)) {
       if (!inCode) {
         if (inList) { out += '</ul>'; inList = false; }
-        inCode = true;
-        codeBuffer = '';
+        inCode = true; codeBuffer = '';
       } else {
         inCode = false;
         out += '<pre><code>' + escHtml(codeBuffer) + '</code></pre>';
@@ -161,59 +207,38 @@ function renderMd(raw) {
       }
       continue;
     }
-
-    if (inCode) {
-      codeBuffer += (codeBuffer ? '\n' : '') + line;
-      continue;
-    }
-
+    if (inCode) { codeBuffer += (codeBuffer ? '\n' : '') + line; continue; }
     var e = escHtml(line);
-
-    // Headings
     if (e.match(/^#### /)) { if(inList){out+='</ul>';inList=false;} out += '<h4>' + e.slice(5) + '</h4>'; continue; }
     if (e.match(/^### /))  { if(inList){out+='</ul>';inList=false;} out += '<h3>' + e.slice(4) + '</h3>'; continue; }
     if (e.match(/^## /))   { if(inList){out+='</ul>';inList=false;} out += '<h2>' + e.slice(3) + '</h2>'; continue; }
     if (e.match(/^# /))    { if(inList){out+='</ul>';inList=false;} out += '<h1>' + e.slice(2) + '</h1>'; continue; }
-
-    // HR
     if (e.match(/^---+$/)) { if(inList){out+='</ul>';inList=false;} out += '<hr>'; continue; }
-
-    // Blockquote
-    if (e.match(/^&gt; /)) { if(inList){out+='</ul>';inList=false;} out += '<blockquote>' + inlineFormat(e.slice(5)) + '</blockquote>'; continue; }
-
-    // List item
+    if (e.match(/^&gt; /)) { if(inList){out+='</ul>';inList=false;} out += '<blockquote>' + inlineFmt(e.slice(5)) + '</blockquote>'; continue; }
     if (e.match(/^[\*\-] /) || e.match(/^\d+\. /)) {
       if (!inList) { out += '<ul>'; inList = true; }
-      var itemText = e.match(/^[\*\-] /) ? e.slice(2) : e.replace(/^\d+\. /,'');
-      out += '<li>' + inlineFormat(itemText) + '</li>';
+      var txt = e.match(/^[\*\-] /) ? e.slice(2) : e.replace(/^\d+\.\s/,'');
+      out += '<li>' + inlineFmt(txt) + '</li>';
       continue;
     }
-
-    // Empty line
     if (e.trim() === '') {
       if (inList) { out += '</ul>'; inList = false; }
       out += '<br>';
       continue;
     }
-
-    // Normal paragraph line
     if (inList) { out += '</ul>'; inList = false; }
-    out += '<p>' + inlineFormat(e) + '</p>';
+    out += '<p>' + inlineFmt(e) + '</p>';
   }
-
   if (inList) out += '</ul>';
   if (inCode) out += '<pre><code>' + escHtml(codeBuffer) + '</code></pre>';
   return out;
 }
 
-function inlineFormat(t) {
-  // Inline code
+function inlineFmt(t) {
   t = t.replace(/`([^`]+)`/g, function(m,c){ return '<code>' + c + '</code>'; });
-  // Bold+italic
   t = t.replace(/\*\*\*([^*]+)\*\*\*/g, '<strong><em>$1</em></strong>');
   t = t.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
   t = t.replace(/\*([^*]+)\*/g, '<em>$1</em>');
-  // Links
   t = t.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
   return t;
 }
@@ -227,12 +252,12 @@ function openNote(idx) {
   var viewer = document.getElementById('viewerContent');
   viewer.innerHTML = renderMd(NOTES[idx].content);
   viewer.scrollTop = 0;
+  showViewer();
 }
 
-// RUN ON PAGE LOAD
 window.onload = function() {
   buildSidebar();
-  if (NOTES.length > 0) openNote(0);
+  if (!isMobile && NOTES.length > 0) openNote(0);
 };
 </script>
 </body>

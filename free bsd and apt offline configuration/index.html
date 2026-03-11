@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>free bsd and apt offline configuration — Cyber Security Notes</title>
+<title>free bsd and apt offline configuration — Cyber Notes</title>
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -12,60 +12,93 @@ body{background:var(--bg);font-family:'Rajdhani',sans-serif;color:var(--text);mi
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,217,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,217,255,0.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
 .scanline{position:fixed;top:-100%;left:0;width:100%;height:2px;background:linear-gradient(transparent,rgba(0,217,255,0.1),transparent);animation:scan 6s linear infinite;pointer-events:none;z-index:1}
 @keyframes scan{to{top:110%}}
-.topbar{position:relative;z-index:2;background:#0a0e15;border-bottom:1px solid var(--border);padding:10px 24px;display:flex;align-items:center;gap:14px}
-.back-btn{color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:12px;text-decoration:none;border:1px solid rgba(0,217,255,0.3);padding:4px 14px;letter-spacing:1px;transition:all .2s}
-.back-btn:hover{background:rgba(0,217,255,0.08)}
-.breadcrumb{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim)}
+
+/* TOPBAR */
+.topbar{position:relative;z-index:2;background:#0a0e15;border-bottom:1px solid var(--border);padding:10px 16px;display:flex;align-items:center;gap:12px}
+.back-btn{color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:11px;text-decoration:none;border:1px solid rgba(0,217,255,0.3);padding:5px 12px;letter-spacing:1px;white-space:nowrap}
+.breadcrumb{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .breadcrumb em{color:var(--accent);font-style:normal}
-.page-header{position:relative;z-index:2;padding:28px 24px 18px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,#0a0e15,#0d1117)}
-.folder-icon{font-size:2.2rem;display:block;margin-bottom:8px}
-.folder-title{font-family:'Share Tech Mono',monospace;font-size:clamp(1.2rem,3vw,1.8rem);color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:4px}
-.folder-meta{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim);letter-spacing:2px}
+
+/* HEADER */
+.page-header{position:relative;z-index:2;padding:20px 16px 14px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,#0a0e15,#0d1117)}
+.folder-icon{font-size:2rem;display:block;margin-bottom:6px}
+.folder-title{font-family:'Share Tech Mono',monospace;font-size:clamp(1.1rem,5vw,1.8rem);color:var(--accent);letter-spacing:2px;text-transform:uppercase;margin-bottom:3px}
+.folder-meta{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:2px}
 .folder-meta em{color:var(--accent3);font-style:normal}
-.search-row{margin-top:12px;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);padding:8px 14px;max-width:380px}
+.search-row{margin-top:10px;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);padding:8px 12px}
 .search-row::before{content:'⌕';color:var(--accent);font-size:1rem}
 .s-input{background:none;border:none;outline:none;color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:12px;width:100%;caret-color:var(--accent)}
 .s-input::placeholder{color:var(--dim)}
-.layout{position:relative;z-index:2;display:grid;grid-template-columns:250px 1fr;min-height:calc(100vh - 170px)}
-@media(max-width:700px){.layout{grid-template-columns:1fr;grid-template-rows:auto 1fr}}
-.sidebar{border-right:1px solid var(--border);background:#0a0e15;overflow-y:auto;max-height:calc(100vh - 120px);position:sticky;top:0}
+
+/* DESKTOP: side by side */
+.layout{position:relative;z-index:2;display:grid;grid-template-columns:250px 1fr;min-height:calc(100vh - 160px)}
+
+/* MOBILE: stack vertically */
+@media(max-width:768px){
+  .layout{display:flex;flex-direction:column}
+  .sidebar{
+    max-height:none !important;
+    height:auto;
+    position:relative !important;
+    border-right:none;
+    border-bottom:1px solid var(--border);
+  }
+  .sidebar.hidden{display:none}
+  .viewer{display:flex;flex-direction:column}
+  .viewer.hidden{display:none}
+  .mobile-back-btn{display:flex}
+  .viewer-content{padding:16px;word-wrap:break-word;overflow-wrap:break-word}
+  pre{overflow-x:auto;max-width:100%}
+  table{display:block;overflow-x:auto;max-width:100%}
+}
+
+/* SIDEBAR */
+.sidebar{border-right:1px solid var(--border);background:#0a0e15;overflow-y:auto;position:sticky;top:0;max-height:calc(100vh - 110px)}
 .sidebar::-webkit-scrollbar{width:3px}.sidebar::-webkit-scrollbar-thumb{background:#1e2d3d}
-.sidebar-head{padding:8px 14px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:3px;background:#080c10;border-bottom:1px solid var(--border);display:flex;justify-content:space-between}
+.sidebar-head{padding:8px 14px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:3px;background:#080c10;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
 .sidebar-head span{color:var(--accent3)}
-.file-item{padding:9px 14px;cursor:pointer;border-bottom:1px solid rgba(255,255,255,0.03);display:flex;align-items:flex-start;gap:8px;transition:all .15s;color:var(--dim)}
+.file-item{padding:11px 14px;cursor:pointer;border-bottom:1px solid rgba(255,255,255,0.03);display:flex;align-items:flex-start;gap:8px;transition:all .15s;color:var(--dim)}
 .file-item:hover{background:rgba(0,217,255,0.05);color:var(--text)}
 .file-item.active{background:rgba(0,217,255,0.08);color:var(--accent);border-left:2px solid var(--accent)}
 .fi-icon{font-size:10px;margin-top:3px;flex-shrink:0;color:var(--accent2)}
-.fi-name{font-family:'Share Tech Mono',monospace;font-size:11px;line-height:1.5;text-transform:capitalize}
-.viewer{display:flex;flex-direction:column}
-.viewer-bar{background:#080c10;border-bottom:1px solid var(--border);padding:8px 20px;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim);display:flex;align-items:center;gap:6px}
-.v-dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+.fi-name{font-family:'Share Tech Mono',monospace;font-size:11px;line-height:1.5;text-transform:capitalize;word-break:break-word}
+
+/* MOBILE BACK BUTTON (inside viewer) */
+.mobile-back-btn{display:none;align-items:center;gap:8px;padding:10px 14px;background:#080c10;border-bottom:1px solid var(--border);cursor:pointer;color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:1px}
+.mobile-back-btn:hover{background:rgba(0,217,255,0.05)}
+
+/* VIEWER */
+.viewer{display:flex;flex-direction:column;min-height:300px}
+.viewer-bar{background:#080c10;border-bottom:1px solid var(--border);padding:8px 16px;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim);display:flex;align-items:center;gap:6px}
+.v-dot{width:8px;height:8px;border-radius:50%;display:inline-block}
 .vd-r{background:#ff5f56}.vd-y{background:#ffbd2e}.vd-g{background:#27c93f}
-.v-path{color:var(--text);margin-left:4px}
-.viewer-content{padding:28px 36px;line-height:1.85;font-size:15px;overflow-y:auto;flex:1}
-@media(max-width:700px){.viewer-content{padding:16px}}
-.placeholder{display:flex;align-items:center;justify-content:center;min-height:300px;color:var(--dim);font-family:'Share Tech Mono',monospace;font-size:12px;letter-spacing:2px}
-.viewer-content h1{font-family:'Share Tech Mono',monospace;font-size:1.3rem;color:var(--accent);border-bottom:1px solid var(--border);padding-bottom:8px;margin:24px 0 12px;letter-spacing:2px}
-.viewer-content h2{font-family:'Share Tech Mono',monospace;font-size:1rem;color:var(--accent3);margin:20px 0 10px;letter-spacing:1px}
-.viewer-content h3{font-size:.95rem;color:var(--yellow);margin:16px 0 8px;font-weight:700}
+.v-path{color:var(--text);margin-left:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:calc(100% - 60px)}
+.viewer-content{padding:24px 28px;line-height:1.85;font-size:15px;overflow-y:auto;flex:1;overflow-x:hidden;word-wrap:break-word}
+@media(max-width:768px){.viewer-content{padding:14px 16px}}
+.placeholder{display:flex;align-items:center;justify-content:center;min-height:200px;color:var(--dim);font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:2px;text-align:center;padding:20px}
+
+/* MARKDOWN STYLES */
+.viewer-content h1{font-family:'Share Tech Mono',monospace;font-size:clamp(1rem,4vw,1.3rem);color:var(--accent);border-bottom:1px solid var(--border);padding-bottom:8px;margin:24px 0 12px;letter-spacing:2px;word-break:break-word}
+.viewer-content h2{font-family:'Share Tech Mono',monospace;font-size:clamp(.9rem,3.5vw,1rem);color:var(--accent3);margin:20px 0 10px;letter-spacing:1px}
+.viewer-content h3{font-size:clamp(.85rem,3vw,.95rem);color:var(--yellow);margin:16px 0 8px;font-weight:700}
 .viewer-content h4{font-size:.9rem;color:var(--orange);margin:12px 0 6px}
-.viewer-content p{margin-bottom:10px;color:var(--text);font-size:15px}
-.viewer-content code{background:rgba(0,217,255,0.07);color:var(--accent3);padding:2px 7px;border:1px solid rgba(0,217,255,0.15);font-family:'Share Tech Mono',monospace;font-size:12px;border-radius:2px}
-.viewer-content pre{background:#020509;border:1px solid var(--border);border-left:3px solid var(--accent);padding:14px 18px;margin:12px 0;overflow-x:auto;border-radius:2px}
-.viewer-content pre code{background:none;border:none;padding:0;color:var(--accent3);font-size:12px;display:block;white-space:pre}
-.viewer-content ul,.viewer-content ol{padding-left:20px;margin-bottom:10px}
-.viewer-content li{margin-bottom:4px;color:var(--text)}
+.viewer-content p{margin-bottom:10px;color:var(--text);font-size:clamp(13px,3.5vw,15px);word-wrap:break-word}
+.viewer-content code{background:rgba(0,217,255,0.07);color:var(--accent3);padding:2px 6px;border:1px solid rgba(0,217,255,0.15);font-family:'Share Tech Mono',monospace;font-size:11px;border-radius:2px;word-break:break-all}
+.viewer-content pre{background:#020509;border:1px solid var(--border);border-left:3px solid var(--accent);padding:12px 14px;margin:12px 0;overflow-x:auto;border-radius:2px;max-width:100%}
+.viewer-content pre code{background:none;border:none;padding:0;color:var(--accent3);font-size:11px;display:block;white-space:pre;word-break:normal}
+.viewer-content ul,.viewer-content ol{padding-left:18px;margin-bottom:10px}
+.viewer-content li{margin-bottom:4px;color:var(--text);font-size:clamp(13px,3.5vw,15px)}
 .viewer-content li::marker{color:var(--accent)}
 .viewer-content strong{color:var(--accent);font-weight:700}
 .viewer-content em{color:var(--yellow);font-style:normal}
-.viewer-content blockquote{border-left:3px solid var(--accent2);padding:8px 16px;margin:12px 0;color:#aaa;background:rgba(255,62,108,0.04)}
+.viewer-content blockquote{border-left:3px solid var(--accent2);padding:8px 14px;margin:12px 0;color:#aaa;background:rgba(255,62,108,0.04)}
 .viewer-content hr{border:none;border-top:1px solid var(--border);margin:18px 0}
-.viewer-content table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px}
-.viewer-content th{background:rgba(0,217,255,0.08);color:var(--accent);padding:7px 12px;border:1px solid var(--border);text-align:left;font-family:'Share Tech Mono',monospace;font-size:11px}
-.viewer-content td{padding:7px 12px;border:1px solid var(--border);color:var(--text)}
+.viewer-content table{width:100%;border-collapse:collapse;margin:12px 0;font-size:12px;display:block;overflow-x:auto}
+.viewer-content th{background:rgba(0,217,255,0.08);color:var(--accent);padding:6px 10px;border:1px solid var(--border);text-align:left;font-family:'Share Tech Mono',monospace;font-size:10px;white-space:nowrap}
+.viewer-content td{padding:6px 10px;border:1px solid var(--border);color:var(--text);font-size:12px}
 .viewer-content tr:nth-child(even) td{background:rgba(255,255,255,0.02)}
-.viewer-content a{color:var(--accent);text-decoration:none;border-bottom:1px dashed rgba(0,217,255,0.4)}
-footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:14px 24px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim)}
+.viewer-content a{color:var(--accent);text-decoration:none;border-bottom:1px dashed rgba(0,217,255,0.4);word-break:break-all}
+footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:12px 16px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim)}
 footer span{color:var(--accent2)}
 </style>
 </head>
@@ -78,17 +111,18 @@ footer span{color:var(--accent2)}
 <div class="page-header">
   <span class="folder-icon">🔧</span>
   <div class="folder-title">free bsd and apt offline configuration</div>
-  <div class="folder-meta"><em>3</em> NOTES &nbsp;·&nbsp; CYBER SECURITY VAULT</div>
+  <div class="folder-meta"><em>3</em> NOTES · CYBER SECURITY VAULT</div>
   <div class="search-row">
     <input class="s-input" id="searchInput" placeholder="search notes..." oninput="filterFiles()">
   </div>
 </div>
 <div class="layout">
-  <div class="sidebar">
+  <div class="sidebar" id="sidebar">
     <div class="sidebar-head">FILES <span id="visCount">3</span></div>
     <div id="fileList"></div>
   </div>
-  <div class="viewer">
+  <div class="viewer" id="viewer">
+    <div class="mobile-back-btn" id="mobileBackBtn" onclick="showSidebar()">← ALL NOTES</div>
     <div class="viewer-bar">
       <span class="v-dot vd-r"></span><span class="v-dot vd-y"></span><span class="v-dot vd-g"></span>
       <span class="v-path" id="vPath">select a note</span>
@@ -102,6 +136,21 @@ footer span{color:var(--accent2)}
 
 <script>
 var NOTES = [{"name": "APT OFFLINE", "content": "# Debian Package Management Notes\n\n## Updating and Upgrading Packages\n\n### 1. **Update Package Lists**\n\nThe following command refreshes the package list from repositories:\n\nbash\n\nCopyEdit\n\n`apt update`\n\n- This command fetches the latest package lists from the repositories defined in `/etc/apt/sources.list`.\n- It does **not** upgrade any installed packages, just updates the list of available versions.\n\n### 2. **Upgrade Installed Packages**\n\nTo upgrade installed packages to their latest versions:\n\nbash\n\nCopyEdit\n\n`apt upgrade`\n\n- This command downloads and installs updates for currently installed packages **without** removing existing ones.\n\n---\n\n## Managing Repositories\n\n### 3. **Check the List of Repositories**\n\nTo view the currently configured package sources:\n\nbash\n\nCopyEdit\n\n`cat /etc/apt/sources.list`\n\n- Displays the list of repositories from which packages and updates are retrieved.\n\n### 4. **Editing Repository List**\n\nTo modify repository sources:\n\nbash\n\nCopyEdit\n\n`vim /etc/apt/sources.list`\n\n- Opens the file in the `vim` text editor for manual modification.\n- You can add or remove repository URLs as needed.\n\n### 5. **Example Repository List (Debian Bookworm)**\n\nEnsure your `/etc/apt/sources.list` includes the following lines for stable Debian Bookworm updates:\n\ncpp\n\nCopyEdit\n\n`deb http://deb.debian.org/debian bookworm main contrib non-free non-free-firmware deb-src http://deb.debian.org/debian bookworm main contrib non-free non-free-firmware  deb http://deb.debian.org/debian bookworm-updates main contrib non-free non-free-firmware deb-src http://deb.debian.org/debian bookworm-updates main contrib non-free non-free-firmware  deb http://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware deb-src http://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware`\n\n- `deb` → Binary package repositories\n- `deb-src` → Source package repositories\n- `bookworm` → The Debian release version\n- `main contrib non-free non-free-firmware` → Sections for free and non-free packages\n\nAfter modifying the repository list, update the package index:\n\nbash\n\nCopyEdit\n\n`apt update`\n\n---\n\n## Creating a Local Mirror of Debian Repositories\n\n### 6. **Install `apt-mirror`**\n\nThe `apt-mirror` tool allows you to create a local repository mirror:\n\nbash\n\nCopyEdit\n\n`apt install apt-mirror`\n\n- This installs the tool required for mirroring Debian repositories.\n\n### 7. **Check and Configure Repository Mirror**\n\nbash\n\nCopyEdit\n\n`vim /etc/apt/mirror.list`\n\n- Opens the configuration file where you can define repositories to mirror.\n\n### 8. **Start Mirroring Process**\n\nbash\n\nCopyEdit\n\n`apt-mirror`\n\n- Downloads and creates a local copy of the repository as specified in `mirror.list`.\n\n---\n\n## Offline Package Management\n\n### 9. **Install `apt-offline`**\n\nFor updating packages on systems without internet access:\n\nbash\n\nCopyEdit\n\n`apt install apt-offline`\n\n- This installs the tool used for offline package management.\n\n### 10. **Generate Update Signature File**\n\nbash\n\nCopyEdit\n\n`apt-offline set --update --upgrade offline.sig`\n\n- Creates a signature file (`offline.sig`) that lists the required updates.\n- This file can be transferred to a system with internet access.\n\n### 11. **Download Required Packages on an Internet-Connected System**\n\nbash\n\nCopyEdit\n\n`apt-offline get --bundle updates.zip offline.sig`\n\n- Downloads the necessary updates and saves them in `updates.zip`.\n- This file can then be moved to the offline machine.\n\n### 12. **Install Updates on the Offline System**\n\nbash\n\nCopyEdit\n\n`apt-offline install updates.zip`\n\n- Installs the downloaded updates on the offline system.\n\n---\n\n### Summary\n\n|Command|Description|\n|---|---|\n|`apt update`|Refreshes package lists from repositories|\n|`apt upgrade`|Installs updates for existing packages|\n|`cat /etc/apt/sources.list`|Displays the list of configured repositories|\n|`vim /etc/apt/sources.list`|Edits the repository list|\n|`apt install apt-mirror`|Installs the `apt-mirror` tool for repository mirroring|\n|`vim /etc/apt/mirror.list`|Opens the mirror configuration file|\n|`apt-mirror`|Creates a local repository mirror|\n|`apt install apt-offline`|Installs `apt-offline` for offline package management|\n|`apt-offline set --update --upgrade offline.sig`|Generates an update signature file for offline updates|\n|`apt-offline get --bundle updates.zip offline.sig`|Downloads necessary updates on an internet-connected system|\n|`apt-offline install updates.zip`|Installs updates on the offline system|\n\n# second way -\n# Managing APT Repositories in Debian\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/APT-Repositories.md#managing-apt-repositories-in-debian)\n\nThis guide explains how to configure and manage APT repositories on Debian-based systems. It covers the syntax of repository entries, editing the sources.list file, handling GPG keys, and setting up an offline repository using a Debian ISO.\n\n---\n\n## Syntax of an APT Repository Entry\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/APT-Repositories.md#syntax-of-an-apt-repository-entry)\n\nGeneral format:\n\n```\ndeb  [URL]  [distribution]  [components]\n```\n\n- deb → Binary package repository (used for installing software)\n- deb-src → Source package repository (used for downloading source code)\n- [URL] → Server hosting the packages (e.g., [http://deb.debian.org/debian/](http://deb.debian.org/debian/))\n- [distribution] → Debian release name (e.g., bookworm for Debian 12)\n- [components] → Software categories like main, contrib, non-free, etc.\n\n---\n\n## Managing APT Repositories Online (/etc/apt/sources.list)\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/APT-Repositories.md#managing-apt-repositories-online-etcaptsourceslist)\n\nThe /etc/apt/sources.list file contains a list of software repositories from which APT fetches packages. You can edit this file to add or modify repositories.\n\n### Useful Sources List Generators\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/APT-Repositories.md#useful-sources-list-generators)\n\n- SimplyLinux Debian Generator: [https://repogen.simplylinux.ch/](https://repogen.simplylinux.ch/)\n- Debian Sources Generator (GitHub): [https://debgen.github.io/](https://debgen.github.io/) or [https://debgen.xyz/](https://debgen.xyz/)\n- Debian Wiki on Sources List: [https://wiki.debian.org/SourcesList](https://wiki.debian.org/SourcesList)\n\n### Editing the sources.list File\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/APT-Repositories.md#editing-the-sourceslist-file)\n\nTo edit the sources file:\n\n```\nvim /etc/apt/sources.list\n```\n\nExample (Default Debian 12 Bookworm):\n\n```\ndeb http://deb.debian.org/debian bookworm main contrib non-free non-free-firmware\ndeb http://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware\ndeb http://deb.debian.org/debian bookworm-updates main contrib non-free non-free-firmware\n```\n\n### Fixing Issues with sources.list\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/APT-Repositories.md#fixing-issues-with-sourceslist)\n\n1. Verify the correct Debian version in /etc/os-release:\n    \n    ```\n    cat /etc/os-release\n    ```\n    \n2. Replace bookworm with your version (e.g., bullseye, buster) in sources.list if needed.\n\n### GPG Signature Errors\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/APT-Repositories.md#gpg-signature-errors)\n\nIf GPG signature errors appear, add the missing keys:\n\n```\napt-key adv --keyserver keyserver.ubuntu.com --recv-keys KEY_ID\n```\n\n---\n\n## Setting Up an Offline Repository in APT\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/APT-Repositories.md#setting-up-an-offline-repository-in-apt)\n\n### Download a Debian 12 DVD ISO\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/APT-Repositories.md#download-a-debian-12-dvd-iso)\n\n(Refer to Debian 12 official site or mirrors)\n\n### A. Using Debian DVD/ISO as a Repository\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/APT-Repositories.md#a-using-debian-dvdiso-as-a-repository)\n\n#### Step 1: Mount the ISO and Copy Files\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/APT-Repositories.md#step-1-mount-the-iso-and-copy-files)\n\n```\nmount -o loop /path/to/debian.iso /mnt\n```\n\n```\nmkdir /ubuntudvd\n```\n\n```\ncp -r /mnt/* /ubuntudvd\n```\n\n```\numount /mnt\n```\n\n- Mounts the ISO to /mnt.\n- Copies all files from the ISO into /ubuntudvd.\n- Unmounts the ISO after copying.\n\n#### Step 2: Add the Local Repository to APT\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/APT-Repositories.md#step-2-add-the-local-repository-to-apt)\n\n```\nvim /etc/apt/sources.list\n```\n\nInside sources.list, comment other entries and add:\n\n```\ndeb [trusted=yes] file:/ubuntudvd bookworm main contrib non-free-firmware\n```\n\n- deb [trusted=yes] marks the repo as trusted (no signature checks).\n- file:/ubuntudvd points to the local repo directory.\n- bookworm main contrib non-free-firmware specifies package categories.\n\n#### Step 3: Update APT Cache\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/APT-Repositories.md#step-3-update-apt-cache)\n\n```\napt update\n```\n\nRefreshes the package list from the offline repository.\n\n#### Step 4: Install Packages from Offline Repo\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/APT-Repositories.md#step-4-install-packages-from-offline-repo)\n\n```\napt install vim\n```\n\nInstalls vim from the local repository.\n\n#### Step 5: Verify APT is Using the Local Repository\n\n[](https://github.com/InfoSecWarrior/Linux-Essentials/blob/main/APT-Repositories.md#step-5-verify-apt-is-using-the-local-repository)\n\n```\napt-cache policy vim\n```\n\nDisplays the priority and source of the package. If file:/ubuntudvd appears, the offline repo is working.\n\nYour Debian offline repository is now fully set up!"}, {"name": "FreeBSD Installation and Configuration", "content": "\n## 1. Download the FreeBSD ISO\n- Visit the official FreeBSD download page:  \n  [FreeBSD Download](https://www.freebsd.org/where.html)\n\n## 2. Create a New Virtual Machine in VirtualBox\n\n### 2.1. Set Up the VM\n- Open **VirtualBox** and create a new virtual machine.\n- Set the **operating system type** to **BSD** and version to **FreeBSD (64-bit)**.\n- Allocate **2GB of RAM** and **20GB of storage** for the virtual machine.\n- Attach the **FreeBSD ISO** as the **bootable disk**.\n\n## 3. Boot the FreeBSD Installer\n\n### 3.1. Boot Options\n- Start the VM and select **Boot Multiuser** to begin the FreeBSD installation.\n\n## 4. Install FreeBSD\n\n### 4.1. Keymap Selection\n- Continue with the **default keymap** (usually `US`).\n\n### 4.2. Set Hostname\n- Enter the **hostname** for your system (e.g., `freebsd.local`).\n\n### 4.3. Distribution System Selection\n- Choose the **default distribution system** to install the basic FreeBSD system.\n\n### 4.4. Partitioning\n- Choose **UFS** as the filesystem type for the partitioning.\n  \n#### Partitioning Steps:\n1. Select **Use the entire disk** to use the whole virtual disk for FreeBSD.\n2. Choose the **GPT (GUID Partition Table)** scheme for partitioning.\n3. After setting up, confirm the partitioning and **commit** the changes.\n\n### 4.5. Set Root Password\n- When prompted, enter a **root password** for the system.\n\n### 4.6. Network Configuration\n- Choose the **default network adapter** for your VM.\n- Set **DHCP** to automatically acquire an IP address.\n\n### 4.7. Timezone and Locale Setup\n- Select your **region**.\n- Choose the **timezone**.\n- Set the **keyboard layout** (default `US`).\n\n### 4.8. Create User Account\n- Create an **additional user account** and set a password for it.\n\n### 4.9. Reboot the System\n- After the installation is complete, **reboot** the system.\n\n## 5. Post-Installation Configuration\n\n### 5.1. SSH Configuration (If Needed)\n- If you're facing SSH issues, you may need to modify the following configuration files:\n  - `/etc/rc.conf`\n  - `/etc/pam.d/sshd`\n  - `/etc/ssh/sshd_config`\n\n#### Using `ee` or `vim` editor:\nTo edit files, use the following commands:\n\n`bash\nee /etc/rc.conf\n\n\n### 5.2. Configure DNS\n\n- To configure DNS, open the **`/etc/resolv.conf`** file and add the nameservers.\n\n#### Edit DNS with `ee` editor:\n\nbash\n\nCopy\n\n`ee /etc/resolv.conf`\n\n- Add the **nameserver** line:\n\ntext\n\nCopy\n\n`nameserver <DNS_IP>`\n\n### 5.3. Restart the System\n\n- After making changes, **restart** the system to apply the new settings:\n\nbash\n\nCopy\n\n`shutdown -r now`\n\n## 6. Additional Configuration (SSH and Network)\n\n### 6.1. Verify SSH Service\n\n- To ensure SSH is properly set up, start the SSH service manually if needed:\n\nbash\n\nCopy\n\n`service sshd start`\n\n### 6.2. Check Network Connectivity\n\n- Test network connectivity to ensure your system is connected to the network and can access the internet.\n\nbash\n\nCopy\n\n`ping google.com`\n\nIf the system can ping external servers, the network is working correctly.\n\n---\n\n### Troubleshooting Tips\n\n- If SSH is not working:\n    \n    - Make sure the SSH daemon is running: `service sshd start`\n    - Check if the firewall is blocking SSH: `pfctl -sr` (for packet filter configurations).\n    - Verify `/etc/rc.conf`, `/etc/pam.d/sshd`, and `/etc/ssh/sshd_config` are correctly configured.\n- If DNS is not resolving:\n    \n    - Double-check the `/etc/resolv.conf` file and ensure correct nameserver entries are added.\n    - Ensure your network connection is active."}, {"name": "HOW TO CHECK PASSWORD OF CONNECTED WIFI", "content": "\nPS C:\\Users\\AAyush> netsh wlan show profile name= \"OnePlus Nord CE 2\" key=clear\n\nProfile OnePlus Nord CE 2 on interface Wi-Fi:\n=======================================================================\n\nApplied: All User Profile\n\nProfile information\n-------------------\n    Version                : 1\n    Type                   : Wireless LAN\n    Name                   : OnePlus Nord CE 2\n    Control options        :\n        Connection mode    : Connect manually\n        Network broadcast  : Connect only if this network is broadcasting\n        AutoSwitch         : Do not switch to other networks\n        MAC Randomization  : Disabled\n\nConnectivity settings\n---------------------\n    Number of SSIDs        : 1\n    SSID name              : \"OnePlus Nord CE 2\"\n    Network type           : Infrastructure\n    Radio type             : [ Any Radio Type ]\n    Vendor extension          : Not present\n\nSecurity settings\n-----------------\n    Authentication         : WPA3-Personal\n    Cipher                 : CCMP\n    Authentication         : WPA2-Personal\n    Cipher                 : CCMP\n    Authentication         : WPA3-Personal\n    Cipher                 : GCMP\n    Authentication         : WPA2-Personal\n    Cipher                 : GCMP\n    Security key           : Present\n    Key Content            : 9009625428\n\nCost settings\n-------------\n    Cost                   : Unrestricted\n    Congested              : No\n    Approaching Data Limit : No\n    Over Data Limit        : No\n    Roaming                : No\n    Cost Source            : Default\n\nPS C:\\Users\\AAyush>"}];
+var isMobile = window.innerWidth <= 768;
+
+window.addEventListener('resize', function() { isMobile = window.innerWidth <= 768; });
+
+function showSidebar() {
+  document.getElementById('sidebar').classList.remove('hidden');
+  document.getElementById('viewer').classList.add('hidden');
+}
+
+function showViewer() {
+  if (isMobile) {
+    document.getElementById('sidebar').classList.add('hidden');
+    document.getElementById('viewer').classList.remove('hidden');
+  }
+}
 
 function buildSidebar(filter) {
   var list = document.getElementById('fileList');
@@ -147,13 +196,10 @@ function renderMd(raw) {
 
   for (var i = 0; i < lines.length; i++) {
     var line = lines[i];
-
-    // Fenced code block toggle
     if (line.match(/^```/)) {
       if (!inCode) {
         if (inList) { out += '</ul>'; inList = false; }
-        inCode = true;
-        codeBuffer = '';
+        inCode = true; codeBuffer = '';
       } else {
         inCode = false;
         out += '<pre><code>' + escHtml(codeBuffer) + '</code></pre>';
@@ -161,59 +207,38 @@ function renderMd(raw) {
       }
       continue;
     }
-
-    if (inCode) {
-      codeBuffer += (codeBuffer ? '\n' : '') + line;
-      continue;
-    }
-
+    if (inCode) { codeBuffer += (codeBuffer ? '\n' : '') + line; continue; }
     var e = escHtml(line);
-
-    // Headings
     if (e.match(/^#### /)) { if(inList){out+='</ul>';inList=false;} out += '<h4>' + e.slice(5) + '</h4>'; continue; }
     if (e.match(/^### /))  { if(inList){out+='</ul>';inList=false;} out += '<h3>' + e.slice(4) + '</h3>'; continue; }
     if (e.match(/^## /))   { if(inList){out+='</ul>';inList=false;} out += '<h2>' + e.slice(3) + '</h2>'; continue; }
     if (e.match(/^# /))    { if(inList){out+='</ul>';inList=false;} out += '<h1>' + e.slice(2) + '</h1>'; continue; }
-
-    // HR
     if (e.match(/^---+$/)) { if(inList){out+='</ul>';inList=false;} out += '<hr>'; continue; }
-
-    // Blockquote
-    if (e.match(/^&gt; /)) { if(inList){out+='</ul>';inList=false;} out += '<blockquote>' + inlineFormat(e.slice(5)) + '</blockquote>'; continue; }
-
-    // List item
+    if (e.match(/^&gt; /)) { if(inList){out+='</ul>';inList=false;} out += '<blockquote>' + inlineFmt(e.slice(5)) + '</blockquote>'; continue; }
     if (e.match(/^[\*\-] /) || e.match(/^\d+\. /)) {
       if (!inList) { out += '<ul>'; inList = true; }
-      var itemText = e.match(/^[\*\-] /) ? e.slice(2) : e.replace(/^\d+\. /,'');
-      out += '<li>' + inlineFormat(itemText) + '</li>';
+      var txt = e.match(/^[\*\-] /) ? e.slice(2) : e.replace(/^\d+\.\s/,'');
+      out += '<li>' + inlineFmt(txt) + '</li>';
       continue;
     }
-
-    // Empty line
     if (e.trim() === '') {
       if (inList) { out += '</ul>'; inList = false; }
       out += '<br>';
       continue;
     }
-
-    // Normal paragraph line
     if (inList) { out += '</ul>'; inList = false; }
-    out += '<p>' + inlineFormat(e) + '</p>';
+    out += '<p>' + inlineFmt(e) + '</p>';
   }
-
   if (inList) out += '</ul>';
   if (inCode) out += '<pre><code>' + escHtml(codeBuffer) + '</code></pre>';
   return out;
 }
 
-function inlineFormat(t) {
-  // Inline code
+function inlineFmt(t) {
   t = t.replace(/`([^`]+)`/g, function(m,c){ return '<code>' + c + '</code>'; });
-  // Bold+italic
   t = t.replace(/\*\*\*([^*]+)\*\*\*/g, '<strong><em>$1</em></strong>');
   t = t.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
   t = t.replace(/\*([^*]+)\*/g, '<em>$1</em>');
-  // Links
   t = t.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
   return t;
 }
@@ -227,12 +252,12 @@ function openNote(idx) {
   var viewer = document.getElementById('viewerContent');
   viewer.innerHTML = renderMd(NOTES[idx].content);
   viewer.scrollTop = 0;
+  showViewer();
 }
 
-// RUN ON PAGE LOAD
 window.onload = function() {
   buildSidebar();
-  if (NOTES.length > 0) openNote(0);
+  if (!isMobile && NOTES.length > 0) openNote(0);
 };
 </script>
 </body>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BASIC ABOUT COMPUTER — Cyber Security Notes</title>
+<title>BASIC ABOUT COMPUTER — Cyber Notes</title>
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -12,60 +12,93 @@ body{background:var(--bg);font-family:'Rajdhani',sans-serif;color:var(--text);mi
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,217,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,217,255,0.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
 .scanline{position:fixed;top:-100%;left:0;width:100%;height:2px;background:linear-gradient(transparent,rgba(0,217,255,0.1),transparent);animation:scan 6s linear infinite;pointer-events:none;z-index:1}
 @keyframes scan{to{top:110%}}
-.topbar{position:relative;z-index:2;background:#0a0e15;border-bottom:1px solid var(--border);padding:10px 24px;display:flex;align-items:center;gap:14px}
-.back-btn{color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:12px;text-decoration:none;border:1px solid rgba(0,217,255,0.3);padding:4px 14px;letter-spacing:1px;transition:all .2s}
-.back-btn:hover{background:rgba(0,217,255,0.08)}
-.breadcrumb{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim)}
+
+/* TOPBAR */
+.topbar{position:relative;z-index:2;background:#0a0e15;border-bottom:1px solid var(--border);padding:10px 16px;display:flex;align-items:center;gap:12px}
+.back-btn{color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:11px;text-decoration:none;border:1px solid rgba(0,217,255,0.3);padding:5px 12px;letter-spacing:1px;white-space:nowrap}
+.breadcrumb{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .breadcrumb em{color:var(--accent);font-style:normal}
-.page-header{position:relative;z-index:2;padding:28px 24px 18px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,#0a0e15,#0d1117)}
-.folder-icon{font-size:2.2rem;display:block;margin-bottom:8px}
-.folder-title{font-family:'Share Tech Mono',monospace;font-size:clamp(1.2rem,3vw,1.8rem);color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:4px}
-.folder-meta{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim);letter-spacing:2px}
+
+/* HEADER */
+.page-header{position:relative;z-index:2;padding:20px 16px 14px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,#0a0e15,#0d1117)}
+.folder-icon{font-size:2rem;display:block;margin-bottom:6px}
+.folder-title{font-family:'Share Tech Mono',monospace;font-size:clamp(1.1rem,5vw,1.8rem);color:var(--accent);letter-spacing:2px;text-transform:uppercase;margin-bottom:3px}
+.folder-meta{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:2px}
 .folder-meta em{color:var(--accent3);font-style:normal}
-.search-row{margin-top:12px;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);padding:8px 14px;max-width:380px}
+.search-row{margin-top:10px;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);padding:8px 12px}
 .search-row::before{content:'⌕';color:var(--accent);font-size:1rem}
 .s-input{background:none;border:none;outline:none;color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:12px;width:100%;caret-color:var(--accent)}
 .s-input::placeholder{color:var(--dim)}
-.layout{position:relative;z-index:2;display:grid;grid-template-columns:250px 1fr;min-height:calc(100vh - 170px)}
-@media(max-width:700px){.layout{grid-template-columns:1fr;grid-template-rows:auto 1fr}}
-.sidebar{border-right:1px solid var(--border);background:#0a0e15;overflow-y:auto;max-height:calc(100vh - 120px);position:sticky;top:0}
+
+/* DESKTOP: side by side */
+.layout{position:relative;z-index:2;display:grid;grid-template-columns:250px 1fr;min-height:calc(100vh - 160px)}
+
+/* MOBILE: stack vertically */
+@media(max-width:768px){
+  .layout{display:flex;flex-direction:column}
+  .sidebar{
+    max-height:none !important;
+    height:auto;
+    position:relative !important;
+    border-right:none;
+    border-bottom:1px solid var(--border);
+  }
+  .sidebar.hidden{display:none}
+  .viewer{display:flex;flex-direction:column}
+  .viewer.hidden{display:none}
+  .mobile-back-btn{display:flex}
+  .viewer-content{padding:16px;word-wrap:break-word;overflow-wrap:break-word}
+  pre{overflow-x:auto;max-width:100%}
+  table{display:block;overflow-x:auto;max-width:100%}
+}
+
+/* SIDEBAR */
+.sidebar{border-right:1px solid var(--border);background:#0a0e15;overflow-y:auto;position:sticky;top:0;max-height:calc(100vh - 110px)}
 .sidebar::-webkit-scrollbar{width:3px}.sidebar::-webkit-scrollbar-thumb{background:#1e2d3d}
-.sidebar-head{padding:8px 14px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:3px;background:#080c10;border-bottom:1px solid var(--border);display:flex;justify-content:space-between}
+.sidebar-head{padding:8px 14px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:3px;background:#080c10;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
 .sidebar-head span{color:var(--accent3)}
-.file-item{padding:9px 14px;cursor:pointer;border-bottom:1px solid rgba(255,255,255,0.03);display:flex;align-items:flex-start;gap:8px;transition:all .15s;color:var(--dim)}
+.file-item{padding:11px 14px;cursor:pointer;border-bottom:1px solid rgba(255,255,255,0.03);display:flex;align-items:flex-start;gap:8px;transition:all .15s;color:var(--dim)}
 .file-item:hover{background:rgba(0,217,255,0.05);color:var(--text)}
 .file-item.active{background:rgba(0,217,255,0.08);color:var(--accent);border-left:2px solid var(--accent)}
 .fi-icon{font-size:10px;margin-top:3px;flex-shrink:0;color:var(--accent2)}
-.fi-name{font-family:'Share Tech Mono',monospace;font-size:11px;line-height:1.5;text-transform:capitalize}
-.viewer{display:flex;flex-direction:column}
-.viewer-bar{background:#080c10;border-bottom:1px solid var(--border);padding:8px 20px;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim);display:flex;align-items:center;gap:6px}
-.v-dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+.fi-name{font-family:'Share Tech Mono',monospace;font-size:11px;line-height:1.5;text-transform:capitalize;word-break:break-word}
+
+/* MOBILE BACK BUTTON (inside viewer) */
+.mobile-back-btn{display:none;align-items:center;gap:8px;padding:10px 14px;background:#080c10;border-bottom:1px solid var(--border);cursor:pointer;color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:1px}
+.mobile-back-btn:hover{background:rgba(0,217,255,0.05)}
+
+/* VIEWER */
+.viewer{display:flex;flex-direction:column;min-height:300px}
+.viewer-bar{background:#080c10;border-bottom:1px solid var(--border);padding:8px 16px;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim);display:flex;align-items:center;gap:6px}
+.v-dot{width:8px;height:8px;border-radius:50%;display:inline-block}
 .vd-r{background:#ff5f56}.vd-y{background:#ffbd2e}.vd-g{background:#27c93f}
-.v-path{color:var(--text);margin-left:4px}
-.viewer-content{padding:28px 36px;line-height:1.85;font-size:15px;overflow-y:auto;flex:1}
-@media(max-width:700px){.viewer-content{padding:16px}}
-.placeholder{display:flex;align-items:center;justify-content:center;min-height:300px;color:var(--dim);font-family:'Share Tech Mono',monospace;font-size:12px;letter-spacing:2px}
-.viewer-content h1{font-family:'Share Tech Mono',monospace;font-size:1.3rem;color:var(--accent);border-bottom:1px solid var(--border);padding-bottom:8px;margin:24px 0 12px;letter-spacing:2px}
-.viewer-content h2{font-family:'Share Tech Mono',monospace;font-size:1rem;color:var(--accent3);margin:20px 0 10px;letter-spacing:1px}
-.viewer-content h3{font-size:.95rem;color:var(--yellow);margin:16px 0 8px;font-weight:700}
+.v-path{color:var(--text);margin-left:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:calc(100% - 60px)}
+.viewer-content{padding:24px 28px;line-height:1.85;font-size:15px;overflow-y:auto;flex:1;overflow-x:hidden;word-wrap:break-word}
+@media(max-width:768px){.viewer-content{padding:14px 16px}}
+.placeholder{display:flex;align-items:center;justify-content:center;min-height:200px;color:var(--dim);font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:2px;text-align:center;padding:20px}
+
+/* MARKDOWN STYLES */
+.viewer-content h1{font-family:'Share Tech Mono',monospace;font-size:clamp(1rem,4vw,1.3rem);color:var(--accent);border-bottom:1px solid var(--border);padding-bottom:8px;margin:24px 0 12px;letter-spacing:2px;word-break:break-word}
+.viewer-content h2{font-family:'Share Tech Mono',monospace;font-size:clamp(.9rem,3.5vw,1rem);color:var(--accent3);margin:20px 0 10px;letter-spacing:1px}
+.viewer-content h3{font-size:clamp(.85rem,3vw,.95rem);color:var(--yellow);margin:16px 0 8px;font-weight:700}
 .viewer-content h4{font-size:.9rem;color:var(--orange);margin:12px 0 6px}
-.viewer-content p{margin-bottom:10px;color:var(--text);font-size:15px}
-.viewer-content code{background:rgba(0,217,255,0.07);color:var(--accent3);padding:2px 7px;border:1px solid rgba(0,217,255,0.15);font-family:'Share Tech Mono',monospace;font-size:12px;border-radius:2px}
-.viewer-content pre{background:#020509;border:1px solid var(--border);border-left:3px solid var(--accent);padding:14px 18px;margin:12px 0;overflow-x:auto;border-radius:2px}
-.viewer-content pre code{background:none;border:none;padding:0;color:var(--accent3);font-size:12px;display:block;white-space:pre}
-.viewer-content ul,.viewer-content ol{padding-left:20px;margin-bottom:10px}
-.viewer-content li{margin-bottom:4px;color:var(--text)}
+.viewer-content p{margin-bottom:10px;color:var(--text);font-size:clamp(13px,3.5vw,15px);word-wrap:break-word}
+.viewer-content code{background:rgba(0,217,255,0.07);color:var(--accent3);padding:2px 6px;border:1px solid rgba(0,217,255,0.15);font-family:'Share Tech Mono',monospace;font-size:11px;border-radius:2px;word-break:break-all}
+.viewer-content pre{background:#020509;border:1px solid var(--border);border-left:3px solid var(--accent);padding:12px 14px;margin:12px 0;overflow-x:auto;border-radius:2px;max-width:100%}
+.viewer-content pre code{background:none;border:none;padding:0;color:var(--accent3);font-size:11px;display:block;white-space:pre;word-break:normal}
+.viewer-content ul,.viewer-content ol{padding-left:18px;margin-bottom:10px}
+.viewer-content li{margin-bottom:4px;color:var(--text);font-size:clamp(13px,3.5vw,15px)}
 .viewer-content li::marker{color:var(--accent)}
 .viewer-content strong{color:var(--accent);font-weight:700}
 .viewer-content em{color:var(--yellow);font-style:normal}
-.viewer-content blockquote{border-left:3px solid var(--accent2);padding:8px 16px;margin:12px 0;color:#aaa;background:rgba(255,62,108,0.04)}
+.viewer-content blockquote{border-left:3px solid var(--accent2);padding:8px 14px;margin:12px 0;color:#aaa;background:rgba(255,62,108,0.04)}
 .viewer-content hr{border:none;border-top:1px solid var(--border);margin:18px 0}
-.viewer-content table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px}
-.viewer-content th{background:rgba(0,217,255,0.08);color:var(--accent);padding:7px 12px;border:1px solid var(--border);text-align:left;font-family:'Share Tech Mono',monospace;font-size:11px}
-.viewer-content td{padding:7px 12px;border:1px solid var(--border);color:var(--text)}
+.viewer-content table{width:100%;border-collapse:collapse;margin:12px 0;font-size:12px;display:block;overflow-x:auto}
+.viewer-content th{background:rgba(0,217,255,0.08);color:var(--accent);padding:6px 10px;border:1px solid var(--border);text-align:left;font-family:'Share Tech Mono',monospace;font-size:10px;white-space:nowrap}
+.viewer-content td{padding:6px 10px;border:1px solid var(--border);color:var(--text);font-size:12px}
 .viewer-content tr:nth-child(even) td{background:rgba(255,255,255,0.02)}
-.viewer-content a{color:var(--accent);text-decoration:none;border-bottom:1px dashed rgba(0,217,255,0.4)}
-footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:14px 24px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim)}
+.viewer-content a{color:var(--accent);text-decoration:none;border-bottom:1px dashed rgba(0,217,255,0.4);word-break:break-all}
+footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:12px 16px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim)}
 footer span{color:var(--accent2)}
 </style>
 </head>
@@ -78,17 +111,18 @@ footer span{color:var(--accent2)}
 <div class="page-header">
   <span class="folder-icon">💻</span>
   <div class="folder-title">BASIC ABOUT COMPUTER</div>
-  <div class="folder-meta"><em>3</em> NOTES &nbsp;·&nbsp; CYBER SECURITY VAULT</div>
+  <div class="folder-meta"><em>3</em> NOTES · CYBER SECURITY VAULT</div>
   <div class="search-row">
     <input class="s-input" id="searchInput" placeholder="search notes..." oninput="filterFiles()">
   </div>
 </div>
 <div class="layout">
-  <div class="sidebar">
+  <div class="sidebar" id="sidebar">
     <div class="sidebar-head">FILES <span id="visCount">3</span></div>
     <div id="fileList"></div>
   </div>
-  <div class="viewer">
+  <div class="viewer" id="viewer">
+    <div class="mobile-back-btn" id="mobileBackBtn" onclick="showSidebar()">← ALL NOTES</div>
     <div class="viewer-bar">
       <span class="v-dot vd-r"></span><span class="v-dot vd-y"></span><span class="v-dot vd-g"></span>
       <span class="v-path" id="vPath">select a note</span>
@@ -102,6 +136,21 @@ footer span{color:var(--accent2)}
 
 <script>
 var NOTES = [{"name": "ALL  BASIC INFO", "content": "The booting process is ==the process of starting a computer, which involves loading the operating system and preparing the computer for use==. \n\nHow it works \n\n1. The user presses the power button.\n2. The bootloader in the cache memory is powered on.\n3. The bootloader performs a Power On Self Test (POST).\n\n- The BIOS (Basic Input Output System) is activated.\n\n- The BIOS finds and loads the operating system.\n\n- The operating system loads into the computer's memory.\n\n- The system configures devices and initializes other basic software.\n\n- The user authenticates and is presented with a login screen or desktop environment.\n\nTypes of booting\n\nThere are two types of booting: \n\n- **Cold booting**: Starting the computer after a full power off\n\n- **Warm booting**: Restarting the operating system after a system crash or freeze"}, {"name": "OSI MODEL", "content": "The **OSI (Open Systems Interconnection) model** is a conceptual framework used to understand and standardize network communications. It consists of **seven layers**, each with a specific function in the communication process.\n\n### **OSI Model Layers & Their Working**\n\n---\n\n### **1. Physical Layer (Layer 1)**\n\n- **Function:** Deals with raw data transmission over a physical medium (wires, fiber optics, radio waves).\n    \n- **Example:** Ethernet cables, fiber optics, radio frequencies, network interface cards (NICs).\n    \n- **Key Devices:** Hubs, repeaters, network cables.\n    \n\n---\n\n### **2. Data Link Layer (Layer 2)**\n\n- **Function:** Handles error detection and correction, and defines how data packets are placed on the physical medium.\n    \n- **Example:** MAC (Media Access Control) addresses, Ethernet, Wi-Fi (802.11).\n    \n- **Key Devices:** Switches, bridges.\n    \n\n---\n\n### **3. Network Layer (Layer 3)**\n\n- **Function:** Routes data between different networks and assigns logical addresses (IP addresses).\n    \n- **Example:** IP (Internet Protocol), routers, ICMP (ping).\n    \n- **Key Devices:** Routers, Layer 3 switches.\n    \n\n---\n\n### **4. Transport Layer (Layer 4)**\n\n- **Function:** Ensures reliable or fast data delivery using protocols such as TCP (reliable) and UDP (fast, no error checking).\n    \n- **Example:** TCP (Transmission Control Protocol), UDP (User Datagram Protocol).\n    \n- **Key Devices:** Firewalls (operate at Layer 4 and above).\n    \n\n---\n\n### **5. Session Layer (Layer 5)**\n\n- **Function:** Manages and controls communication sessions between applications.\n    \n- **Example:** Remote procedure calls (RPC), NetBIOS, session management in web applications.\n    \n\n---\n\n### **6. Presentation Layer (Layer 6)**\n\n- **Function:** Converts data into a format the application can understand, including encryption, compression, and encoding.\n    \n- **Example:** SSL/TLS (encryption), JPEG, MPEG, ASCII, Unicode.\n    \n\n---\n\n### **7. Application Layer (Layer 7)**\n\n- **Function:** Provides end-user services such as web browsing, email, and file transfer.\n    \n- **Example:** HTTP, FTP, SMTP (email), DNS.\n    \n- **Key Devices:** Proxy servers, application gateways.\n    \n\n---\n\n### **How OSI Model Works in Communication**\n\n1. **Sender Side:** Data is generated at the **Application Layer** → Encapsulated as it passes through the layers (e.g., added headers).\n    \n2. **Transmission:** The **Physical Layer** transmits bits over the medium.\n    \n3. **Receiver Side:** Data moves up from the **Physical Layer** to the **Application Layer**, where it is presented to the user.\n    \n\n---\n\n### **OSI vs. TCP/IP Model**\n\n|OSI Model|TCP/IP Model|\n|---|---|\n|7 Layers|4 Layers|\n|Conceptual model|Practical model used on the internet|\n|Includes Presentation & Session layers|These functions are part of Application Layer|\n\n---\n\n### **Conclusion**\n\n\n\n\n# ABOUT TCP AND UDP--\n### **TCP (Transmission Control Protocol) vs. UDP (User Datagram Protocol)**\n\nBoth **TCP** and **UDP** are **Transport Layer protocols** in the OSI model, but they function differently.\n\n|Feature|**TCP (Transmission Control Protocol)**|**UDP (User Datagram Protocol)**|\n|---|---|---|\n|**Connection**|Connection-oriented (requires a handshake)|Connectionless (no handshake)|\n|**Reliability**|Reliable (ensures data is received in order, retransmits lost packets)|Unreliable (no retransmission, packets may be lost)|\n|**Speed**|Slower due to error-checking and acknowledgments|Faster due to minimal overhead|\n|**Usage**|Used for applications requiring reliability (e.g., web browsing, email, file transfer)|Used for time-sensitive applications (e.g., VoIP, online gaming, video streaming)|\n|**Header Size**|Larger (more overhead due to error control)|Smaller (less overhead)|\n\n**In short:**\n\n- **TCP** is reliable but slower.\n    \n- **UDP** is faster but less reliable. 🚀\n    \n\n4o"}, {"name": "THREE WAY HANDSAKE", "content": "### What is the Three-Way Handshake?\n\nThe **three-way handshake** is the procedure used by the TCP protocol to establish a reliable connection between a client and a server. It ensures that both devices are ready for communication and that the data can be sent without errors.\n\n### Steps in the Three-Way Handshake\n\n1. **SYN (Synchronize)**\n    - The client sends a **SYN** message (a request to start the connection) to the server. This message indicates the client's initial sequence number.\n2. **SYN-ACK (Synchronize-Acknowledgment)**\n    - The server responds with a **SYN-ACK** message, which both acknowledges the client's request (via the ACK part) and also sends its own sequence number.\n3. **ACK (Acknowledgment)**\n    - The client responds with an **ACK** message to acknowledge the server's SYN-ACK message. This completes the handshake.\n\nOnce these three steps are completed, the connection is established, and data transfer can begin.\n\n---\n\n### Example: A Simple Three-Way Handshake\n\n#### Scenario: A client (A) wants to establish a connection with a server (B).\n\n1. **Step 1: Client (A) sends SYN to Server (B)**\n    \n    - A sends a message:  \n        **SYN: Seq = 1000**  \n        This means A wants to start the communication and indicates its initial sequence number is 1000.\n2. **Step 2: Server (B) responds with SYN-ACK**\n    \n    - B receives the SYN from A, and responds with:  \n        **SYN-ACK: Seq = 2000, Ack = 1001**  \n        B's sequence number is 2000, and it acknowledges the client's sequence number by sending `Ack = 1001` (the next expected number from A).\n3. **Step 3: Client (A) sends ACK to Server (B)**\n    \n    - A receives the SYN-ACK from B and responds with:  \n        **ACK: Seq = 1001, Ack = 2001**  \n        This message acknowledges the server's sequence number and confirms the connection.\n\n---\n\n### After the Three-Way Handshake\n\nAt this point, the connection is established, and both sides can start transmitting data.\n\n#### Summary:\n\n- **Client sends SYN** → **Server responds with SYN-ACK** → **Client acknowledges with ACK**.\n- This ensures both the client and server are synchronized and ready for communication."}];
+var isMobile = window.innerWidth <= 768;
+
+window.addEventListener('resize', function() { isMobile = window.innerWidth <= 768; });
+
+function showSidebar() {
+  document.getElementById('sidebar').classList.remove('hidden');
+  document.getElementById('viewer').classList.add('hidden');
+}
+
+function showViewer() {
+  if (isMobile) {
+    document.getElementById('sidebar').classList.add('hidden');
+    document.getElementById('viewer').classList.remove('hidden');
+  }
+}
 
 function buildSidebar(filter) {
   var list = document.getElementById('fileList');
@@ -147,13 +196,10 @@ function renderMd(raw) {
 
   for (var i = 0; i < lines.length; i++) {
     var line = lines[i];
-
-    // Fenced code block toggle
     if (line.match(/^```/)) {
       if (!inCode) {
         if (inList) { out += '</ul>'; inList = false; }
-        inCode = true;
-        codeBuffer = '';
+        inCode = true; codeBuffer = '';
       } else {
         inCode = false;
         out += '<pre><code>' + escHtml(codeBuffer) + '</code></pre>';
@@ -161,59 +207,38 @@ function renderMd(raw) {
       }
       continue;
     }
-
-    if (inCode) {
-      codeBuffer += (codeBuffer ? '\n' : '') + line;
-      continue;
-    }
-
+    if (inCode) { codeBuffer += (codeBuffer ? '\n' : '') + line; continue; }
     var e = escHtml(line);
-
-    // Headings
     if (e.match(/^#### /)) { if(inList){out+='</ul>';inList=false;} out += '<h4>' + e.slice(5) + '</h4>'; continue; }
     if (e.match(/^### /))  { if(inList){out+='</ul>';inList=false;} out += '<h3>' + e.slice(4) + '</h3>'; continue; }
     if (e.match(/^## /))   { if(inList){out+='</ul>';inList=false;} out += '<h2>' + e.slice(3) + '</h2>'; continue; }
     if (e.match(/^# /))    { if(inList){out+='</ul>';inList=false;} out += '<h1>' + e.slice(2) + '</h1>'; continue; }
-
-    // HR
     if (e.match(/^---+$/)) { if(inList){out+='</ul>';inList=false;} out += '<hr>'; continue; }
-
-    // Blockquote
-    if (e.match(/^&gt; /)) { if(inList){out+='</ul>';inList=false;} out += '<blockquote>' + inlineFormat(e.slice(5)) + '</blockquote>'; continue; }
-
-    // List item
+    if (e.match(/^&gt; /)) { if(inList){out+='</ul>';inList=false;} out += '<blockquote>' + inlineFmt(e.slice(5)) + '</blockquote>'; continue; }
     if (e.match(/^[\*\-] /) || e.match(/^\d+\. /)) {
       if (!inList) { out += '<ul>'; inList = true; }
-      var itemText = e.match(/^[\*\-] /) ? e.slice(2) : e.replace(/^\d+\. /,'');
-      out += '<li>' + inlineFormat(itemText) + '</li>';
+      var txt = e.match(/^[\*\-] /) ? e.slice(2) : e.replace(/^\d+\.\s/,'');
+      out += '<li>' + inlineFmt(txt) + '</li>';
       continue;
     }
-
-    // Empty line
     if (e.trim() === '') {
       if (inList) { out += '</ul>'; inList = false; }
       out += '<br>';
       continue;
     }
-
-    // Normal paragraph line
     if (inList) { out += '</ul>'; inList = false; }
-    out += '<p>' + inlineFormat(e) + '</p>';
+    out += '<p>' + inlineFmt(e) + '</p>';
   }
-
   if (inList) out += '</ul>';
   if (inCode) out += '<pre><code>' + escHtml(codeBuffer) + '</code></pre>';
   return out;
 }
 
-function inlineFormat(t) {
-  // Inline code
+function inlineFmt(t) {
   t = t.replace(/`([^`]+)`/g, function(m,c){ return '<code>' + c + '</code>'; });
-  // Bold+italic
   t = t.replace(/\*\*\*([^*]+)\*\*\*/g, '<strong><em>$1</em></strong>');
   t = t.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
   t = t.replace(/\*([^*]+)\*/g, '<em>$1</em>');
-  // Links
   t = t.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
   return t;
 }
@@ -227,12 +252,12 @@ function openNote(idx) {
   var viewer = document.getElementById('viewerContent');
   viewer.innerHTML = renderMd(NOTES[idx].content);
   viewer.scrollTop = 0;
+  showViewer();
 }
 
-// RUN ON PAGE LOAD
 window.onload = function() {
   buildSidebar();
-  if (NOTES.length > 0) openNote(0);
+  if (!isMobile && NOTES.length > 0) openNote(0);
 };
 </script>
 </body>
