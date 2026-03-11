@@ -4,202 +4,242 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OTHER LINUX — Cyber Security Notes</title>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#0a0f0a;--bg2:#0d150d;--bg3:#111a11;--bg4:#0f180f;
-  --green:#00ff41;--green2:#00cc33;--green3:#009922;--green4:#003311;
-  --cyan:#00e5ff;--red:#ff3355;--yellow:#ffd700;--orange:#ff8c00;
-  --text:#b8f0b8;--text2:#7aaa7a;--text3:#3a6a3a;
-  --border:rgba(0,255,65,.12);--border2:rgba(0,255,65,.3);--border3:rgba(0,255,65,.6);
-  --glow:rgba(0,255,65,.12);
+  --bg:#080c10;--surface:#0d1117;--border:#1e2d3d;
+  --accent:#00d9ff;--accent2:#ff3e6c;--accent3:#39ff14;
+  --text:#c9d1d9;--dim:#586069;--yellow:#ffd700;--orange:#ffa500;
 }
-body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospace;min-height:100vh;overflow-x:hidden}
-body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.06) 3px,rgba(0,0,0,.06) 4px);pointer-events:none;z-index:9999}
+body{background:var(--bg);font-family:'Rajdhani',sans-serif;color:var(--text);min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,217,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,217,255,0.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
+.scanline{position:fixed;top:-100%;left:0;width:100%;height:2px;background:linear-gradient(transparent,rgba(0,217,255,0.1),transparent);animation:scan 6s linear infinite;pointer-events:none;z-index:1}
+@keyframes scan{to{top:110%}}
 
-/* TOP BAR */
-.topbar{background:var(--bg2);border-bottom:1px solid var(--border2);padding:10px 28px;display:flex;align-items:center;gap:16px}
-.back-btn{background:none;border:1px solid var(--border2);color:var(--green2);font-family:'JetBrains Mono',monospace;font-size:.7rem;padding:5px 14px;cursor:pointer;letter-spacing:2px;text-decoration:none;transition:all .15s}
-.back-btn:hover{background:var(--glow);border-color:var(--green);color:var(--green)}
-.breadcrumb{font-size:.7rem;color:var(--text3)}
-.breadcrumb span{color:var(--green)}
+/* TOPBAR */
+.topbar{position:relative;z-index:2;background:#0a0e15;border-bottom:1px solid var(--border);padding:10px 24px;display:flex;align-items:center;gap:14px}
+.back-btn{color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:12px;text-decoration:none;border:1px solid rgba(0,217,255,0.3);padding:4px 14px;letter-spacing:1px;transition:all .2s}
+.back-btn:hover{background:rgba(0,217,255,0.08);border-color:var(--accent)}
+.breadcrumb{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim)}
+.breadcrumb em{color:var(--accent);font-style:normal}
 
 /* HEADER */
-.page-header{padding:36px 28px 24px;border-bottom:1px solid var(--border);background:var(--bg2);position:relative;overflow:hidden}
-.page-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 0% 50%,rgba(0,255,65,.06),transparent);pointer-events:none}
-.folder-icon{font-size:2.8rem;margin-bottom:12px;display:block}
-.folder-title{font-family:'Orbitron',monospace;font-size:clamp(1.4rem,4vw,2.2rem);font-weight:900;color:var(--green);text-shadow:0 0 20px rgba(0,255,65,.4);letter-spacing:4px;margin-bottom:6px}
-.folder-meta{font-size:.7rem;color:var(--text3);letter-spacing:2px}
-.folder-meta span{color:var(--green2)}
-.search-row{margin-top:18px;display:flex;align-items:center;gap:10px;background:var(--bg3);border:1px solid var(--border2);padding:9px 16px;max-width:460px}
-.search-row::before{content:'⌕';color:var(--green);font-size:1.1rem}
-.s-input{background:none;border:none;outline:none;color:var(--green);font-family:'JetBrains Mono',monospace;font-size:.82rem;width:100%;caret-color:var(--green)}
-.s-input::placeholder{color:var(--text3)}
+.page-header{position:relative;z-index:2;padding:30px 24px 20px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,#0a0e15,#0d1117)}
+.folder-icon{font-size:2.4rem;display:block;margin-bottom:10px}
+.folder-title{font-family:'Share Tech Mono',monospace;font-size:clamp(1.2rem,3vw,1.8rem);color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:6px}
+.folder-meta{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim);letter-spacing:2px}
+.folder-meta em{color:var(--accent3);font-style:normal}
+.search-row{margin-top:14px;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);padding:8px 14px;max-width:400px}
+.search-row::before{content:'⌕';color:var(--accent);font-size:1rem}
+.s-input{background:none;border:none;outline:none;color:var(--accent);font-family:'Share Tech Mono',monospace;font-size:13px;width:100%;caret-color:var(--accent)}
+.s-input::placeholder{color:var(--dim)}
 
 /* LAYOUT */
-.layout{display:grid;grid-template-columns:270px 1fr;min-height:calc(100vh - 200px)}
-@media(max-width:768px){.layout{grid-template-columns:1fr;grid-template-rows:auto 1fr}}
+.layout{position:relative;z-index:2;display:grid;grid-template-columns:260px 1fr;min-height:calc(100vh - 180px)}
+@media(max-width:700px){.layout{grid-template-columns:1fr;grid-template-rows:220px 1fr}}
 
 /* SIDEBAR */
-.sidebar{border-right:1px solid var(--border);background:var(--bg2);overflow-y:auto;max-height:calc(100vh - 160px);position:sticky;top:0}
-.sidebar::-webkit-scrollbar{width:3px}.sidebar::-webkit-scrollbar-thumb{background:var(--green3)}
-.sidebar-head{padding:10px 16px;font-size:.6rem;color:var(--text3);letter-spacing:3px;background:var(--bg4);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
-.note-count-badge{background:var(--green4);color:var(--green2);padding:2px 8px;font-size:.6rem;border:1px solid var(--border2)}
-.file-item{padding:10px 14px;cursor:pointer;border-bottom:1px solid rgba(0,255,65,.04);display:flex;align-items:flex-start;gap:8px;transition:all .15s;color:var(--text3)}
-.file-item:hover{background:rgba(0,255,65,.06);color:var(--green)}
-.file-item.active{background:var(--glow);color:var(--green);border-left:2px solid var(--green)}
-.file-item-icon{color:var(--green3);font-size:.65rem;margin-top:3px;flex-shrink:0}
-.file-item-name{font-size:.74rem;line-height:1.4;text-transform:capitalize}
+.sidebar{border-right:1px solid var(--border);background:#0a0e15;overflow-y:auto;position:sticky;top:0;max-height:calc(100vh - 130px)}
+.sidebar::-webkit-scrollbar{width:3px}.sidebar::-webkit-scrollbar-thumb{background:#1e2d3d}
+.sidebar-head{padding:8px 14px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:3px;background:#080c10;border-bottom:1px solid var(--border);display:flex;justify-content:space-between}
+.sidebar-head span{color:var(--accent3)}
+.file-item{padding:9px 14px;cursor:pointer;border-bottom:1px solid rgba(255,255,255,0.03);display:flex;align-items:flex-start;gap:8px;transition:all .15s;color:var(--dim)}
+.file-item:hover{background:rgba(0,217,255,0.05);color:var(--text)}
+.file-item.active{background:rgba(0,217,255,0.08);color:var(--accent);border-left:2px solid var(--accent)}
+.fi-icon{font-size:10px;margin-top:3px;flex-shrink:0;color:var(--accent2)}
+.fi-name{font-family:'Share Tech Mono',monospace;font-size:11px;line-height:1.5;text-transform:capitalize}
 
 /* VIEWER */
-.viewer{display:flex;flex-direction:column;min-width:0}
-.viewer-bar{background:var(--bg4);border-bottom:1px solid var(--border);padding:9px 22px;font-size:.68rem;color:var(--text3);display:flex;align-items:center;gap:8px;flex-shrink:0}
-.viewer-bar-dots span{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:5px}
-.dot-r{background:#ff5f56}.dot-y{background:#ffbd2e}.dot-g{background:#27c93f;box-shadow:0 0 6px #27c93f}
-.viewer-path{color:var(--text2);margin-left:4px}
-.viewer-content{padding:32px 40px;line-height:1.9;font-size:.84rem;overflow-y:auto;flex:1}
-@media(max-width:768px){.viewer-content{padding:20px 18px}}
+.viewer{display:flex;flex-direction:column}
+.viewer-bar{background:#080c10;border-bottom:1px solid var(--border);padding:8px 20px;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim);display:flex;align-items:center;gap:8px}
+.v-dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+.vd-r{background:#ff5f56}.vd-y{background:#ffbd2e}.vd-g{background:#27c93f}
+.v-path{color:var(--text);margin-left:6px}
+.viewer-content{padding:28px 36px;line-height:1.85;font-size:15px;overflow-y:auto;flex:1}
+@media(max-width:700px){.viewer-content{padding:16px}}
 
 /* PLACEHOLDER */
-.placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:360px;gap:14px;color:var(--text3)}
-.ph-ascii{font-size:.58rem;line-height:1.3;color:var(--green3);opacity:.35;text-align:center}
+.placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px;gap:12px;color:var(--dim);font-family:'Share Tech Mono',monospace;font-size:12px;letter-spacing:2px}
 
-/* MARKDOWN */
-.viewer-content h1{font-family:'Orbitron',monospace;font-size:1.15rem;color:var(--green);text-shadow:0 0 12px rgba(0,255,65,.3);margin:26px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--border);letter-spacing:3px}
-.viewer-content h2{font-family:'Orbitron',monospace;font-size:.9rem;color:var(--cyan);margin:20px 0 10px;letter-spacing:2px}
-.viewer-content h3{font-size:.84rem;color:var(--yellow);margin:16px 0 8px}
-.viewer-content h4{font-size:.82rem;color:var(--orange);margin:12px 0 6px}
-.viewer-content p{margin-bottom:10px}
-.viewer-content code{background:rgba(0,255,65,.08);color:var(--green);padding:2px 8px;border:1px solid var(--border);font-size:.78rem}
-.viewer-content pre{background:#000;border:1px solid var(--border);border-left:3px solid var(--green);padding:14px 18px;margin:12px 0;overflow-x:auto}
-.viewer-content pre code{background:none;border:none;padding:0;color:var(--green);font-size:.78rem;display:block}
+/* MARKDOWN STYLES */
+.viewer-content h1{font-family:'Share Tech Mono',monospace;font-size:1.3rem;color:var(--accent);border-bottom:1px solid var(--border);padding-bottom:8px;margin:24px 0 12px;letter-spacing:2px}
+.viewer-content h2{font-family:'Share Tech Mono',monospace;font-size:1rem;color:var(--accent3);margin:20px 0 10px;letter-spacing:1px}
+.viewer-content h3{font-size:.95rem;color:var(--yellow);margin:16px 0 8px;font-weight:700}
+.viewer-content h4{font-size:.9rem;color:var(--orange);margin:12px 0 6px}
+.viewer-content p{margin-bottom:10px;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:15px}
+.viewer-content code{background:rgba(0,217,255,0.07);color:var(--accent3);padding:2px 7px;border:1px solid rgba(0,217,255,0.15);font-family:'Share Tech Mono',monospace;font-size:12px;border-radius:2px}
+.viewer-content pre{background:#020509;border:1px solid var(--border);border-left:3px solid var(--accent);padding:14px 18px;margin:12px 0;overflow-x:auto;border-radius:2px}
+.viewer-content pre code{background:none;border:none;padding:0;color:var(--accent3);font-size:12px;display:block}
 .viewer-content ul,.viewer-content ol{padding-left:20px;margin-bottom:10px}
-.viewer-content li{margin-bottom:4px}
-.viewer-content li::marker{color:var(--green)}
-.viewer-content strong{color:var(--cyan)}
+.viewer-content li{margin-bottom:4px;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:15px}
+.viewer-content li::marker{color:var(--accent)}
+.viewer-content strong{color:var(--accent);font-weight:700}
 .viewer-content em{color:var(--yellow);font-style:normal}
-.viewer-content blockquote{border-left:3px solid var(--yellow);padding:8px 16px;margin:12px 0;color:var(--yellow);background:rgba(255,215,0,.04)}
+.viewer-content blockquote{border-left:3px solid var(--accent2);padding:8px 16px;margin:12px 0;color:#aaa;background:rgba(255,62,108,0.04)}
 .viewer-content hr{border:none;border-top:1px solid var(--border);margin:18px 0}
-.viewer-content table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.78rem}
-.viewer-content th{background:var(--green4);color:var(--green);padding:7px 12px;border:1px solid var(--border);text-align:left;letter-spacing:1px}
-.viewer-content td{padding:7px 12px;border:1px solid var(--border)}
-.viewer-content tr:nth-child(even) td{background:rgba(0,255,65,.02)}
-.viewer-content a{color:var(--cyan);text-decoration:none;border-bottom:1px dashed var(--cyan)}
+.viewer-content table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px}
+.viewer-content th{background:rgba(0,217,255,0.08);color:var(--accent);padding:7px 12px;border:1px solid var(--border);text-align:left;font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:1px}
+.viewer-content td{padding:7px 12px;border:1px solid var(--border);color:var(--text)}
+.viewer-content tr:nth-child(even) td{background:rgba(255,255,255,0.02)}
+.viewer-content a{color:var(--accent);text-decoration:none;border-bottom:1px dashed rgba(0,217,255,0.4)}
 .viewer-content a:hover{color:#fff}
 
-/* FOOTER */
-footer{border-top:1px solid var(--border);padding:14px 28px;display:flex;justify-content:space-between;font-size:.62rem;color:var(--text3)}
-footer span{color:var(--green)}
+footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:16px 24px;text-align:center;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim)}
+footer span{color:var(--accent2)}
 </style>
 </head>
 <body>
+<div class="scanline"></div>
 
 <div class="topbar">
   <a class="back-btn" href="../index.html">← BACK</a>
-  <div class="breadcrumb">~/vault/<span>OTHER LINUX</span>/</div>
+  <div class="breadcrumb">~/vault/<em>OTHER LINUX</em>/</div>
 </div>
 
 <div class="page-header">
   <span class="folder-icon">🐉</span>
   <div class="folder-title">OTHER LINUX</div>
-  <div class="folder-meta"><span>2</span> NOTES &nbsp;·&nbsp; CYBER SECURITY VAULT</div>
+  <div class="folder-meta"><em>2</em> NOTES &nbsp;·&nbsp; CYBER SECURITY VAULT</div>
   <div class="search-row">
-    <input class="s-input" id="searchInput" placeholder="search in OTHER LINUX..." oninput="filterFiles()">
+    <input class="s-input" id="searchInput" placeholder="search notes..." oninput="filterFiles()">
   </div>
 </div>
 
 <div class="layout">
   <div class="sidebar">
-    <div class="sidebar-head">
-      FILES <span class="note-count-badge" id="visibleCount">2</span>
-    </div>
-    <div id="fileList"><div class="file-item" id="fi-0" data-name="arch linux" onclick="openNote(0)"><span class="file-item-icon">▸</span><span class="file-item-name">ARCH LINUX</span></div><div class="file-item" id="fi-1" data-name="bsd linux" onclick="openNote(1)"><span class="file-item-icon">▸</span><span class="file-item-name">BSD LINUX</span></div></div>
+    <div class="sidebar-head">FILES <span id="visCount">2</span></div>
+    <div id="fileList"></div>
   </div>
   <div class="viewer">
     <div class="viewer-bar">
-      <div class="viewer-bar-dots">
-        <span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span>
-      </div>
-      <span class="viewer-path" id="viewerPath">select a file to read</span>
+      <span class="v-dot vd-r"></span><span class="v-dot vd-y"></span><span class="v-dot vd-g"></span>
+      <span class="v-path" id="vPath">select a note</span>
     </div>
     <div class="viewer-content" id="viewerContent">
       <div class="placeholder">
-        <pre class="ph-ascii"> ██████╗██╗   ██╗██████╗ ███████╗██████╗ 
-██╔════╝╚██╗ ██╔╝██╔══██╗██╔════╝██╔══██╗
-██║      ╚████╔╝ ██████╔╝█████╗  ██████╔╝
-██║       ╚██╔╝  ██╔══██╗██╔══╝  ██╔══██╗
-╚██████╗   ██║   ██████╔╝███████╗██║  ██║
- ╚═════╝   ╚═╝   ╚═════╝ ╚══════╝╚═╝  ╚═╝</pre>
         <div>← SELECT A NOTE FROM THE LIST</div>
       </div>
     </div>
   </div>
 </div>
 
-<footer>
-  <div>~/vault/<span>OTHER LINUX</span>/ &nbsp;·&nbsp; <span>2 NOTES</span></div>
-  <div><span>●</span> OFFLINE READY</div>
-</footer>
+<footer><p>© 2026 <span>Rohan Kushwah</span> · OTHER LINUX · 2 notes</p></footer>
 
 <script>
+// ALL NOTES DATA
 const NOTES = [{"name": "ARCH LINUX", "content": "arch Linux is a lightweight and flexible Linux distribution that aims to provide the latest software and a minimal base system. It's popular among users who want to build a custom operating system from the ground up and prefer a \"keep it simple\" philosophy. Here are some key aspects of Arch Linux:   \n\n### 1. **Rolling Release**\n\nArch uses a rolling release model, meaning it doesn't have fixed versions like many other distributions (e.g., Ubuntu or Fedora). Instead, it continually updates software to the latest stable releases, so users always have access to the newest features and improvements.\n\n### 2. **Minimalism**\n\nArch comes with a minimal installation, giving users control over which components to install and configure. It doesn’t come with unnecessary software or a default desktop environment, allowing users to create a system tailored to their needs.\n\n### 3. **Pacman Package Manager**\n\nArch uses the `pacman` package manager to install, remove, and update software. It also has the Arch User Repository (AUR), which is a community-driven repository that offers even more software not available in the official Arch repositories.\n\n### 4. **Arch Wiki**\n\nThe Arch Wiki is a comprehensive resource that serves as a guide to install and maintain Arch Linux. It's widely considered one of the best documentation sources in the Linux world and helps users troubleshoot or configure any aspect of the system.\n\n### 5. **KISS (Keep It Simple, Stupid) Philosophy**\n\nThe guiding principle of Arch is simplicity. Arch is designed to be as straightforward as possible, with no additional tools or scripts that might complicate things. This simplicity means that users have full control but may need to spend more time configuring their system.\n\n### 6. **Arch User Community**\n\nThe Arch community is highly active and is known for being helpful, although Arch's advanced nature means that it can be challenging for beginners. However, the community’s commitment to documentation and detailed guides makes it easier for users to solve issues.\n\n### 7. **System Customization**\n\nArch allows deep customization, enabling users to pick exactly the packages, libraries, and configurations they want for their system. This level of control makes it a popular choice for users who enjoy tinkering or building their own systems from scratch.\n\n### 8. **Installation Process**\n\nArch does not have a graphical installer. Instead, users must follow a manual, step-by-step installation guide that involves using the terminal. While this can be daunting, it offers a learning experience and a deeper understanding of how the system works.\n\n### 9. **Target Audience**\n\nArch is aimed at more experienced Linux users or those who want to learn in-depth about Linux. It's not considered beginner-friendly, but it's a great way to learn about the inner workings of Linux.\n\nOverall, Arch is a great choice if you want a lightweight, customizable, and up-to-date Linux experience. However, it requires a bit more time and effort compared to other distributions, especially when it comes to installation and maintenance.\n\n\n\n\n# package manager in arch linux-\nIn Arch Linux, the package manager is called **Pacman**. Pacman is a powerful tool that handles the installation, removal, and updating of software packages. It is designed to be simple, efficient, and flexible, and it plays a central role in managing software on an Arch system.\n\n### Key Features of Pacman:\n\n1. **Easy Installation & Removal of Packages**  \n    Pacman simplifies package management by handling both the installation and removal of software packages. It automatically resolves dependencies, so you don’t need to worry about missing libraries or packages.\n    \n    - **Install a package**:\n        \n        go\n        \n        Copy\n        \n        `sudo pacman -S package-name`\n        \n    - **Remove a package**:\n        \n        go\n        \n        Copy\n        \n        `sudo pacman -R package-name`\n        \n2. **Updating System**  \n    Pacman is used to keep your system up-to-date. Since Arch Linux is a rolling release distribution, you can update the entire system to the latest packages with a single command:\n    \n    - **Update all packages**:\n        \n        nginx\n        \n        Copy\n        \n        `sudo pacman -Syu`\n        \n        This command updates the package database and all installed packages on your system.\n3. **Searching for Packages**  \n    If you're unsure about the name of a package or want to check if it's available in the repository, you can search for it with Pacman.\n    \n    - **Search for a package**:\n        \n        sql\n        \n        Copy\n        \n        `pacman -Ss search-term`\n        \n        This will search the official repositories for packages related to the term you provide.\n4. **Package Information**  \n    Pacman can show detailed information about a package, such as its description, size, version, and dependencies.\n    \n    - **Show information about a package**:\n        \n        go\n        \n        Copy\n        \n        `pacman -Qi package-name`\n        \n5. **Cleaning the Package Cache**  \n    Pacman keeps a cache of downloaded packages in case you need to downgrade or reinstall them later. Over time, this cache can take up significant disk space. You can clean it up to free space.\n    \n    - **Remove unneeded cached packages**:\n        \n        nginx\n        \n        Copy\n        \n        `sudo pacman -Sc`\n        \n    - **Completely clean the package cache** (removes all cached versions of packages):\n        \n        nginx\n        \n        Copy\n        \n        `sudo pacman -Scc`\n        \n6. **Installing Packages from the Arch User Repository (AUR)**  \n    While Pacman manages official Arch repositories, you can also install packages from the Arch User Repository (AUR), which contains community-driven packages. However, Pacman doesn't directly manage the AUR. For AUR packages, you typically use an AUR helper like **yay**, **paru**, or **trizen**.\n    \n    - **Install an AUR package with yay**:\n        \n        go\n        \n        Copy\n        \n        `yay -S package-name`\n        \n7. **Syncing the Package Database**  \n    If you need to refresh your package database (e.g., if your system was out of sync with the repository), you can manually update the database using:\n    \n    - **Sync the database**:\n        \n        nginx\n        \n        Copy\n        \n        `sudo pacman -Sy`\n        \n8. **Handling Dependencies**  \n    Pacman automatically resolves dependencies when installing, removing, or updating packages, so you don’t need to worry about manually managing library or package requirements.\n    \n\n### Example Commands:\n\n- **Update a single package**:\n    \n    go\n    \n    Copy\n    \n    `sudo pacman -S package-name`\n    \n- **Remove a package and its dependencies**:\n    \n    go\n    \n    Copy\n    \n    `sudo pacman -Rns package-name`\n    \n- **List all installed packages**:\n    \n    css\n    \n    Copy\n    \n    `pacman -Q`\n    \n- **List all files installed by a package**:\n    \n    go\n    \n    Copy\n    \n    `pacman -Ql package-name`\n    \n\n### Pacman Config File\n\nPacman uses a configuration file located at `/etc/pacman.conf`. You can modify this file to change repository settings, enable or disable certain options, or tweak the way Pacman behaves.\n\n### Summary\n\nPacman is the backbone of package management in Arch Linux. It's known for being fast, reliable, and powerful. Understanding Pacman is crucial for effectively managing software and keeping your Arch system up-to-date."}, {"name": "BSD LINUX", "content": "BSD** (Berkeley Software Distribution) and **Linux** are two different types of Unix-like operating systems, but they're often confused due to their similarities. However, BSD is not a type of Linux. Here's a breakdown to clarify the difference:\n\n### **What is BSD?**\n\nBSD refers to the family of operating systems that originated from the **Berkeley Software Distribution** project at the University of California, Berkeley. BSD was developed in the late 1970s and early 1980s, and it is based on the original Unix operating system.\n\nKey BSD-based operating systems include:\n\n1. **FreeBSD**  \n    Known for its performance, stability, and advanced networking features, FreeBSD is one of the most popular BSD operating systems. It is used in servers, desktops, and embedded systems.\n    \n2. **OpenBSD**  \n    OpenBSD focuses heavily on security and correctness. It's known for its security features and rigorous auditing of code.\n    \n3. **NetBSD**  \n    NetBSD is known for being highly portable. It's capable of running on a wide variety of hardware platforms, making it useful for embedded systems and unusual hardware.\n    \n4. **DragonFly BSD**  \n    DragonFly is a fork of FreeBSD, aiming to improve scalability and performance, especially on multi-core processors.\n    \n\n### **Key Characteristics of BSD:**\n\n- **Licensing**: BSD operating systems use the **BSD license**, which is a permissive open-source license. It allows anyone to modify and distribute the software, even for commercial purposes, without many restrictions. This is different from the **GPL** (General Public License) used by Linux.\n    \n- **Kernel**: BSD operating systems use their own **BSD kernel** (called the **FreeBSD kernel**, for example), which is different from the **Linux kernel**. While they are both Unix-like, their kernels are developed separately.\n    \n- **Userland**: The \"userland\" (user applications and libraries) of BSD is also different from Linux. BSD systems have their own set of tools and utilities, which are based on older versions of Unix tools but have their own implementations and specific features.\n    \n- **System Integration**: In a typical BSD system, both the kernel and userland are tightly integrated and maintained by the same project, whereas in the Linux ecosystem, the kernel is separate from the userland (which is typically provided by distributions like Ubuntu, Fedora, Arch, etc.).\n    \n\n### **What is Linux?**\n\nLinux, on the other hand, is an **open-source operating system kernel** created by Linus Torvalds in 1991. It is not a full operating system by itself but provides the core functionality (the kernel) that allows software to interact with the hardware. Different Linux distributions (like Ubuntu, Fedora, Arch, and Debian) combine the Linux kernel with various userland tools, libraries, and applications.\n\n### **Comparison: BSD vs Linux**\n\n- **License**: BSD is more permissive, allowing proprietary modifications and redistribution, while Linux uses the GPL, which requires derivatives to remain open-source.\n    \n- **Kernel**: BSD has its own kernel, while Linux uses the Linux kernel.\n    \n- **System Approach**: BSD systems tend to provide a more unified system, where the kernel and userland are developed and maintained together, while Linux systems often use a variety of software from different sources.\n    \n- **Performance & Stability**: Both BSD and Linux are known for being stable and reliable. However, BSD systems are often preferred for tasks requiring strong networking performance and security (e.g., FreeBSD is popular for servers).\n    \n- **Software Compatibility**: Linux generally has better hardware support and a larger selection of applications due to its larger user base. BSD, on the other hand, can have more limited support for some hardware and software, though it offers excellent compatibility with Unix-based applications.\n    \n\n### **BSD/Linux Hybrid Systems**\n\nSome people might refer to \"BSD Linux\" or **BSD-based Linux distributions**, but this is not technically accurate. In some cases, Linux distributions might use BSD-like utilities or components (such as the **BSD userland tools** in some Linux distributions), but the kernel remains the Linux kernel.\n\n### **Why Choose BSD?**\n\nPeople might choose BSD over Linux for specific reasons such as:\n\n- **Security** (OpenBSD is particularly famous for its security features).\n- **Performance and scalability** (FreeBSD is widely used in server environments).\n- **Unified System**: With BSD, the kernel and userland are tightly integrated and maintained together, providing a more consistent environment.\n\n### Conclusion\n\n**BSD** is a distinct family of operating systems with its own kernel, userland, and licensing. It is not a type of Linux. While both share similar Unix roots, BSD systems and Linux distributions are separate and have differences in licensing, kernel architecture, and system design.\n\n\n# PACKAGEE MANAGER IN BSD -\nEach BSD operating system (such as **FreeBSD**, **OpenBSD**, **NetBSD**, etc.) uses its own package management system for installing, upgrading, and managing software. Here's a look at the package managers used in the most popular BSD systems:\n\n### 1. **FreeBSD**: **pkg**\n\n- **pkg** is the package manager for FreeBSD, and it is designed to be simple and efficient.\n- It allows you to easily install, upgrade, and manage packages from the FreeBSD ports tree or binary repositories.\n\n**Common pkg commands:**\n\n- **Install a package**:\n    \n    go\n    \n    Copy\n    \n    `sudo pkg install package-name`\n    \n- **Remove a package**:\n    \n    go\n    \n    Copy\n    \n    `sudo pkg delete package-name`\n    \n- **Update the package database**:\n    \n    sql\n    \n    Copy\n    \n    `sudo pkg update`\n    \n- **Upgrade all packages**:\n    \n    nginx\n    \n    Copy\n    \n    `sudo pkg upgrade`\n    \n- **Search for a package**:\n    \n    sql\n    \n    Copy\n    \n    `pkg search search-term`\n    \n- **List installed packages**:\n    \n    nginx\n    \n    Copy\n    \n    `pkg info`\n    \n\n**Additional info**:  \nThe **pkg** system on FreeBSD was introduced to replace the older `portupgrade` and `pkg_add` tools. It provides a faster way to manage software and is commonly used in modern FreeBSD installations.\n\n### 2. **OpenBSD**: **pkg_add, pkg_info, pkg_delete**\n\nOpenBSD uses a more traditional approach with several separate commands for package management.\n\n**Common package management commands:**\n\n- **Install a package**:\n    \n    go\n    \n    Copy\n    \n    `sudo pkg_add package-name`\n    \n- **Remove a package**:\n    \n    go\n    \n    Copy\n    \n    `sudo pkg_delete package-name`\n    \n- **List installed packages**:\n    \n    nginx\n    \n    Copy\n    \n    `pkg_info`\n    \n- **Search for available packages**:\n    \n    sql\n    \n    Copy\n    \n    `pkg_add -v search-term`\n    \n\n**Additional info**:  \nOpenBSD also has a ports collection, but its use of **pkg_add** and **pkg_delete** makes package management straightforward.\n\n### 3. **NetBSD**: **pkgin**\n\nNetBSD uses **pkgin**, which is a front-end to the **pkgsrc** system, a cross-platform package management system that works on various operating systems, including NetBSD. **pkgin** simplifies managing packages on NetBSD.\n\n**Common pkgin commands:**\n\n- **Install a package**:\n    \n    go\n    \n    Copy\n    \n    `sudo pkgin install package-name`\n    \n- **Remove a package**:\n    \n    lua\n    \n    Copy\n    \n    `sudo pkgin remove package-name`\n    \n- **Update package list**:\n    \n    sql\n    \n    Copy\n    \n    `sudo pkgin update`\n    \n- **Upgrade all packages**:\n    \n    nginx\n    \n    Copy\n    \n    `sudo pkgin upgrade`\n    \n- **Search for a package**:\n    \n    sql\n    \n    Copy\n    \n    `pkgin search search-term`\n    \n\n**Additional info**:  \n**pkgin** is an easy-to-use tool that simplifies using the **pkgsrc** repository for installing and maintaining packages.\n\n### Summary of BSD Package Managers:\n\n- **FreeBSD** uses **pkg**, which is a fast and modern package manager for installing, upgrading, and removing software.\n- **OpenBSD** uses **pkg_add**, **pkg_info**, and **pkg_delete**, which are more traditional tools for package management.\n- **NetBSD** uses **pkgin**, which is a front-end for the **pkgsrc** system that works on various platforms.\n\nEach of these package managers has its strengths, but all aim to provide a simple, efficient way of managing software on BSD systems."}];
 
-function openNote(idx){
-  document.querySelectorAll('.file-item').forEach(e=>e.classList.remove('active'));
-  const el=document.getElementById('fi-'+idx);
-  if(el){el.classList.add('active');el.scrollIntoView({block:'nearest'})}
-  document.getElementById('viewerPath').textContent='OTHER LINUX/'+NOTES[idx].name;
-  document.getElementById('viewerContent').innerHTML=renderMd(NOTES[idx].content);
-  document.getElementById('viewerContent').scrollTop=0;
-}
-
-function filterFiles(){
-  const q=document.getElementById('searchInput').value.toLowerCase();
-  let v=0;
-  document.querySelectorAll('.file-item').forEach(el=>{
-    const show=!q||el.dataset.name.includes(q);
-    el.style.display=show?'':'none';
-    if(show)v++;
+// Build sidebar
+function buildSidebar(filter) {
+  const list = document.getElementById('fileList');
+  list.innerHTML = '';
+  let count = 0;
+  NOTES.forEach((note, i) => {
+    if (filter && !note.name.toLowerCase().includes(filter.toLowerCase())) return;
+    const div = document.createElement('div');
+    div.className = 'file-item';
+    div.id = 'fi-' + i;
+    div.innerHTML = '<span class="fi-icon">▸</span>';
+    const span = document.createElement('span');
+    span.className = 'fi-name';
+    span.textContent = note.name; // textContent = safe, no XSS
+    div.appendChild(span);
+    div.onclick = () => openNote(i);
+    list.appendChild(div);
+    count++;
   });
-  document.getElementById('visibleCount').textContent=v;
+  document.getElementById('visCount').textContent = count;
 }
 
-function renderMd(md){
-  let h=md.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  h=h.replace(/```[\w]*\n?([\s\S]*?)```/g,(_,c)=>`<pre><code>${c.trim()}</code></pre>`);
-  h=h.replace(/`([^`\n]+)`/g,'<code>$1</code>');
-  h=h.replace(/^#### (.+)$/gm,'<h4>$1</h4>');
-  h=h.replace(/^### (.+)$/gm,'<h3>$1</h3>');
-  h=h.replace(/^## (.+)$/gm,'<h2>$1</h2>');
-  h=h.replace(/^# (.+)$/gm,'<h1>$1</h1>');
-  h=h.replace(/\*\*\*(.+?)\*\*\*/g,'<strong><em>$1</em></strong>');
-  h=h.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
-  h=h.replace(/\*(.+?)\*/g,'<em>$1</em>');
-  h=h.replace(/^---+$/gm,'<hr>');
-  h=h.replace(/^&gt; (.+)$/gm,'<blockquote>$1</blockquote>');
-  h=h.replace(/\|(.+)\|\n\|[-| :]+\|\n((?:\|.+\|\n?)+)/g,(m,header,rows)=>{
-    const ths=header.split('|').filter(s=>s.trim()).map(s=>`<th>${s.trim()}</th>`).join('');
-    const trs=rows.trim().split('\n').map(row=>{
-      const tds=row.split('|').filter(s=>s.trim()).map(s=>`<td>${s.trim()}</td>`).join('');
-      return`<tr>${tds}</tr>`;
+function filterFiles() {
+  buildSidebar(document.getElementById('searchInput').value);
+}
+
+// SAFE note renderer - uses DOM API, never raw innerHTML for user content
+function openNote(idx) {
+  document.querySelectorAll('.file-item').forEach(e => e.classList.remove('active'));
+  const el = document.getElementById('fi-' + idx);
+  if (el) { el.classList.add('active'); el.scrollIntoView({block:'nearest'}); }
+  document.getElementById('vPath').textContent = 'OTHER LINUX/' + NOTES[idx].name;
+  
+  // SAFE render: parse markdown to safe HTML
+  const html = renderMd(NOTES[idx].content);
+  
+  // Use DOMParser to safely parse - strips all scripts
+  const parser = new DOMParser();
+  const doc = parser.parseFromString('<div>' + html + '</div>', 'text/html');
+  
+  // Remove ALL script, iframe, object, embed tags for safety
+  ['script','iframe','object','embed','form'].forEach(tag => {
+    doc.querySelectorAll(tag).forEach(el => el.remove());
+  });
+  
+  // Remove on* event attributes
+  doc.querySelectorAll('*').forEach(el => {
+    [...el.attributes].forEach(attr => {
+      if (attr.name.startsWith('on')) el.removeAttribute(attr.name);
+    });
+  });
+  
+  const viewer = document.getElementById('viewerContent');
+  viewer.innerHTML = '';
+  viewer.appendChild(doc.body.firstChild);
+  viewer.scrollTop = 0;
+}
+
+function renderMd(md) {
+  // Escape HTML entities FIRST - this is the key security step
+  let h = md
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+
+  // Code blocks (must be before inline code)
+  h = h.replace(/```[\w]*\n?([\s\S]*?)```/g, (_, c) => `<pre><code>${c.trim()}</code></pre>`);
+  // Inline code
+  h = h.replace(/`([^`\n]+)`/g, '<code>$1</code>');
+  // Headers
+  h = h.replace(/^#### (.+)$/gm, '<h4>$1</h4>');
+  h = h.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+  h = h.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+  h = h.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+  // Bold + Italic
+  h = h.replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>');
+  h = h.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  h = h.replace(/\*(.+?)\*/g, '<em>$1</em>');
+  // HR
+  h = h.replace(/^---+$/gm, '<hr>');
+  // Blockquote
+  h = h.replace(/^&gt; (.+)$/gm, '<blockquote>$1</blockquote>');
+  // Table
+  h = h.replace(/\|(.+)\|\n\|[-| :]+\|\n((?:\|.+\|\n?)+)/g, (m, header, rows) => {
+    const ths = header.split('|').filter(s => s.trim()).map(s => `<th>${s.trim()}</th>`).join('');
+    const trs = rows.trim().split('\n').map(row => {
+      const tds = row.split('|').filter(s => s.trim()).map(s => `<td>${s.trim()}</td>`).join('');
+      return `<tr>${tds}</tr>`;
     }).join('');
-    return`<table><thead><tr>${ths}</tr></thead><tbody>${trs}</tbody></table>`;
+    return `<table><thead><tr>${ths}</tr></thead><tbody>${trs}</tbody></table>`;
   });
-  h=h.replace(/^[\*\-] (.+)$/gm,'<li>$1</li>');
-  h=h.replace(/^\d+\. (.+)$/gm,'<li>$1</li>');
-  h=h.replace(/(<li>[\s\S]+?<\/li>)/g,m=>`<ul>${m}</ul>`);
-  h=h.replace(/<\/ul>\s*<ul>/g,'');
-  h=h.replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2" target="_blank">$1</a>');
-  h=h.replace(/\[\[([^\]]+)\]\]/g,'<span style="color:var(--yellow);border-bottom:1px dashed">⟦$1⟧</span>');
-  h=h.replace(/(^|\s)#([a-zA-Z0-9_-]+)/g,'$1<span style="color:var(--green3);font-size:.75em">#$2</span>');
-  h=h.replace(/\n\n+/g,'</p><p>');
-  h=h.replace(/\n/g,'<br>');
-  return '<p>'+h+'</p>';
+  // Lists
+  h = h.replace(/^[\*\-] (.+)$/gm, '<li>$1</li>');
+  h = h.replace(/^\d+\. (.+)$/gm, '<li>$1</li>');
+  h = h.replace(/(<li>[\s\S]+?<\/li>)/g, m => `<ul>${m}</ul>`);
+  h = h.replace(/<\/ul>\s*<ul>/g, '');
+  // Links
+  h = h.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+  // Obsidian links
+  h = h.replace(/\[\[([^\]]+)\]\]/g, '<span style="color:var(--yellow)">⟦$1⟧</span>');
+  // Paragraphs
+  h = h.replace(/\n\n+/g, '</p><p>');
+  h = h.replace(/\n/g, '<br>');
+  return '<p>' + h + '</p>';
 }
 
-// Auto open first
-if(NOTES.length>0) openNote(0);
+// Init
+buildSidebar();
+if (NOTES.length > 0) openNote(0);
 </script>
 </body>
 </html>
