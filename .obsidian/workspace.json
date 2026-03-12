@@ -1972,7 +1972,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "web application field guide/basic=.md",
+                "file": "nmap/service and os detection-.md",
                 "mode": "preview",
                 "source": false,
                 "backlinks": true,
@@ -1987,7 +1987,7 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "basic="
+              "title": "service and os detection-"
             }
           }
         ]
@@ -2148,8 +2148,10 @@
   },
   "active": "c6197ba8a6707d9b",
   "lastOpenFiles": [
-    "nmap/SCAN TECHNIQUES=.md",
+    "nmap/time and performance and firewall switches=.md",
+    "nmap/service and os detection-.md",
     "web application field guide/basic=.md",
+    "nmap/SCAN TECHNIQUES=.md",
     "web application field guide",
     "nmap/about port closed open and filtered & output-.md",
     "nmap/headers-.md",
@@ -2175,8 +2177,6 @@
     "SQL injection/dumping data injection-.md",
     "BASIC ABOUT COMPUTER/ALL  BASIC INFO=.md",
     "SQL injection/post methods  code dealing-.md",
-    "SQL injection/AUTNETICTATION BYPASS 2-.md",
-    "BASIC ABOUT COMPUTER/THREE WAY HANDSAKE=.md",
     "nmap",
     "Network pentesting",
     "kali configuration",
