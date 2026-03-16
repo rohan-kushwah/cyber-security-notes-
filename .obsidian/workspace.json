@@ -1727,7 +1727,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "UNVALIDATED REDIRECTION/unvalidated redirection exx=.md",
+                "file": "XXE/xml entity injection--.md",
                 "mode": "preview",
                 "source": false,
                 "backlinks": true,
@@ -1742,7 +1742,7 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "unvalidated redirection exx="
+              "title": "xml entity injection--"
             }
           },
           {
@@ -1972,7 +1972,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "NMAP/nse all guide-.md",
+                "file": "XXE/burp xxe lab-.md",
                 "mode": "preview",
                 "source": false,
                 "backlinks": true,
@@ -1987,7 +1987,7 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "nse all guide-"
+              "title": "burp xxe lab-"
             }
           }
         ]
@@ -2148,13 +2148,18 @@
   },
   "active": "c6197ba8a6707d9b",
   "lastOpenFiles": [
-    "LINUX SERVER/ftp --.md",
+    "XXE/xinclude attacks-.md",
+    "XXE/burp xxe lab-.md",
+    "XXE/xml entity injection--.md",
+    "XXE/xxe in simple words-.md",
+    "UNVALIDATED REDIRECTION/unvalidated redirection exx=.md",
+    "XXE/internal and external entity-.md",
+    "XXE/basic of xxe=.md",
     "NMAP/nse all guide-.md",
+    "LINUX SERVER/ftp --.md",
     "KALI CONFIGURATION/Untitled.md",
     "NMAP/firewall swiches and NSE-.md",
-    "XXE/basic of xxe=.md",
     "NMAP/time and performance and firewall switches=.md",
-    "UNVALIDATED REDIRECTION/unvalidated redirection exx=.md",
     "NMAP/service and os detection-.md",
     "WEB APPLICATION FIELD GUIDE/basic=.md",
     "NMAP/SCAN TECHNIQUES=.md",
@@ -2171,12 +2176,7 @@
     "RATE LIMIT",
     "NMAP/what is nmap=.md",
     "unvalidated redirection/redirection examples=.md",
-    "NMAP/nmap workflow-.md",
-    "NMAP/nmap basic commands-'.md",
-    "NMAP/tcp three way handshake-.md",
-    "SQL injection/sqlmap=.md",
     "UNVALIDATED REDIRECTION",
-    "SQL injection/ghauri-.md",
     "NMAP",
     "Network pentesting",
     "KALI CONFIGURATION",
