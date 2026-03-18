@@ -1972,7 +1972,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "XXE/burp xxe lab-.md",
+                "file": "NMAP/naabu-.md",
                 "mode": "preview",
                 "source": false,
                 "backlinks": true,
@@ -1987,7 +1987,7 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "burp xxe lab-"
+              "title": "naabu-"
             }
           }
         ]
@@ -2148,19 +2148,22 @@
   },
   "active": "c6197ba8a6707d9b",
   "lastOpenFiles": [
-    "XXE/xinclude attacks-.md",
+    "NMAP/masscan and rustscan-.md",
+    "NMAP/naabu-.md",
+    "NMAP/time and performance and firewall switches=.md",
+    "NMAP/service and os detection-.md",
+    "NMAP/firewall swiches and NSE-.md",
+    "NMAP/nse all guide-.md",
+    "NMAP/Nmap warrior=.md",
     "XXE/burp xxe lab-.md",
+    "XXE/xinclude attacks-.md",
     "XXE/xml entity injection--.md",
     "XXE/xxe in simple words-.md",
     "UNVALIDATED REDIRECTION/unvalidated redirection exx=.md",
     "XXE/internal and external entity-.md",
     "XXE/basic of xxe=.md",
-    "NMAP/nse all guide-.md",
     "LINUX SERVER/ftp --.md",
     "KALI CONFIGURATION/Untitled.md",
-    "NMAP/firewall swiches and NSE-.md",
-    "NMAP/time and performance and firewall switches=.md",
-    "NMAP/service and os detection-.md",
     "WEB APPLICATION FIELD GUIDE/basic=.md",
     "NMAP/SCAN TECHNIQUES=.md",
     "WEB APPLICATION FIELD GUIDE",
@@ -2172,10 +2175,7 @@
     "NMAP/knocking protocols -.md",
     "NMAP/target specification=-.md",
     "RATE LIMIT/basic of rate limit=.md",
-    "UNVALIDATED REDIRECTION/open redirection payloads-.md",
     "RATE LIMIT",
-    "NMAP/what is nmap=.md",
-    "unvalidated redirection/redirection examples=.md",
     "UNVALIDATED REDIRECTION",
     "NMAP",
     "Network pentesting",
