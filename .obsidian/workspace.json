@@ -359,20 +359,6 @@
             }
           },
           {
-            "id": "f5355446b3f4d7bc",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "adds/power user and administrator in win 11 practical;.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "power user and administrator in win 11 practical;"
-            }
-          },
-          {
             "id": "bbbc7504a10435af",
             "type": "leaf",
             "state": {
@@ -1959,7 +1945,7 @@
             }
           }
         ],
-        "currentTab": 89
+        "currentTab": 88
       },
       {
         "id": "900d65af054231eb",
@@ -1972,7 +1958,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "NMAP/naabu-.md",
+                "file": "NMAP/host discovery tools-.md",
                 "mode": "preview",
                 "source": false,
                 "backlinks": true,
@@ -1987,7 +1973,7 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "naabu-"
+              "title": "host discovery tools-"
             }
           }
         ]
@@ -2057,7 +2043,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 338.5
+    "width": 337.5
   },
   "right": {
     "id": "8db52ff546218953",
@@ -2148,17 +2134,24 @@
   },
   "active": "c6197ba8a6707d9b",
   "lastOpenFiles": [
-    "NMAP/masscan and rustscan-.md",
+    "NMAP/netcat=-.md",
+    "NMAP/host discovery tools-.md",
+    "SQL injection/AUTHENTICATION BYPASS=.md",
+    "CSRF/webgoat-.md",
+    "CSRF/csrf basic=.md",
+    "CSRF/same site-.md",
+    "XXE/burp xxe lab-.md",
+    "CSRF",
+    "XXE/xxe in simple words-.md",
+    "XXE/xinclude attacks-.md",
     "NMAP/naabu-.md",
+    "NMAP/masscan and rustscan-.md",
     "NMAP/time and performance and firewall switches=.md",
     "NMAP/service and os detection-.md",
     "NMAP/firewall swiches and NSE-.md",
     "NMAP/nse all guide-.md",
     "NMAP/Nmap warrior=.md",
-    "XXE/burp xxe lab-.md",
-    "XXE/xinclude attacks-.md",
     "XXE/xml entity injection--.md",
-    "XXE/xxe in simple words-.md",
     "UNVALIDATED REDIRECTION/unvalidated redirection exx=.md",
     "XXE/internal and external entity-.md",
     "XXE/basic of xxe=.md",
@@ -2169,12 +2162,6 @@
     "WEB APPLICATION FIELD GUIDE",
     "NMAP/about port closed open and filtered & output-.md",
     "NMAP/headers-.md",
-    "NMAP/port specification  -.md",
-    "NMAP/host discovery switchess-.md",
-    "NMAP/host discovery-.md",
-    "NMAP/knocking protocols -.md",
-    "NMAP/target specification=-.md",
-    "RATE LIMIT/basic of rate limit=.md",
     "RATE LIMIT",
     "UNVALIDATED REDIRECTION",
     "NMAP",
@@ -2183,7 +2170,6 @@
     "Kali linux-",
     "SQL injection",
     "FILE UPLOAD VULNERIBLITY",
-    "Reccon",
     "IMAGES/Screenshot From 2026-01-03 15-50-22.png",
     "IMAGES/Pasted image 20251220161530.png",
     "IMAGES/Pasted image 20251220160912.png",
